@@ -1,0 +1,2 @@
+<!-- Tampal kod ini pada halaman Blogger (HTML View). Gantikan URL_APP dengan URL hosting statik anda. -->
+<div style="width:100%;max-width:1200px;margin:auto"><iframe title="SafaMarwah Panduan Umrah" src="URL_APP" loading="lazy" style="display:block;width:100%;height:900px;border:0;border-radius:16px;background:#f8f7f2" allowfullscreen></iframe></div>
