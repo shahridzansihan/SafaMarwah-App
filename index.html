@@ -656,7 +656,7 @@ const smLanguageObserver=new MutationObserver(records=>{
  if(smTranslating)return;
  let needs=false;
  for(const r of records){if(r.type==='childList'&&r.addedNodes.length){needs=true;break}}
- if(needs)queueMicrotask(()=>{smApplyLanguage();smTranslateCurrent()});
+ if(needs)queueMicrotask(()=>{smTranslateCurrent()});
 });
 smLanguageObserver.observe(document.getElementById('main'),{childList:true,subtree:true});
 /* SafaMarwah interaction diagnostics: no personal data changed */
