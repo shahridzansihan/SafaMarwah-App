@@ -360,9 +360,10 @@ function phase2Play(){const el=document.getElementById('phase2-audio-status');if
 
 const phase3Words={
 ms:{schedule:'Jadual Perjalanan',emergency:'Kad Kecemasan',language:'Pilihan Bahasa',reminders:'Peringatan Aktiviti',save:'Simpan',add:'Tambah Aktiviti',remove:'Padam',name:'Nama',date:'Tarikh',time:'Masa',notes:'Butiran / lokasi'},
+en:{schedule:'Travel Schedule',emergency:'Emergency Card',language:'Language',reminders:'Activity Reminders',save:'Save',add:'Add Activity',remove:'Delete',name:'Name',date:'Date',time:'Time',notes:'Details / location'},
 id:{schedule:'Jadwal Perjalanan',emergency:'Kartu Darurat',language:'Pilihan Bahasa',reminders:'Pengingat Aktivitas',save:'Simpan',add:'Tambah Kegiatan',remove:'Hapus',name:'Nama',date:'Tanggal',time:'Waktu',notes:'Detail / lokasi'}
 };
-function phase3Lang(){const v=localStorage.getItem('sm-phase3-lang');return v==='id'?'id':'ms'}
+function phase3Lang(){const v=localStorage.getItem('sm-phase3-lang');return ['ms','id','en'].includes(v)?v:'ms'}
 function phase3Text(k){return phase3Words[phase3Lang()][k]||k}
 function phase3Read(k){try{const v=JSON.parse(localStorage.getItem(k)||'[]');return Array.isArray(v)?v:[]}catch(e){return []}}
 function phase3Save(k,v){localStorage.setItem(k,JSON.stringify(v))}
@@ -377,7 +378,7 @@ let d={};try{d=JSON.parse(localStorage.getItem('sm-phase3-emergency')||'{}')}cat
 const fields=[['pilgrim','Nama jemaah'],['contact','Telefon waris'],['hotel','Nama hotel'],['hotelPhone','Telefon hotel'],['mutawif','Telefon mutawif'],['note','Maklumat tambahan (bukan maklumat sulit)']];
 html='<p class="muted">Maklumat untuk ditunjukkan jika memerlukan bantuan. Disimpan pada peranti ini sahaja. Jangan simpan nombor pasport, diagnosis atau maklumat sulit.</p><form class="phase3-form" onsubmit="phase3SaveEmergency(event)">'+fields.map(([key,label])=>'<label>'+label+'<input name="'+key+'" maxlength="140" value="'+phaseSafe(d[key]||'')+'"></label>').join('')+'<button class="primary" type="submit">'+phase3Text('save')+'</button></form><div id="phase3-card" class="phase3-card"></div><button class="secondary" onclick="window.print()">Cetak / Simpan PDF</button>'; 
 }else if(type==='language'){
-html='<p class="muted">Pilihan bahasa untuk modul Smart Companion Fasa 3. Kandungan panduan ibadah dan doa asal masih dalam Bahasa Melayu; terjemahan penuh akan memerlukan semakan khusus.</p><div class="phase3-lang">'+[['ms','Bahasa Melayu'],['id','Bahasa Indonesia']].map(([v,t])=>'<button onclick="phase3SetLang(\''+v+'\')" aria-pressed="'+(phase3Lang()===v)+'">'+(phase3Lang()===v?'✓ ':'')+t+'</button>').join('')+'</div>';
+html='<p class="muted">Pilih Bahasa Melayu, Bahasa Indonesia atau English. Sebahagian kandungan ibadah masih memerlukan semakan terjemahan.</p><div class="phase3-lang">'+[['ms','Bahasa Melayu'],['id','Bahasa Indonesia'],['en','English']].map(([v,t])=>'<button onclick="phase3SetLang(\''+v+'\')" aria-pressed="'+(phase3Lang()===v)+'">'+(phase3Lang()===v?'✓ ':'')+t+'</button>').join('')+'</div>';
 }else if(type==='reminders'){
 const items=phase3Read('sm-phase3-reminders').sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
 html='<p class="muted">Peringatan dipaparkan apabila aplikasi dibuka. Ia tidak menghantar notifikasi automatik semasa aplikasi ditutup.</p><form class="phase3-form" onsubmit="phase3Add(event,\'reminders\')"><label>'+phase3Text('name')+'<input name="name" maxlength="100" required placeholder="Contoh: Berkumpul di lobi"></label><label>'+phase3Text('date')+'<input name="date" type="date" required></label><label>'+phase3Text('time')+'<input name="time" type="time" required></label><label>'+phase3Text('notes')+'<textarea name="notes" maxlength="400" rows="2"></textarea></label><button class="primary" type="submit">'+phase3Text('add')+'</button></form><div class="phase3-list">'+(items.length?items.map(x=>'<article class="phase3-item"><div><strong>'+phaseSafe(x.name)+'</strong><small>'+phaseSafe(x.date)+' '+phaseSafe(x.time)+'</small><p>'+phaseSafe(x.notes||'')+'</p></div><button onclick="phase3Delete(\'reminders\',\''+x.id+'\')" aria-label="'+phase3Text('remove')+'">×</button></article>').join(''):'<p class="muted">Belum ada peringatan.</p>')+'</div>';
@@ -389,7 +390,7 @@ function phase3Add(event,type){event.preventDefault();const data=Object.fromEntr
 function phase3Delete(type,id){if(!confirm('Padam item ini?'))return;const key='sm-phase3-'+type;phase3Save(key,phase3Read(key).filter(x=>x.id!==id));phase3Page(type)}
 function phase3SaveEmergency(event){event.preventDefault();const data=Object.fromEntries(new FormData(event.currentTarget).entries());localStorage.setItem('sm-phase3-emergency',JSON.stringify(data));phase3RenderCard()}
 function phase3RenderCard(){const el=document.getElementById('phase3-card');if(!el)return;let d={};try{d=JSON.parse(localStorage.getItem('sm-phase3-emergency')||'{}')}catch(e){}el.innerHTML='<h2>SAFAMARWAH · KAD BANTUAN JEMAAH</h2>'+[['pilgrim','Jemaah'],['contact','Waris'],['hotel','Hotel'],['hotelPhone','Telefon Hotel'],['mutawif','Mutawif'],['note','Nota']].map(([k,t])=>'<p><b>'+t+':</b> '+phaseSafe(d[k]||'—')+'</p>').join('')+'<small>Maklumat disediakan oleh pemilik peranti. Bukan dokumen pengenalan rasmi.</small>'}
-function phase3SetLang(v){if(v!=='ms'&&v!=='id')return;localStorage.setItem('sm-phase3-lang',v);document.documentElement.lang=v;phase3Page('language');smApplyLanguage();}
+function phase3SetLang(v){if(!['ms','id','en'].includes(v))return;localStorage.setItem('sm-phase3-lang',v);document.documentElement.lang=v;phase3Page('language');smApplyLanguage();}
 function phase3Due(){const now=new Date(),items=phase3Read('sm-phase3-reminders');const due=items.filter(x=>{const d=new Date(x.date+'T'+x.time+':00');return !Number.isNaN(d.getTime())&&d<=now&&now-d<86400000});if(!due.length)return;const el=document.getElementById('phase3-due');if(el)el.innerHTML='<strong>Peringatan Hari Ini</strong>'+due.map(x=>'<p>'+phaseSafe(x.name)+' · '+phaseSafe(x.time)+'</p>').join('')}
 
 function showMore(){
@@ -485,7 +486,7 @@ const smI18n={
  'FAQ Umrah':'Umrah FAQ','Miqat & Peta':'Miqat & Map','Audio Doa':'Prayer Audio',
  'Nota Saya':'My Notes','Mod Jemaah':'Pilgrim Mode','Bahasa':'Language','Utama':'Home','Doa':'Prayers',
  'Lagi':'More','Semua Fungsi':'All Features','Pilihan Bahasa':'Language Settings',
- 'Pilihan bahasa untuk modul Smart Companion Fasa 3. Kandungan panduan ibadah dan doa asal masih dalam Bahasa Melayu; terjemahan penuh akan memerlukan semakan khusus.':'The interface and selected companion tools are translated. Religious guidance and original prayers remain in Malay pending specialist review.',
+ 'Pilihan bahasa untuk modul Smart Companion Fasa 3. Kandungan panduan ibadah dan doa asal masih dalam Bahasa Melayu; terjemahan penuh akan memerlukan semakan khusus.':'Choose Malay, Indonesian or English. Some religious guidance still requires translation review.',
  'Simpan':'Save','Tambah Aktiviti':'Add Activity','Padam':'Delete','Nama':'Name','Tarikh':'Date','Masa':'Time','Butiran / lokasi':'Details / location',
  'Sandaran & Pemulihan Data':'Backup & Restore Data','Mod Offline':'Offline Mode','Saiz Tulisan':'Font Size'
  },
@@ -511,7 +512,7 @@ const smI18n={
  'Pasport dan dokumen perjalanan':'Paspor dan dokumen perjalanan','Visa atau kelulusan perjalanan yang diperlukan':'Visa atau izin perjalanan yang diperlukan','Tiket penerbangan dan butiran hotel':'Tiket penerbangan dan detail hotel','Maklumat mutawif dan nombor waris':'Informasi pembimbing dan nomor keluarga','Pakaian ihram dan pakaian sesuai':'Pakaian ihram dan pakaian yang sesuai','Ubat-ubatan peribadi dan preskripsi':'Obat-obatan pribadi dan resep','Kelengkapan kebersihan dan beg kecil':'Perlengkapan kebersihan dan tas kecil','Semak panduan rukun dan wajib Umrah':'Periksa panduan rukun dan wajib Umrah','Semak maklumat miqat perjalanan':'Periksa informasi miqat perjalanan','Simpan salinan dokumen secara selamat':'Simpan salinan dokumen dengan aman',
  'Kiraan disimpan secara automatik.':'Hitungan disimpan otomatis.','Kiraan tujuh dicapai. Sahkan sendiri ibadah anda.':'Tujuh hitungan tercapai. Pastikan sendiri ibadah Anda.','Soalan Lazim Umrah':'Pertanyaan Umum Umrah','Jadual Perjalanan':'Jadwal Perjalanan','Peringatan Aktiviti':'Pengingat Aktivitas',
  'Simpan penerbangan, hotel, ziarah dan aktiviti. Semua maklumat hanya pada peranti ini.':'Simpan penerbangan, hotel, ziarah, dan kegiatan. Semua informasi hanya tersimpan di perangkat ini.',
- 'Pilihan bahasa untuk modul Smart Companion Fasa 3. Kandungan panduan ibadah dan doa asal masih dalam Bahasa Melayu; terjemahan penuh akan memerlukan semakan khusus.':'Pilih bahasa Melayu atau Indonesia. Sebagian materi ibadah masih berbahasa Melayu dan membutuhkan peninjauan terjemahan khusus.',
+ 'Pilihan bahasa untuk modul Smart Companion Fasa 3. Kandungan panduan ibadah dan doa asal masih dalam Bahasa Melayu; terjemahan penuh akan memerlukan semakan khusus.':'Pilih bahasa Melayu, Indonesia, atau Inggris. Sebagian materi ibadah masih membutuhkan peninjauan terjemahan khusus.',
  'Percuma':'Gratis','Tanpa Iklan':'Tanpa Iklan','Tanpa Akaun':'Tanpa Akun','Kembali ke Utama':'Kembali ke Beranda','Pilih kemudahan SafaMarwah mengikut keperluan anda.':'Pilih fitur SafaMarwah sesuai kebutuhan Anda.'
  }
 };
