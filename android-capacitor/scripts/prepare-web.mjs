@@ -15,5 +15,9 @@ const addon=`<script src="capacitor.js"></script><script>document.documentElemen
 html=html.replace('</head>',addon+'</head>');
 // A native APK must not retain an old web service worker that could obscure new releases.
 html=html.replace(/if\('serviceWorker' in navigator\)\{window\.addEventListener\('load',\(\)=>navigator\.serviceWorker\.register\('\.\/sw\.js'\)\.catch\(err=>console\.warn\('PWA cache unavailable',err\)\)\)\}/g,'');
-fs.writeFileSync(index,html);
-console.log('Prepared offline-capable local web assets in',out);
+// Bundle a local copy for loss of connectivity and use the online-first shell as entry point.
+fs.writeFileSync(path.join(out,'offline.html'),html);
+const shell=path.resolve(process.cwd(),'hybrid-shell.html');
+if(!fs.existsSync(shell))throw Error('Missing hybrid-shell.html');
+fs.writeFileSync(index,fs.readFileSync(shell,'utf8'));
+console.log('Prepared online-first shell and bundled offline content in',out);
