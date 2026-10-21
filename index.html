@@ -571,6 +571,79 @@ function smApplyLanguage(){
   }
  }
 }
+
+/* v22: translate dynamically created UI, including buttons, search results, form labels and feedback */
+const smDynamicText={
+ en:{
+ '← Utama':'← Home','← Kembali':'← Back','Simpan Nota':'Save Notes','Simpan':'Save','Padam':'Delete','Tambah':'Add','Tambah Aktiviti':'Add Activity','Set Semula':'Reset','Set semula':'Reset','Kembali':'Back','Tutup':'Close','Tutup laporan':'Close report','Semak':'Check','Semak Offline':'Check Offline','Muat Turun':'Download','Pulihkan':'Restore','Import':'Import','Eksport':'Export',
+ 'Mainkan':'Play','Henti':'Stop','▶ Mainkan':'▶ Play','■ Henti':'■ Stop','Pilih bacaan':'Choose recitation','Audio Doa & Zikir':'Prayer & Dhikr Audio','Cari soalan atau jawapan...':'Search questions or answers...','Cari soalan lazim':'Search FAQs','Tiada soalan sepadan.':'No matching questions.','Soalan Lazim Umrah':'Umrah FAQs',
+ 'Nota berjaya disimpan pada peranti ini.':'Notes saved on this device.','Kiraan disimpan secara automatik.':'Count saved automatically.','Seterusnya: Marwah ke Safa.':'Next: Marwah to Safa.','Seterusnya: Safa ke Marwah.':'Next: Safa to Marwah.','Kiraan tujuh dicapai. Sahkan sendiri ibadah anda.':'Seven counts reached. Verify your worship yourself.','Kiraan':'Count','Pusingan':'Circuits','Perjalanan':'Walks',
+ 'Peringatan Hari Ini':'Today’s Reminders','Kad Bantuan Jemaah':'Pilgrim Assistance Card','SAFAMARWAH · KAD BANTUAN JEMAAH':'SAFAMARWAH · PILGRIM ASSISTANCE CARD','Jemaah':'Pilgrim','Waris':'Emergency Contact','Telefon Hotel':'Hotel Phone','Maklumat disediakan oleh pemilik peranti. Bukan dokumen pengenalan rasmi.':'Information provided by the device owner. Not an official identity document.',
+ 'Pilih fail sandaran':'Choose backup file','Sandaran & Pemulihan':'Backup & Restore','Lindungi Data Jemaah':'Protect Pilgrim Data','Pulihkan Sandaran':'Restore Backup','↓ Muat Turun Sandaran JSON':'↓ Download JSON Backup','Pilih fail sandaran JSON':'Choose JSON backup file','Mod Offline':'Offline Mode',
+ 'Simpan penerbangan, hotel, ziarah dan aktiviti. Semua maklumat hanya pada peranti ini.':'Save flights, hotels, visits and activities. All information stays on this device.',
+ 'Peringatan dipaparkan apabila aplikasi dibuka. Ia tidak menghantar notifikasi automatik semasa aplikasi ditutup.':'Reminders appear when the app is open. They do not send automatic notifications while it is closed.',
+ 'Pilih Bahasa Melayu, Bahasa Indonesia atau English. Sebahagian kandungan ibadah masih memerlukan semakan terjemahan.':'Choose Malay, Indonesian or English. Some religious content still needs translation review.',
+ 'Contoh: Penerbangan ke Jeddah':'Example: Flight to Jeddah','Contoh: Berkumpul di lobi':'Example: Meet in the lobby','Butiran / lokasi':'Details / location',
+ 'Panduan ringkas ini bukan pengganti kursus Umrah atau bimbingan mutawif. Rukun dan wajib Umrah perlu dipenuhi; rujuk pembimbing bagi kes khas.':'This brief guide does not replace an Umrah course or a qualified guide. Consult your guide for special circumstances.',
+ 'Senarai ini panduan umum. Keperluan dokumen dan perjalanan perlu disahkan dengan pihak berkaitan.':'This is a general checklist. Confirm travel and document requirements with the relevant authorities.',
+ 'Buka carian lokasi dalam peta ↗':'Open location search on map ↗','Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet dan tidak menentukan miqat secara automatik.':'Find the miqat for your travel route. Map links require internet and do not determine miqat automatically.',
+ 'Audio ini menggunakan suara sintesis peranti, bukan rakaman qari. Sebutan Arab dan tajwid mungkin tidak tepat; semak dengan guru.':'This audio uses device-generated speech, not a reciter recording. Arabic pronunciation and tajwid may be inaccurate; consult a teacher.',
+ 'Fungsi audio bergantung pada sokongan suara Arab oleh peranti dan mungkin tidak tersedia secara offline.':'Audio requires Arabic speech support on your device and may not work offline.',
+ 'Audio dihentikan.':'Audio stopped.','Peranti ini tidak menyokong suara sintesis.':'This device does not support synthesized speech.'
+ },
+ id:{
+ '← Utama':'← Beranda','← Kembali':'← Kembali','Simpan Nota':'Simpan Catatan','Simpan':'Simpan','Padam':'Hapus','Tambah':'Tambah','Tambah Aktiviti':'Tambah Kegiatan','Set Semula':'Atur Ulang','Set semula':'Atur ulang','Kembali':'Kembali','Tutup':'Tutup','Tutup laporan':'Tutup laporan','Semak':'Periksa','Semak Offline':'Periksa Offline','Muat Turun':'Unduh','Pulihkan':'Pulihkan','Import':'Impor','Eksport':'Ekspor',
+ 'Mainkan':'Putar','Henti':'Berhenti','▶ Mainkan':'▶ Putar','■ Henti':'■ Berhenti','Pilih bacaan':'Pilih bacaan','Audio Doa & Zikir':'Audio Doa & Zikir','Cari soalan atau jawapan...':'Cari pertanyaan atau jawaban...','Cari soalan lazim':'Cari tanya jawab','Tiada soalan sepadan.':'Tidak ada pertanyaan yang cocok.',
+ 'Nota berjaya disimpan pada peranti ini.':'Catatan berhasil disimpan di perangkat ini.','Kiraan disimpan secara automatik.':'Hitungan disimpan otomatis.','Seterusnya: Marwah ke Safa.':'Berikutnya: Marwah ke Safa.','Seterusnya: Safa ke Marwah.':'Berikutnya: Safa ke Marwah.','Kiraan tujuh dicapai. Sahkan sendiri ibadah anda.':'Tujuh hitungan tercapai. Pastikan sendiri ibadah Anda.','Kiraan':'Hitungan','Pusingan':'Putaran','Perjalanan':'Perjalanan',
+ 'Peringatan Hari Ini':'Pengingat Hari Ini','SAFAMARWAH · KAD BANTUAN JEMAAH':'SAFAMARWAH · KARTU BANTUAN JEMAAH','Jemaah':'Jemaah','Waris':'Keluarga','Telefon Hotel':'Telepon Hotel','Maklumat disediakan oleh pemilik peranti. Bukan dokumen pengenalan rasmi.':'Informasi diberikan oleh pemilik perangkat. Bukan dokumen identitas resmi.',
+ 'Pilih fail sandaran':'Pilih berkas cadangan','Sandaran & Pemulihan':'Cadangkan & Pulihkan','Lindungi Data Jemaah':'Lindungi Data Jemaah','Pulihkan Sandaran':'Pulihkan Cadangan','↓ Muat Turun Sandaran JSON':'↓ Unduh Cadangan JSON','Pilih fail sandaran JSON':'Pilih berkas cadangan JSON',
+ 'Peringatan dipaparkan apabila aplikasi dibuka. Ia tidak menghantar notifikasi automatik semasa aplikasi ditutup.':'Pengingat ditampilkan saat aplikasi dibuka. Tidak ada notifikasi otomatis ketika aplikasi ditutup.',
+ 'Pilih Bahasa Melayu, Bahasa Indonesia atau English. Sebahagian kandungan ibadah masih memerlukan semakan terjemahan.':'Pilih Bahasa Melayu, Bahasa Indonesia, atau Inggris. Sebagian materi ibadah masih perlu ditinjau terjemahannya.',
+ 'Contoh: Penerbangan ke Jeddah':'Contoh: Penerbangan ke Jeddah','Contoh: Berkumpul di lobi':'Contoh: Berkumpul di lobi',
+ 'Senarai ini panduan umum. Keperluan dokumen dan perjalanan perlu disahkan dengan pihak berkaitan.':'Daftar ini merupakan panduan umum. Persyaratan dokumen dan perjalanan harus dikonfirmasi kepada pihak terkait.',
+ 'Buka carian lokasi dalam peta ↗':'Buka pencarian lokasi di peta ↗','Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet dan tidak menentukan miqat secara automatik.':'Kenali miqat berdasarkan rute perjalanan. Tautan peta memerlukan internet dan tidak menentukan miqat secara otomatis.',
+ 'Audio ini menggunakan suara sintesis peranti, bukan rakaman qari. Sebutan Arab dan tajwid mungkin tidak tepat; semak dengan guru.':'Audio menggunakan suara sintetis perangkat, bukan rekaman qari. Pengucapan Arab dan tajwid mungkin kurang tepat; konsultasikan dengan guru.',
+ 'Fungsi audio bergantung pada sokongan suara Arab oleh peranti dan mungkin tidak tersedia secara offline.':'Audio bergantung pada dukungan suara Arab perangkat dan mungkin tidak tersedia secara offline.',
+ 'Audio dihentikan.':'Audio dihentikan.','Peranti ini tidak menyokong suara sintesis.':'Perangkat ini tidak mendukung suara sintetis.'
+ }
+};
+let smTranslating=false;
+function smTranslateElement(root){
+ if(!root||smTranslating)return;
+ smTranslating=true;
+ try{
+  const lang=phase3Lang();
+  const dict={...(smI18n[lang]||{}),...(smExtraLabels[lang]||{}),...(smDynamicText[lang]||{})};
+  const all=[root,...(root.querySelectorAll?.('*')||[])];
+  for(const el of all){
+   if(el.matches?.('script,style,textarea,.arabic,[lang="ar"]')||el.closest?.('.arabic,[lang="ar"]'))continue;
+   for(const attr of ['placeholder','aria-label','title']){
+    if(!el.hasAttribute?.(attr))continue;
+    const originalKey='data-sm-original-'+attr.replace(/[^a-z]/g,'-');
+    const source=el.getAttribute(originalKey)||el.getAttribute(attr);
+    if(!el.hasAttribute(originalKey))el.setAttribute(originalKey,source);
+    const translation=dict[source];
+    el.setAttribute(attr,lang==='ms'?source:(translation||source));
+   }
+  }
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  let node;
+  while((node=walker.nextNode())){
+   if(node.parentElement?.closest('script,style,textarea,.arabic,[lang="ar"]'))continue;
+   const source=node.nodeValue.trim();if(!source)continue;
+   const target=dict[source];
+   if(target&&target!==source)node.nodeValue=node.nodeValue.replace(source,target);
+  }
+ }finally{smTranslating=false}
+}
+function smTranslateCurrent(){
+ const lang=phase3Lang();
+ document.documentElement.lang=lang;
+ for(const root of [document.getElementById('main'),document.querySelector('.bottom'),document.querySelector('header')]){
+  if(root)smTranslateElement(root);
+ }
+}
+
 const smOriginalShow=show,smOriginalPhasePage=phasePage,smOriginalPhase2Page=phase2Page,smOriginalPhase3Page=phase3Page,smOriginalShowMore=showMore,smOriginalPhase5Page=phase5Page;
 show=function(...args){const result=smOriginalShow(...args);smApplyLanguage();return result};
 phasePage=function(...args){const result=smOriginalPhasePage(...args);smApplyLanguage();return result};
@@ -578,8 +651,14 @@ phase2Page=function(...args){const result=smOriginalPhase2Page(...args);smApplyL
 phase3Page=function(...args){const result=smOriginalPhase3Page(...args);smApplyLanguage();return result};
 showMore=function(...args){const result=smOriginalShowMore(...args);smApplyLanguage();return result};
 phase5Page=function(...args){const result=smOriginalPhase5Page(...args);smApplyLanguage();return result};
-smApplyLanguage();
-
+smApplyLanguage();smTranslateCurrent();
+const smLanguageObserver=new MutationObserver(records=>{
+ if(smTranslating)return;
+ let needs=false;
+ for(const r of records){if(r.type==='childList'&&r.addedNodes.length){needs=true;break}}
+ if(needs)queueMicrotask(()=>{smApplyLanguage();smTranslateCurrent()});
+});
+smLanguageObserver.observe(document.getElementById('main'),{childList:true,subtree:true});
 /* SafaMarwah interaction diagnostics: no personal data changed */
 (function(){
  const style=document.createElement('style');
