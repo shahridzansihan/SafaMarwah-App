@@ -6,9 +6,9 @@
   "lang": "ms",
   "start_url": "./",
   "scope": "./",
-  "display": "standalone",
-  "background_color": "#f8f7f2",
-  "theme_color": "#087d69",
+  "display": "fullscreen",
+  "background_color": "#002b23",
+  "theme_color": "#002b23",
   "icons": [
     {
       "src": "./app-icon.png?v=34",
