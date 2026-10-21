@@ -1,4 +1,4 @@
-const CACHE='safamarwah-v26-guide-i18n';
+const CACHE='safamarwah-v27-prayer-language';
 const CORE=['./','./index.html','./logo.png','./icon.svg','./app-icon.png','./header-logo.png','./manifest.webmanifest'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting()});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('safamarwah-')&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
