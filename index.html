@@ -216,6 +216,18 @@ html .toolbar button{font-size:14px!important}
 :root,html,body,.app,button,input,textarea,select{font-family:'Mulish',sans-serif!important}
 h1,h2,h3,h4,h5,h6,.hero h1,.section-title h2{font-family:'Alata',sans-serif!important;font-weight:400!important}
 .arabic,[lang="ar"],[dir="rtl"]{font-family:'Noto Naskh Arabic','Amiri','Traditional Arabic',serif!important}
+
+/* v40: consistent readable typography across all app screens */
+.main{font-size:1rem;line-height:1.6}
+.main p,.main li,.main label,.main textarea,.main input,.main select{font-size:1rem;line-height:1.6}
+.main .muted{font-size:.95rem;line-height:1.6}
+.phase-header h1{font-size:1.5rem;line-height:1.25}
+.main h2{line-height:1.3}
+.phase-textarea{font-size:1rem!important;line-height:1.6!important}
+.phase-header .secondary,.main .primary,.main .secondary{font-size:.95rem;line-height:1.35}
+/* Preserve compact navigation, but scale its labels with the chosen setting. */
+.bottom button{font-size:.72rem!important}
+@media(max-width:370px){.bottom button{font-size:.65rem!important}}
 </style></head><body><div class="app"><header class="top home-top"><a class="home-brand" href="https://www.safamarwah.my/" target="_blank" rel="noopener noreferrer" aria-label="Lawati laman utama SafaMarwah"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></a><div class="toolbar"><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="reset-font" aria-label="Tetapkan semula saiz tulisan" title="Saiz tulisan normal">A↺</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><div class="home-intro"><span class="home-intro-kicker">SAFAMARWAH · UMRAH COMPANION</span><h1>Assalamualaikum <span aria-hidden="true">✦</span></h1><p>Teman ibadah anda di Tanah Suci.</p></div><section class="prayer-widget" aria-labelledby="prayer-heading">
 <div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Makkah & Madinah · Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
 <div class="prayer-cities"><article class="prayer-city" id="prayer-makkah"><h3><span class="prayer-pin">◉</span> Makkah</h3><p class="prayer-status">Memuat waktu solat…</p></article><article class="prayer-city" id="prayer-madinah"><h3><span class="prayer-pin">◉</span> Madinah</h3><p class="prayer-status">Memuat waktu solat…</p></article></div>
