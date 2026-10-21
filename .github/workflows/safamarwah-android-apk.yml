@@ -34,8 +34,9 @@ jobs:
         run: npm run android:init
       - name: Generate SafaMarwah launcher icons
         run: |
-          python3 -m pip install --user Pillow
-          python3 android-capacitor/scripts/generate-icons.py
+          python3 -m venv /tmp/safamarwah-icons-venv
+          /tmp/safamarwah-icons-venv/bin/python -m pip install --disable-pip-version-check Pillow
+          /tmp/safamarwah-icons-venv/bin/python android-capacitor/scripts/generate-icons.py
       - name: Build debug APK
         working-directory: android-capacitor/android
         run: bash gradlew assembleDebug
