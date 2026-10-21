@@ -286,6 +286,12 @@ h1,h2,h3,h4,h5,h6,.hero h1,.section-title h2{font-family:'Alata',sans-serif!impo
 .dark .top.home-top #display-settings.toolbar:not([hidden]){background:#17372e!important;border-color:#527866!important}
 .dark .top.home-top #display-settings.toolbar button{background:#254d3e!important;color:#f4f8f1!important;border-color:#527866!important}
 @media(max-width:380px){.top.home-top #display-settings.toolbar button{flex-basis:43px!important;width:43px!important;min-width:43px!important}}
+
+/* v46: auto-hide header and bottom navigation when scrolling down */
+.top.home-top,.bottom{transition:transform .26s ease,opacity .26s ease!important;will-change:transform}
+.top.home-top.sm-scroll-hidden{transform:translateY(calc(-100% - 4px))!important;pointer-events:none}
+.bottom.sm-scroll-hidden{transform:translateY(calc(100% + 6px))!important;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.top.home-top,.bottom{transition:none!important}}
 </style></head><body><div class="app"><header class="top home-top"><a class="home-brand" href="https://www.safamarwah.my/" target="_blank" rel="noopener noreferrer" aria-label="Lawati laman utama SafaMarwah"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></a><button class="settings-trigger" id="settings-trigger" aria-label="Tetapan paparan" aria-expanded="false" aria-controls="display-settings" onclick="smToggleDisplaySettings()">⚙ <span>Tetapan</span></button><div class="toolbar" id="display-settings" hidden><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="reset-font" aria-label="Tetapkan semula saiz tulisan" title="Saiz tulisan normal">A↺</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><div class="home-intro"><span class="home-intro-kicker">SAFAMARWAH · UMRAH COMPANION</span><h1>Assalamualaikum <span aria-hidden="true">✦</span></h1><p>Teman ibadah anda di Tanah Suci.</p></div><section class="home-action"><button class="primary home-start" onclick="show('steps')"><span class="start-symbol" aria-hidden="true">↗</span><span><strong>Mulakan Panduan Umrah</strong><small>Ikuti langkah ibadah satu persatu</small></span><span class="start-arrow" aria-hidden="true">→</span></button></section>
 <section class="prayer-widget" aria-labelledby="prayer-heading">
 <div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
@@ -534,6 +540,21 @@ function smPrayerTime(t){const m=String(t||'').match(/^(\d{2}):(\d{2})/);return 
 function smToggleDisplaySettings(force){const panel=document.getElementById('display-settings'),trigger=document.getElementById('settings-trigger');if(!panel)return;const open=typeof force==='boolean'?force:panel.hidden;panel.hidden=!open;trigger?.setAttribute('aria-expanded',String(open))}
 document.addEventListener('click',e=>{const panel=document.getElementById('display-settings'),trigger=document.getElementById('settings-trigger');if(panel&&!panel.hidden&&!panel.contains(e.target)&&!trigger?.contains(e.target))smToggleDisplaySettings(false)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')smToggleDisplaySettings(false)});
+/* v46: scroll direction based chrome visibility */
+(function(){let lastY=Math.max(0,window.scrollY||0),pending=false;
+function update(){pending=false;const y=Math.max(0,window.scrollY||document.documentElement.scrollTop||0),delta=y-lastY;lastY=y;
+const header=document.querySelector('.top.home-top'),footer=document.querySelector('.bottom');
+if(!header||!footer)return;
+const panel=document.getElementById('display-settings'),settingsOpen=panel&&!panel.hidden;
+if(y<65||settingsOpen){header.classList.remove('sm-scroll-hidden');footer.classList.remove('sm-scroll-hidden');return}
+if(Math.abs(delta)<5)return;
+const hide=delta>0&&y>130;
+header.classList.toggle('sm-scroll-hidden',hide);
+footer.classList.toggle('sm-scroll-hidden',hide);
+}
+window.addEventListener('scroll',()=>{if(!pending){pending=true;requestAnimationFrame(update)}},{passive:true});
+window.addEventListener('pageshow',()=>{lastY=Math.max(0,window.scrollY||0);if(lastY<65){document.querySelector('.top.home-top')?.classList.remove('sm-scroll-hidden');document.querySelector('.bottom')?.classList.remove('sm-scroll-hidden')}});
+})();
 const smPrayerLocale={
  ms:{names:['Subuh','Zohor','Asar','Maghrib','Isyak'],unavailable:'Waktu belum tersedia. Sambungkan internet dan tekan ↻.',next:'SOLAT SETERUSNYA · ',finished:'Solat hari ini selesai',saved:'Waktu tersimpan',cached:' · Data tersimpan',loading:'Memuat waktu solat…'},
  id:{names:['Subuh','Zuhur','Asar','Magrib','Isya'],unavailable:'Waktu belum tersedia. Hubungkan internet lalu tekan ↻.',next:'SALAT BERIKUTNYA · ',finished:'Salat hari ini selesai',saved:'Waktu tersimpan',cached:' · Data tersimpan',loading:'Memuat waktu salat…'},
