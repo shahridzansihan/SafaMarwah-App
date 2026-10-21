@@ -2307,8 +2307,8 @@ function smSingleTranslateTargets(article){
  const nodes=[];const root=article.querySelector('#sm-article-body');if(!root)return nodes;
  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;
  while((node=walker.nextNode())){const value=node.nodeValue.trim();if(value.length<3||node.parentElement?.closest('script,style,code,pre,svg,[lang="ar"],.arabic,button,audio,video'))continue;
- if(/[\\u0600-\\u06FF]/.test(value))continue;
- if(!node.__smOriginalArticleText)node.__smOriginalArticleText=node.nodeValue;
+ if(/[\u0600-\u06FF]/.test(value))continue;
+ if(node.__smOriginalArticleText===undefined)node.__smOriginalArticleText=node.nodeValue;
  nodes.push(node);
  }return nodes;
 }
