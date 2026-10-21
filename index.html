@@ -557,19 +557,12 @@ const smI18n={
  }
 };
 function smApplyLanguage(){
- const lang=phase3Lang(),dict={...(smI18n[lang]||{}),...(smExtraLabels[lang]||{})};
- if(typeof content!=='undefined'&&typeof smContentId!=='undefined'){const source=lang==='id'?smContentId:lang==='en'?smContentEn:smContentMs;for(let i=0;i<content.length;i++)for(let j=0;j<content[i].length;j++)content[i][j]=source[i][j];}
+ const lang=phase3Lang();
+ const source=lang==='id'?smContentId:lang==='en'?smContentEn:smContentMs;
+ for(let i=0;i<content.length;i++)for(let j=0;j<content[i].length;j++)content[i][j]=source[i][j];
  document.documentElement.lang=lang;
  smSyncDuas();
- const roots=[document.getElementById('main'),document.querySelector('.bottom')].filter(Boolean);
- for(const root of roots){
-  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
-  let node;while((node=walker.nextNode())){
-   if(node.parentElement?.closest('script,style,textarea,option,.arabic,[lang="ar"]'))continue;
-   const source=node.nodeValue.trim(),translated=dict[source];
-   if(translated&&translated!==source)node.nodeValue=node.nodeValue.replace(source,translated);
-  }
- }
+ smTranslateCurrent();
 }
 
 /* v22: translate dynamically created UI, including buttons, search results, form labels and feedback */
@@ -608,6 +601,7 @@ const smDynamicText={
  }
 };
 let smTranslating=false;
+const smOriginalText=new WeakMap();
 function smTranslateElement(root){
  if(!root||smTranslating)return;
  smTranslating=true;
@@ -622,17 +616,19 @@ function smTranslateElement(root){
     const originalKey='data-sm-original-'+attr.replace(/[^a-z]/g,'-');
     const source=el.getAttribute(originalKey)||el.getAttribute(attr);
     if(!el.hasAttribute(originalKey))el.setAttribute(originalKey,source);
-    const translation=dict[source];
-    el.setAttribute(attr,lang==='ms'?source:(translation||source));
+    el.setAttribute(attr,lang==='ms'?source:(dict[source]||source));
    }
   }
   const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
   let node;
   while((node=walker.nextNode())){
    if(node.parentElement?.closest('script,style,textarea,.arabic,[lang="ar"]'))continue;
-   const source=node.nodeValue.trim();if(!source)continue;
-   const target=dict[source];
-   if(target&&target!==source)node.nodeValue=node.nodeValue.replace(source,target);
+   const current=node.nodeValue,trimmed=current.trim();if(!trimmed)continue;
+   // Keep original source per DOM node, so language can change repeatedly without reloading.
+   const source=smOriginalText.get(node)??trimmed;
+   if(!smOriginalText.has(node))smOriginalText.set(node,source);
+   const target=lang==='ms'?source:(dict[source]||source);
+   if(target!==trimmed)node.nodeValue=current.replace(trimmed,target);
   }
  }finally{smTranslating=false}
 }
