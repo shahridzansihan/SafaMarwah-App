@@ -133,6 +133,27 @@ html{scroll-padding-top:12px}button{touch-action:manipulation}button:focus-visib
 
 /* Unified hand-drawn-outline icon language (no emoji / font glyphs) */
 .dash-icon{width:46px!important;height:46px!important;display:grid!important;place-items:center!important;border-radius:15px!important;background:linear-gradient(145deg,#e8f3ed,#dff0e7)!important;border:1px solid #d8e9dd!important;transition:transform .18s ease,background .18s ease}.dash-icon svg{width:25px;height:25px;display:block;stroke-width:1.75}.dash-grid button{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.dash-grid button:active{transform:scale(.97)}@media(hover:hover){.dash-grid button:hover{transform:translateY(-2px);border-color:#b2d5c2!important;box-shadow:0 9px 18px rgba(6,65,49,.09)}.dash-grid button:hover .dash-icon{transform:scale(1.06)}}.bottom button span{display:grid;place-items:center;min-height:26px}.bottom button svg{width:22px;height:22px;stroke-width:1.8}.bottom button.active svg{stroke-width:2.15}.dark .dash-icon{background:#254d3e!important;border-color:#396c56!important}.dark .dash-icon svg{color:#d8e7dc}.elder-mode .dash-icon svg{width:30px;height:30px}@media(prefers-reduced-motion:reduce){.dash-icon,.dash-grid button{transition:none!important}}
+
+/* v13 vibrant full-colour app icons: clear, accessible, consistent */
+.dash-grid button .dash-icon{background:var(--icon-bg,#087d69)!important;color:#fff!important;border:0!important;box-shadow:0 5px 11px color-mix(in srgb,var(--icon-bg,#087d69) 30%,transparent),inset 0 1px 0 rgba(255,255,255,.2)!important;border-radius:14px!important}
+.dash-grid button .dash-icon svg{stroke:#fff!important;filter:drop-shadow(0 1px 1px rgba(0,0,0,.1));stroke-width:1.9}
+.dash-section:nth-of-type(1) .dash-grid button:nth-child(1) .dash-icon,.dash-grid button:nth-child(4n+1) .dash-icon{--icon-bg:#087d69}
+.dash-grid button:nth-child(4n+2) .dash-icon{--icon-bg:#3977d5}
+.dash-grid button:nth-child(4n+3) .dash-icon{--icon-bg:#bd7b26}
+.dash-grid button:nth-child(4n+4) .dash-icon{--icon-bg:#a65b93}
+.dash-section:nth-of-type(2) .dash-grid button:nth-child(1) .dash-icon{--icon-bg:#168d80}
+.dash-section:nth-of-type(2) .dash-grid button:nth-child(2) .dash-icon{--icon-bg:#4d71c9}
+.dash-section:nth-of-type(2) .dash-grid button:nth-child(3) .dash-icon{--icon-bg:#cf7450}
+.dash-section:nth-of-type(2) .dash-grid button:nth-child(4) .dash-icon{--icon-bg:#9871ba}
+.dash-section:nth-of-type(3) .dash-grid button:nth-child(1) .dash-icon{--icon-bg:#6c8b38}
+.dash-section:nth-of-type(3) .dash-grid button:nth-child(2) .dash-icon{--icon-bg:#5374c2}
+.dash-section:nth-of-type(3) .dash-grid button:nth-child(3) .dash-icon{--icon-bg:#c78a38}
+.dash-section:nth-of-type(3) .dash-grid button:nth-child(4) .dash-icon{--icon-bg:#9369b5}
+.dash-section:nth-of-type(4) .dash-grid button:nth-child(1) .dash-icon{--icon-bg:#b27941}
+.dash-section:nth-of-type(4) .dash-grid button:nth-child(2) .dash-icon{--icon-bg:#4b91a4}
+.dash-section:nth-of-type(4) .dash-grid button:nth-child(3) .dash-icon{--icon-bg:#5e83ba}
+.dash-section:nth-of-type(4) .dash-grid button:nth-child(4) .dash-icon{--icon-bg:#a66b86}
+.bottom button span{color:#81938a}.bottom button.active span{background:#087d69!important;color:#fff!important;border-radius:12px!important;padding:4px 13px!important;box-shadow:0 3px 9px rgba(8,125,105,.22)}.bottom button.active svg{stroke:#fff!important}.bottom button:not(.active) svg{stroke:currentColor}.dark .dash-grid button .dash-icon{background:var(--icon-bg,#087d69)!important;border:0!important}.dark .dash-grid button .dash-icon svg{color:#fff!important}.dark .bottom button.active span{background:#12a184!important}
 </style></head><body><div class="app"><header class="top home-top"><div class="home-brand"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></div><div class="toolbar"><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><div class="home-intro"><span class="home-intro-kicker">PANDUAN UMRAH DIGITAL</span><h1>Teman Ibadah Umrah Anda</h1><p>Panduan langkah demi langkah, doa dan kemudahan untuk jemaah.</p></div><section class="home-verse"><span class="home-verse-ornament">۞</span><blockquote>“Dan sempurnakanlah ibadah Haji dan Umrah kerana Allah.”</blockquote><p>Surah al-Baqarah, 2:196</p></section><section class="home-action"><button class="primary home-start" onclick="show('steps')">Mulakan Panduan Umrah <span>→</span></button></section><section class="prayer-widget" aria-labelledby="prayer-heading">
 <div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Makkah & Madinah · Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
 <div class="prayer-cities"><article class="prayer-city" id="prayer-makkah"><h3><span class="prayer-pin">◉</span> Makkah</h3><p class="prayer-status">Memuat waktu solat…</p></article><article class="prayer-city" id="prayer-madinah"><h3><span class="prayer-pin">◉</span> Madinah</h3><p class="prayer-status">Memuat waktu solat…</p></article></div>
