@@ -228,9 +228,27 @@ h1,h2,h3,h4,h5,h6,.hero h1,.section-title h2{font-family:'Alata',sans-serif!impo
 /* Preserve compact navigation, but scale its labels with the chosen setting. */
 .bottom button{font-size:.72rem!important}
 @media(max-width:370px){.bottom button{font-size:.65rem!important}}
+
+/* v41 single-city prayer display */
+.prayer-city-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 12px;padding:4px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:14px}
+.prayer-city-tabs button{border:0;border-radius:10px;background:transparent;color:#e5f4eb;padding:12px 10px;font:600 1rem 'Mulish',sans-serif;cursor:pointer}
+.prayer-city-tabs button.active{background:#fffdf9;color:#075443;box-shadow:0 3px 12px #002e2220}
+.prayer-cities{display:block!important}
+.prayer-cities .prayer-city{width:100%;max-width:none;padding:18px!important}
+.prayer-cities .prayer-city[hidden]{display:none!important}
+.prayer-city h3{font-size:1.15rem!important}
+.prayer-next-time{font-size:2rem!important}
+.prayer-times{gap:0!important}
+.prayer-times>div{font-size:1rem!important;padding:11px 2px;border-bottom:1px solid #dce9df;gap:14px}
+.prayer-times>div:last-child{border-bottom:0}
+.prayer-times b{font-size:1rem!important}
+.prayer-next-label{font-size:.85rem!important}
+.prayer-date{font-size:.8rem!important}
+@media(max-width:380px){.prayer-times>div,.prayer-times b{font-size:.95rem!important}}
+.dark .prayer-city-tabs button.active{background:#254d3e;color:#fff}
 </style></head><body><div class="app"><header class="top home-top"><a class="home-brand" href="https://www.safamarwah.my/" target="_blank" rel="noopener noreferrer" aria-label="Lawati laman utama SafaMarwah"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></a><div class="toolbar"><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="reset-font" aria-label="Tetapkan semula saiz tulisan" title="Saiz tulisan normal">A↺</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><div class="home-intro"><span class="home-intro-kicker">SAFAMARWAH · UMRAH COMPANION</span><h1>Assalamualaikum <span aria-hidden="true">✦</span></h1><p>Teman ibadah anda di Tanah Suci.</p></div><section class="prayer-widget" aria-labelledby="prayer-heading">
-<div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Makkah & Madinah · Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
-<div class="prayer-cities"><article class="prayer-city" id="prayer-makkah"><h3><span class="prayer-pin">◉</span> Makkah</h3><p class="prayer-status">Memuat waktu solat…</p></article><article class="prayer-city" id="prayer-madinah"><h3><span class="prayer-pin">◉</span> Madinah</h3><p class="prayer-status">Memuat waktu solat…</p></article></div>
+<div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
+<div class="prayer-city-tabs" role="group" aria-label="Pilih bandar waktu solat"><button type="button" id="prayer-tab-makkah" class="active" aria-pressed="true" onclick="smPrayerSelectCity('makkah')">Makkah</button><button type="button" id="prayer-tab-madinah" aria-pressed="false" onclick="smPrayerSelectCity('madinah')">Madinah</button></div><div class="prayer-cities"><article class="prayer-city" id="prayer-makkah"><h3><span class="prayer-pin">◉</span> Makkah</h3><p class="prayer-status">Memuat waktu solat…</p></article><article class="prayer-city" id="prayer-madinah"><h3><span class="prayer-pin">◉</span> Madinah</h3><p class="prayer-status">Memuat waktu solat…</p></article></div>
 <p class="prayer-foot" id="prayer-foot">Waktu anggaran berdasarkan kaedah Umm al-Qura. Semak pengumuman masjid untuk waktu iqamah.</p>
 </section>
 <section class="home-action"><button class="primary home-start" onclick="show('steps')"><span class="start-symbol" aria-hidden="true">↗</span><span><strong>Mulakan Panduan Umrah</strong><small>Ikuti langkah ibadah satu persatu</small></span><span class="start-arrow" aria-hidden="true">→</span></button></section><div class="home-mini-label">AKSES PANTAS <span>Alat jemaah</span></div><section class="dash-section" aria-labelledby="dash-main"><div class="dash-section-heading"><h2 id="dash-main">Ibadah Umrah</h2><span>Panduan utama</span></div><div class="dash-grid">
@@ -475,6 +493,8 @@ const smPrayerLocale={
  id:{names:['Subuh','Zuhur','Asar','Magrib','Isya'],unavailable:'Waktu belum tersedia. Hubungkan internet lalu tekan ↻.',next:'SALAT BERIKUTNYA · ',finished:'Salat hari ini selesai',saved:'Waktu tersimpan',cached:' · Data tersimpan',loading:'Memuat waktu salat…'},
  en:{names:['Fajr','Dhuhr','Asr','Maghrib','Isha'],unavailable:'Prayer times unavailable. Connect to the internet and tap ↻.',next:'NEXT PRAYER · ',finished:'Today’s prayers completed',saved:'Saved prayer times',cached:' · Cached data',loading:'Loading prayer times…'}
 };
+let smPrayerSelectedCity=localStorage.getItem('sm-prayer-selected-city')==='madinah'?'madinah':'makkah';
+function smPrayerSelectCity(id){if(id!=='makkah'&&id!=='madinah')return;smPrayerSelectedCity=id;try{localStorage.setItem('sm-prayer-selected-city',id)}catch(e){}for(const city of ['makkah','madinah']){const card=document.getElementById('prayer-'+city),tab=document.getElementById('prayer-tab-'+city),active=city===id;if(card)card.hidden=!active;if(tab){tab.classList.toggle('active',active);tab.setAttribute('aria-pressed',String(active))}}}
 function smPrayerRender(city,record,isOld=false){
  const el=document.getElementById('prayer-'+city.id);if(!el)return;
  const loc=smPrayerLocale[phase3Lang()]||smPrayerLocale.ms;
@@ -515,7 +535,7 @@ const foot=document.getElementById('prayer-foot');if(foot)foot.textContent=resul
 }
 function smPrayerTick(){if(!document.getElementById('prayer-makkah'))return;const now=smSaudiParts();for(const city of smPrayerCities){let saved=null;try{saved=JSON.parse(localStorage.getItem('sm-prayer-'+city.id)||'null')}catch(e){}if(saved?.times)smPrayerRender(city,saved,saved.date!==now.date);if(saved?.date!==now.date)smPrayerLoad()}}
 
-smPrayerLoad();setInterval(smPrayerTick,60000);
+smPrayerSelectCity(smPrayerSelectedCity);smPrayerLoad();setInterval(smPrayerTick,60000);
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('PWA cache unavailable',err)))}
 
 
