@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#002b23"><title>SafaMarwah</title>
+<style>
+html,body{margin:0;width:100%;height:100%;background:#002b23;color:#fff;font-family:system-ui,sans-serif;overflow:hidden}
+#app{position:fixed;inset:0;width:100%;height:100%;border:0;background:#002b23}
+#notice{position:fixed;z-index:3;bottom:calc(82px + env(safe-area-inset-bottom,0px));left:12px;right:12px;background:#073e33;color:#fff;border:1px solid #a7a06a;border-radius:14px;padding:12px 16px;font-size:13px;text-align:center;box-shadow:0 8px 24px #0005;display:none}
+#notice button{background:transparent;border:0;color:#f1db99;font-weight:bold;margin-left:8px}
+</style></head><body>
+<iframe id="app" title="SafaMarwah Umrah Companion" src="./offline.html" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+<div id="notice" role="status"><span id="message"></span><button id="retry" type="button">Cuba lagi</button></div>
+<script>
+(()=>{
+'use strict';
+const REMOTE='https://app.safamarwah.my/';
+const frame=document.getElementById('app');
+const notice=document.getElementById('notice');
+const message=document.getElementById('message');
+const retry=document.getElementById('retry');
+let timeout=null, ping=null, active=0, accepted=false;
+function banner(text){message.textContent=text;notice.style.display='block'}
+function hide(){notice.style.display='none'}
+function clear(){clearTimeout(timeout);clearInterval(ping);timeout=null;ping=null}
+function offline(){clear();active++;accepted=false;frame.src='./offline.html';banner('Mod offline: kandungan asas SafaMarwah dipaparkan.')}
+function online(){
+ if(!navigator.onLine){offline();return}
+ clear();const attempt=++active;accepted=false;hide();
+ frame.src=REMOTE;
+ function probe(){try{frame.contentWindow.postMessage({type:'safamarwah-shell-ping'},'https://app.safamarwah.my')}catch(e){}}
+ ping=setInterval(probe,650);
+ timeout=setTimeout(()=>{if(attempt===active&&!accepted)offline()},10000);
+}
+window.addEventListener('message',event=>{
+ if(event.origin!=='https://app.safamarwah.my'||event.source!==frame.contentWindow)return;
+ if(event.data?.type==='safamarwah-shell-pong'){accepted=true;clear();hide()}
+});
+window.addEventListener('online',()=>{if(frame.getAttribute('src')!=='./offline.html')return;online()});
+window.addEventListener('offline',offline);
+retry.addEventListener('click',online);
+online();
+})();
+</script></body></html>
