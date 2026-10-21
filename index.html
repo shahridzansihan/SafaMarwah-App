@@ -712,4 +712,28 @@ smLanguageObserver.observe(document.getElementById('main'),{childList:true,subtr
   const close=document.createElement('button');close.textContent='Tutup laporan';close.onclick=()=>panel.remove();panel.appendChild(close);document.body.appendChild(panel);
  });
 })();
-</script></body></html>
+</script>
+<style>
+#sm-install-prompt{position:fixed;z-index:110;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(92vw,430px);padding:14px 16px;border:1px solid #bdd8cb;border-radius:18px;background:#fffdf9;color:#075443;box-shadow:0 12px 35px #002f2533;font:inherit}
+#sm-install-prompt p{margin:6px 0 12px;font-size:.9rem;line-height:1.45}#sm-install-prompt .sm-install-actions{display:flex;gap:8px;flex-wrap:wrap}#sm-install-prompt button{padding:9px 12px;border-radius:10px;border:1px solid #b9d5c9;background:#087d69;color:white;font-weight:650}#sm-install-prompt button.sm-dismiss{background:transparent;color:#075443}
+</style>
+<script>
+(function(){
+ let pendingInstall=null;
+ const standalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+ const lang=()=>{try{return localStorage.getItem('sm-phase3-lang')||'ms'}catch(e){return 'ms'}};
+ const words={ms:['Pasang SafaMarwah','Untuk pengalaman seperti aplikasi tanpa bar pelayar, pasang SafaMarwah dan buka melalui ikon di skrin utama.','Pasang aplikasi','Tutup','Buka dalam Chrome dan pilih Pasang aplikasi melalui menu pelayar.'],id:['Pasang SafaMarwah','Untuk pengalaman seperti aplikasi tanpa bilah browser, instal SafaMarwah dan buka melalui ikon di layar utama.','Instal aplikasi','Tutup','Buka di Chrome dan pilih Instal aplikasi dari menu browser.'],en:['Install SafaMarwah','For an app-like experience without browser bars, install SafaMarwah and open it from your home screen.','Install app','Close','Open in Chrome and choose Install app from the browser menu.']};
+ function render(){if(standalone()||sessionStorage.getItem('sm-install-dismissed')==='1'||document.getElementById('sm-install-prompt'))return;
+ const t=words[lang()]||words.ms;const panel=document.createElement('aside');panel.id='sm-install-prompt';panel.setAttribute('role','region');panel.setAttribute('aria-label',t[0]);
+ const title=document.createElement('strong');title.textContent=t[0];panel.appendChild(title);
+ const p=document.createElement('p');p.textContent=pendingInstall?t[1]:t[1]+' '+t[4];panel.appendChild(p);
+ const actions=document.createElement('div');actions.className='sm-install-actions';
+ if(pendingInstall){const install=document.createElement('button');install.textContent=t[2];install.onclick=async()=>{const evt=pendingInstall;pendingInstall=null;try{await evt.prompt();await evt.userChoice}catch(e){}panel.remove()};actions.appendChild(install)}
+ const close=document.createElement('button');close.className='sm-dismiss';close.textContent=t[3];close.onclick=()=>{sessionStorage.setItem('sm-install-dismissed','1');panel.remove()};actions.appendChild(close);panel.appendChild(actions);document.body.appendChild(panel)
+ }
+ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();pendingInstall=e;document.getElementById('sm-install-prompt')?.remove();render()});
+ window.addEventListener('appinstalled',()=>{pendingInstall=null;document.getElementById('sm-install-prompt')?.remove()});
+ window.addEventListener('DOMContentLoaded',()=>{if(!standalone())setTimeout(render,900)});
+})();
+</script>
+</body></html>
