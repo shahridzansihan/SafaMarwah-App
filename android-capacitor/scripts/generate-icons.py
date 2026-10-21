@@ -26,7 +26,11 @@ for density, size in densities.items():
         image.save(dest / filename, optimize=True)
 # The Capacitor starter's adaptive icon resources can override the legacy icon.
 # Replace adaptive launcher XML with a background + the supplied artwork.
-for folder in (res / "mipmap-anydpi", res / "mipmap-anydpi-v26"):
+# Adaptive icons require API 26+. Never place adaptive-icon XML in mipmap-anydpi.
+legacy = res / "mipmap-anydpi"
+for filename in ("ic_launcher.xml", "ic_launcher_round.xml"):
+    (legacy / filename).unlink(missing_ok=True)
+for folder in (res / "mipmap-anydpi-v26",):
     folder.mkdir(parents=True, exist_ok=True)
     for filename in ("ic_launcher.xml", "ic_launcher_round.xml"):
         (folder / filename).write_text(
