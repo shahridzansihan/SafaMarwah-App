@@ -1,0 +1,16 @@
+{
+  "appId": "my.safamarwah.companion",
+  "appName": "SafaMarwah",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#002b23",
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": true,
+      "style": "DARK",
+      "backgroundColor": "#00000000"
+    }
+  }
+}
