@@ -246,12 +246,42 @@ h1,h2,h3,h4,h5,h6,.hero h1,.section-title h2{font-family:'Alata',sans-serif!impo
 .prayer-date{font-size:.8rem!important}
 @media(max-width:380px){.prayer-times>div,.prayer-times b{font-size:.95rem!important}}
 .dark .prayer-city-tabs button.active{background:#254d3e;color:#fff}
-</style></head><body><div class="app"><header class="top home-top"><a class="home-brand" href="https://www.safamarwah.my/" target="_blank" rel="noopener noreferrer" aria-label="Lawati laman utama SafaMarwah"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></a><div class="toolbar"><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="reset-font" aria-label="Tetapkan semula saiz tulisan" title="Saiz tulisan normal">A↺</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><div class="home-intro"><span class="home-intro-kicker">SAFAMARWAH · UMRAH COMPANION</span><h1>Assalamualaikum <span aria-hidden="true">✦</span></h1><p>Teman ibadah anda di Tanah Suci.</p></div><section class="prayer-widget" aria-labelledby="prayer-heading">
+
+/* v44 accessible pilgrim-first refinement */
+:root{--tap-size:48px}
+.top.home-top{gap:10px;min-height:76px;padding:10px 16px}
+.home-brand{min-width:0;flex:1}
+.home-brand img{max-width:100%;object-fit:contain}
+.settings-trigger{display:flex;align-items:center;justify-content:center;gap:7px;flex:0 0 auto;min-height:46px;border-radius:14px!important;background:#e9f4ee!important;color:#075443!important;border:1px solid #bcd9c9!important;font-size:.9rem;font-weight:700;padding:9px 12px!important}
+.top.home-top .toolbar[hidden]{display:none!important}
+.top.home-top .toolbar:not([hidden]){position:absolute;right:12px;top:calc(100% + 7px);padding:12px;display:grid;grid-template-columns:repeat(4,minmax(46px,1fr));gap:7px;background:#fffdf9;border:1px solid #cbded2;border-radius:17px;box-shadow:0 12px 34px #072f292c;z-index:20}
+.top.home-top .toolbar button{min-width:46px;min-height:46px}
+.home-intro{text-align:left;padding:20px 6px 6px}
+.home-intro h1{font-family:'Alata',sans-serif!important;font-size:clamp(1.75rem,5.6vw,2.35rem);line-height:1.2}
+.home-intro p{font-size:1rem;line-height:1.55}
+.home-action{padding:4px 0 6px;margin:7px 0 14px}
+.home-start{min-height:66px;border-radius:19px;justify-content:space-between;text-align:left}
+.home-start strong{font-size:1.05rem}
+.home-start small{font-size:.85rem}
+.prayer-widget{border-radius:22px;padding:18px;margin:14px 0 20px}
+.prayer-head h2{font-size:1.4rem}
+.prayer-zone{font-size:.88rem}
+.prayer-refresh{width:48px;height:48px;flex:0 0 48px}
+.prayer-foot{font-size:.83rem;line-height:1.6}
+.dash-section{margin-top:18px}
+.dash-grid button{min-height:68px;line-height:1.35}
+.bottom button{min-height:62px}
+.bottom button:focus-visible,.dash-grid button:focus-visible,.settings-trigger:focus-visible,.prayer-city-tabs button:focus-visible{outline:3px solid #c6a657;outline-offset:3px}
+@media(max-width:480px){.top.home-top{padding:8px 12px;min-height:72px}.settings-trigger span{display:none}.settings-trigger{width:48px;height:48px;font-size:1.25rem}.home-intro{padding-top:13px}.prayer-widget{padding:14px}.prayer-cities .prayer-city{padding:15px!important}}
+.dark .settings-trigger{background:#21493b!important;color:#e8f5eb!important;border-color:#527866!important}
+.dark .top.home-top .toolbar:not([hidden]){background:#17372e;border-color:#527866}
+</style></head><body><div class="app"><header class="top home-top"><a class="home-brand" href="https://www.safamarwah.my/" target="_blank" rel="noopener noreferrer" aria-label="Lawati laman utama SafaMarwah"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></a><button class="settings-trigger" id="settings-trigger" aria-label="Tetapan paparan" aria-expanded="false" aria-controls="display-settings" onclick="smToggleDisplaySettings()">⚙ <span>Tetapan</span></button><div class="toolbar" id="display-settings" hidden><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="reset-font" aria-label="Tetapkan semula saiz tulisan" title="Saiz tulisan normal">A↺</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><div class="home-intro"><span class="home-intro-kicker">SAFAMARWAH · UMRAH COMPANION</span><h1>Assalamualaikum <span aria-hidden="true">✦</span></h1><p>Teman ibadah anda di Tanah Suci.</p></div><section class="home-action"><button class="primary home-start" onclick="show('steps')"><span class="start-symbol" aria-hidden="true">↗</span><span><strong>Mulakan Panduan Umrah</strong><small>Ikuti langkah ibadah satu persatu</small></span><span class="start-arrow" aria-hidden="true">→</span></button></section>
+<section class="prayer-widget" aria-labelledby="prayer-heading">
 <div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
 <div class="prayer-city-tabs" role="group" aria-label="Pilih bandar waktu solat"><button type="button" id="prayer-tab-makkah" class="active" aria-pressed="true" onclick="smPrayerSelectCity('makkah')">Makkah</button><button type="button" id="prayer-tab-madinah" aria-pressed="false" onclick="smPrayerSelectCity('madinah')">Madinah</button></div><div class="prayer-cities"><article class="prayer-city" id="prayer-makkah"><h3><span class="prayer-pin">◉</span> Makkah</h3><p class="prayer-status">Memuat waktu solat…</p></article><article class="prayer-city" id="prayer-madinah"><h3><span class="prayer-pin">◉</span> Madinah</h3><p class="prayer-status">Memuat waktu solat…</p></article></div>
 <p class="prayer-foot" id="prayer-foot">Waktu anggaran berdasarkan kaedah Umm al-Qura. Semak pengumuman masjid untuk waktu iqamah.</p>
 </section>
-<section class="home-action"><button class="primary home-start" onclick="show('steps')"><span class="start-symbol" aria-hidden="true">↗</span><span><strong>Mulakan Panduan Umrah</strong><small>Ikuti langkah ibadah satu persatu</small></span><span class="start-arrow" aria-hidden="true">→</span></button></section><div class="home-mini-label">AKSES PANTAS <span>Alat jemaah</span></div><section class="dash-section" aria-labelledby="dash-main"><div class="dash-section-heading"><h2 id="dash-main">Ibadah Umrah</h2><span>Panduan utama</span></div><div class="dash-grid">
+<div class="home-mini-label">AKSES PANTAS <span>Alat jemaah</span></div><section class="dash-section" aria-labelledby="dash-main"><div class="dash-section-heading"><h2 id="dash-main">Ibadah Umrah</h2><span>Panduan utama</span></div><div class="dash-grid">
 <button onclick="show('steps')"><span class="dash-icon"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5c3-1.5 5.5-1.5 8 0v14c-2.5-1.5-5-1.5-8 0z"/><path d="M20 5.5c-3-1.5-5.5-1.5-8 0v14c2.5-1.5 5-1.5 8 0z"/></svg></span>Panduan</button>
 <button onclick="show('dua')"><span class="dash-icon"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C9.5 5 6.5 5 3.5 6v13c3-1 6-.8 8.5 1.2 2.5-2 5.5-2.2 8.5-1.2V6c-3-1-6-.8-8.5.5Z"/><path d="M12 6.5v13.7"/><path d="M6.5 10h2.5M15 10h2.5M6.5 13h2.5M15 13h2.5"/></svg></span>Doa & Zikir</button>
 </div></section>
@@ -490,6 +520,9 @@ const p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Riyad
 return {date:p.year+'-'+p.month+'-'+p.day,api:p.day+'-'+p.month+'-'+p.year,minutes:Number(p.hour)*60+Number(p.minute),clock:p.hour+':'+p.minute}
 }
 function smPrayerTime(t){const m=String(t||'').match(/^(\d{2}):(\d{2})/);return m?m[1]+':'+m[2]:null}
+function smToggleDisplaySettings(force){const panel=document.getElementById('display-settings'),trigger=document.getElementById('settings-trigger');if(!panel)return;const open=typeof force==='boolean'?force:panel.hidden;panel.hidden=!open;trigger?.setAttribute('aria-expanded',String(open))}
+document.addEventListener('click',e=>{const panel=document.getElementById('display-settings'),trigger=document.getElementById('settings-trigger');if(panel&&!panel.hidden&&!panel.contains(e.target)&&!trigger?.contains(e.target))smToggleDisplaySettings(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')smToggleDisplaySettings(false)});
 const smPrayerLocale={
  ms:{names:['Subuh','Zohor','Asar','Maghrib','Isyak'],unavailable:'Waktu belum tersedia. Sambungkan internet dan tekan ↻.',next:'SOLAT SETERUSNYA · ',finished:'Solat hari ini selesai',saved:'Waktu tersimpan',cached:' · Data tersimpan',loading:'Memuat waktu solat…'},
  id:{names:['Subuh','Zuhur','Asar','Magrib','Isya'],unavailable:'Waktu belum tersedia. Hubungkan internet lalu tekan ↻.',next:'SALAT BERIKUTNYA · ',finished:'Salat hari ini selesai',saved:'Waktu tersimpan',cached:' · Data tersimpan',loading:'Memuat waktu salat…'},
