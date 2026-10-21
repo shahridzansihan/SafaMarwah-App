@@ -497,6 +497,21 @@ function smSyncDuas(){
  const lang=phase3Lang(),translations=smDuaTranslations[lang]||[];
  duas.forEach((d,i)=>{d.title=translations[i]?.[0]||smDuaOriginal[i].title;d.ms=translations[i]?.[1]||smDuaOriginal[i].ms});
 }
+const smExtraLabels={
+ en:{
+ 'Checklist Persediaan':'Preparation Checklist','Tandakan persediaan yang sudah selesai. Disimpan pada peranti ini.':'Tick the preparations you have completed. Saved on this device.',
+ 'Pasport dan dokumen perjalanan':'Passport and travel documents','Visa atau kelulusan perjalanan yang diperlukan':'Required visa or travel authorization','Tiket penerbangan dan butiran hotel':'Flight tickets and hotel details','Maklumat mutawif dan nombor waris':'Guide and emergency contact details','Pakaian ihram dan pakaian sesuai':'Ihram clothing and suitable clothes','Ubat-ubatan peribadi dan preskripsi':'Personal medicines and prescriptions','Kelengkapan kebersihan dan beg kecil':'Toiletries and a small bag','Semak panduan rukun dan wajib Umrah':'Review the pillars and obligations of Umrah','Semak maklumat miqat perjalanan':'Check the miqat for your route','Simpan salinan dokumen secara selamat':'Store document copies securely',
+ 'Kiraan disimpan secara automatik.':'Count saved automatically.','Kiraan tujuh dicapai. Sahkan sendiri ibadah anda.':'Seven counts reached. Verify your worship yourself.',
+ 'Soalan Lazim Umrah':'Frequently Asked Questions','Jadual Perjalanan':'Travel Schedule','Peringatan Aktiviti':'Activity Reminders',
+ 'Simpan penerbangan, hotel, ziarah dan aktiviti. Semua maklumat hanya pada peranti ini.':'Save flights, hotels, visits and activities. All information stays on this device.',
+ 'Lapan peringkat, mengikut turutan ibadah.':'Eight stages in the order of worship.','Niat & Doa':'Intention & Prayers','Nota Penting':'Important Notes',
+ 'Persediaan Ihram':'Preparing for Ihram','Talbiah dan Perjalanan':'Talbiyah and Journey','Tawaf Tujuh Pusingan':'Seven Circuits of Tawaf','Selepas Tawaf':'After Tawaf','Menuju Safa':'Proceeding to Safa','Sa’ie Tujuh Perjalanan':"Seven Walks of Sa'i",
+ 'Rukun & Wajib Umrah':'Pillars & Obligations of Umrah','Panduan ringkas ini bukan pengganti kursus Umrah atau bimbingan mutawif. Rukun dan wajib Umrah perlu dipenuhi; rujuk pembimbing bagi kes khas.':'This brief guide does not replace an Umrah course or guidance from a qualified guide. Consult a guide for special circumstances.'
+ },
+ id:{
+ 'Rukun & Wajib Umrah':'Rukun & Wajib Umrah','Panduan ringkas ini bukan pengganti kursus Umrah atau bimbingan mutawif. Rukun dan wajib Umrah perlu dipenuhi; rujuk pembimbing bagi kes khas.':'Panduan singkat ini bukan pengganti kursus Umrah atau bimbingan pembimbing. Rukun dan kewajiban Umrah harus dipenuhi; konsultasikan keadaan khusus kepada pembimbing.'
+ }
+};
 const smI18n={
  en:{
  'Assalamualaikum ✦':'Assalamualaikum ✦','Teman ibadah anda di Tanah Suci.':'Your companion in the Holy Land.',
@@ -542,7 +557,7 @@ const smI18n={
  }
 };
 function smApplyLanguage(){
- const lang=phase3Lang(),dict=smI18n[lang]||{};
+ const lang=phase3Lang(),dict={...(smI18n[lang]||{}),...(smExtraLabels[lang]||{})};
  if(typeof content!=='undefined'&&typeof smContentId!=='undefined'){const source=lang==='id'?smContentId:lang==='en'?smContentEn:smContentMs;for(let i=0;i<content.length;i++)for(let j=0;j<content[i].length;j++)content[i][j]=source[i][j];}
  document.documentElement.lang=lang;
  smSyncDuas();
