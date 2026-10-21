@@ -387,7 +387,7 @@ function phase3Add(event,type){event.preventDefault();const data=Object.fromEntr
 function phase3Delete(type,id){if(!confirm('Padam item ini?'))return;const key='sm-phase3-'+type;phase3Save(key,phase3Read(key).filter(x=>x.id!==id));phase3Page(type)}
 function phase3SaveEmergency(event){event.preventDefault();const data=Object.fromEntries(new FormData(event.currentTarget).entries());localStorage.setItem('sm-phase3-emergency',JSON.stringify(data));phase3RenderCard()}
 function phase3RenderCard(){const el=document.getElementById('phase3-card');if(!el)return;let d={};try{d=JSON.parse(localStorage.getItem('sm-phase3-emergency')||'{}')}catch(e){}el.innerHTML='<h2>SAFAMARWAH · KAD BANTUAN JEMAAH</h2>'+[['pilgrim','Jemaah'],['contact','Waris'],['hotel','Hotel'],['hotelPhone','Telefon Hotel'],['mutawif','Mutawif'],['note','Nota']].map(([k,t])=>'<p><b>'+t+':</b> '+phaseSafe(d[k]||'—')+'</p>').join('')+'<small>Maklumat disediakan oleh pemilik peranti. Bukan dokumen pengenalan rasmi.</small>'}
-function phase3SetLang(v){if(!phase3Words[v])return;localStorage.setItem('sm-phase3-lang',v);phase3Page('language')}
+function phase3SetLang(v){if(!phase3Words[v])return;localStorage.setItem('sm-phase3-lang',v);document.documentElement.lang=v;phase3Page('language');smApplyLanguage();}
 function phase3Due(){const now=new Date(),items=phase3Read('sm-phase3-reminders');const due=items.filter(x=>{const d=new Date(x.date+'T'+x.time+':00');return !Number.isNaN(d.getTime())&&d<=now&&now-d<86400000});if(!due.length)return;const el=document.getElementById('phase3-due');if(el)el.innerHTML='<strong>Peringatan Hari Ini</strong>'+due.map(x=>'<p>'+phaseSafe(x.name)+' · '+phaseSafe(x.time)+'</p>').join('')}
 
 function showMore(){
@@ -466,6 +466,66 @@ function smPrayerTick(){if(!document.getElementById('prayer-makkah'))return;cons
 
 smPrayerLoad();setInterval(smPrayerTick,60000);
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('PWA cache unavailable',err)))}
+
+
+/* v17: apply language to visible interface, retaining original Arabic prayers and religious guidance */
+const smI18n={
+ en:{
+ 'Assalamualaikum ✦':'Assalamualaikum ✦','Teman ibadah anda di Tanah Suci.':'Your companion in the Holy Land.',
+ 'Waktu Solat':'Prayer Times','Makkah & Madinah · Waktu Saudi (UTC+3)':'Makkah & Madinah · Saudi time (UTC+3)',
+ 'Mulakan Panduan Umrah':'Start Umrah Guide','Ikuti langkah ibadah satu persatu':'Follow each step of worship',
+ 'AKSES PANTAS':'QUICK ACCESS','Alat jemaah':'Pilgrim tools','Ibadah Umrah':'Umrah Worship','Panduan utama':'Essential guidance',
+ 'Persediaan Jemaah':'Pilgrim Preparation','Sebelum & semasa perjalanan':'Before and during your journey',
+ 'Ilmu & Rujukan':'Knowledge & References','Rujukan pantas':'Quick references','Alat Peribadi':'Personal Tools',
+ 'Disimpan pada peranti':'Saved on this device','Panduan':'Guide','Doa & Zikir':'Prayers & Dhikr',
+ 'Kaunter Tawaf':'Tawaf Counter','Kaunter Sa’ie':'Sa’i Counter','Jadual Saya':'My Schedule',
+ 'Kad Kecemasan':'Emergency Card','Peringatan':'Reminders','Rukun & Wajib':'Pillars & Obligations',
+ 'FAQ Umrah':'Umrah FAQ','Miqat & Peta':'Miqat & Map','Audio Doa':'Prayer Audio',
+ 'Nota Saya':'My Notes','Mod Jemaah':'Pilgrim Mode','Bahasa':'Language','Utama':'Home','Doa':'Prayers',
+ 'Lagi':'More','Semua Fungsi':'All Features','Pilihan Bahasa':'Language Settings',
+ 'Pilihan bahasa untuk modul Smart Companion Fasa 3. Kandungan panduan ibadah dan doa asal masih dalam Bahasa Melayu; terjemahan penuh akan memerlukan semakan khusus.':'The interface and selected companion tools are translated. Religious guidance and original prayers remain in Malay pending specialist review.',
+ 'Simpan':'Save','Tambah Aktiviti':'Add Activity','Padam':'Delete','Nama':'Name','Tarikh':'Date','Masa':'Time','Butiran / lokasi':'Details / location',
+ 'Sandaran & Pemulihan Data':'Backup & Restore Data','Mod Offline':'Offline Mode','Saiz Tulisan':'Font Size'
+ },
+ id:{
+ 'Teman ibadah anda di Tanah Suci.':'Pendamping ibadah Anda di Tanah Suci.',
+ 'Waktu Solat':'Waktu Salat','Makkah & Madinah · Waktu Saudi (UTC+3)':'Makkah & Madinah · Waktu Saudi (UTC+3)',
+ 'Mulakan Panduan Umrah':'Mulai Panduan Umrah','Ikuti langkah ibadah satu persatu':'Ikuti langkah ibadah satu per satu',
+ 'AKSES PANTAS':'AKSES CEPAT','Alat jemaah':'Alat jemaah','Ibadah Umrah':'Ibadah Umrah','Panduan utama':'Panduan utama',
+ 'Persediaan Jemaah':'Persiapan Jemaah','Sebelum & semasa perjalanan':'Sebelum & selama perjalanan',
+ 'Ilmu & Rujukan':'Ilmu & Referensi','Rujukan pantas':'Referensi cepat','Alat Peribadi':'Alat Pribadi',
+ 'Disimpan pada peranti':'Tersimpan di perangkat','Panduan':'Panduan','Doa & Zikir':'Doa & Zikir',
+ 'Kaunter Tawaf':'Penghitung Tawaf','Kaunter Sa’ie':'Penghitung Sa’i','Jadual Saya':'Jadwal Saya',
+ 'Kad Kecemasan':'Kartu Darurat','Peringatan':'Pengingat','Rukun & Wajib':'Rukun & Wajib',
+ 'FAQ Umrah':'Tanya Jawab Umrah','Miqat & Peta':'Miqat & Peta','Audio Doa':'Audio Doa',
+ 'Nota Saya':'Catatan Saya','Mod Jemaah':'Mode Jemaah','Bahasa':'Bahasa','Utama':'Beranda','Doa':'Doa',
+ 'Lagi':'Lainnya','Semua Fungsi':'Semua Fitur','Pilihan Bahasa':'Pilihan Bahasa',
+ 'Pilihan bahasa untuk modul Smart Companion Fasa 3. Kandungan panduan ibadah dan doa asal masih dalam Bahasa Melayu; terjemahan penuh akan memerlukan semakan khusus.':'Antarmuka dan beberapa alat pendamping telah diterjemahkan. Panduan ibadah dan doa asli tetap dalam bahasa Melayu sambil menunggu peninjauan khusus.',
+ 'Simpan':'Simpan','Tambah Aktiviti':'Tambah Kegiatan','Padam':'Hapus','Nama':'Nama','Tarikh':'Tanggal','Masa':'Waktu','Butiran / lokasi':'Detail / lokasi',
+ 'Sandaran & Pemulihan Data':'Cadangkan & Pulihkan Data','Mod Offline':'Mode Offline','Saiz Tulisan':'Ukuran Huruf'
+ }
+};
+function smApplyLanguage(){
+ const lang=phase3Lang(),dict=smI18n[lang]||{};
+ document.documentElement.lang=lang;
+ const roots=[document.getElementById('main'),document.querySelector('.bottom')].filter(Boolean);
+ for(const root of roots){
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  let node;while((node=walker.nextNode())){
+   if(node.parentElement?.closest('script,style,textarea,option,.arabic,[lang="ar"]'))continue;
+   const source=node.nodeValue.trim(),translated=dict[source];
+   if(translated&&translated!==source)node.nodeValue=node.nodeValue.replace(source,translated);
+  }
+ }
+}
+const smOriginalShow=show,smOriginalPhasePage=phasePage,smOriginalPhase2Page=phase2Page,smOriginalPhase3Page=phase3Page,smOriginalShowMore=showMore,smOriginalPhase5Page=phase5Page;
+show=function(...args){const result=smOriginalShow(...args);smApplyLanguage();return result};
+phasePage=function(...args){const result=smOriginalPhasePage(...args);smApplyLanguage();return result};
+phase2Page=function(...args){const result=smOriginalPhase2Page(...args);smApplyLanguage();return result};
+phase3Page=function(...args){const result=smOriginalPhase3Page(...args);smApplyLanguage();return result};
+showMore=function(...args){const result=smOriginalShowMore(...args);smApplyLanguage();return result};
+phase5Page=function(...args){const result=smOriginalPhase5Page(...args);smApplyLanguage();return result};
+smApplyLanguage();
 
 /* SafaMarwah interaction diagnostics: no personal data changed */
 (function(){
