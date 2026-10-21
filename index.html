@@ -463,7 +463,7 @@ function smPrayerRefreshLanguage(){
   let saved=null;
   try{saved=JSON.parse(localStorage.getItem('sm-prayer-'+city.id)||'null')}catch(e){}
   if(saved?.times)smPrayerRender(city,saved,saved.date!==smSaudiParts().date);
-  else {const el=document.getElementById('prayer-'+city.id);if(el)el.querySelector('.prayer-status')?.replaceChildren(document.createTextNode((smPrayerLocale[phase3Lang()]||smPrayerLocale.ms).loading))}
+  else {const el=document.getElementById('prayer-'+city.id);if(el){const status=el.querySelector('.prayer-status');if(status)status.textContent=(smPrayerLocale[phase3Lang()]||smPrayerLocale.ms).loading}}
  }
 }
 
