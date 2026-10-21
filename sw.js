@@ -1,4 +1,4 @@
-const CACHE='safamarwah-v35-theme-typography';
+const CACHE='safamarwah-v36-font-reset';
 const CORE=['./','./index.html','./logo.png','./app-icon.png','./header-logo.png','./manifest.webmanifest?v=34'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));self.skipWaiting()});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('safamarwah-')&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
