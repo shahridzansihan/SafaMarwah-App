@@ -393,7 +393,7 @@ function phase3Add(event,type){event.preventDefault();const data=Object.fromEntr
 function phase3Delete(type,id){if(!confirm('Padam item ini?'))return;const key='sm-phase3-'+type;phase3Save(key,phase3Read(key).filter(x=>x.id!==id));phase3Page(type)}
 function phase3SaveEmergency(event){event.preventDefault();const data=Object.fromEntries(new FormData(event.currentTarget).entries());localStorage.setItem('sm-phase3-emergency',JSON.stringify(data));phase3RenderCard()}
 function phase3RenderCard(){const el=document.getElementById('phase3-card');if(!el)return;let d={};try{d=JSON.parse(localStorage.getItem('sm-phase3-emergency')||'{}')}catch(e){}el.innerHTML='<h2>SAFAMARWAH · KAD BANTUAN JEMAAH</h2>'+[['pilgrim','Jemaah'],['contact','Waris'],['hotel','Hotel'],['hotelPhone','Telefon Hotel'],['mutawif','Mutawif'],['note','Nota']].map(([k,t])=>'<p><b>'+t+':</b> '+phaseSafe(d[k]||'—')+'</p>').join('')+'<small>Maklumat disediakan oleh pemilik peranti. Bukan dokumen pengenalan rasmi.</small>'}
-function phase3SetLang(v){if(!['ms','id','en'].includes(v))return;localStorage.setItem('sm-phase3-lang',v);document.documentElement.lang=v;phase3Page('language');smApplyLanguage();}
+function phase3SetLang(v){if(!['ms','id','en'].includes(v))return;localStorage.setItem('sm-phase3-lang',v);document.documentElement.lang=v;phase3Page('language');smApplyLanguage();smPrayerRefreshLanguage();}
 function phase3Due(){const now=new Date(),items=phase3Read('sm-phase3-reminders');const due=items.filter(x=>{const d=new Date(x.date+'T'+x.time+':00');return !Number.isNaN(d.getTime())&&d<=now&&now-d<86400000});if(!due.length)return;const el=document.getElementById('phase3-due');if(el)el.innerHTML='<strong>Peringatan Hari Ini</strong>'+due.map(x=>'<p>'+phaseSafe(x.name)+' · '+phaseSafe(x.time)+'</p>').join('')}
 
 function showMore(){
@@ -442,14 +442,31 @@ const p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Riyad
 return {date:p.year+'-'+p.month+'-'+p.day,api:p.day+'-'+p.month+'-'+p.year,minutes:Number(p.hour)*60+Number(p.minute),clock:p.hour+':'+p.minute}
 }
 function smPrayerTime(t){const m=String(t||'').match(/^(\d{2}):(\d{2})/);return m?m[1]+':'+m[2]:null}
+const smPrayerLocale={
+ ms:{names:['Subuh','Zohor','Asar','Maghrib','Isyak'],unavailable:'Waktu belum tersedia. Sambungkan internet dan tekan ↻.',next:'SOLAT SETERUSNYA · ',finished:'Solat hari ini selesai',saved:'Waktu tersimpan',cached:' · Data tersimpan',loading:'Memuat waktu solat…'},
+ id:{names:['Subuh','Zuhur','Asar','Magrib','Isya'],unavailable:'Waktu belum tersedia. Hubungkan internet lalu tekan ↻.',next:'SALAT BERIKUTNYA · ',finished:'Salat hari ini selesai',saved:'Waktu tersimpan',cached:' · Data tersimpan',loading:'Memuat waktu salat…'},
+ en:{names:['Fajr','Dhuhr','Asr','Maghrib','Isha'],unavailable:'Prayer times unavailable. Connect to the internet and tap ↻.',next:'NEXT PRAYER · ',finished:'Today’s prayers completed',saved:'Saved prayer times',cached:' · Cached data',loading:'Loading prayer times…'}
+};
 function smPrayerRender(city,record,isOld=false){
-const el=document.getElementById('prayer-'+city.id);if(!el)return;
-if(!record||!record.times){el.innerHTML='<h3><span class="prayer-pin">◉</span> '+ (city.id==='makkah'?'Makkah':'Madinah') +'</h3><p class="prayer-status">Waktu belum tersedia. Sambungkan internet dan tekan ↻.</p>';return}
-const now=smSaudiParts(),today=record.date===now.date,entries=smPrayerNames.map(([key,label])=>({label,time:smPrayerTime(record.times[key])})).filter(x=>x.time);
-let next=today?entries.find(x=>Number(x.time.slice(0,2))*60+Number(x.time.slice(3))>now.minutes):null;
-const main=next?'<span class="prayer-next-label">SOLAT SETERUSNYA · '+next.label+'</span><strong class="prayer-next-time">'+next.time+' <small>SA</small></strong>':(today?'<span class="prayer-next-label">Solat hari ini selesai</span>':'<span class="prayer-next-label">Waktu tersimpan</span>');
-el.innerHTML='<h3><span class="prayer-pin">◉</span> '+(city.id==='makkah'?'Makkah':'Madinah')+'</h3><div class="prayer-next">'+main+'</div><div class="prayer-times">'+entries.map(x=>'<div class="'+(next&&next.label===x.label?'is-next':'')+'"><span>'+x.label+'</span><b>'+x.time+'</b></div>').join('')+'</div><small class="prayer-date">'+record.date+(isOld||!today?' · Data tersimpan':'')+'</small>';
+ const el=document.getElementById('prayer-'+city.id);if(!el)return;
+ const loc=smPrayerLocale[phase3Lang()]||smPrayerLocale.ms;
+ const cityName=city.id==='makkah'?'Makkah':'Madinah';
+ if(!record||!record.times){el.innerHTML='<h3><span class="prayer-pin">◉</span> '+cityName+'</h3><p class="prayer-status">'+loc.unavailable+'</p>';return}
+ const now=smSaudiParts(),today=record.date===now.date;
+ const entries=smPrayerNames.map(([key],i)=>({label:loc.names[i],time:smPrayerTime(record.times[key])})).filter(x=>x.time);
+ const next=today?entries.find(x=>Number(x.time.slice(0,2))*60+Number(x.time.slice(3))>now.minutes):null;
+ const headline=next?'<span class="prayer-next-label">'+loc.next+next.label+'</span><strong class="prayer-next-time">'+next.time+' <small>SA</small></strong>':(today?'<span class="prayer-next-label">'+loc.finished+'</span>':'<span class="prayer-next-label">'+loc.saved+'</span>');
+ el.innerHTML='<h3><span class="prayer-pin">◉</span> '+cityName+'</h3><div class="prayer-next">'+headline+'</div><div class="prayer-times">'+entries.map(x=>'<div class="'+(next&&next.label===x.label?'is-next':'')+'"><span>'+x.label+'</span><b>'+x.time+'</b></div>').join('')+'</div><small class="prayer-date">'+record.date+(isOld||!today?loc.cached:'')+'</small>';
 }
+function smPrayerRefreshLanguage(){
+ for(const city of smPrayerCities){
+  let saved=null;
+  try{saved=JSON.parse(localStorage.getItem('sm-prayer-'+city.id)||'null')}catch(e){}
+  if(saved?.times)smPrayerRender(city,saved,saved.date!==smSaudiParts().date);
+  else {const el=document.getElementById('prayer-'+city.id);if(el)el.querySelector('.prayer-status')?.replaceChildren(document.createTextNode((smPrayerLocale[phase3Lang()]||smPrayerLocale.ms).loading))}
+ }
+}
+
 async function smPrayerLoad(force=false){
 const now=smSaudiParts();const results=await Promise.all(smPrayerCities.map(async city=>{
 const key='sm-prayer-'+city.id;let saved=null;try{saved=JSON.parse(localStorage.getItem(key)||'null')}catch(e){}
@@ -593,7 +610,7 @@ function smTranslateElement(root){
  smTranslating=true;
  try{
   const lang=phase3Lang();
-  const dict={...(smI18n[lang]||{}),...(smExtraLabels[lang]||{}),...(smDynamicText[lang]||{}),...(smReligiousText[lang]||{})};
+  const dict={...(smI18n[lang]||{}),...(smExtraLabels[lang]||{}),...(smDynamicText[lang]||{}),...(smReligiousText[lang]||{}),...(smHomepageLabels[lang]||{})};
   const all=[root,...(root.querySelectorAll?.('*')||[])];
   for(const el of all){
    if(el.matches?.('script,style,textarea,.arabic,[lang="ar"]')||el.closest?.('.arabic,[lang="ar"]'))continue;
@@ -626,6 +643,7 @@ function smTranslateCurrent(){
  }
 }
 
+const smHomepageLabels={en:{'SAFAMARWAH · LIVE PRAYER TIMES':'SAFAMARWAH · LIVE PRAYER TIMES','SAFAMARWAH · UMRAH COMPANION':'SAFAMARWAH · UMRAH COMPANION','Memuat waktu solat…':'Loading prayer times…','Waktu anggaran berdasarkan kaedah Umm al-Qura. Semak pengumuman masjid untuk waktu iqamah.':'Estimated times using the Umm al-Qura method. Check mosque announcements for iqamah times.','Panduan pembelajaran Umrah. Rujuk mutawif bagi persoalan hukum dan kesahan ibadah.':'An Umrah learning guide. Consult a qualified guide about religious rulings and the validity of worship.','Sebelum & semasa perjalanan':'Before & during your journey','Disimpan pada peranti':'Saved on your device','Panduan utama':'Main guide','Rujukan pantas':'Quick references','Alat jemaah':'Pilgrim tools','Kemas kini waktu solat':'Refresh prayer times','Kemas kini':'Refresh'},id:{'SAFAMARWAH · LIVE PRAYER TIMES':'SAFAMARWAH · WAKTU SALAT TERKINI','Memuat waktu solat…':'Memuat waktu salat…','Waktu anggaran berdasarkan kaedah Umm al-Qura. Semak pengumuman masjid untuk waktu iqamah.':'Perkiraan waktu menggunakan metode Umm al-Qura. Periksa pengumuman masjid untuk waktu ikamah.','Panduan pembelajaran Umrah. Rujuk mutawif bagi persoalan hukum dan kesahan ibadah.':'Panduan belajar Umrah. Konsultasikan masalah hukum dan keabsahan ibadah kepada pembimbing.','Sebelum & semasa perjalanan':'Sebelum & selama perjalanan','Disimpan pada peranti':'Disimpan di perangkat','Panduan utama':'Panduan utama','Rujukan pantas':'Referensi cepat','Alat jemaah':'Alat jemaah','Kemas kini waktu solat':'Perbarui waktu salat','Kemas kini':'Perbarui'}};
 const smOriginalShow=show,smOriginalPhasePage=phasePage,smOriginalPhase2Page=phase2Page,smOriginalPhase3Page=phase3Page,smOriginalShowMore=showMore,smOriginalPhase5Page=phase5Page;
 show=function(...args){const result=smOriginalShow(...args);smApplyLanguage();return result};
 phasePage=function(...args){const result=smOriginalPhasePage(...args);smApplyLanguage();return result};
@@ -633,7 +651,7 @@ phase2Page=function(...args){const result=smOriginalPhase2Page(...args);smApplyL
 phase3Page=function(...args){const result=smOriginalPhase3Page(...args);smApplyLanguage();return result};
 showMore=function(...args){const result=smOriginalShowMore(...args);smApplyLanguage();return result};
 phase5Page=function(...args){const result=smOriginalPhase5Page(...args);smApplyLanguage();return result};
-smApplyLanguage();smTranslateCurrent();
+smApplyLanguage();smTranslateCurrent();smPrayerRefreshLanguage();
 const smLanguageObserver=new MutationObserver(records=>{
  if(smTranslating)return;
  let needs=false;
