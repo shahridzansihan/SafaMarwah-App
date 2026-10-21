@@ -631,7 +631,7 @@ function smTranslateElement(root){
    // Keep original source per DOM node, so language can change repeatedly without reloading.
    const source=smOriginalText.get(node)??trimmed;
    if(!smOriginalText.has(node))smOriginalText.set(node,source);
-   const target=lang==='ms'?source:(dict[source]||source);
+   const target=lang==='ms'?source:(dict[source]||(/^Langkah (\\d+) daripada 8(.*)$/.test(source)?source.replace(/^Langkah (\\d+) daripada 8/,lang==='en'?'Step $1 of 8':'Langkah $1 dari 8'):(dict[source]||source)));
    if(target!==trimmed)node.nodeValue=current.replace(trimmed,target);
   }
  }finally{smTranslating=false}
