@@ -1296,6 +1296,28 @@ background:transparent!important;background-image:none!important;
 box-shadow:none!important}
 html body:not(:has(.sm53-hero)) .app #main .sm-master-header h1{
 color:#f4d9a2!important}
+
+/* Master Page v5: explicit view state fixes persistent home-hero selectors.
+   The homepage is never styled by this inner-page surface. */
+html body.sm-inner-view,
+html body.sm-inner-view .app,
+html body.sm-inner-view .app #main.main{
+background:#00382d!important;background-color:#00382d!important;
+background-image:none!important;color:#f8edd6!important}
+html body.sm-inner-view .app #main.main{
+background:linear-gradient(180deg,#00382d 0%,#002b24 100%)!important;
+min-height:calc(100dvh - 165px)!important;
+padding-left:var(--sm-page-gutter,16px)!important;
+padding-right:var(--sm-page-gutter,16px)!important;
+box-sizing:border-box!important}
+html body.sm-inner-view .top.home-top{background:#00382d!important;background-image:none!important}
+html body.sm-inner-view .app #main .sm50-page,
+html body.sm-inner-view .app #main #sm-articles-content,
+html body.sm-inner-view .app #main .sm-articles-grid,
+html body.sm-inner-view .app #main .page-head,
+html body.sm-inner-view .app #main .phase-header{
+background:transparent!important;background-image:none!important}
+html body.sm-inner-view .app #main .sm-master-header h1{color:#f4d9a2!important}
 </style></head><body><div class="app"><header class="top home-top"><a class="home-brand" href="https://www.safamarwah.my/" target="_blank" rel="noopener noreferrer" aria-label="Lawati laman utama SafaMarwah"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></a><span class="sm51-header-caption">UMRAH COMPANION</span><button class="settings-trigger" id="settings-trigger" aria-label="Tetapan paparan" aria-expanded="false" aria-controls="display-settings" onclick="smToggleDisplaySettings()">⚙ <span>Tetapan</span></button><div class="toolbar" id="display-settings" hidden><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="reset-font" aria-label="Tetapkan semula saiz tulisan" title="Saiz tulisan normal">A↺</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><section class="sm53-hero"><div class="sm53-hero-photo" aria-hidden="true"></div><div class="sm53-hero-copy"><h1>Perjalanan<br>Umrah Anda<br>Bermula di Sini</h1><p>Panduan lengkap, sahih dan mudah difahami untuk setiap langkah ibadah anda.</p></div></section><div class="sm53-search"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></span><input id="sm50-search" type="search" aria-label="Cari panduan atau doa" placeholder="Cari panduan, doa atau topik..." onkeydown="if(event.key==='Enter')sm50Search()"><button onclick="sm50Search()" aria-label="Mulakan carian">Cari</button></div><section class="sm53-quick" aria-label="Akses pantas"><button onclick="show('steps')"><span class="sm53-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v14"/></svg></span><span>Panduan<br>Umrah</span></button><button onclick="show('dua')"><span class="sm53-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="3" r="1.1"/><circle cx="17" cy="5" r="1.1"/><circle cx="20" cy="10" r="1.1"/><circle cx="19" cy="15" r="1.1"/><circle cx="15" cy="19" r="1.1"/><circle cx="10" cy="20" r="1.1"/><circle cx="6" cy="17" r="1.1"/><circle cx="4" cy="12" r="1.1"/><circle cx="6" cy="7" r="1.1"/><path d="m15 19 3 3"/></svg></span><span>Doa &amp; Zikir</span></button><button onclick="phasePage('checklist')"><span class="sm53-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2M8 10h2m2 0h4M8 15l2 2 4-4"/></svg></span><span>Checklist<br>Perjalanan</span></button><button onclick="phase3Page('emergency')"><span class="sm53-round sm53-danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></span><span>Kecemasan<br>(SOS)</span></button></section>
 <section class="prayer-widget" aria-labelledby="prayer-heading">
 <div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
@@ -1918,4 +1940,26 @@ window.smArticlesPage=async function(){shell('Artikel & Ilmu');let box=document.
 window.smArticleRead=async function(id){await load();let p=posts.find(x=>x.id===id);if(!p)return smArticlesPage();shell('Artikel & Ilmu');let box=document.getElementById('sm-articles-content');let parser=new DOMParser();let doc=parser.parseFromString('<div>'+p.html+'</div>','text/html');doc.querySelectorAll('script,style,iframe,form,object,embed,link,meta').forEach(n=>n.remove());doc.querySelectorAll('*').forEach(n=>{[...n.attributes].forEach(a=>{if(a.name.startsWith('on')||a.name==='srcdoc'||(a.name==='href'&&/^javascript:/i.test(a.value))||(a.name==='src'&&/^javascript:/i.test(a.value)))n.removeAttribute(a.name)})});box.innerHTML='<button class="sm-articles-link" onclick="smArticlesPage()">← Semua Artikel</button><article class="sm-article-reader"><h2>'+safe(p.title)+'</h2><p class="sm-reader-date">'+safe(p.date.slice(0,10))+'</p><div id="sm-article-body"></div></article>';document.getElementById('sm-article-body').append(...Array.from(doc.body.firstElementChild?.childNodes||[]).map(n=>document.importNode(n,true)));window.scrollTo(0,0)};
 if(document.getElementById('sm-articles-home-grid'))load();
 })();
-</script></body></html>
+</script><script>
+/* Explicit view detection: all SPA subpages share Panduan background.
+   Observe the actual main content instead of relying on :has(.sm53-hero). */
+(function(){
+ const main=document.getElementById('main');
+ if(!main)return;
+ let queued=false;
+ function sync(){
+  queued=false;
+  const isHome=!!main.querySelector('.sm53-hero');
+  document.body.classList.toggle('sm-inner-view',!isHome);
+  document.body.classList.toggle('sm-home-view',isHome);
+ }
+ const observer=new MutationObserver(function(){
+  if(queued)return;
+  queued=true;
+  queueMicrotask(sync);
+ });
+ observer.observe(main,{childList:true,subtree:true});
+ sync();
+})();
+</script>
+</body></html>
