@@ -476,24 +476,7 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.se
 
 /* v17: apply language to visible interface, retaining original Arabic prayers and religious guidance */
 
-const smDuaTranslations={
- en:[
- ['Prayer for Good in This World and the Hereafter','Our Lord, grant us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.'],
- ['Prayer for Forgiveness','Our Lord, we have wronged ourselves. If You do not forgive us and have mercy on us, we will surely be among the losers.'],
- ['Prayer for Knowledge','My Lord, increase me in knowledge.'],
- ['Prayer for Mercy','My Lord, forgive and have mercy; You are the best of those who show mercy.'],
- ['Prayer for Family','Our Lord, grant us comfort in our spouses and offspring, and make us examples for the righteous.'],
- ['Prayer of Prophet Yunus','There is no deity except You; glory be to You. Indeed, I have been among the wrongdoers.']
- ],
- id:[
- ['Doa Kebaikan Dunia dan Akhirat','Ya Tuhan kami, berilah kami kebaikan di dunia dan di akhirat, serta lindungilah kami dari azab neraka.'],
- ['Doa Memohon Ampunan','Ya Tuhan kami, kami telah menzalimi diri sendiri. Jika Engkau tidak mengampuni dan merahmati kami, tentulah kami termasuk orang yang rugi.'],
- ['Doa Menambah Ilmu','Ya Tuhanku, tambahkanlah ilmuku.'],
- ['Doa Memohon Rahmat','Ya Tuhanku, ampunilah dan rahmatilah; Engkaulah sebaik-baik pemberi rahmat.'],
- ['Doa untuk Keluarga','Ya Tuhan kami, anugerahkanlah kepada kami pasangan dan keturunan sebagai penyejuk mata, dan jadikanlah kami teladan bagi orang bertakwa.'],
- ['Doa Nabi Yunus','Tiada Tuhan selain Engkau, Mahasuci Engkau. Sungguh, aku termasuk orang yang zalim.']
- ]
-};
+const smDuaTranslations={"en":[["Prayer for Good in This World and the Hereafter","Our Lord, grant us good in this world and good in the Hereafter, and protect us from the punishment of the Fire."],["Prayer for Forgiveness","Our Lord, we have wronged ourselves. If You do not forgive us and have mercy on us, we will surely be among the losers."],["Prayer for Increased Knowledge","My Lord, increase me in knowledge."],["Prayer for Mercy","My Lord, forgive and have mercy; You are the best of those who show mercy."],["Prayer for Family","Our Lord, grant us spouses and offspring who bring comfort to our eyes, and make us examples for the righteous."],["Prayer of Prophet Yunus","There is no god except You. Glory be to You. Indeed, I have been among the wrongdoers."],["Takbir at the Black Stone","Allah is the Greatest."],["Talbiyah","Here I am at Your service, O Allah, here I am. You have no partner. All praise, blessings and sovereignty belong to You. You have no partner."],["Prayer for Parents","My Lord, forgive me, my parents and the believers on the Day the Reckoning takes place."],["Prayer on Entering the Mosque","O Allah, open for me the doors of Your mercy."],["Remembrance at Safa and Marwah","There is no god but Allah alone, without partner. To Him belong all sovereignty and praise, and He has power over all things."]],"id":[["Doa Kebaikan Dunia dan Akhirat","Ya Tuhan kami, berilah kami kebaikan di dunia dan di akhirat, serta lindungilah kami dari azab neraka."],["Doa Memohon Ampunan","Ya Tuhan kami, kami telah menzalimi diri sendiri. Jika Engkau tidak mengampuni dan merahmati kami, tentulah kami termasuk orang yang rugi."],["Doa Menambah Ilmu","Ya Tuhanku, tambahkanlah ilmuku."],["Doa Memohon Rahmat","Ya Tuhanku, ampunilah dan rahmatilah; Engkaulah sebaik-baik pemberi rahmat."],["Doa untuk Keluarga","Ya Tuhan kami, anugerahkanlah kepada kami pasangan dan keturunan sebagai penyejuk mata, dan jadikanlah kami teladan bagi orang bertakwa."],["Doa Nabi Yunus","Tiada Tuhan selain Engkau, Mahasuci Engkau. Sungguh, aku termasuk orang yang zalim."],["Takbir di Hajar Aswad","Allah Mahabesar."],["Talbiyah","Aku memenuhi panggilan-Mu, ya Allah. Tidak ada sekutu bagi-Mu. Segala pujian, nikmat, dan kerajaan adalah milik-Mu. Tidak ada sekutu bagi-Mu."],["Doa untuk Orang Tua","Ya Tuhanku, ampunilah aku, kedua orang tuaku, dan orang-orang beriman pada hari perhitungan."],["Doa Masuk Masjid","Ya Allah, bukakanlah untukku pintu-pintu rahmat-Mu."],["Zikir di Safa dan Marwah","Tidak ada Tuhan selain Allah Yang Maha Esa, tanpa sekutu. Milik-Nya kerajaan dan segala pujian; Dia Mahakuasa atas segala sesuatu."]]};
 const smDuaOriginal=duas.map(d=>({title:d.title,ms:d.ms}));
 function smSyncDuas(){
  const lang=phase3Lang(),translations=smDuaTranslations[lang]||[];
