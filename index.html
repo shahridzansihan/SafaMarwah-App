@@ -154,12 +154,51 @@ html{scroll-padding-top:12px}button{touch-action:manipulation}button:focus-visib
 .dash-section:nth-of-type(4) .dash-grid button:nth-child(3) .dash-icon{--icon-bg:#5e83ba}
 .dash-section:nth-of-type(4) .dash-grid button:nth-child(4) .dash-icon{--icon-bg:#a66b86}
 .bottom button span{color:#81938a}.bottom button.active span{background:#087d69!important;color:#fff!important;border-radius:12px!important;padding:4px 13px!important;box-shadow:0 3px 9px rgba(8,125,105,.22)}.bottom button.active svg{stroke:#fff!important}.bottom button:not(.active) svg{stroke:currentColor}.dark .dash-grid button .dash-icon{background:var(--icon-bg,#087d69)!important;border:0!important}.dark .dash-grid button .dash-icon svg{color:#fff!important}.dark .bottom button.active span{background:#12a184!important}
-</style></head><body><div class="app"><header class="top home-top"><div class="home-brand"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></div><div class="toolbar"><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><div class="home-intro"><span class="home-intro-kicker">PANDUAN UMRAH DIGITAL</span><h1>Teman Ibadah Umrah Anda</h1><p>Panduan langkah demi langkah, doa dan kemudahan untuk jemaah.</p></div><section class="home-verse"><span class="home-verse-ornament">۞</span><blockquote>“Dan sempurnakanlah ibadah Haji dan Umrah kerana Allah.”</blockquote><p>Surah al-Baqarah, 2:196</p></section><section class="home-action"><button class="primary home-start" onclick="show('steps')">Mulakan Panduan Umrah <span>→</span></button></section><section class="prayer-widget" aria-labelledby="prayer-heading">
+
+/* v14 — mobile app-first homepage: prayer times visible immediately */
+.main:has(.home-intro){padding:12px 14px 100px!important}
+.home-intro{text-align:left!important;margin:0 0 12px!important;padding:5px 2px 0!important}
+.home-intro-kicker{font-size:.61rem!important;letter-spacing:.13em!important;color:#9b8150!important}
+.home-intro h1{font-family:system-ui,-apple-system,'Segoe UI',sans-serif!important;font-weight:790!important;font-size:clamp(1.55rem,5vw,2rem)!important;letter-spacing:-.045em!important;margin:5px 0 3px!important;line-height:1.14!important}
+.home-intro h1 span{color:#c49c4f;font-size:.8em}
+.home-intro p{font-size:.84rem!important;line-height:1.35!important;margin:0!important}
+.prayer-widget{margin:12px 0 13px!important;padding:14px!important;border-radius:20px!important}
+.prayer-head{margin-bottom:11px!important}
+.prayer-head h2{font-size:1.14rem!important;margin:3px 0 2px!important}
+.prayer-eyebrow{font-size:.55rem!important;letter-spacing:.09em!important}
+.prayer-zone{font-size:.66rem!important}
+.prayer-cities{gap:8px!important}
+.prayer-city{padding:11px 10px!important;border-radius:13px!important}
+.prayer-city h3{margin-bottom:7px!important;font-size:.82rem!important}
+.prayer-next{padding:8px!important;min-height:63px!important;margin-bottom:7px!important}
+.prayer-next-time{font-size:1.55rem!important}
+.prayer-times>div{padding:4px 0!important;font-size:.7rem!important}
+.prayer-times b{font-size:.71rem!important}
+.prayer-date{margin-top:5px!important;font-size:.58rem!important}
+.prayer-foot{margin:8px 0 0!important;font-size:.61rem!important}
+.home-action{margin:0 0 17px!important}
+.home-start{display:flex!important;align-items:center!important;gap:12px!important;text-align:left!important;width:100%!important;padding:12px 15px!important;min-height:65px!important;border-radius:16px!important;box-shadow:0 6px 14px rgba(5,72,52,.12)!important}
+.home-start .start-symbol{display:grid;place-items:center;width:39px;height:39px;flex:none;background:rgba(255,255,255,.17);border-radius:11px;font-size:1.35rem}
+.home-start strong{display:block;font-size:.94rem;line-height:1.25}
+.home-start small{display:block;font-size:.7rem;font-weight:450;opacity:.86;margin-top:3px}
+.home-start .start-arrow{margin-left:auto;font-size:1.25rem}
+.home-mini-label{font-size:.68rem;letter-spacing:.07em;color:#9b8150;font-weight:800;margin:0 2px 8px}
+.home-mini-label span{letter-spacing:0;color:#7c9185;font-weight:500;float:right}
+.dash-section{margin:10px 0 17px!important}
+.dash-section-heading{margin-bottom:8px!important}
+.dash-grid button{min-height:87px!important}
+.bottom-inner{padding:6px 8px max(6px,env(safe-area-inset-bottom))!important}
+.bottom button{gap:2px!important;font-size:.67rem!important;min-width:0!important;flex:1}
+.bottom button span{min-height:26px!important}
+.bottom button.active span{padding:2px 10px!important}
+@media(max-width:380px){.prayer-widget{padding:10px!important}.prayer-city{padding:9px 7px!important}.prayer-next-time{font-size:1.32rem!important}.prayer-times>div{font-size:.65rem!important}.prayer-times b{font-size:.66rem!important}}
+@media(min-width:720px){.home-intro{text-align:left!important}.prayer-widget{padding:20px!important}.prayer-city{padding:16px!important}.prayer-next{min-height:75px!important}.home-start{max-width:none!important}}
+</style></head><body><div class="app"><header class="top home-top"><div class="home-brand"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></div><div class="toolbar"><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><div class="home-intro"><span class="home-intro-kicker">SAFAMARWAH · UMRAH COMPANION</span><h1>Assalamualaikum <span aria-hidden="true">✦</span></h1><p>Teman ibadah anda di Tanah Suci.</p></div><section class="prayer-widget" aria-labelledby="prayer-heading">
 <div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Makkah & Madinah · Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
 <div class="prayer-cities"><article class="prayer-city" id="prayer-makkah"><h3><span class="prayer-pin">◉</span> Makkah</h3><p class="prayer-status">Memuat waktu solat…</p></article><article class="prayer-city" id="prayer-madinah"><h3><span class="prayer-pin">◉</span> Madinah</h3><p class="prayer-status">Memuat waktu solat…</p></article></div>
 <p class="prayer-foot" id="prayer-foot">Waktu anggaran berdasarkan kaedah Umm al-Qura. Semak pengumuman masjid untuk waktu iqamah.</p>
 </section>
-<section class="dash-section" aria-labelledby="dash-main"><div class="dash-section-heading"><h2 id="dash-main">Ibadah Umrah</h2><span>Panduan utama</span></div><div class="dash-grid">
+<section class="home-action"><button class="primary home-start" onclick="show('steps')"><span class="start-symbol" aria-hidden="true">↗</span><span><strong>Mulakan Panduan Umrah</strong><small>Ikuti langkah ibadah satu persatu</small></span><span class="start-arrow" aria-hidden="true">→</span></button></section><div class="home-mini-label">AKSES PANTAS <span>Alat jemaah</span></div><section class="dash-section" aria-labelledby="dash-main"><div class="dash-section-heading"><h2 id="dash-main">Ibadah Umrah</h2><span>Panduan utama</span></div><div class="dash-grid">
 <button onclick="show('steps')"><span class="dash-icon"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5c3-1.5 5.5-1.5 8 0v14c-2.5-1.5-5-1.5-8 0z"/><path d="M20 5.5c-3-1.5-5.5-1.5-8 0v14c2.5-1.5 5-1.5 8 0z"/></svg></span>Panduan</button>
 <button onclick="show('dua')"><span class="dash-icon"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20v-7l-2-2V8a2 2 0 0 1 4 0v4"/><path d="M17 20v-7l2-2V8a2 2 0 0 0-4 0v4"/><path d="M9 12V6a2 2 0 0 1 4 0v6"/><path d="M13 12V8a2 2 0 0 1 4 0"/><path d="M7 20c3 1.5 7 1.5 10 0"/></svg></span>Doa & Zikir</button>
 <button onclick="phasePage('tawaf')"><span class="dash-icon"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8.5 12 6l5 2.5v7L12 18l-5-2.5z"/><path d="M3 10a9 9 0 0 1 16-5"/><path d="m19 2 1 4-4 .5"/><path d="M21 14a9 9 0 0 1-16 5"/><path d="m5 22-1-4 4-.5"/></svg></span>Kaunter Tawaf</button>
