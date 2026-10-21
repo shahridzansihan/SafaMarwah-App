@@ -466,4 +466,45 @@ function smPrayerTick(){if(!document.getElementById('prayer-makkah'))return;cons
 
 smPrayerLoad();setInterval(smPrayerTick,60000);
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.warn('PWA cache unavailable',err)))}
+
+/* SafaMarwah interaction diagnostics: no personal data changed */
+(function(){
+ const style=document.createElement('style');
+ style.textContent='#sm-error-toast{position:fixed;left:12px;right:12px;bottom:100px;z-index:9999;padding:13px 16px;border-radius:14px;background:#fff6ed;border:1px solid #d7a568;color:#643d14;font:600 13px/1.5 system-ui;box-shadow:0 7px 24px #0002}#sm-test-panel{position:fixed;inset:5% 4%;z-index:10000;overflow:auto;background:#fffdf7;color:#075443;border:2px solid #087d69;border-radius:18px;padding:18px;font:14px/1.5 system-ui;box-shadow:0 10px 70px #0005}#sm-test-panel button{padding:10px 15px;border:0;border-radius:10px;background:#087d69;color:white;margin-top:12px}';
+ document.head.appendChild(style);
+ function showError(msg){
+  let el=document.getElementById('sm-error-toast');
+  if(!el){el=document.createElement('div');el.id='sm-error-toast';el.setAttribute('role','alert');document.body.appendChild(el)}
+  el.textContent='Fungsi tidak dapat dibuka: '+String(msg).slice(0,150);
+ }
+ window.addEventListener('error',function(e){if(e.error)showError(e.error.message||'Ralat JavaScript')});
+ window.addEventListener('unhandledrejection',function(e){showError(e.reason?.message||'Ralat operasi')});
+ if(new URLSearchParams(location.search).get('diagnostic')!=='1')return;
+ window.addEventListener('load',function(){
+  const home=document.getElementById('main');
+  if(!home)return;
+  const original=home.innerHTML;
+  const tests=[
+   ['Panduan',()=>show('steps')],['Doa',()=>show('dua')],['Tawaf',()=>phasePage('tawaf')],['Saie',()=>phasePage('saie')],
+   ['Checklist',()=>phasePage('checklist')],['Jadual',()=>phase3Page('schedule')],['Kecemasan',()=>phase3Page('emergency')],
+   ['Peringatan',()=>phase3Page('reminders')],['Rukun',()=>phase2Page('ilm')],['FAQ',()=>phase2Page('faq')],
+   ['Miqat',()=>phase2Page('miqat')],['Audio',()=>phase2Page('audio')],['Bookmark',()=>phasePage('bookmark')],
+   ['Nota',()=>phasePage('notes')],['Bahasa',()=>phase3Page('language')],['Sandaran',()=>phase5Page()],['Lagi',()=>showMore()]
+  ];
+  const results=[];
+  for(const [name,fn] of tests){
+   try{fn();const rendered=home.textContent.trim()||home.innerHTML.replace(/<[^>]*>/g,'').trim();results.push({name,ok:rendered.length>20,reason:rendered.length>20?'':'Paparan kosong'})}
+   catch(err){results.push({name,ok:false,reason:String(err.message||err)})}
+  }
+  home.innerHTML=original;
+  document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('nav-home')?.classList.add('active');
+  if(typeof smPrayerLoad==='function')smPrayerLoad();
+  const panel=document.createElement('div');panel.id='sm-test-panel';panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Ujian fungsi SafaMarwah');
+  const title=document.createElement('h2');title.textContent='Ujian Fungsi SafaMarwah v16';panel.appendChild(title);
+  const p=document.createElement('p');p.textContent='Ujian navigasi sahaja. Data jemaah tidak dipadam atau diubah.';panel.appendChild(p);
+  for(const result of results){const line=document.createElement('div');line.textContent=(result.ok?'✓ ':'✗ ')+result.name+(result.ok?'':' — '+result.reason);line.style.padding='5px 0';line.style.color=result.ok?'#075443':'#b02c2c';panel.appendChild(line)}
+  const close=document.createElement('button');close.textContent='Tutup laporan';close.onclick=()=>panel.remove();panel.appendChild(close);document.body.appendChild(panel);
+ });
+})();
 </script></body></html>
