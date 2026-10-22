@@ -2609,6 +2609,19 @@ body:has(.sm-id-screen) .sm-id-details :is(span,b),body:has(.sm-id-screen) .sm-i
 body:has(.sm-id-screen) .sm-id-talbiya b,body:has(.sm-id-screen) .sm-id-dua b{font-family:'Noto Naskh Arabic','Amiri',serif!important}
 @media(max-height:760px){body:has(.sm-id-screen) .sm-id-photo{height:auto!important;flex:1 1 0!important;min-height:145px!important}body:has(.sm-id-screen) .sm-id-body{height:auto!important;flex:0 0 auto!important;gap:5px!important}}
 @media(min-width:768px){body:has(.sm-id-screen) .sm-id-photo{min-height:clamp(260px,35dvh,500px)!important}}
+
+/* Digital ID v10 — themed hero readability overlay (Kad Digital only). */
+body:has(.sm-id-screen) .sm-id-photo{isolation:isolate!important}
+body:has(.sm-id-screen) .sm-id-photo::before{
+ content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background:
+ linear-gradient(90deg,rgba(247,243,222,.94) 0%,rgba(241,239,216,.81) 23%,rgba(223,231,208,.40) 48%,rgba(0,57,43,.10) 82%),
+ linear-gradient(180deg,rgba(0,55,41,.24) 0%,rgba(0,61,46,.02) 22%,rgba(0,58,43,.04) 68%,rgba(0,59,43,.35) 100%)!important
+}
+body:has(.sm-id-screen) .sm-id-brand,body:has(.sm-id-screen) .sm-id-talbiya{z-index:1!important;position:absolute!important;color:#073f32!important;text-shadow:0 1px 3px rgba(255,255,245,.85),0 0 14px rgba(255,255,245,.6)!important}
+body:has(.sm-id-screen) .sm-id-brand img{filter:drop-shadow(0 2px 5px rgba(255,255,245,.5))}
+body:has(.sm-id-screen) .sm-id-talbiya span{color:#104d3d!important}
+@media(max-width:600px){body:has(.sm-id-screen) .sm-id-photo::before{background:linear-gradient(90deg,rgba(249,245,224,.96) 0%,rgba(245,242,220,.85) 26%,rgba(237,238,215,.44) 51%,rgba(0,61,46,.04) 87%),linear-gradient(180deg,rgba(0,56,43,.16),transparent 24%,transparent 65%,rgba(0,57,43,.30))!important}}
 </style>
 
 
