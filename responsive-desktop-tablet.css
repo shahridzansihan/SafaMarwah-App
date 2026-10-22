@@ -37,3 +37,38 @@
  body:has(.sm53-hero) .sm53-hero-copy{padding:35px 18px!important}
  body:has(.sm53-hero) .sm53-hero h1{font-size:clamp(2.5rem,5vw,3.5rem)!important}
 }
+
+/* v2: premium tablet / desktop refinements. No rules below 768px. */
+@media (min-width:768px){
+ body .bottom.sm53-nav{position:sticky!important;top:0!important;bottom:auto!important;z-index:110!important;background:rgba(0,45,36,.96)!important;border-top:0!important;border-bottom:1px solid rgba(211,179,113,.25)!important;backdrop-filter:blur(18px)!important}
+ body .bottom.sm53-nav .bottom-inner{max-width:1360px!important}
+ body .bottom.sm53-nav button{color:#f7eed8!important;min-height:48px!important;white-space:nowrap!important}
+ body .bottom.sm53-nav button.active{color:#e9c780!important}
+ body .bottom.sm53-nav button:hover{color:#fff!important;background:rgba(255,255,255,.07)!important;border-radius:12px!important}
+ body:has(.sm53-hero) .sm53-hero h1{max-width:780px!important;letter-spacing:-.035em!important;text-wrap:balance!important}
+ body:has(.sm53-hero) .sm53-quick button{transition:transform .2s ease!important}
+ body:has(.sm53-hero) .sm53-quick button:hover{transform:translateY(-4px)!important}
+ body:has(.sm53-hero) .sm53-quick .sm53-round{width:64px!important;height:64px!important}
+ body:has(.sm53-hero) .sm63-editorial-panel{max-width:100%!important;width:100%!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:16px!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button{min-width:0!important;min-height:100px!important;padding:16px!important;transition:transform .2s,box-shadow .2s!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button:hover{transform:translateY(-3px)!important;box-shadow:0 12px 26px rgba(0,15,12,.22)!important}
+ body:has(.sm53-hero) #sm-articles-home .sm-articles-grid,
+ body:has(.sm53-hero) #sm-articles-home-grid,
+ body:has(.sm53-hero) .sm-articles-home-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important}
+ body:has(.sm53-hero) #sm-articles-home .sm-article-tile{min-width:0!important;width:100%!important;max-width:none!important;overflow:hidden!important}
+ body:has(.sm53-hero) #sm-articles-home .sm-article-tile img{max-width:100%!important}
+ body:has(.sm53-hero) .prayer-widget{box-shadow:0 20px 50px rgba(0,20,15,.25)!important}
+ body:has(.sm53-hero) .prayer-widget .prayer-cities{min-width:0!important}
+}
+@media (min-width:1200px){
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+ body:has(.sm53-hero) #sm-articles-home .sm-articles-grid,
+ body:has(.sm53-hero) #sm-articles-home-grid,
+ body:has(.sm53-hero) .sm-articles-home-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ body:has(.sm53-hero) .sm53-hero-copy{max-width:800px!important}
+}
+@media (prefers-reduced-motion:reduce){
+ body:has(.sm53-hero) .sm53-quick button,
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button{transition:none!important}
+}
