@@ -2284,7 +2284,7 @@ phase2Page=function(...args){const result=smOriginalPhase2Page(...args);smApplyL
 phase3Page=function(...args){const result=smOriginalPhase3Page(...args);smApplyLanguage();return result};
 showMore=function(...args){const result=smOriginalShowMore(...args);smApplyLanguage();return result};
 phase5Page=function(...args){const result=smOriginalPhase5Page(...args);smApplyLanguage();return result};
-smApplyLanguage();smTranslateCurrent();smPrayerRefreshLanguage();document.addEventListener('sm-language-changed',smRefreshArticleCardLanguage);
+smApplyLanguage();smTranslateCurrent();smPrayerRefreshLanguage();/* Article language listener is registered inside the article module below. */
 const smLanguageObserver=new MutationObserver(records=>{
  if(smTranslating)return;
  let needs=false;
@@ -2865,6 +2865,7 @@ function smRefreshArticleCardLanguage(){
  const list=document.getElementById('sm-articles-results');if(list&&posts.length){const ids=[...list.querySelectorAll('[data-sm-article-id]')].map(n=>Number(n.dataset.smArticleId));list.innerHTML=ids.map(id=>posts.find(p=>p.id===id)).filter(Boolean).map(tile).join('')}
  smTranslateVisibleArticleCards();
 }
+document.addEventListener('sm-language-changed',smRefreshArticleCardLanguage);
 function smArticleCardButtonText(){const lang=smCardLocale();return lang==='en'?'Read More':lang==='id'?'Baca Selengkapnya':'Baca Lagi'}
 function tile(p){let date='';try{if(p.date)date=new Intl.DateTimeFormat(smCardLocale()==='en'?'en-GB':smCardLocale()==='id'?'id-ID':'ms-MY',{day:'numeric',month:'short',year:'numeric'}).format(new Date(p.date))}catch(e){}let meta='<span class="sm-article-meta">'+(p.avatar?'<img class="sm-author-avatar" src="'+safe(p.avatar)+'" alt="" loading="lazy" referrerpolicy="no-referrer">':'<span class="sm-author-avatar sm-author-fallback" aria-hidden="true">✦</span>')+'<span class="sm-article-author">'+safe(p.author)+'</span>'+(date?'<span class="sm-article-date">· '+safe(date)+'</span>':'')+'</span>';return '<button class="sm-article-tile" data-sm-article-id="'+p.id+'" onclick="smArticleRead('+p.id+')">'+(p.pic?'<img class="sm-article-cover" loading="lazy" alt="" src="'+safe(p.pic)+'">':'')+'<span class="sm-article-tile-copy">'+meta+'<strong>'+safe(p.title)+'</strong><small>'+safe(plain(p.html).slice(0,105))+'…</small><span class="sm-article-read-more">'+smArticleCardButtonText()+' <span aria-hidden="true">→</span></span></span></button>'}
 function message(){return status==='error'?'Artikel tidak dapat dimuatkan. Pastikan feed Blogger dibuka kepada umum dan sambungan internet tersedia.':posts.length?'':'Belum ada artikel diterbitkan.'}
