@@ -180,3 +180,57 @@
  html body .app>.bottom.sm53-nav{position:fixed!important;top:auto!important;bottom:0!important}
  html body .app{padding-top:0!important}
 }
+
+/* SafaMarwah v4.2 — desktop/tablet refinements ONLY */
+.sm42-nav-brand{display:none!important}
+@media(min-width:768px){
+ html body .app>.bottom.sm53-nav{display:flex!important;align-items:center!important;justify-content:center!important;height:64px!important;min-height:64px!important;padding:0 max(24px,calc((100vw - 1220px)/2))!important;box-sizing:border-box!important}
+ html body .app>.bottom.sm53-nav .sm42-nav-brand{display:flex!important;position:absolute;left:max(24px,calc((100vw - 1220px)/2));top:50%;transform:translateY(-50%);align-items:center;justify-content:flex-start;width:158px;height:52px;z-index:2}
+ html body .app>.bottom.sm53-nav .sm42-nav-brand img{display:block!important;max-width:150px!important;max-height:43px!important;width:auto!important;height:auto!important;object-fit:contain!important}
+ html body .app>.bottom.sm53-nav .bottom-inner{width:min(100%,700px)!important;max-width:700px!important;margin:0 auto!important;height:64px!important;min-height:64px!important;gap:8px!important}
+ html body .app>.bottom.sm53-nav button{min-width:0!important;padding:9px 14px!important;border-radius:10px!important;transition:background .2s ease,color .2s ease!important}
+ html body .app>.bottom.sm53-nav button.active{background:rgba(218,183,112,.12)!important;color:#f3d395!important}
+ html body .app>.bottom.sm53-nav button:hover{background:rgba(255,255,255,.09)!important}
+ html body .app{padding-top:64px!important}
+ html body:has(.sm53-hero) .sm53-hero h1{font-size:clamp(2.9rem,4.2vw,4.5rem)!important;line-height:1.11!important;letter-spacing:-.025em!important;max-width:740px!important}
+ html body:has(.sm53-hero) .sm53-hero-copy{padding-top:clamp(46px,5vw,88px)!important;padding-bottom:24px!important}
+ html body:has(.sm53-hero) .sm53-hero-copy p{max-width:440px!important;line-height:1.65!important;font-size:clamp(.95rem,1.1vw,1.08rem)!important;margin-top:18px!important}
+ html body:has(.sm53-hero) .sm63-editorial-panel{column-gap:12px!important;row-gap:12px!important}
+ html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid>button{transition:transform .2s ease,border-color .2s ease,background .2s ease!important}
+ html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid>button:hover{transform:translateY(-3px)!important;border-color:rgba(235,195,117,.45)!important;background:rgba(255,255,255,.095)!important}
+ html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid>button:focus-visible{outline:2px solid #eacb8b!important;outline-offset:2px!important}
+ html body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid{align-items:stretch!important;gap:20px!important}
+ html body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid>.sm-article-tile{height:100%!important;box-sizing:border-box!important;min-width:0!important;overflow:hidden!important;transition:transform .2s ease,box-shadow .2s ease!important}
+ html body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid>.sm-article-tile:hover{transform:translateY(-3px)!important;box-shadow:0 12px 28px rgba(0,18,13,.2)!important}
+ html body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid>.sm-article-tile img{aspect-ratio:16/9!important;object-fit:cover!important}
+ html body:has(.sm53-hero) #sm-articles-home{margin-top:28px!important;margin-bottom:8px!important}
+ html body .sm-desktop-footer{width:min(calc(100% - 48px),1100px)!important;box-sizing:border-box!important;margin:12px auto 0!important;padding:24px 18px 22px!important}
+ html body .sm-desktop-footer-inner{align-items:start!important;gap:32px!important}
+ html body .sm-desktop-footer h3{font-weight:700!important;letter-spacing:.01em!important}
+ html body .sm-desktop-footer a:hover{color:#f3d395!important}
+ html body .sm-desktop-footer-bottom{margin-top:20px!important}
+}
+@media(min-width:768px) and (max-width:1199px){
+ html body .app>.bottom.sm53-nav .sm42-nav-brand{left:18px;width:122px!important}
+ html body .app>.bottom.sm53-nav .sm42-nav-brand img{max-width:116px!important}
+ html body .app>.bottom.sm53-nav .bottom-inner{width:min(calc(100% - 145px),660px)!important;margin-left:auto!important;margin-right:0!important}
+ html body .app>.bottom.sm53-nav button{padding:8px 6px!important}
+ html body:has(.sm53-hero) .sm63-editorial-panel{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+ html body .sm-desktop-footer-inner{grid-template-columns:1.5fr 1fr 1fr!important}
+}
+@media(min-width:768px) and (max-width:899px){
+ html body:has(.sm53-hero) .sm63-editorial-panel{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ html body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ html body .sm-desktop-footer-inner{grid-template-columns:1fr 1fr!important}
+ html body .sm-desktop-footer-inner>div:first-child{grid-column:1/-1}
+}
+@media(min-width:900px) and (max-width:1199px){
+ html body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(min-width:1200px){
+ html body:has(.sm53-hero) .sm63-editorial-panel{grid-template-columns:repeat(7,minmax(0,1fr))!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid>button,
+ html body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid>.sm-article-tile{transition:none!important}
+}
