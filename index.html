@@ -2368,6 +2368,46 @@ body:has(.sm-card-v2) .sm-card-identity{margin:0 0 14px!important;padding-top:15
 .sm-card-identity-label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:15px;color:#0a4837;font:700 clamp(.95rem,3.4vw,1.25rem) Georgia,serif}
 .sm-card-identity-label strong{flex-shrink:0;font:800 .65rem system-ui,sans-serif;letter-spacing:.07em;background:#a47630;color:#fff9e9;padding:7px 10px;border-radius:999px}
 @media(min-width:720px){body:has(.sm-card-v2) .sm-card-content{max-width:760px!important;margin-left:auto!important;margin-right:auto!important}}
+
+/* Poster-reference layout v3: full-width artwork, branded talbiyah and one integrated ID card. */
+body:has(.sm-card-poster) .main{padding:0 0 110px!important;max-width:100%!important}
+body:has(.sm-card-poster) .sm-card-poster{background:#f8f7f1!important}
+body:has(.sm-card-poster) .sm-card-hero{height:clamp(365px,64vh,690px)!important;background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.03) 48%,rgba(250,247,237,.02)),url('kaaba.jpg') center center/cover!important}
+.sm-card-poster-brand{position:absolute;z-index:2;top:22px;left:18px;right:18px;display:flex;flex-direction:column;align-items:flex-start;gap:2px;color:#063e32}
+.sm-card-poster-brand img{width:min(73%,330px);height:auto;max-height:95px;object-fit:contain;object-position:left}
+.sm-card-poster-brand>span{font-size:clamp(.65rem,2.5vw,.95rem);letter-spacing:.3em;font-weight:700;margin-left:10px}
+.sm-card-poster-brand em{font-size:clamp(.64rem,2.4vw,.9rem);margin-left:10px}
+.sm-card-talbiya{position:absolute;z-index:2;top:clamp(138px,22vh,210px);left:20px;color:#063f34;text-shadow:0 1px 10px #fff9}
+.sm-card-talbiya>div{font:normal clamp(1.7rem,7vw,3.2rem)/1.5 serif}
+.sm-card-talbiya p{font-size:clamp(.8rem,3vw,1.1rem);margin:0}
+body:has(.sm-card-poster) .sm-card-content{margin-top:-50px!important;padding:0 13px!important;max-width:800px!important}
+body:has(.sm-card-poster) .sm-card-identity{padding:22px 15px 18px!important;border:0!important;border-radius:30px!important;background:linear-gradient(155deg,#fff,#f9f9f5)!important;box-shadow:0 8px 24px #1b45351c!important;overflow:visible!important}
+.sm-card-demo-stamp{display:block;width:max-content;max-width:100%;margin:-7px auto 15px;padding:5px 12px;border-radius:99px;background:#a57930;color:white;font-size:.62rem;font-weight:800;letter-spacing:.06em}
+body:has(.sm-card-poster) .sm-card-identity-top{display:grid!important;grid-template-columns:30% minmax(0,1fr) auto;gap:10px!important;align-items:center!important}
+body:has(.sm-card-poster) .sm-card-avatar{width:100%!important;height:auto!important;aspect-ratio:1!important;min-width:0!important;flex-basis:auto!important;background:linear-gradient(140deg,#f4f6f1,#dcebe3)!important;color:#0d5e4a!important;display:flex!important;flex-direction:column;justify-content:center;gap:3px;border:4px solid white!important;box-shadow:0 0 0 2px #a9d1bd,0 3px 14px #154a3226;font-size:clamp(1.8rem,8vw,4rem)!important}
+.sm-card-avatar small{font-size:.5rem;letter-spacing:.02em;font-weight:700}
+body:has(.sm-card-poster) .sm-card-agency strong{font-size:clamp(1.05rem,4vw,1.65rem)!important;color:#0c4a3d}
+body:has(.sm-card-poster) .sm-card-agency>span{font-weight:800;color:#2b6590;font-size:.8rem}
+.sm-card-agency em{font-size:.57rem;line-height:1.3;color:#55695f}
+body:has(.sm-card-poster) .sm-card-group{font-size:.55rem;padding:7px 6px!important}
+body:has(.sm-card-poster) .sm-card-person{margin:14px 0 18px 32%!important;gap:3px!important}
+body:has(.sm-card-poster) .sm-card-person .sm-card-name{font-size:clamp(.95rem,4vw,1.55rem)!important;line-height:1.25}
+body:has(.sm-card-poster) .sm-card-info-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0!important;border:1px solid #e5e7e0;border-radius:16px;overflow:hidden}
+body:has(.sm-card-poster) .sm-card-info{border:0!important;border-radius:0!important;box-shadow:none!important;padding:11px 7px!important;background:#fff!important;min-width:0}
+body:has(.sm-card-poster) .sm-card-info:nth-child(odd){border-right:1px solid #e5e7e0!important}
+body:has(.sm-card-poster) .sm-card-info:nth-child(-n+2){border-bottom:1px solid #e5e7e0!important}
+body:has(.sm-card-poster) .sm-card-info-icon{flex-basis:29px;width:29px;height:33px;font-size:1rem}
+body:has(.sm-card-poster) .sm-card-info strong{font-size:clamp(.66rem,2.5vw,.85rem)}
+body:has(.sm-card-poster) .sm-card-info small,body:has(.sm-card-poster) .sm-card-info div>span{font-size:.58rem}
+body:has(.sm-card-poster) .sm-card-shortcuts{grid-template-columns:1.9fr repeat(4,minmax(0,1fr))!important;gap:6px!important;margin:12px 0 0!important}
+body:has(.sm-card-poster) .sm-card-shortcut{padding:12px 2px!important;gap:6px!important;border-radius:17px!important}
+body:has(.sm-card-poster) .sm-card-shortcut strong{font-size:clamp(.5rem,2vw,.72rem)}
+body:has(.sm-card-poster) .sm-card-shortcut small{font-size:.52rem}
+body:has(.sm-card-poster) .sm-card-shortcut>span{height:36px;width:36px;font-size:1.4rem}
+body:has(.sm-card-poster) .sm-card-qr>span{height:68px;width:68px;border-radius:8px;background:#fff;color:#111;font-size:3.7rem}
+body:has(.sm-card-poster) .sm-card-prayer{margin:0 -13px!important;padding:50px 14px 42px!important;border:0!important;border-radius:0!important;clip-path:polygon(0 10%,35% 22%,60% 9%,100% 18%,100% 100%,0 100%)}
+body:has(.sm-card-poster) .sm-card-disclaimer{margin:0 -13px!important;border-radius:0!important;text-align:center}
+@media(max-width:380px){body:has(.sm-card-poster) .sm-card-identity-top{grid-template-columns:28% minmax(0,1fr) auto}body:has(.sm-card-poster) .sm-card-group{font-size:.47rem!important}body:has(.sm-card-poster) .sm-card-identity{padding-left:9px!important;padding-right:9px!important}}
 </style>
 
 
@@ -2378,30 +2418,36 @@ function sm50Card(){
  document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));
  document.getElementById('nav-card')?.classList.add('active');
  main.innerHTML=`
- <section class="sm-card-v2" aria-label="Kad Umrah Digital - paparan demo">
-  <div class="sm-card-hero" role="img" aria-label="Pemandangan Kaabah di Masjidil Haram"></div>
+ <section class="sm-card-v2 sm-card-poster" aria-label="Kad Umrah Digital — mod demo">
+  <div class="sm-card-hero">
+   <div class="sm-card-poster-brand"><img src="./header-logo.png" alt="Logo SafaMarwah"><span>PILGRIM DIGITAL ID</span><em>Menelusuri Ilmu, Membimbing Ibadah</em></div>
+   <div class="sm-card-talbiya"><div lang="ar">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</div><p>Labbaik Allahumma Labbaik</p></div>
+  </div>
   <div class="sm-card-content">
    <article class="sm-card-identity">
-    <div class="sm-card-identity-label"><span>SafaMarwah · Kad Umrah Digital</span><strong>MOD DEMO</strong></div>
-    <div class="sm-card-identity-top"><span class="sm-card-avatar" aria-hidden="true">◉</span><div class="sm-card-agency"><small>AGENSI CONTOH</small><strong>Nur Iman Travel &amp; Tours</strong><span>Umrah Bersama, Impian ke Baitullah</span></div><span class="sm-card-group">Kumpulan<br><b>UMR-2027-A</b></span></div>
-    <div class="sm-card-person"><span class="sm-card-name">JEMAAH CONTOH</span><span>ID Demo: SM-DEMO-0001</span><span>🇲🇾 Malaysia</span></div>
-    <div class="sm-card-identity-wave" aria-hidden="true"></div>
+    <span class="sm-card-demo-stamp">MOD DEMO · BUKAN KAD RASMI</span>
+    <div class="sm-card-identity-top">
+      <div class="sm-card-avatar" aria-label="Foto jemaah belum dimasukkan"><span>♙</span><small>FOTO DEMO</small></div>
+      <div class="sm-card-agency"><small>AGENSI CONTOH</small><strong>Nur Iman</strong><span>Travel &amp; Tours</span><em>Umrah Bersama, Impian ke Baitullah</em></div>
+      <span class="sm-card-group">♟ Kumpulan<br><b>UMR-2027-A</b></span>
+    </div>
+    <div class="sm-card-person"><strong class="sm-card-name">JEMAAH CONTOH</strong><span>SM-DEMO-0001</span><span>🇲🇾 Malaysia</span></div>
+    <div class="sm-card-info-grid">
+      <div class="sm-card-info"><span class="sm-card-info-icon">♟</span><div><small>Mutawif (demo)</small><strong>Ustaz Ali bin Hassan</strong><span>Telefon belum diaktifkan</span></div></div>
+      <div class="sm-card-info"><span class="sm-card-info-icon">▦</span><div><small>Tarikh Perjalanan (demo)</small><strong>8 Feb 2027</strong><strong>18 Feb 2027</strong></div></div>
+      <div class="sm-card-info"><span class="sm-card-info-icon">▥</span><div><small>Hotel Makkah (demo)</small><strong>Makkah Tower Hotel</strong><span>Berhampiran Masjidil Haram</span></div></div>
+      <div class="sm-card-info"><span class="sm-card-info-icon">▥</span><div><small>Hotel Madinah (demo)</small><strong>Millennium Madinah</strong><span>Berhampiran Masjid Nabawi</span></div></div>
+    </div>
    </article>
-   <div class="sm-card-info-grid">
-    <div class="sm-card-info"><span class="sm-card-info-icon">♟</span><div><small>Mutawif (demo)</small><strong>Ustaz Ali bin Hassan</strong><span>Hubungan belum diaktifkan</span></div></div>
-    <div class="sm-card-info"><span class="sm-card-info-icon">▦</span><div><small>Tarikh perjalanan (demo)</small><strong>8 – 18 Feb 2027</strong><span>Jadual contoh</span></div></div>
-    <div class="sm-card-info"><span class="sm-card-info-icon">▥</span><div><small>Hotel Makkah (demo)</small><strong>Makkah Tower Hotel</strong><span>Penginapan contoh</span></div></div>
-    <div class="sm-card-info"><span class="sm-card-info-icon">▥</span><div><small>Hotel Madinah (demo)</small><strong>Millennium Madinah</strong><span>Penginapan contoh</span></div></div>
+   <div class="sm-card-shortcuts">
+     <div class="sm-card-shortcut sm-card-qr"><span class="sm-card-qr-art">▦</span><strong>Imbas untuk Bantuan Kecemasan</strong><small>QR belum diaktifkan</small></div>
+     <div class="sm-card-shortcut"><span>☎</span><strong>SOS Kecemasan</strong><small>Demo</small></div>
+     <div class="sm-card-shortcut"><span>♟</span><strong>Hubungi Mutawif</strong><small>Demo</small></div>
+     <div class="sm-card-shortcut"><span>⌖</span><strong>Lokasi Hotel Saya</strong><small>Demo</small></div>
+     <button class="sm-card-shortcut sm-card-guide" onclick="show('steps')"><span>ⓘ</span><strong>Panduan Umrah</strong><small>Buka panduan</small></button>
    </div>
-   <div class="sm-card-shortcuts" aria-label="Maklumat pantas">
-    <div class="sm-card-shortcut"><span>▣</span><strong>QR Kecemasan</strong><small>Belum tersedia</small></div>
-    <div class="sm-card-shortcut"><span>☎</span><strong>SOS Kecemasan</strong><small>Belum aktif</small></div>
-    <div class="sm-card-shortcut"><span>♙</span><strong>Hubungi Mutawif</strong><small>Belum aktif</small></div>
-    <div class="sm-card-shortcut"><span>⌖</span><strong>Lokasi Hotel</strong><small>Belum aktif</small></div>
-    <button class="sm-card-shortcut sm-card-guide" onclick="show('steps')"><span>☪</span><strong>Panduan Umrah</strong><small>Buka panduan ↗</small></button>
-   </div>
-   <div class="sm-card-prayer"><div lang="ar">رَبَّنَا تَقَبَّلْ مِنَّا</div><p>Rabbana taqabbal minna</p><small>“Wahai Tuhan kami, terimalah daripada kami” · Al-Baqarah: 127</small></div>
-   <div class="sm-card-disclaimer"><strong>Pratonton sahaja — bukan kad jemaah rasmi.</strong><p>Semua nama, agensi, kumpulan, hotel dan tarikh pada halaman ini ialah data contoh. Tiada pengaktifan, QR pengesahan, lokasi atau talian kecemasan sebenar disediakan.</p></div>
+   <div class="sm-card-prayer"><div lang="ar">رَبَّنَا تَقَبَّلْ مِنَّا</div><p>Rabbana taqabbal minna</p><small>“Wahai Tuhan kami, terimalah daripada kami”<br>(Al-Baqarah: 127)</small></div>
+   <div class="sm-card-disclaimer">Paparan demonstrasi sahaja. Maklumat jemaah, agensi, kumpulan, mutawif, tarikh dan hotel adalah contoh. Tiada QR atau talian kecemasan sebenar.</div>
   </div>
  </section>`;
  window.scrollTo({top:0,behavior:'instant'});
