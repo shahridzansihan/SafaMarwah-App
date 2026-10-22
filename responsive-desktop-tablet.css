@@ -962,3 +962,49 @@
    max-width:100%!important;
  }
 }
+
+/* v4.6.2 — Single-post editorial layout aligned with Panduan master.
+   Desktop/tablet only; preserves a comfortable text measure inside a full-width panel. */
+@media (min-width:768px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main #sm-articles-content {
+   width:100%!important;
+   max-width:var(--sm-v46-content,960px)!important;
+   margin-inline:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main #sm-articles-content > .sm-article-reader.sm-single-v3 {
+   box-sizing:border-box!important;
+   width:100%!important;
+   max-width:var(--sm-v46-content,960px)!important;
+   margin-inline:auto!important;
+   padding:clamp(28px,4vw,48px)!important;
+   border:1px solid var(--sm-v46-border,#dce5dd)!important;
+   border-radius:var(--sm-v46-radius,18px)!important;
+   background:var(--sm-v46-paper,#f8f7f2)!important;
+   box-shadow:0 8px 30px rgba(24,62,53,.055)!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 .sm-single-header,
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 #sm-article-body,
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 .sm-single-footer {
+   box-sizing:border-box;
+   width:100%;
+   max-width:760px!important;
+   margin-left:auto!important;
+   margin-right:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 .sm-single-title {
+   color:var(--sm-v46-ink,#183e35)!important;
+   font-family:Georgia,'Times New Roman',serif!important;
+   font-size:clamp(30px,3.2vw,43px)!important;
+   line-height:1.17!important;
+   letter-spacing:-.025em!important;
+   overflow-wrap:anywhere;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 #sm-article-body :is(img,video,table,pre) {
+   max-width:100%!important;
+ }
+}
+@media (min-width:768px) and (max-width:1023px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main #sm-articles-content > .sm-article-reader.sm-single-v3 {
+   padding:clamp(20px,3vw,30px)!important;
+ }
+}
