@@ -941,3 +941,24 @@
    padding-inline:22px!important;
  }
 }
+
+/* v4.6.1 — Extend Panduan master spacing to remaining utility pages. */
+@media (min-width:768px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main > :is(.more-list,.phase3-form,.phase3-panel,.phase5-panel,.phase-bookmarks,.phase-counter,.phase2-panel,.phase-checks,.step-panel,.card,.notice,.muted) {
+   box-sizing:border-box!important;
+   width:100%;
+   max-width:var(--sm-v46-content,960px)!important;
+   margin-left:auto!important;
+   margin-right:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.more-list,.phase3-form,.phase3-panel,.phase5-panel,.phase2-panel,.phase-counter,.phase-bookmarks,.phase-checks) {
+   border-radius:var(--sm-v46-radius,18px)!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.phase3-form,.phase5-panel,.phase2-panel,.step-panel) :is(input,textarea,select,button) {
+   max-width:100%;
+   box-sizing:border-box;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.phase3-form,.phase5-panel,.phase2-panel,.step-panel) :is(img,video,iframe,table) {
+   max-width:100%!important;
+ }
+}
