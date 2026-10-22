@@ -1071,3 +1071,37 @@
   width:100%!important;max-width:960px!important;margin-inline:auto!important;
  }
 }
+
+/* v4.8.1 — Article listing: remove enclosing dark panel; cards remain intact.
+   Desktop/tablet only. Single-post, homepage and Kad Digital are excluded. */
+@media (min-width:768px) {
+ html body.sm-inner-view:has(#main #sm-articles-results):not(:has(#main .sm-id-screen)) .app #main.main {
+  background:transparent!important;background-color:transparent!important;
+  background-image:none!important;box-shadow:none!important;
+  border:0!important;border-radius:0!important;
+ }
+ html body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-content,
+ html body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results {
+  background:transparent!important;background-image:none!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  outline:0!important;padding:0!important;
+ }
+ html body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-content {
+  width:100%!important;max-width:960px!important;margin-inline:auto!important;
+ }
+ html body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results {
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:26px 20px!important;width:100%!important;min-width:0!important;
+ }
+ html body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile {
+  min-width:0!important;width:100%!important;max-width:none!important;
+  margin:0!important;align-self:stretch;
+ }
+}
+@media (min-width:768px) and (max-width:1023px) {
+ html body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results {
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:22px 16px!important;
+ }
+}
