@@ -1265,3 +1265,45 @@
   margin-top:7px!important;
  }
 }
+
+/* v4.8.8 — Extra compact Waktu Solat (desktop/tablet only). */
+@media(min-width:768px){
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget{
+  width:min(100%,620px)!important;max-width:620px!important;
+  margin:16px auto 14px!important;padding:10px 12px!important;
+  border-radius:14px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-head{
+  margin-bottom:6px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-head h2{
+  font-size:.92rem!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-cities{
+  gap:8px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-city{
+  padding:8px 10px!important;border-radius:10px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-city h3{
+  font-size:.84rem!important;margin-bottom:5px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-next{
+  min-height:34px!important;margin-bottom:4px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-next-time{
+  font-size:1.15rem!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-times{
+  gap:2px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-times>div{
+  font-size:.7rem!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-date{
+  margin-top:5px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-foot{
+  margin-top:5px!important;font-size:.59rem!important;
+ }
+}
