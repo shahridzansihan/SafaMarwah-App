@@ -76,13 +76,13 @@ const fs = require('node:fs');
    await page.screenshot({path:'qa-screenshots/'+size.name+'-single-post.png',fullPage:true});
    if(size.width>=768){
     const layout=await page.locator('#sm-articles-content > .sm-article-reader.sm-single-v3').evaluate(el=>{
-      const panel=el.getBoundingClientRect(),main=document.querySelector('#main').getBoundingClientRect();
+      const panel=el.getBoundingClientRect(),parent=el.parentElement.getBoundingClientRect(),mainEl=document.querySelector('#main'),main=mainEl.getBoundingClientRect(),mainStyle=getComputedStyle(mainEl),contentLeft=main.left+parseFloat(mainStyle.paddingLeft),contentRight=main.right-parseFloat(mainStyle.paddingRight);
       const body=el.querySelector('#sm-article-body').getBoundingClientRect();
-      return {panelWidth:panel.width,bodyWidth:body.width,leftGap:panel.left-main.left,rightGap:main.right-panel.right};
+      return {panelWidth:panel.width,bodyWidth:body.width,leftGap:panel.left-contentLeft,rightGap:contentRight-panel.right,parentLeftGap:panel.left-parent.left,parentRightGap:parent.right-panel.right};
     });
     if(layout.panelWidth<Math.min(640,size.width-100))throw Error('single-post panel too narrow at '+size.width+'px: '+layout.panelWidth);
     if(layout.bodyWidth>770)throw Error('single-post text measure too wide at '+size.width+'px');
-    if(Math.abs(layout.leftGap-layout.rightGap)>5)throw Error('single-post panel not centered at '+size.width+'px');
+    if(Math.abs(layout.leftGap-layout.rightGap)>5||Math.abs(layout.parentLeftGap-layout.parentRightGap)>5)throw Error('single-post panel not centered at '+size.width+'px: '+JSON.stringify(layout));
    }
 
    if(size.width>=768){
