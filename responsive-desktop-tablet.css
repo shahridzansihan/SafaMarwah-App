@@ -1220,3 +1220,18 @@
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
  }
 }
+
+/* v4.8.6 — Center all Panduan & Alat Jemaah buttons as a single group. */
+@media(min-width:768px){
+ html body.sm-home-view:has(.sm53-hero) #main .sm63-editorial-panel .dash-grid{
+  display:flex!important;flex-wrap:wrap!important;justify-content:center!important;
+  align-items:stretch!important;gap:12px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .sm63-editorial-panel .dash-grid > button{
+  flex:0 1 126px!important;width:126px!important;max-width:126px!important;
+  min-width:0!important;min-height:94px!important;
+  display:flex!important;flex-direction:column!important;
+  justify-content:center!important;align-items:center!important;
+  text-align:center!important;margin:0!important;
+ }
+}
