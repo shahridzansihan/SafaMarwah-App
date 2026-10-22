@@ -2656,6 +2656,57 @@ body:has(.sm-id-screen) .sm-id-brand img{
 }
 body:has(.sm-id-screen) .sm-id-brand span{color:#f6e6b4!important;text-shadow:0 1px 2px rgba(0,0,0,.3)!important}
 body:has(.sm-id-screen) .sm-id-brand i{color:#f4f6ed!important;text-shadow:0 1px 2px rgba(0,0,0,.3)!important}
+
+/* Digital ID v13 — refined editorial hero, no logo box. */
+body:has(.sm-id-screen) .sm-id-photo{
+ background-image:
+ linear-gradient(90deg,rgba(9,48,38,.66) 0%,rgba(10,57,44,.42) 30%,rgba(12,55,42,.08) 66%,transparent 100%),
+ linear-gradient(180deg,rgba(3,38,30,.22) 0%,transparent 50%,rgba(5,50,38,.23) 100%),
+ url('./kaaba.jpg')!important;
+ background-size:cover,cover,cover!important;
+ background-position:center,center,center 44%!important;
+}
+body:has(.sm-id-screen) .sm-id-brand{
+ background:transparent!important;
+ padding:0!important;
+ border-radius:0!important;
+ box-shadow:none!important;
+ filter:none!important;
+ top:7%!important;
+ left:5%!important;
+ width:auto!important;
+ max-width:90%!important;
+ gap:4px!important;
+}
+body:has(.sm-id-screen) .sm-id-brand::before,
+body:has(.sm-id-screen) .sm-id-brand::after{content:none!important;display:none!important}
+body:has(.sm-id-screen) .sm-id-brand img{
+ width:clamp(180px,47vw,295px)!important;
+ max-height:74px!important;
+ filter:drop-shadow(0 2px 6px rgba(0,25,18,.50))!important;
+}
+body:has(.sm-id-screen) .sm-id-brand span{
+ color:#f0d9a0!important;
+ font-weight:800!important;
+ letter-spacing:.20em!important;
+ text-shadow:0 2px 7px rgba(0,25,18,.70)!important;
+}
+body:has(.sm-id-screen) .sm-id-brand i{
+ color:#fffaf0!important;
+ font-weight:500!important;
+ text-shadow:0 2px 7px rgba(0,25,18,.75)!important;
+}
+body:has(.sm-id-screen) .sm-id-talbiya{
+ color:#fff8e9!important;
+ text-shadow:0 2px 8px rgba(0,35,26,.88),0 0 16px rgba(0,35,26,.36)!important;
+ filter:none!important;
+}
+body:has(.sm-id-screen) .sm-id-talbiya span{color:#fff5e3!important}
+@media(max-width:600px){
+ body:has(.sm-id-screen) .sm-id-photo{
+ background-image:linear-gradient(90deg,rgba(6,47,35,.70),rgba(6,47,35,.36) 40%,transparent 85%),linear-gradient(180deg,rgba(3,35,27,.18),transparent 55%,rgba(4,47,35,.20)),url('./kaaba.jpg')!important;
+ }
+}
 </style>
 
 
