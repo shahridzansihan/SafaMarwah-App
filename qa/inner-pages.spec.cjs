@@ -9,6 +9,20 @@ const fs = require('node:fs');
   const page=await browser.newPage({viewport:{width:size.width,height:size.height},deviceScaleFactor:1});
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
+  // Deterministic Blogger JSONP fixture: validates single-post rendering offline.
+  await page.route('**/feeds/posts/default?**',async route=>{
+   const url=new URL(route.request().url());
+   const callback=url.searchParams.get('callback')||'smBloggerFeedCallback';
+   const feed={feed:{entry:[{
+    title:{$t:'Panduan Umrah — Artikel Ujian'},
+    content:{$t:'<h2>Pengenalan Umrah</h2><p>Ini kandungan demonstrasi untuk menguji paparan single post artikel pada semua resolusi.</p>'},
+    published:{$t:'2026-10-22T08:00:00.000Z'},
+    link:[{rel:'alternate',href:'https://example.com/demo-umrah'}],
+    category:[{term:'Panduan'}]
+   }]}};
+   await route.fulfill({status:200,contentType:'application/javascript',body:callback+'('+JSON.stringify(feed)+');'});
+  });
+
   try {
    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
    await page.waitForSelector('#main',{timeout:15000});
@@ -37,6 +51,12 @@ const fs = require('node:fs');
    await page.waitForSelector('#sm-articles-content',{timeout:10000});
    await page.screenshot({path:'qa-screenshots/'+size.name+'-articles.png',fullPage:true});
    if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('articles horizontal overflow at '+size.width+'px');
+   await page.evaluate("smArticleRead(0)");
+   await page.waitForSelector('#sm-articles-content .sm-single-v3 .sm-single-title',{timeout:10000});
+   const articleTitle=await page.locator('.sm-single-title').innerText();
+   if(!articleTitle.includes('Panduan Umrah'))throw Error('single post title missing');
+   if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('single post horizontal overflow at '+size.width+'px');
+   await page.screenshot({path:'qa-screenshots/'+size.name+'-single-post.png',fullPage:true});
    if(size.width>=768){
     await page.evaluate("show('steps')");
     const grid=await page.locator('.steps').evaluate(el=>getComputedStyle(el).gridTemplateColumns);
