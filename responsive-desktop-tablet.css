@@ -239,3 +239,13 @@
 @media (min-width:768px){
  html body:has(.sm53-hero) .top.home-top .home-brand{display:none!important}
 }
+
+/* v4.2.2 — desktop/tablet footer rhythm and keyboard navigation */
+@media (min-width:768px){
+ html body .sm-desktop-footer{margin-top:32px!important;padding-top:30px!important}
+ html body .sm-desktop-footer-inner{column-gap:clamp(24px,3vw,48px)!important;row-gap:20px!important}
+ html body .sm-desktop-footer p{max-width:48ch!important;margin:0!important}
+ html body .sm-desktop-footer-bottom{margin-top:24px!important}
+ html body .app>.bottom.sm53-nav button:focus-visible,
+ html body .sm-desktop-footer a:focus-visible{outline:2px solid #f3d395!important;outline-offset:3px!important}
+}
