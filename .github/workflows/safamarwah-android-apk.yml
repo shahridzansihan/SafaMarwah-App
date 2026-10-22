@@ -25,7 +25,14 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-      # GitHub-hosted ubuntu-latest runners already include the Android SDK.\n      # Avoid setup-android action, which fails on this runner before npm begins.\n      - name: Verify Android SDK\n        run: |\n          echo \"ANDROID_HOME=$ANDROID_HOME\"\n          test -d \"$ANDROID_HOME\"\n          test -x \"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager\" || find \"$ANDROID_HOME/cmdline-tools\" -name sdkmanager -type f | head -5\n          yes | \"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager\" --licenses > /dev/null || true
+      # GitHub-hosted ubuntu-latest runners already include the Android SDK.
+      # Avoid setup-android action, which fails on this runner before npm begins.
+      - name: Verify Android SDK
+        run: |
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          test -d "$ANDROID_HOME"
+          test -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" || find "$ANDROID_HOME/cmdline-tools" -name sdkmanager -type f | head -5
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
       - name: Install Capacitor dependencies
         working-directory: android-capacitor
         run: npm install --no-audit --no-fund
