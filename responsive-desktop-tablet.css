@@ -1235,3 +1235,33 @@
   text-align:center!important;margin:0!important;
  }
 }
+
+/* v4.8.7 — Smaller, denser homepage Waktu Solat panel on desktop/tablet. */
+@media(min-width:768px){
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget{
+  box-sizing:border-box!important;width:min(100%,760px)!important;
+  max-width:760px!important;margin:20px auto 16px!important;
+  padding:14px 16px!important;border-radius:16px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-head{
+  margin-bottom:8px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-cities{
+  gap:10px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-city{
+  padding:10px 12px!important;border-radius:12px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-next{
+  min-height:40px!important;margin-bottom:5px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-next-time{
+  font-size:1.3rem!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-times{
+  gap:3px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget .prayer-foot{
+  margin-top:7px!important;
+ }
+}
