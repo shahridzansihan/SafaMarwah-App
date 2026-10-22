@@ -285,3 +285,44 @@
 @media(min-width:1200px){
  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid{grid-template-columns:repeat(7,minmax(0,1fr))!important}
 }
+
+
+/* SafaMarwah v4.3.1 — desktop/tablet visual refinement.
+   Additive overrides only: mobile (<768px) remains unchanged. */
+@media (min-width:768px) {
+  /* Reduce oversized blank band between articles and footer. */
+  html body:has(.sm53-hero) #sm-articles-home {
+    margin-bottom:0!important;
+    padding-bottom:0!important;
+  }
+  html body .sm-desktop-footer {
+    margin-top:20px!important;
+    padding-top:24px!important;
+  }
+  html body .sm-desktop-footer-inner {
+    align-items:start!important;
+    row-gap:18px!important;
+  }
+  html body .sm-desktop-footer-bottom {
+    margin-top:18px!important;
+    padding-top:14px!important;
+  }
+  /* Keep article cards balanced and keyboard-accessible. */
+  html body:has(.sm53-hero) #sm-articles-home-grid>.sm-article-tile {
+    min-width:0!important;
+  }
+  html body:has(.sm53-hero) #sm-articles-home-grid>.sm-article-tile :is(a,button):focus-visible {
+    outline:2px solid #f3d395!important;
+    outline-offset:3px!important;
+  }
+  /* Preserve hero text rhythm without changing the artwork or type scale. */
+  html body:has(.sm53-hero) .sm53-hero-copy p {
+    margin-bottom:18px!important;
+  }
+}
+@media (min-width:768px) and (max-width:899px) {
+  html body .sm-desktop-footer {
+    width:calc(100% - 36px)!important;
+    padding-inline:12px!important;
+  }
+}
