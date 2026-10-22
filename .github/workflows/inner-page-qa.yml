@@ -15,7 +15,7 @@ jobs:
           import re
           html=Path('index.html').read_text(encoding='utf-8')
           css=Path('responsive-desktop-tablet.css').read_text(encoding='utf-8')
-          assert 'responsive-desktop-tablet.css?v=4.8.2' in html, 'CSS cache version mismatch'
+          assert 'responsive-desktop-tablet.css?v=4.8.3' in html, 'CSS cache version mismatch'
           assert '<style id="sm-v45-unified-inner-desktop-tablet">' in html, 'Missing inner page master'
           assert 'v4.8 shared structural PageLayout' in css, 'Missing v4.8 structural stylesheet rules'
           assert '@media (min-width:768px)' in css, 'Missing desktop/tablet breakpoint'
