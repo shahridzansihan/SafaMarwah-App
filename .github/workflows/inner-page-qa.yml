@@ -1,0 +1,70 @@
+name: SafaMarwah Inner Page QA
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  static-qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate HTML, stylesheet and navigation contracts
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+          html=Path('index.html').read_text(encoding='utf-8')
+          css=Path('responsive-desktop-tablet.css').read_text(encoding='utf-8')
+          assert 'responsive-desktop-tablet.css?v=4.6.2' in html, 'CSS cache version mismatch'
+          assert '<style id="sm-v45-unified-inner-desktop-tablet">' in html, 'Missing inner page master'
+          assert 'v4.5.3 QA fixes' in css, 'Missing QA stylesheet rules'
+          assert '@media (min-width:768px)' in css, 'Missing desktop/tablet breakpoint'
+          master=html.split('<style id="sm-v45-unified-inner-desktop-tablet">',1)[1].split('</style>',1)[0]
+          assert '@media (min-width: 768px)' in master
+          assert ':not(:has(#main .sm-digital-card))' in master, 'Digital card exclusion missing'
+          assert ':not(:has(#main .sm-id-screen))' in master, 'ID screen exclusion missing'
+          for name in ['show(', 'phasePage(', 'phase2Page(', 'smArticlesPage(', 'sm-article-reader', 'sm53-hero']:
+              assert name in html, f'Missing expected navigation/article feature: {name}'
+          for name,source in [('master',master),('stylesheet',css)]:
+              assert source.count('{') == source.count('}'), f'Unbalanced CSS braces in {name}'
+          print('PASS: static layout, navigation references, cache version and CSS scope')
+      - name: JavaScript syntax check for inline scripts
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          h=Path('index.html').read_text(encoding='utf-8')
+          scripts=re.findall(r'<script(?:\\s[^>]*)?>(.*?)</script>',h,re.S|re.I)
+          n=0
+          for i,s in enumerate(scripts):
+              if s.strip() and not re.search(r'<script\\b',s,re.I):
+                  Path(f'/tmp/sm-inline-{i}.js').write_text(s,encoding='utf-8')
+                  n+=1
+          print(f'Extracted {n} inline scripts')
+          PY
+          for file in /tmp/sm-inline-*.js; do
+            [ -f "$file" ] || continue
+            node --check "$file"
+          done
+      - name: Set up Node for browser QA
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Start local web server
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/safamarwah-http.log 2>&1 &
+          sleep 2
+      - name: Browser smoke tests and responsive screenshots
+        run: node qa/inner-pages.spec.cjs
+      - name: Upload responsive QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: safamarwah-responsive-qa
+          path: qa-screenshots/
+          if-no-files-found: ignore

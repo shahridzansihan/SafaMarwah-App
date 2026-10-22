@@ -788,3 +788,223 @@
 @media (prefers-reduced-motion:reduce) {
   body.sm-inner-view:has(#main>.steps) #main>.steps>.step {transition:none!important;}
 }
+
+/* v4.5.1 — Inner Page visual audit: shared desktop/tablet rhythm.
+   Existing Panduan hero and card layouts remain the visual reference.
+   Do not target homepage, mobile, or the special digital-card view. */
+@media (min-width:768px) {
+  body.sm-inner-view:not(:has(#main .sm51-digital-card)):not(:has(#main .sm-digital-card)) #main > .sm-master-header,
+  body.sm-inner-view:not(:has(#main .sm51-digital-card)):not(:has(#main .sm-digital-card)) #main > .phase-header,
+  body.sm-inner-view:not(:has(#main .sm51-digital-card)):not(:has(#main .sm-digital-card)) #main > .page-head {
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:960px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body.sm-inner-view #main > .sm51-page-hero {
+    box-sizing:border-box!important;
+    max-width:960px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    overflow:hidden!important;
+    border-radius:18px!important;
+  }
+  body.sm-inner-view #main > .steps,
+  body.sm-inner-view #main > .sm-umrah-guide-note {
+    box-sizing:border-box!important;
+    max-width:960px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body.sm-inner-view #main .sm-article-reader img {
+    max-width:100%!important;
+    height:auto;
+  }
+  body.sm-inner-view #main .sm-article-reader p,
+  body.sm-inner-view #main .sm-article-reader li {
+    overflow-wrap:break-word;
+    line-height:1.75;
+  }
+}
+@media (min-width:768px) and (max-width:1023px) {
+  body.sm-inner-view #main > .steps {grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  body.sm-inner-view #main > .steps > .step {min-width:0!important;}
+  body.sm-inner-view #main > .steps .step-copy {min-width:0!important;}
+}
+
+/* v4.5.2 — Article and inner-page final alignment (tablet + desktop only).
+   Scoped to non-home, non-digital-card views. */
+@media (min-width:768px) {
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader {
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:960px!important;
+    margin-inline:auto!important;
+    border-radius:18px!important;
+  }
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader :is(h1,h2,h3,h4) {
+    overflow-wrap:break-word;
+    text-wrap:pretty;
+  }
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader :is(img,video,iframe,table) {
+    max-width:100%!important;
+  }
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader :is(pre,table) {
+    overflow-x:auto;
+  }
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader :is(p,li) {
+    line-height:1.75!important;
+  }
+}
+@media (min-width:768px) and (max-width:1023px) {
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader {
+    padding:clamp(18px,3vw,28px)!important;
+  }
+}
+
+/* v4.5.3 QA fixes — explicitly exclude homepage and digital card.
+   Keep editorial reader narrower than page lists; mobile untouched. */
+@media (min-width:768px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-article-reader {
+   max-width:760px!important;
+   width:100%!important;
+   box-sizing:border-box!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-article-reader :is(img,video,iframe) {
+   max-width:100%!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-article-reader :is(pre,table) {
+   max-width:100%;
+   overflow-x:auto;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(a,button,input,textarea,select):focus-visible {
+   outline:2px solid #eacb8b;
+   outline-offset:3px;
+ }
+}
+
+/* SafaMarwah v4.6 — Panduan master design for every standard inner view.
+   Explicitly excludes homepage, Kad Digital and mobile. */
+@media (min-width:768px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) {
+   --sm-v46-content:960px;
+   --sm-v46-reader:760px;
+   --sm-v46-radius:18px;
+   --sm-v46-gap:18px;
+   --sm-v46-ink:#183e35;
+   --sm-v46-paper:#f8f7f2;
+   --sm-v46-border:#dce5dd;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main {
+   box-sizing:border-box!important;
+   width:100%!important;
+   max-width:1024px!important;
+   margin-inline:auto!important;
+   padding-inline:clamp(20px,3vw,32px)!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main > :is(.page-head,.sm-master-header,.phase-header,.sm51-page-hero,.steps,.sm-articles-grid,.sm50-page,.phase2-panel,.phase-counter,.phase-checks,.phase-bookmarks,.notice,.sm-umrah-guide-note),
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main > #sm-articles-content {
+   box-sizing:border-box!important;
+   width:100%;
+   max-width:var(--sm-v46-content)!important;
+   margin-inline:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-v46-master-heading {
+   display:flex!important;
+   align-items:center!important;
+   gap:14px!important;
+   margin-bottom:20px!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-v46-master-heading h1 {
+   min-width:0;
+   overflow-wrap:break-word;
+   font-family:Georgia,'Times New Roman',serif!important;
+   letter-spacing:-.025em!important;
+   line-height:1.16!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.phase2-panel,.phase-counter,.phase-checks,.phase-bookmarks,.step-panel,.sm-article-reader) {
+   box-sizing:border-box!important;
+   border-radius:var(--sm-v46-radius)!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-article-reader {
+   width:100%!important;
+   max-width:var(--sm-v46-reader)!important;
+   margin-inline:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.sm-article-reader,.step-panel,.phase2-panel) :is(img,video,iframe) {
+   max-width:100%!important;
+ }
+}
+@media (min-width:768px) and (max-width:1023px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main {
+   padding-inline:22px!important;
+ }
+}
+
+/* v4.6.1 — Extend Panduan master spacing to remaining utility pages. */
+@media (min-width:768px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main > :is(.more-list,.phase3-form,.phase3-panel,.phase5-panel,.phase-bookmarks,.phase-counter,.phase2-panel,.phase-checks,.step-panel,.card,.notice,.muted) {
+   box-sizing:border-box!important;
+   width:100%;
+   max-width:var(--sm-v46-content,960px)!important;
+   margin-left:auto!important;
+   margin-right:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.more-list,.phase3-form,.phase3-panel,.phase5-panel,.phase2-panel,.phase-counter,.phase-bookmarks,.phase-checks) {
+   border-radius:var(--sm-v46-radius,18px)!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.phase3-form,.phase5-panel,.phase2-panel,.step-panel) :is(input,textarea,select,button) {
+   max-width:100%;
+   box-sizing:border-box;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.phase3-form,.phase5-panel,.phase2-panel,.step-panel) :is(img,video,iframe,table) {
+   max-width:100%!important;
+ }
+}
+
+/* v4.6.2 — Single-post editorial layout aligned with Panduan master.
+   Desktop/tablet only; preserves a comfortable text measure inside a full-width panel. */
+@media (min-width:768px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main #sm-articles-content {
+   width:100%!important;
+   max-width:var(--sm-v46-content,960px)!important;
+   margin-inline:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main #sm-articles-content > .sm-article-reader.sm-single-v3 {
+   box-sizing:border-box!important;
+   width:100%!important;
+   max-width:var(--sm-v46-content,960px)!important;
+   margin-inline:auto!important;
+   padding:clamp(28px,4vw,48px)!important;
+   border:1px solid var(--sm-v46-border,#dce5dd)!important;
+   border-radius:var(--sm-v46-radius,18px)!important;
+   background:var(--sm-v46-paper,#f8f7f2)!important;
+   box-shadow:0 8px 30px rgba(24,62,53,.055)!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 .sm-single-header,
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 #sm-article-body,
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 .sm-single-footer {
+   box-sizing:border-box;
+   width:100%;
+   max-width:760px!important;
+   margin-left:auto!important;
+   margin-right:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 .sm-single-title {
+   color:var(--sm-v46-ink,#183e35)!important;
+   font-family:Georgia,'Times New Roman',serif!important;
+   font-size:clamp(30px,3.2vw,43px)!important;
+   line-height:1.17!important;
+   letter-spacing:-.025em!important;
+   overflow-wrap:anywhere;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-single-v3 #sm-article-body :is(img,video,table,pre) {
+   max-width:100%!important;
+ }
+}
+@media (min-width:768px) and (max-width:1023px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main #sm-articles-content > .sm-article-reader.sm-single-v3 {
+   padding:clamp(20px,3vw,30px)!important;
+ }
+}
