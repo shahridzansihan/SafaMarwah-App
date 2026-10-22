@@ -2622,6 +2622,18 @@ body:has(.sm-id-screen) .sm-id-brand,body:has(.sm-id-screen) .sm-id-talbiya{z-in
 body:has(.sm-id-screen) .sm-id-brand img{filter:drop-shadow(0 2px 5px rgba(255,255,245,.5))}
 body:has(.sm-id-screen) .sm-id-talbiya span{color:#104d3d!important}
 @media(max-width:600px){body:has(.sm-id-screen) .sm-id-photo::before{background:linear-gradient(90deg,rgba(249,245,224,.96) 0%,rgba(245,242,220,.85) 26%,rgba(237,238,215,.44) 51%,rgba(0,61,46,.04) 87%),linear-gradient(180deg,rgba(0,56,43,.16),transparent 24%,transparent 65%,rgba(0,57,43,.30))!important}}
+
+/* Digital ID v11 — visible gradient embedded directly into hero background. */
+body:has(.sm-id-screen) .sm-id-photo{
+ background-image:
+ linear-gradient(90deg,rgba(251,246,225,.97) 0%,rgba(247,242,218,.90) 25%,rgba(235,234,207,.58) 46%,rgba(13,77,57,.05) 76%),
+ linear-gradient(180deg,rgba(245,237,208,.22) 0%,transparent 48%,rgba(1,59,43,.30) 100%),
+ url('./kaaba.jpg')!important;
+ background-size:cover,cover,cover!important;
+ background-position:center,center,center 44%!important;
+}
+body:has(.sm-id-screen) .sm-id-photo::before{display:none!important}
+body:has(.sm-id-screen) .sm-id-brand,body:has(.sm-id-screen) .sm-id-talbiya{filter:drop-shadow(0 1px 2px rgba(255,255,240,.65))!important}
 </style>
 
 
