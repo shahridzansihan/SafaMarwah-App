@@ -2356,6 +2356,18 @@ body:has(.sm53-hero) .top.home-top{padding-top:calc(max(14px,env(safe-area-inset
 .sm-card-disclaimer p{margin:5px 0 0}
 @media(max-width:400px){.sm-card-info-grid{grid-template-columns:1fr}.sm-card-shortcuts{grid-template-columns:repeat(3,minmax(0,1fr))}.sm-card-group{font-size:.54rem}.sm-card-avatar{width:55px;height:55px;flex-basis:55px}}
 @media(min-width:720px){.sm-card-v2{margin:0 -13px}.sm-card-hero{min-height:380px}.sm-card-content{max-width:760px;margin:auto}.sm-card-info{padding:16px}.sm-card-shortcut strong{font-size:.82rem}.sm-card-shortcut small{font-size:.7rem}}
+
+/* Kad Saya: immersive card-only screen, without the global header. Bottom navigation remains. */
+body:has(.sm-card-v2) .top.home-top{display:none!important}
+body:has(.sm-card-v2) .main{padding:0 0 110px!important;max-width:100%!important}
+body:has(.sm-card-v2) .sm-card-v2{margin:0!important;padding-bottom:24px!important;background:#f6f5ec!important}
+body:has(.sm-card-v2) .sm-card-hero{height:clamp(200px,36vh,370px)!important;min-height:0!important;background:linear-gradient(0deg,rgba(1,51,39,.32),transparent 60%),url('kaaba.jpg') center 48%/cover!important}
+body:has(.sm-card-v2) .sm-card-hero:after{display:none!important}
+body:has(.sm-card-v2) .sm-card-content{position:relative;z-index:1;margin-top:-45px!important;padding:0 15px!important}
+body:has(.sm-card-v2) .sm-card-identity{margin:0 0 14px!important;padding-top:15px!important}
+.sm-card-identity-label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:15px;color:#0a4837;font:700 clamp(.95rem,3.4vw,1.25rem) Georgia,serif}
+.sm-card-identity-label strong{flex-shrink:0;font:800 .65rem system-ui,sans-serif;letter-spacing:.07em;background:#a47630;color:#fff9e9;padding:7px 10px;border-radius:999px}
+@media(min-width:720px){body:has(.sm-card-v2) .sm-card-content{max-width:760px!important;margin-left:auto!important;margin-right:auto!important}}
 </style>
 
 
@@ -2367,12 +2379,10 @@ function sm50Card(){
  document.getElementById('nav-card')?.classList.add('active');
  main.innerHTML=`
  <section class="sm-card-v2" aria-label="Kad Umrah Digital - paparan demo">
-  <div class="sm-card-hero">
-   <div class="sm-card-hero-top"><button class="sm-card-home" onclick="show('home')" aria-label="Kembali ke Utama">⌂</button><span class="sm-card-wordmark">SafaMarwah</span><span class="sm-card-demo">MOD DEMO</span></div>
-   <div class="sm-card-hero-copy"><h1>Kad Umrah Digital</h1><p>Maklumat penting perjalanan ibadah anda dalam satu kad digital.</p></div>
-  </div>
+  <div class="sm-card-hero" role="img" aria-label="Pemandangan Kaabah di Masjidil Haram"></div>
   <div class="sm-card-content">
    <article class="sm-card-identity">
+    <div class="sm-card-identity-label"><span>SafaMarwah · Kad Umrah Digital</span><strong>MOD DEMO</strong></div>
     <div class="sm-card-identity-top"><span class="sm-card-avatar" aria-hidden="true">◉</span><div class="sm-card-agency"><small>AGENSI CONTOH</small><strong>Nur Iman Travel &amp; Tours</strong><span>Umrah Bersama, Impian ke Baitullah</span></div><span class="sm-card-group">Kumpulan<br><b>UMR-2027-A</b></span></div>
     <div class="sm-card-person"><span class="sm-card-name">JEMAAH CONTOH</span><span>ID Demo: SM-DEMO-0001</span><span>🇲🇾 Malaysia</span></div>
     <div class="sm-card-identity-wave" aria-hidden="true"></div>
