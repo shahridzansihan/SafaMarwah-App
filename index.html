@@ -2582,6 +2582,21 @@ body:has(.sm-id-screen) .sm-id-qr-mark{border-radius:7px!important;background:wh
 body:has(.sm-id-screen) .sm-id-dua{position:relative!important;overflow:hidden!important;background:linear-gradient(130deg,#003b2e,#08684c)!important;border-top:3px solid #d9b45b!important;border-radius:48% 15px 12px 12px / 19% 15px 12px 12px!important;padding-top:clamp(8px,1.4vh,16px)!important}
 body:has(.sm-id-screen) .sm-id-dua:after{content:"☪  ✦  ☪";position:absolute;right:9px;bottom:3px;color:#caa84c55;font-size:24px;pointer-events:none}
 @media(max-height:760px){body:has(.sm-id-screen) .sm-id-photo{height:27%!important}body:has(.sm-id-screen) .sm-id-body{height:73%!important}body:has(.sm-id-screen) .sm-id-card-head{grid-template-columns:70px minmax(0,1fr) auto!important}body:has(.sm-id-screen) .sm-id-name{margin-left:78px!important}body:has(.sm-id-screen) .sm-id-actions>div,body:has(.sm-id-screen) .sm-id-actions>button{min-height:51px!important}}
+
+/* Digital ID v8 — compact premium card: remove flex-grown blank space. */
+body:has(.sm-id-screen) .sm-id-photo{height:33%!important;flex:0 0 33%!important}
+body:has(.sm-id-screen) .sm-id-body{height:67%!important;flex:0 0 67%!important;justify-content:flex-start!important;gap:clamp(8px,1.1vh,13px)!important;padding:0 clamp(10px,2.8vw,18px) clamp(8px,1vh,12px)!important}
+body:has(.sm-id-screen) .sm-id-card{flex:0 0 auto!important;min-height:0!important;margin-top:-20px!important;padding:clamp(14px,2vh,22px) clamp(14px,3.4vw,24px) clamp(12px,1.7vh,19px)!important;border:1px solid #e3d5ae!important;border-radius:24px!important;display:grid!important;grid-template-rows:auto auto auto!important;row-gap:clamp(10px,1.4vh,17px)!important;justify-content:stretch!important;background:linear-gradient(145deg,#fffefb,#f9faf5)!important;box-shadow:0 12px 28px rgba(5,56,41,.12)!important}
+body:has(.sm-id-screen) .sm-id-card-head{grid-template-columns:clamp(66px,18vw,94px) minmax(0,1fr) auto!important;gap:clamp(9px,2.2vw,16px)!important;align-items:center!important}
+body:has(.sm-id-screen) .sm-id-name{margin:0!important;padding-left:clamp(75px,20.2vw,110px)!important;gap:3px!important}
+body:has(.sm-id-screen) .sm-id-name b{font-size:clamp(17px,4.35vw,25px)!important}
+body:has(.sm-id-screen) .sm-id-details{margin:0!important}
+body:has(.sm-id-screen) .sm-id-details>div{padding:clamp(6px,.85vh,10px)!important;gap:7px!important}
+body:has(.sm-id-screen) .sm-id-details b{font-size:clamp(10px,2.5vw,13px)!important}
+body:has(.sm-id-screen) .sm-id-actions{padding:0!important;gap:clamp(5px,1.5vw,10px)!important}
+body:has(.sm-id-screen) .sm-id-actions>div,body:has(.sm-id-screen) .sm-id-actions>button{min-height:clamp(62px,8vh,82px)!important;box-shadow:0 4px 12px rgba(7,62,46,.08)!important}
+body:has(.sm-id-screen) .sm-id-dua{margin:0!important;min-height:clamp(76px,10vh,110px)!important;flex:0 0 auto!important}
+@media(max-height:750px){body:has(.sm-id-screen) .sm-id-photo{height:28%!important;flex-basis:28%!important}body:has(.sm-id-screen) .sm-id-body{height:72%!important;flex-basis:72%!important;gap:5px!important}body:has(.sm-id-screen) .sm-id-card{padding-top:10px!important;padding-bottom:8px!important;row-gap:5px!important}body:has(.sm-id-screen) .sm-id-card-head{grid-template-columns:60px minmax(0,1fr) auto!important}body:has(.sm-id-screen) .sm-id-name{padding-left:69px!important}body:has(.sm-id-screen) .sm-id-actions>div,body:has(.sm-id-screen) .sm-id-actions>button{min-height:53px!important}body:has(.sm-id-screen) .sm-id-dua{min-height:65px!important}}
 </style>
 
 
