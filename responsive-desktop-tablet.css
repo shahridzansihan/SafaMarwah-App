@@ -1307,3 +1307,28 @@
   margin-top:5px!important;font-size:.59rem!important;
  }
 }
+
+/* v4.8.9 — genuinely compact Waktu Solat; no hero dependency. */
+@media (min-width:768px){
+ html body #main.main > section.prayer-widget,
+ html body #main.main .prayer-widget {
+  width:min(100%,520px)!important;max-width:520px!important;
+  min-height:0!important;height:auto!important;
+  margin:14px auto 14px!important;padding:10px 12px!important;
+  box-sizing:border-box!important;border-radius:14px!important;
+ }
+ html body #main.main .prayer-widget .prayer-head {margin:0 0 5px!important;}
+ html body #main.main .prayer-widget .prayer-head h2 {font-size:.85rem!important;}
+ html body #main.main .prayer-widget .prayer-refresh {width:30px!important;height:30px!important;}
+ html body #main.main .prayer-widget .prayer-cities {gap:8px!important;}
+ html body #main.main .prayer-widget .prayer-city {
+  min-height:0!important;padding:8px!important;border-radius:10px!important;
+ }
+ html body #main.main .prayer-widget .prayer-city h3 {font-size:.8rem!important;margin-bottom:4px!important;}
+ html body #main.main .prayer-widget .prayer-next {min-height:0!important;margin-bottom:4px!important;}
+ html body #main.main .prayer-widget .prayer-next-time {font-size:1.05rem!important;}
+ html body #main.main .prayer-widget .prayer-times {gap:1px!important;}
+ html body #main.main .prayer-widget .prayer-times > div {font-size:.68rem!important;line-height:1.3!important;}
+ html body #main.main .prayer-widget .prayer-date {margin-top:4px!important;}
+ html body #main.main .prayer-widget .prayer-foot {margin:5px 0 0!important;font-size:.56rem!important;}
+}
