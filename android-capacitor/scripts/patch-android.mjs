@@ -67,7 +67,7 @@ public class MainActivity extends BridgeActivity {
   }).start();
  }
 
- @Override protected void onDestroy() {
+ @Override public void onDestroy() {
   splashHandler.removeCallbacksAndMessages(null);
   if (splashPoster != null && splashPoster.getParent() instanceof FrameLayout) {
    ((FrameLayout) splashPoster.getParent()).removeView(splashPoster);
