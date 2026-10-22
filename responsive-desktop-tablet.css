@@ -883,3 +883,61 @@
    outline-offset:3px;
  }
 }
+
+/* SafaMarwah v4.6 — Panduan master design for every standard inner view.
+   Explicitly excludes homepage, Kad Digital and mobile. */
+@media (min-width:768px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) {
+   --sm-v46-content:960px;
+   --sm-v46-reader:760px;
+   --sm-v46-radius:18px;
+   --sm-v46-gap:18px;
+   --sm-v46-ink:#183e35;
+   --sm-v46-paper:#f8f7f2;
+   --sm-v46-border:#dce5dd;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main {
+   box-sizing:border-box!important;
+   width:100%!important;
+   max-width:1024px!important;
+   margin-inline:auto!important;
+   padding-inline:clamp(20px,3vw,32px)!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main > :is(.page-head,.sm-master-header,.phase-header,.sm51-page-hero,.steps,.sm-articles-grid,.sm50-page,.phase2-panel,.phase-counter,.phase-checks,.phase-bookmarks,.notice,.sm-umrah-guide-note),
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main > #sm-articles-content {
+   box-sizing:border-box!important;
+   width:100%;
+   max-width:var(--sm-v46-content)!important;
+   margin-inline:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-v46-master-heading {
+   display:flex!important;
+   align-items:center!important;
+   gap:14px!important;
+   margin-bottom:20px!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-v46-master-heading h1 {
+   min-width:0;
+   overflow-wrap:break-word;
+   font-family:Georgia,'Times New Roman',serif!important;
+   letter-spacing:-.025em!important;
+   line-height:1.16!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.phase2-panel,.phase-counter,.phase-checks,.phase-bookmarks,.step-panel,.sm-article-reader) {
+   box-sizing:border-box!important;
+   border-radius:var(--sm-v46-radius)!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-article-reader {
+   width:100%!important;
+   max-width:var(--sm-v46-reader)!important;
+   margin-inline:auto!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(.sm-article-reader,.step-panel,.phase2-panel) :is(img,video,iframe) {
+   max-width:100%!important;
+ }
+}
+@media (min-width:768px) and (max-width:1023px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main {
+   padding-inline:22px!important;
+ }
+}
