@@ -1144,3 +1144,79 @@
   flex:0 0 auto!important;transform:translateY(10px);
  }
 }
+
+/* v4.8.4 — Homepage desktop/tablet rhythm refinement.
+   Scoped to homepage only; no impact on inner pages, mobile or digital card. */
+@media(min-width:768px){
+ html body.sm-home-view:has(.sm53-hero) #main .sm53-hero-copy{
+  max-width:960px!important;margin-inline:auto!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .sm53-hero h1{
+  font-size:clamp(2.65rem,4.1vw,4.25rem)!important;
+  line-height:1.13!important;letter-spacing:-.028em!important;
+  max-width:13ch!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .prayer-widget{
+  width:min(100%,960px)!important;max-width:960px!important;
+  margin:24px auto 18px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .sm63-editorial-panel{
+  box-sizing:border-box!important;width:min(100%,1000px)!important;
+  max-width:1000px!important;margin:18px auto 0!important;
+  padding:22px 22px 24px!important;
+  border-radius:20px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .sm63-editorial-panel .home-mini-label{
+  margin-inline:0!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .sm63-editorial-panel .dash-grid{
+  display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:12px!important;width:100%!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main .sm63-editorial-panel .dash-grid > button{
+  min-width:0!important;min-height:94px!important;
+  padding:12px 8px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main #sm-articles-home{
+  box-sizing:border-box!important;width:min(100%,1000px)!important;
+  max-width:1000px!important;margin:22px auto 20px!important;
+  padding:0 14px!important;background:transparent!important;
+  border:0!important;box-shadow:none!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main #sm-articles-home-grid{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:20px!important;align-items:stretch!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main #sm-articles-home-grid > .sm-article-tile{
+  display:flex!important;flex-direction:column!important;
+  height:100%!important;min-height:0!important;max-width:none!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main #sm-articles-home-grid > .sm-article-tile .sm-article-tile-copy{
+  display:flex!important;flex-direction:column!important;
+  flex:1!important;padding:14px 15px 16px!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main #sm-articles-home-grid > .sm-article-tile .sm-article-tile-copy > strong{
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;
+  -webkit-line-clamp:3!important;overflow:hidden!important;
+  line-height:1.35!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main #sm-articles-home-grid > .sm-article-tile .sm-article-tile-copy > small{
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;overflow:hidden!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main #sm-articles-home-grid > .sm-article-tile .sm-article-read-more{
+  align-self:flex-start!important;margin-top:auto!important;
+  position:relative;top:10px;
+ }
+ html body.sm-home-view:has(.sm53-hero) .sm-desktop-footer{
+  margin-top:16px!important;
+ }
+}
+@media(min-width:768px) and (max-width:1023px){
+ html body.sm-home-view:has(.sm53-hero) #main .sm63-editorial-panel .dash-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ }
+ html body.sm-home-view:has(.sm53-hero) #main #sm-articles-home-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+}
