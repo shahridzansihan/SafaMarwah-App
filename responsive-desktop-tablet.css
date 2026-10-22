@@ -788,3 +788,47 @@
 @media (prefers-reduced-motion:reduce) {
   body.sm-inner-view:has(#main>.steps) #main>.steps>.step {transition:none!important;}
 }
+
+/* v4.5.1 — Inner Page visual audit: shared desktop/tablet rhythm.
+   Existing Panduan hero and card layouts remain the visual reference.
+   Do not target homepage, mobile, or the special digital-card view. */
+@media (min-width:768px) {
+  body.sm-inner-view:not(:has(#main .sm51-digital-card)):not(:has(#main .sm-digital-card)) #main > .sm-master-header,
+  body.sm-inner-view:not(:has(#main .sm51-digital-card)):not(:has(#main .sm-digital-card)) #main > .phase-header,
+  body.sm-inner-view:not(:has(#main .sm51-digital-card)):not(:has(#main .sm-digital-card)) #main > .page-head {
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:960px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body.sm-inner-view #main > .sm51-page-hero {
+    box-sizing:border-box!important;
+    max-width:960px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    overflow:hidden!important;
+    border-radius:18px!important;
+  }
+  body.sm-inner-view #main > .steps,
+  body.sm-inner-view #main > .sm-umrah-guide-note {
+    box-sizing:border-box!important;
+    max-width:960px!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  body.sm-inner-view #main .sm-article-reader img {
+    max-width:100%!important;
+    height:auto;
+  }
+  body.sm-inner-view #main .sm-article-reader p,
+  body.sm-inner-view #main .sm-article-reader li {
+    overflow-wrap:break-word;
+    line-height:1.75;
+  }
+}
+@media (min-width:768px) and (max-width:1023px) {
+  body.sm-inner-view #main > .steps {grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  body.sm-inner-view #main > .steps > .step {min-width:0!important;}
+  body.sm-inner-view #main > .steps .step-copy {min-width:0!important;}
+}
