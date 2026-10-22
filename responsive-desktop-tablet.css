@@ -1,0 +1,39 @@
+/* SafaMarwah responsive enhancement v1 — mobile untouched */
+@media (min-width:768px){
+  html,body{overflow-x:clip}
+  body .app,body:has(.sm53-hero) .app{max-width:none!important;width:100%!important}
+  body .main,body:has(.sm53-hero) .main{width:min(100% - 48px,1120px)!important;max-width:1120px!important;margin-inline:auto!important;padding:24px 0 70px!important}
+  body:has(.sm53-hero),body:has(.sm53-hero) .app{background:#002d24!important}
+  body:has(.sm53-hero) .top.home-top{width:100%!important;max-width:none!important;min-height:84px!important;padding:12px max(24px,calc((100vw - 1120px)/2))!important;justify-content:space-between!important}
+  body:has(.sm53-hero) .app::before{height:570px!important;background:linear-gradient(90deg,#002e26ed 0%,#002e2695 45%,#002e2620 100%),linear-gradient(0deg,#002d24 0%,transparent 70%),url('kaaba.jpg') center 55%/cover!important}
+  body:has(.sm53-hero) .sm53-hero{height:370px!important;margin:0!important;border-radius:0!important;overflow:visible!important}
+  body:has(.sm53-hero) .sm53-hero-copy{max-width:670px!important;padding:40px 24px!important;align-items:flex-start!important}
+  body:has(.sm53-hero) .sm53-hero h1{font-size:clamp(2.8rem,4.4vw,4.6rem)!important;line-height:1.08!important}
+  body:has(.sm53-hero) .sm53-hero p{max-width:460px!important;font-size:1.05rem!important}
+  body:has(.sm53-hero) .sm53-search{width:min(100%,690px)!important;margin:0 auto 22px!important;height:58px!important}
+  body:has(.sm53-hero) .sm53-quick{width:min(100%,700px)!important;margin:10px auto 26px!important;gap:20px!important}
+  body:has(.sm53-hero) .sm53-quick button{font-size:.84rem!important}
+  body:has(.sm53-hero) .prayer-widget{width:min(100%,800px)!important;margin:20px auto!important;padding:22px!important}
+  body:has(.sm53-hero) .sm51-digital-teaser{max-width:800px!important;margin:18px auto 28px!important}
+  body:has(.sm53-hero) .sm63-editorial-panel{width:100%!important;max-width:none!important}
+  body:has(.sm53-hero) .dash-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  body .bottom.sm53-nav{position:sticky!important;top:0!important;bottom:auto!important;width:100%!important;box-shadow:0 5px 22px #001d1630!important}
+  body .bottom.sm53-nav .bottom-inner{max-width:1120px!important;min-height:58px!important;padding:5px 14px!important;display:flex!important;justify-content:center!important;gap:16px!important}
+  body .bottom.sm53-nav button{flex:1!important;max-width:180px!important;flex-direction:row!important;justify-content:center!important;gap:9px!important;font-size:.82rem!important}
+  body .bottom.sm53-nav button span svg{width:19px!important;height:19px!important}
+  body.sm-inner-view .main{padding-top:30px!important}
+  body .card,body .step-panel{max-width:100%}
+}
+@media (min-width:1200px){
+ body .main,body:has(.sm53-hero) .main{width:min(100% - 96px,1360px)!important;max-width:1360px!important}
+ body:has(.sm53-hero) .top.home-top{padding-inline:max(48px,calc((100vw - 1360px)/2))!important}
+ body:has(.sm53-hero) .app::before{height:650px!important}
+ body:has(.sm53-hero) .sm53-hero{height:440px!important}
+ body:has(.sm53-hero) .sm53-hero-copy{padding-left:50px!important}
+ body:has(.sm53-hero) .dash-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media (min-width:768px) and (max-width:1199px){
+ body:has(.sm53-hero) .sm53-hero{height:360px!important}
+ body:has(.sm53-hero) .sm53-hero-copy{padding:35px 18px!important}
+ body:has(.sm53-hero) .sm53-hero h1{font-size:clamp(2.5rem,5vw,3.5rem)!important}
+}
