@@ -2292,6 +2292,25 @@ smLanguageObserver.observe(document.getElementById('main'),{childList:true,subtr
 
 /* Home header: give logo and settings icon breathing room below Android status bar. */
 body:has(.sm53-hero) .top.home-top{padding-top:calc(max(14px,env(safe-area-inset-top,0px)) + 14px)!important;padding-bottom:10px!important;min-height:97px!important;box-sizing:border-box!important}
+
+/* Kad Umrah Digital: compact premium spacing and a single navigation icon. */
+.sm50-page{padding:0 0 120px!important}
+.sm50-page .sm-master-header{display:flex!important;align-items:center!important;gap:12px!important;margin:8px 0 20px!important;padding-bottom:15px!important}
+.sm50-page .sm-master-header h1{font-size:clamp(1.45rem,5.3vw,2rem)!important;line-height:1.15!important;margin:0!important;letter-spacing:-.025em}
+.sm50-page .sm-master-header .back{font-size:0!important;position:relative!important;flex:0 0 42px!important;width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;padding:0!important;display:grid!important;place-items:center!important}
+.sm50-page .sm-master-header .back::before{content:""!important;display:block!important;width:21px!important;height:21px!important;background:currentColor!important;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 2 2 11h3v10h6v-7h2v7h6V11h3L12 2Zm0 2.7 5 4.5V19h-2v-7H9v7H7V9.2l5-4.5Z'/%3E%3C/svg%3E") center/contain no-repeat!important;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 2 2 11h3v10h6v-7h2v7h6V11h3L12 2Zm0 2.7 5 4.5V19h-2v-7H9v7H7V9.2l5-4.5Z'/%3E%3C/svg%3E") center/contain no-repeat!important}
+.sm50-page .sm-master-header .back::after{content:none!important}
+.sm50-page .sm50-card-preview{padding:20px!important;border-radius:20px!important}
+.sm50-page .sm50-card-preview>div:first-child{font-size:1.2rem!important}
+.sm50-page .sm50-card-status{margin:12px 0 10px!important;padding:6px 12px!important}
+.sm50-page .sm50-card-preview h2{font-size:clamp(1.35rem,5vw,1.7rem)!important;line-height:1.2!important;margin:4px 0 8px!important}
+.sm50-page .sm50-card-preview p{font-size:.96rem!important;line-height:1.55!important;margin:8px 0!important}
+.sm50-page .sm50-card-preview p:last-child{font-size:.83rem!important}
+.sm50-page .sm51-card-details{display:grid!important;gap:12px!important;margin:18px 0!important}
+.sm50-page .sm51-card-details>div{min-height:64px!important;padding:12px 15px!important;gap:12px!important;border-radius:16px!important;line-height:1.4!important;font-size:.93rem!important}
+.sm50-page .sm51-card-details b{flex:0 0 40px!important;width:40px!important;height:40px!important;display:grid!important;place-items:center!important}
+.sm50-page .sm50-card-note{margin-top:18px!important;padding:18px!important;line-height:1.55!important}
+@media(max-width:620px){.sm50-page .sm-master-header{margin-top:5px!important}.sm50-page .sm-master-header h1{font-size:clamp(1.35rem,5.1vw,1.8rem)!important}}
 </style>
 
 
