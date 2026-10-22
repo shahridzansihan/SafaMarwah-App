@@ -2597,6 +2597,18 @@ body:has(.sm-id-screen) .sm-id-actions{padding:0!important;gap:clamp(5px,1.5vw,1
 body:has(.sm-id-screen) .sm-id-actions>div,body:has(.sm-id-screen) .sm-id-actions>button{min-height:clamp(62px,8vh,82px)!important;box-shadow:0 4px 12px rgba(7,62,46,.08)!important}
 body:has(.sm-id-screen) .sm-id-dua{margin:0!important;min-height:clamp(76px,10vh,110px)!important;flex:0 0 auto!important}
 @media(max-height:750px){body:has(.sm-id-screen) .sm-id-photo{height:28%!important;flex-basis:28%!important}body:has(.sm-id-screen) .sm-id-body{height:72%!important;flex-basis:72%!important;gap:5px!important}body:has(.sm-id-screen) .sm-id-card{padding-top:10px!important;padding-bottom:8px!important;row-gap:5px!important}body:has(.sm-id-screen) .sm-id-card-head{grid-template-columns:60px minmax(0,1fr) auto!important}body:has(.sm-id-screen) .sm-id-name{padding-left:69px!important}body:has(.sm-id-screen) .sm-id-actions>div,body:has(.sm-id-screen) .sm-id-actions>button{min-height:53px!important}body:has(.sm-id-screen) .sm-id-dua{min-height:65px!important}}
+
+/* Digital ID v9 — hero fills spare space, unified typography. */
+body:has(.sm-id-screen) .sm-id-screen{font-family:'Mulish',system-ui,sans-serif!important;min-height:0!important}
+body:has(.sm-id-screen) .sm-id-photo{height:auto!important;flex:1 1 0!important;min-height:clamp(190px,23dvh,340px)!important;background-size:cover!important;background-position:center 44%!important}
+body:has(.sm-id-screen) .sm-id-body{height:auto!important;flex:0 0 auto!important;min-height:0!important;justify-content:flex-start!important;gap:clamp(7px,1vh,13px)!important;padding-bottom:clamp(9px,1.3vh,17px)!important}
+body:has(.sm-id-screen) .sm-id-card{margin-top:-22px!important}
+body:has(.sm-id-screen) .sm-id-screen :is(.sm-id-brand,.sm-id-card,.sm-id-actions,.sm-id-dua){font-family:'Mulish',system-ui,sans-serif!important}
+body:has(.sm-id-screen) .sm-id-name b{font-weight:800!important;letter-spacing:-.025em!important;line-height:1.14!important}
+body:has(.sm-id-screen) .sm-id-details :is(span,b),body:has(.sm-id-screen) .sm-id-actions b{line-height:1.25!important}
+body:has(.sm-id-screen) .sm-id-talbiya b,body:has(.sm-id-screen) .sm-id-dua b{font-family:'Noto Naskh Arabic','Amiri',serif!important}
+@media(max-height:760px){body:has(.sm-id-screen) .sm-id-photo{height:auto!important;flex:1 1 0!important;min-height:145px!important}body:has(.sm-id-screen) .sm-id-body{height:auto!important;flex:0 0 auto!important;gap:5px!important}}
+@media(min-width:768px){body:has(.sm-id-screen) .sm-id-photo{min-height:clamp(260px,35dvh,500px)!important}}
 </style>
 
 
