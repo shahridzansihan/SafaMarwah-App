@@ -40,6 +40,23 @@ const fs = require('node:fs');
     if(overflow)throw Error(label+' has horizontal overflow at '+size.width+'px');
     await page.screenshot({path:'qa-screenshots/'+size.name+'-'+label+'.png',fullPage:true});
    }
+   for(const [label,expression,selector] of [
+    ['faq',"phase2Page('faq')",'#main #phase2-faq-results'],
+    ['miqat',"phase2Page('miqat')",'#main .phase2-panel'],
+    ['audio',"phase2Page('audio')",'#main #phase2-dua'],
+    ['tawaf',"phasePage('tawaf')",'#main .phase-counter'],
+    ['saie',"phasePage('saie')",'#main .phase-counter'],
+    ['notes',"phasePage('notes')",'#main #phase-notes'],
+    ['bookmarks',"phasePage('bookmark')",'#main .phase-bookmarks'],
+    ['schedule',"phase3Page('schedule')",'#main .phase3-form'],
+    ['emergency',"phase3Page('emergency')",'#main .sm-master-header'],
+    ['backup',"phase5Page()",'#main .phase5-panel']
+   ]){
+    await page.evaluate(expression);
+    await page.waitForSelector(selector,{timeout:10000});
+    if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error(label+' horizontal overflow at '+size.width+'px');
+    await page.screenshot({path:'qa-screenshots/'+size.name+'-'+label+'.png',fullPage:true});
+   }
    await page.evaluate("sm50Card()");
    await page.waitForSelector('#main .sm-id-screen .sm-id-card',{timeout:10000});
    await page.screenshot({path:'qa-screenshots/'+size.name+'-digital-card.png',fullPage:true});
