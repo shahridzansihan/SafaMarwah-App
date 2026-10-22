@@ -234,3 +234,8 @@
  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid>button,
  html body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid>.sm-article-tile{transition:none!important}
 }
+
+/* v4.2.1 — show one brand logo on desktop/tablet; preserve mobile hero branding */
+@media (min-width:768px){
+ html body:has(.sm53-hero) .top.home-top .home-brand{display:none!important}
+}
