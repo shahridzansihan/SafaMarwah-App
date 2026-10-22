@@ -17,13 +17,22 @@ side = min(im.size)
 left = (im.width - side) // 2
 top = (im.height - side) // 2
 im = im.crop((left, top, left + side, top + side))
+# Preserve the transparent surround and keep the full squircle inside Android's
+# adaptive icon safe area. Android masks adaptive icons into different shapes.
 densities = {"mdpi": 48, "hdpi": 72, "xhdpi": 96, "xxhdpi": 144, "xxxhdpi": 192}
 for density, size in densities.items():
     dest = res / f"mipmap-{density}"
     dest.mkdir(parents=True, exist_ok=True)
-    image = im.resize((size, size), Image.Resampling.LANCZOS)
-    for filename in ("ic_launcher.png", "ic_launcher_round.png", "ic_launcher_foreground.png"):
-        image.save(dest / filename, optimize=True)
+    legacy_icon = im.resize((size, size), Image.Resampling.LANCZOS)
+    for filename in ("ic_launcher.png", "ic_launcher_round.png"):
+        legacy_icon.save(dest / filename, optimize=True)
+    # Foreground canvas is 108dp; keep artwork within central 72dp safe zone.
+    foreground = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    art_size = round(size * 0.64)
+    art = im.resize((art_size, art_size), Image.Resampling.LANCZOS)
+    offset = (size - art_size) // 2
+    foreground.alpha_composite(art, (offset, offset))
+    foreground.save(dest / "ic_launcher_foreground.png", optimize=True)
 # The Capacitor starter's adaptive icon resources can override the legacy icon.
 # Replace adaptive launcher XML with a background + the supplied artwork.
 # Adaptive icons require API 26+. Never place adaptive-icon XML in mipmap-anydpi.
