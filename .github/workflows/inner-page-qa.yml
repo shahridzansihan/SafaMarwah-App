@@ -47,3 +47,24 @@ jobs:
             [ -f "$file" ] || continue
             node --check "$file"
           done
+      - name: Set up Node for browser QA
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Start local web server
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/safamarwah-http.log 2>&1 &
+          sleep 2
+      - name: Browser smoke tests and responsive screenshots
+        run: node qa/inner-pages.spec.cjs
+      - name: Upload responsive QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: safamarwah-responsive-qa
+          path: qa-screenshots/
+          if-no-files-found: ignore
