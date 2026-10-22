@@ -2558,6 +2558,30 @@ body:has(.sm-id-screen) .sm-id-actions>div,body:has(.sm-id-screen) .sm-id-action
 body:has(.sm-id-screen) .sm-id-dua{margin:0 clamp(9px,2.5vw,18px) 5px!important;border-radius:16px!important;background:linear-gradient(115deg,#004b39,#087257)!important}
 body:has(.sm-id-screen) .sm-id-photo{background-position:center 47%!important}
 @media(max-height:700px){body:has(.sm-id-screen) .sm-id-card{gap:4px!important;padding-top:9px!important;padding-bottom:8px!important}body:has(.sm-id-screen) .sm-id-details>div{padding:5px!important}body:has(.sm-id-screen) .sm-id-name{gap:1px!important}}
+
+/* Digital ID premium poster v7: tighter visual rhythm, illustrative demo portrait, gold wave. */
+body:has(.sm-id-screen) .sm-id-photo{height:32%!important;background-image:linear-gradient(90deg,rgba(255,246,214,.65),transparent 77%),url('kaaba.jpg')!important;background-position:center 43%!important}
+body:has(.sm-id-screen) .sm-id-body{height:68%!important;background:linear-gradient(#fefcf7,#eff3ec)!important;gap:clamp(4px,.65vh,8px)!important}
+body:has(.sm-id-screen) .sm-id-card{margin-top:-22px!important;border-radius:25px!important;gap:clamp(3px,.55vh,7px)!important;padding-top:clamp(12px,1.7vh,18px)!important;padding-bottom:clamp(8px,1.2vh,13px)!important;justify-content:center!important}
+body:has(.sm-id-screen) .sm-id-card-head{grid-template-columns:clamp(86px,23vw,126px) minmax(0,1fr) auto!important;gap:clamp(9px,2.3vw,18px)!important}
+body:has(.sm-id-screen) .sm-id-face{border:4px solid #e8f7ed!important;outline:2px solid #95c5b2!important;overflow:hidden!important;background:#d5eee3!important;box-shadow:0 4px 12px #00533c2a!important}
+body:has(.sm-id-screen) .sm-id-face img{width:100%!important;height:100%!important;object-fit:cover!important;border-radius:50%!important}
+body:has(.sm-id-screen) .sm-id-agency{gap:1px!important}
+body:has(.sm-id-screen) .sm-id-agency b{font-size:clamp(16px,4.3vw,24px)!important;color:#063f76!important;display:flex;align-items:center;gap:4px}
+body:has(.sm-id-screen) .sm-id-agency-mark{color:#c59a32!important;font-size:1.15em!important}
+body:has(.sm-id-screen) .sm-id-agency>span:last-child{font-size:clamp(10px,2.5vw,14px)!important}
+body:has(.sm-id-screen) .sm-id-name{margin:0 0 0 clamp(99px,25vw,144px)!important;padding:0!important}
+body:has(.sm-id-screen) .sm-id-name b{font-size:clamp(18px,4.7vw,27px)!important;color:#082f2a!important;line-height:1.1!important}
+body:has(.sm-id-screen) .sm-id-name span{font-size:clamp(11px,2.75vw,15px)!important}
+body:has(.sm-id-screen) .sm-id-details{margin-top:clamp(2px,.6vh,7px)!important}
+body:has(.sm-id-screen) .sm-id-details>div{padding:clamp(6px,1vh,11px)!important}
+body:has(.sm-id-screen) .sm-id-actions{gap:clamp(4px,1vw,8px)!important}
+body:has(.sm-id-screen) .sm-id-actions>div,body:has(.sm-id-screen) .sm-id-actions>button{min-height:clamp(58px,8.5vh,84px)!important;border-radius:16px!important}
+body:has(.sm-id-screen) .sm-id-action-icon{width:clamp(29px,7.5vw,42px)!important;height:clamp(29px,7.5vw,42px)!important}
+body:has(.sm-id-screen) .sm-id-qr-mark{border-radius:7px!important;background:white!important;border:2px solid #08684d!important;color:#0a5c48!important}
+body:has(.sm-id-screen) .sm-id-dua{position:relative!important;overflow:hidden!important;background:linear-gradient(130deg,#003b2e,#08684c)!important;border-top:3px solid #d9b45b!important;border-radius:48% 15px 12px 12px / 19% 15px 12px 12px!important;padding-top:clamp(8px,1.4vh,16px)!important}
+body:has(.sm-id-screen) .sm-id-dua:after{content:"☪  ✦  ☪";position:absolute;right:9px;bottom:3px;color:#caa84c55;font-size:24px;pointer-events:none}
+@media(max-height:760px){body:has(.sm-id-screen) .sm-id-photo{height:27%!important}body:has(.sm-id-screen) .sm-id-body{height:73%!important}body:has(.sm-id-screen) .sm-id-card-head{grid-template-columns:70px minmax(0,1fr) auto!important}body:has(.sm-id-screen) .sm-id-name{margin-left:78px!important}body:has(.sm-id-screen) .sm-id-actions>div,body:has(.sm-id-screen) .sm-id-actions>button{min-height:51px!important}}
 </style>
 
 
@@ -2575,7 +2599,7 @@ function sm50Card(){
   </div>
   <div class="sm-id-body">
    <article class="sm-id-card">
-    <div class="sm-id-card-head"><span class="sm-id-face" aria-label="Foto demo">♙<small>FOTO DEMO</small></span><div class="sm-id-agency"><small>AGENSI CONTOH</small><b>Nur Iman</b><span>Travel &amp; Tours</span></div><span class="sm-id-group">KUMPULAN<b>UMR-2027-A</b></span></div>
+    <div class="sm-id-card-head"><span class="sm-id-face" aria-label="Potret ilustrasi jemaah demo"><img src="./assets/demo-pilgrim.svg" alt="Ilustrasi jemaah demo"></span><div class="sm-id-agency"><small>AGENSI CONTOH</small><b><span class="sm-id-agency-mark">✦</span>Nur Iman</b><span>Travel &amp; Tours</span></div><span class="sm-id-group">KUMPULAN<b>UMR-2027-A</b></span></div>
     <div class="sm-id-name"><b>RIDZANI SHEHAN</b><span>SM-DEMO-0001 · 🇲🇾 Malaysia</span></div>
     <div class="sm-id-details">
       <div><span class="sm-id-glyph">♙</span><p><small>MUTAWIF</small><b>Ustaz Ali bin Hassan</b></p></div>
@@ -2586,7 +2610,7 @@ function sm50Card(){
     <span class="sm-id-demo">DEMO · BUKAN KAD RASMI</span>
    </article>
    <div class="sm-id-actions">
-     <div><span class="sm-id-action-icon">▦</span><b>QR</b></div>
+     <div><span class="sm-id-action-icon sm-id-qr-mark">▦</span><b>QR Demo</b></div>
      <div><span class="sm-id-action-icon red">☎</span><b>SOS</b></div>
      <div><span class="sm-id-action-icon blue">♙</span><b>Mutawif</b></div>
      <div><span class="sm-id-action-icon teal">⌖</span><b>Hotel</b></div>
