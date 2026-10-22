@@ -31,7 +31,7 @@ const fs = require('node:fs');
     const grid=await page.locator('.steps').evaluate(el=>getComputedStyle(el).gridTemplateColumns);
     if(!grid)throw Error('Panduan grid styles missing');
    }
-   if(errors.length)console.log(size.name+' nonfatal runtime errors:',errors.slice(0,5));
+   if(errors.length)throw Error(size.name+' JavaScript runtime errors: '+errors.slice(0,5).join(' | '));
    console.log('PASS '+size.name);
   }catch(e){failures.push(size.name+': '+e.message);console.error('FAIL '+size.name,e.message)}
   await page.close();
