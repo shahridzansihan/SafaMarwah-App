@@ -674,3 +674,117 @@
     width:48px!important;height:48px!important;flex-basis:48px!important;
   }
 }
+
+
+/* v4.5.2 — refined Panduan desktop/tablet, no mobile changes */
+@media (min-width:768px) {
+  body.sm-inner-view:has(#main>.steps) #main {
+    width:min(100% - 48px, 960px)!important;
+    max-width:960px!important;
+    margin-inline:auto!important;
+    padding-top:32px!important;
+    padding-bottom:42px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.sm-master-header {
+    min-height:58px!important;
+    padding-bottom:16px!important;
+    margin:0 0 20px!important;
+    border-bottom:1px solid rgba(229,194,126,.22)!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.sm-master-header>h1 {
+    font-size:clamp(1.65rem,2.2vw,2rem)!important;
+    letter-spacing:-.025em!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.sm51-page-hero {
+    min-height:230px!important;
+    margin:0 0 24px!important;
+    padding:30px 34px!important;
+    border:1px solid rgba(232,196,126,.2)!important;
+    border-radius:20px!important;
+    box-shadow:0 12px 34px rgba(0,20,15,.16)!important;
+    background-image:linear-gradient(90deg,rgba(0,37,30,.84),rgba(0,45,36,.36) 65%,rgba(0,39,31,.12)),url('kaaba.jpg')!important;
+    background-position:center 56%!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.sm51-page-hero h2 {
+    font-size:clamp(2.25rem,3.5vw,3.2rem)!important;
+    line-height:1.08!important;
+    margin:6px 0 10px!important;
+    letter-spacing:-.03em!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.sm51-page-hero p {
+    max-width:420px!important;
+    font-size:clamp(.92rem,1.2vw,1.02rem)!important;
+    line-height:1.6!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps {
+    gap:14px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps>.step {
+    min-height:96px!important;
+    padding:14px 16px!important;
+    gap:13px!important;
+    border:1px solid rgba(207,180,120,.35)!important;
+    border-radius:16px!important;
+    background:#fbf4e6!important;
+    box-shadow:0 3px 10px rgba(0,28,22,.07)!important;
+    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps>.step:hover,
+  body.sm-inner-view:has(#main>.steps) #main>.steps>.step:focus-visible {
+    transform:translateY(-2px)!important;
+    box-shadow:0 10px 24px rgba(0,28,22,.14)!important;
+    border-color:#c5a563!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps .step-thumb {
+    width:60px!important;height:60px!important;flex-basis:60px!important;
+    border-radius:12px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps .num {
+    flex-shrink:0!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps .step-copy strong {
+    font-size:1rem!important;
+    font-weight:750!important;
+    letter-spacing:-.01em!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps .step-copy small {
+    font-size:.79rem!important;
+    margin-top:4px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.sm-umrah-guide-note {
+    margin-top:20px!important;
+    padding:16px 20px!important;
+    background:#eaf3ed!important;
+    border:1px solid #c5dace!important;
+    color:#234d40!important;
+    font-size:.93rem!important;
+    line-height:1.65!important;
+  }
+}
+@media (min-width:768px) and (max-width:1023px) {
+  body.sm-inner-view:has(#main>.steps) #main {
+    width:calc(100% - 36px)!important;
+    padding-top:24px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.sm51-page-hero {
+    min-height:205px!important;
+    padding:24px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps {
+    gap:12px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps>.step {
+    min-height:88px!important;
+    padding:11px!important;
+    gap:9px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps .step-thumb {
+    width:48px!important;height:48px!important;flex-basis:48px!important;
+  }
+  body.sm-inner-view:has(#main>.steps) #main>.steps .step-copy strong {
+    font-size:.9rem!important;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  body.sm-inner-view:has(#main>.steps) #main>.steps>.step {transition:none!important;}
+}
