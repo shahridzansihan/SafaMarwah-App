@@ -1091,7 +1091,7 @@
  }
  html body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results {
   display:grid!important;
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
   gap:26px 20px!important;width:100%!important;min-width:0!important;
  }
  html body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile {
