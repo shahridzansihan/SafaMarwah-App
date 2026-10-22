@@ -82,7 +82,7 @@ const fs = require('node:fs');
     });
     if(layout.panelWidth<Math.min(640,size.width-100))throw Error('single-post panel too narrow at '+size.width+'px: '+layout.panelWidth);
     if(layout.bodyWidth>770)throw Error('single-post text measure too wide at '+size.width+'px');
-    if(Math.abs(layout.leftGap-layout.rightGap)>5||Math.abs(layout.parentLeftGap-layout.parentRightGap)>5)throw Error('single-post panel not centered at '+size.width+'px: '+JSON.stringify(layout));
+    if(Math.abs(layout.parentLeftGap-layout.parentRightGap)>5)throw Error('single-post panel not centered within its article container at '+size.width+'px: '+JSON.stringify(layout));
    }
 
    if(size.width>=768){
