@@ -832,3 +832,33 @@
   body.sm-inner-view #main > .steps > .step {min-width:0!important;}
   body.sm-inner-view #main > .steps .step-copy {min-width:0!important;}
 }
+
+/* v4.5.2 — Article and inner-page final alignment (tablet + desktop only).
+   Scoped to non-home, non-digital-card views. */
+@media (min-width:768px) {
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader {
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:960px!important;
+    margin-inline:auto!important;
+    border-radius:18px!important;
+  }
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader :is(h1,h2,h3,h4) {
+    overflow-wrap:break-word;
+    text-wrap:pretty;
+  }
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader :is(img,video,iframe,table) {
+    max-width:100%!important;
+  }
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader :is(pre,table) {
+    overflow-x:auto;
+  }
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader :is(p,li) {
+    line-height:1.75!important;
+  }
+}
+@media (min-width:768px) and (max-width:1023px) {
+  body.sm-inner-view:not(:has(.sm-digital-card)):not(:has(.sm51-digital-card)) #main .sm-article-reader {
+    padding:clamp(18px,3vw,28px)!important;
+  }
+}
