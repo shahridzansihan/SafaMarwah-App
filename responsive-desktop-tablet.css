@@ -72,3 +72,39 @@
  body:has(.sm53-hero) .sm53-quick button,
  body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button{transition:none!important}
 }
+
+/* v3 corrective layout: desktop/tablet only */
+@media(min-width:768px){
+ /* Tools: preserve existing section grouping; stop 14 icons squeezing into one row */
+ body:has(.sm53-hero) .sm63-editorial-panel{display:block!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-section{display:block!important;width:100%!important;margin:0 0 26px!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important;width:100%!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:12px!important;text-align:left!important;padding:15px!important;min-width:0!important;min-height:82px!important;border-radius:15px!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button .sm63-tile-copy{display:block!important;min-width:0!important;flex:1!important;white-space:normal!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button strong,
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button small{display:block!important;white-space:normal!important;word-break:normal!important;overflow-wrap:break-word!important;hyphens:none!important;line-height:1.4!important}
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid button .dash-icon{flex:0 0 44px!important;width:44px!important;height:44px!important}
+ /* Articles: actual ID + image geometry */
+ body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important}
+ body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid>.sm-article-tile{width:100%!important;max-width:none!important;min-width:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;text-align:left!important}
+ body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid>.sm-article-tile .sm-article-cover{display:block!important;width:100%!important;height:auto!important;aspect-ratio:16/9!important;object-fit:cover!important;object-position:center!important}
+ body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid>.sm-article-tile strong{display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important;line-height:1.4!important}
+ /* Prayer cities: display both on desktop/tablet, without altering selected-city logic on mobile */
+ body:has(.sm53-hero) .prayer-widget{width:min(100%,1050px)!important;max-width:1050px!important}
+ body:has(.sm53-hero) .prayer-widget .prayer-cities{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
+ body:has(.sm53-hero) .prayer-widget .prayer-cities .prayer-city,
+ body:has(.sm53-hero) .prayer-widget .prayer-cities .prayer-city[hidden]{display:block!important;width:100%!important;min-width:0!important}
+ body:has(.sm53-hero) .prayer-widget .prayer-city-tabs{display:none!important}
+ /* Footer navigation becomes compact desktop bar */
+ body .bottom.sm53-nav{position:sticky!important;top:0!important;bottom:auto!important;z-index:100!important}
+ body .bottom.sm53-nav .bottom-inner{gap:12px!important}
+}
+@media(min-width:1200px){
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+ body:has(.sm53-hero) #sm-articles-home #sm-articles-home-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(min-width:768px) and (max-width:900px){
+ body:has(.sm53-hero) .sm63-editorial-panel .dash-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body:has(.sm53-hero) .prayer-widget .prayer-cities{grid-template-columns:1fr!important}
+ body:has(.sm53-hero) .prayer-widget{max-width:720px!important}
+}
