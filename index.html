@@ -2289,6 +2289,9 @@ smLanguageObserver.observe(document.getElementById('main'),{childList:true,subtr
 <style>
 #sm-install-prompt{position:fixed;z-index:110;bottom:calc(90px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(92vw,430px);padding:14px 16px;border:1px solid #bdd8cb;border-radius:18px;background:#fffdf9;color:#075443;box-shadow:0 12px 35px #002f2533;font:inherit}
 #sm-install-prompt p{margin:6px 0 12px;font-size:.9rem;line-height:1.45}#sm-install-prompt .sm-install-actions{display:flex;gap:8px;flex-wrap:wrap}#sm-install-prompt button{padding:9px 12px;border-radius:10px;border:1px solid #b9d5c9;background:#087d69;color:white;font-weight:650}#sm-install-prompt button.sm-dismiss{background:transparent;color:#075443}
+
+/* Home header: give logo and settings icon breathing room below Android status bar. */
+body:has(.sm53-hero) .top.home-top{padding-top:calc(max(14px,env(safe-area-inset-top,0px)) + 14px)!important;padding-bottom:10px!important;min-height:97px!important;box-sizing:border-box!important}
 </style>
 <script>
 (function(){
