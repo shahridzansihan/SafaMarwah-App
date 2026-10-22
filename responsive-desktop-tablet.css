@@ -160,3 +160,23 @@
  body .sm-desktop-footer-inner{grid-template-columns:1fr 1fr}
 }
 @media(max-width:767px){body .sm-desktop-footer{display:none!important}}
+
+/* v4.1 navigation repair: nav is first child of .app, not after footer */
+@media(min-width:768px){
+ html body .app>.bottom.sm53-nav{
+   position:fixed!important;top:0!important;bottom:auto!important;left:0!important;right:0!important;
+   width:100%!important;max-width:none!important;z-index:9999!important;
+   background:rgba(0,42,34,.94)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+   border-bottom:1px solid rgba(230,194,124,.22)!important;box-shadow:0 8px 24px rgba(0,20,15,.16)!important;
+   margin:0!important;transform:none!important
+ }
+ html body .app>.bottom.sm53-nav .bottom-inner{height:58px!important;min-height:58px!important;max-width:1120px!important;margin:auto!important}
+ html body .app{padding-top:58px!important}
+ html body:has(.sm53-hero){padding-top:0!important}
+ html body .sm-desktop-footer{margin-top:16px!important}
+ html body:has(.sm53-hero) #sm-articles-home{margin-bottom:20px!important}
+}
+@media(max-width:767px){
+ html body .app>.bottom.sm53-nav{position:fixed!important;top:auto!important;bottom:0!important}
+ html body .app{padding-top:0!important}
+}
