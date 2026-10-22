@@ -26,6 +26,17 @@ const fs = require('node:fs');
     if(overflow)throw Error(label+' has horizontal overflow at '+size.width+'px');
     await page.screenshot({path:'qa-screenshots/'+size.name+'-'+label+'.png',fullPage:true});
    }
+   await page.evaluate("sm50Card()");
+   await page.waitForSelector('#main .sm-id-screen .sm-id-card',{timeout:10000});
+   await page.screenshot({path:'qa-screenshots/'+size.name+'-digital-card.png',fullPage:true});
+   if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('digital card horizontal overflow at '+size.width+'px');
+   await page.evaluate("showMore()");
+   await page.waitForSelector('#main .more-list',{timeout:10000});
+   await page.screenshot({path:'qa-screenshots/'+size.name+'-more.png',fullPage:true});
+   await page.evaluate("smArticlesPage()");
+   await page.waitForSelector('#sm-articles-content',{timeout:10000});
+   await page.screenshot({path:'qa-screenshots/'+size.name+'-articles.png',fullPage:true});
+   if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('articles horizontal overflow at '+size.width+'px');
    if(size.width>=768){
     await page.evaluate("show('steps')");
     const grid=await page.locator('.steps').evaluate(el=>getComputedStyle(el).gridTemplateColumns);
