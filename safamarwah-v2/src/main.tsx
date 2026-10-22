@@ -2,7 +2,7 @@ import React from "react";
 import {createRoot} from "react-dom/client";
 import {BrowserRouter,Link,Routes,Route,useParams} from "react-router-dom";
 import "./styles.css";
-const pages=[{slug:"panduan",title:"Panduan Umrah",description:"Panduan ibadah yang mudah diikuti."},{slug:"doa",title:"Doa & Zikir",description:"Himpunan doa dan zikir untuk jemaah."},{slug:"waktu-solat",title:"Waktu Solat",description:"Rujukan waktu solat mengikut lokasi."},{slug:"blog",title:"Blog",description:"Perkongsian ilmu dan informasi."}];
+const pages=[{slug:"panduan",title:"Panduan Umrah",description:"Panduan ibadah yang mudah diikuti."},{slug:"doa",title:"Doa & Zikir",description:"Himpunan doa dan zikir untuk jemaah."},{slug:"blog",title:"Blog",description:"Perkongsian ilmu dan informasi."}];
 function Header(){return <header className="site-header"><nav className="container-page site-nav" aria-label="Navigasi utama"><Link to="/" className="font-bold tracking-wide text-xl">Safa<span className="text-gold-brand">Marwah</span></Link><div className="site-links">{pages.map(p=><Link key={p.slug} to={"/"+p.slug}>{p.title}</Link>)}</div></nav></header>}
 function Footer(){return <footer className="site-footer"><div className="container-page text-sm text-ink-brand/70">© 2026 SafaMarwah. All Rights Reserved.</div></footer>}
 function Layout({children}:{children:React.ReactNode}){return <><Header/><main className="container-page min-h-[60vh] py-8 md:py-12">{children}</main><Footer/></>}
