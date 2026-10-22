@@ -2634,6 +2634,28 @@ body:has(.sm-id-screen) .sm-id-photo{
 }
 body:has(.sm-id-screen) .sm-id-photo::before{display:none!important}
 body:has(.sm-id-screen) .sm-id-brand,body:has(.sm-id-screen) .sm-id-talbiya{filter:drop-shadow(0 1px 2px rgba(255,255,240,.65))!important}
+
+/* Digital ID v12 — readable white logo wordmark on hero. */
+body:has(.sm-id-screen) .sm-id-brand{
+ isolation:isolate!important;
+ width:max-content!important;
+ max-width:calc(100% - 10%)!important;
+ padding:10px 16px 12px 9px!important;
+ border-radius:16px!important;
+ text-shadow:none!important;
+}
+body:has(.sm-id-screen) .sm-id-brand::before{
+ content:"";position:absolute;inset:-7px -16px -5px -10px;
+ z-index:-1;pointer-events:none;border-radius:18px;
+ background:linear-gradient(90deg,rgba(0,52,40,.94) 0%,rgba(0,58,43,.84) 63%,rgba(0,58,43,.10) 100%)!important;
+ box-shadow:0 6px 25px rgba(0,45,33,.16)!important;
+}
+body:has(.sm-id-screen) .sm-id-brand img{
+ position:relative!important;
+ filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))!important;
+}
+body:has(.sm-id-screen) .sm-id-brand span{color:#f6e6b4!important;text-shadow:0 1px 2px rgba(0,0,0,.3)!important}
+body:has(.sm-id-screen) .sm-id-brand i{color:#f4f6ed!important;text-shadow:0 1px 2px rgba(0,0,0,.3)!important}
 </style>
 
 
