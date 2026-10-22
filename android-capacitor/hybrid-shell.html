@@ -10,33 +10,13 @@ html,body{margin:0;width:100%;height:100%;background:#002b23;color:#fff;font-fam
 <iframe id="app" title="SafaMarwah Umrah Companion" src="./offline.html" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 <div id="notice" role="status"><span id="message"></span><button id="retry" type="button">Cuba lagi</button></div>
 <script>
+/* Use the bundled, current GitHub UI for the native APK.
+   Its Blogger feed and other online APIs remain available when connected. */
 (()=>{
 'use strict';
-const REMOTE='https://app.safamarwah.my/';
 const frame=document.getElementById('app');
 const notice=document.getElementById('notice');
-const message=document.getElementById('message');
-const retry=document.getElementById('retry');
-let timeout=null, ping=null, active=0, accepted=false;
-function banner(text){message.textContent=text;notice.style.display='block'}
-function hide(){notice.style.display='none'}
-function clear(){clearTimeout(timeout);clearInterval(ping);timeout=null;ping=null}
-function offline(){clear();active++;accepted=false;frame.src='./offline.html';banner('Mod offline: kandungan asas SafaMarwah dipaparkan.')}
-function online(){
- if(!navigator.onLine){offline();return}
- clear();const attempt=++active;accepted=false;hide();
- frame.src=REMOTE;
- function probe(){try{frame.contentWindow.postMessage({type:'safamarwah-shell-ping'},'https://app.safamarwah.my')}catch(e){}}
- ping=setInterval(probe,650);
- timeout=setTimeout(()=>{if(attempt===active&&!accepted)offline()},10000);
-}
-window.addEventListener('message',event=>{
- if(event.origin!=='https://app.safamarwah.my'||event.source!==frame.contentWindow)return;
- if(event.data?.type==='safamarwah-shell-pong'){accepted=true;clear();hide()}
-});
-window.addEventListener('online',()=>{if(frame.getAttribute('src')!=='./offline.html')return;online()});
-window.addEventListener('offline',offline);
-retry.addEventListener('click',online);
-online();
+frame.src='./offline.html';
+notice.style.display='none';
 })();
 </script></body></html>
