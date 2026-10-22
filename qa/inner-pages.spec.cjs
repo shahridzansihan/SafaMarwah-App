@@ -27,6 +27,20 @@ const fs = require('node:fs');
    await page.goto('http://127.0.0.1:8765/',{waitUntil:'domcontentloaded',timeout:30000});
    await page.waitForSelector('#main',{timeout:15000});
    await page.screenshot({path:'qa-screenshots/'+size.name+'-home.png',fullPage:true});
+   async function verifyUnifiedLayout(label){
+    if(size.width<768)return;
+    const state=await page.evaluate(()=>{
+      const main=document.querySelector('#main');
+      const body=document.body;
+      const cs=getComputedStyle(main);
+      const rect=main.getBoundingClientRect();
+      const selected=[...main.children].filter(el=>el.matches('.page-head,.sm-master-header,.phase-header,.steps,.sm-articles-grid,.more-list,.phase2-panel,.phase3-form,.phase5-panel,.step-panel,.phase-counter,.phase-bookmarks,#sm-articles-content'));
+      const overwide=selected.filter(el=>el.getBoundingClientRect().width>rect.width+2).map(el=>el.className||el.id);
+      return {inner:body.classList.contains('sm-inner-view'),mainWidth:rect.width,mainMax:parseFloat(cs.maxWidth),token:getComputedStyle(body).getPropertyValue('--sm47-width').trim(),overwide};
+    });
+    if(!state.inner||state.token!=='960px'||state.mainWidth>1025||state.overwide.length)
+      throw Error(label+' unified v4.7 contract failed at '+size.width+'px: '+JSON.stringify(state));
+   }
    for(const [label,expression,selector] of [
     ['panduan',"show('steps')",'.steps .step'],
     ['doa',"show('dua')",'#main .sm-master-header'],
@@ -36,6 +50,7 @@ const fs = require('node:fs');
    ]){
     await page.evaluate(expression);
     await page.waitForSelector(selector,{timeout:10000});
+    await verifyUnifiedLayout(label);
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3);
     if(overflow)throw Error(label+' has horizontal overflow at '+size.width+'px');
     await page.screenshot({path:'qa-screenshots/'+size.name+'-'+label+'.png',fullPage:true});
@@ -54,6 +69,7 @@ const fs = require('node:fs');
    ]){
     await page.evaluate(expression);
     await page.waitForSelector(selector,{timeout:10000});
+    await verifyUnifiedLayout(label);
     if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error(label+' horizontal overflow at '+size.width+'px');
     await page.screenshot({path:'qa-screenshots/'+size.name+'-'+label+'.png',fullPage:true});
    }
@@ -63,13 +79,16 @@ const fs = require('node:fs');
    if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('digital card horizontal overflow at '+size.width+'px');
    await page.evaluate("showMore()");
    await page.waitForSelector('#main .more-list',{timeout:10000});
+   await verifyUnifiedLayout('more');
    await page.screenshot({path:'qa-screenshots/'+size.name+'-more.png',fullPage:true});
    await page.evaluate("smArticlesPage()");
    await page.waitForSelector('#sm-articles-content',{timeout:10000});
+   await verifyUnifiedLayout('articles');
    await page.screenshot({path:'qa-screenshots/'+size.name+'-articles.png',fullPage:true});
    if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('articles horizontal overflow at '+size.width+'px');
    await page.evaluate("smArticleRead(0)");
    await page.waitForSelector('#sm-articles-content .sm-single-v3 .sm-single-title',{timeout:10000});
+   await verifyUnifiedLayout('single-post');
    const articleTitle=await page.locator('.sm-single-title').innerText();
    if(!articleTitle.includes('Panduan Umrah'))throw Error('single post title missing');
    if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('single post horizontal overflow at '+size.width+'px');
