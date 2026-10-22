@@ -862,3 +862,24 @@
     padding:clamp(18px,3vw,28px)!important;
   }
 }
+
+/* v4.5.3 QA fixes — explicitly exclude homepage and digital card.
+   Keep editorial reader narrower than page lists; mobile untouched. */
+@media (min-width:768px) {
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-article-reader {
+   max-width:760px!important;
+   width:100%!important;
+   box-sizing:border-box!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-article-reader :is(img,video,iframe) {
+   max-width:100%!important;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main .sm-article-reader :is(pre,table) {
+   max-width:100%;
+   overflow-x:auto;
+ }
+ body.sm-inner-view:not(:has(#main .sm-id-screen)):not(:has(#main .sm-digital-card)):not(:has(#main .sm51-digital-card)) #main :is(a,button,input,textarea,select):focus-visible {
+   outline:2px solid #eacb8b;
+   outline-offset:3px;
+ }
+}
