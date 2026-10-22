@@ -1,6 +1,6 @@
 import React from "react";
 import {createRoot} from "react-dom/client";
-import {BrowserRouter,Link,Routes,Route,useParams} from "react-router-dom";
+import {HashRouter,Link,Routes,Route,useParams} from "react-router-dom";
 import "./styles.css";
 const pages=[{slug:"panduan",title:"Panduan Umrah",description:"Panduan ibadah yang mudah diikuti."},{slug:"doa",title:"Doa & Zikir",description:"Himpunan doa dan zikir untuk jemaah."},{slug:"blog",title:"Blog",description:"Perkongsian ilmu dan informasi."}];
 function Header(){return <header className="site-header"><nav className="container-page site-nav" aria-label="Navigasi utama"><Link to="/" className="font-bold tracking-wide text-xl">Safa<span className="text-gold-brand">Marwah</span></Link><div className="site-links">{pages.map(p=><Link key={p.slug} to={"/"+p.slug}>{p.title}</Link>)}</div></nav></header>}
@@ -17,5 +17,5 @@ function Page({subpage=false}:{subpage?:boolean}){const{slug,subslug}=useParams(
 const p=pages.find(x=>x.slug===slug)!;return <Layout><PageHeading title={p.title} description={p.description}/>{slug==="blog"?<div className="article-grid">{articles.map(x=><ArticleCard key={x.slug} title={x.title} href={"/blog/"+x.slug} description={x.description}/>)}</div>:<TopicLinks items={slug==="panduan"?guides:prayers} base={"/"+slug}/>}</Layout>}
 function Article(){const{articleSlug}=useParams();const article=articles.find(x=>x.slug===articleSlug);if(!article)return <NotFound/>;return <Layout><article className="reading-width"><PageHeading title={article.title} description={article.description} crumbs={[{label:"Blog",to:"/blog"}]}/><div className="text-prose space-y-5">{article.paragraphs.map(p=><p key={p}>{p}</p>)}</div><p className="text-sm text-ink-brand/60 mt-10">Artikel contoh untuk pembangunan v2.0. Kandungan penerbitan sebenar belum dimigrasikan.</p></article></Layout>}
 function NotFound(){return <Layout><PageHeading title="Halaman tidak ditemui" description="Halaman ini tidak tersedia dalam SafaMarwah v2.0."/><Link className="btn-primary" to="/">Kembali ke Utama</Link></Layout>}
-function App(){return <BrowserRouter><Routes><Route path="/" element={<Home/>}/><Route path="/blog/:articleSlug" element={<Article/>}/><Route path="/:slug/:subslug" element={<Page subpage/>}/><Route path="/:slug" element={<Page/>}/><Route path="*" element={<NotFound/>}/></Routes></BrowserRouter>}
+function App(){return <HashRouter><Routes><Route path="/" element={<Home/>}/><Route path="/blog/:articleSlug" element={<Article/>}/><Route path="/:slug/:subslug" element={<Page subpage/>}/><Route path="/:slug" element={<Page/>}/><Route path="*" element={<NotFound/>}/></Routes></HashRouter>}
 createRoot(document.getElementById("root")!).render(<React.StrictMode><App/></React.StrictMode>);
