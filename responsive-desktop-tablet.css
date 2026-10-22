@@ -1105,3 +1105,42 @@
   gap:22px 16px!important;
  }
 }
+
+/* v4.8.2 — Compact equal-height article listing cards.
+   Desktop/tablet only; preserve homepage and single-post reader. */
+@media(min-width:768px){
+ body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results{
+  align-items:stretch!important;grid-auto-rows:1fr!important;
+ }
+ body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  height:100%!important;min-height:0!important;max-height:none!important;
+  padding:0!important;overflow:hidden!important;
+ }
+ body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile > .sm-article-cover{
+  width:100%!important;aspect-ratio:16/9!important;height:auto!important;
+  max-height:150px!important;object-fit:cover!important;flex-shrink:0!important;
+ }
+ body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile > .sm-article-tile-copy{
+  display:flex!important;flex-direction:column!important;flex:1 1 auto!important;
+  min-height:0!important;padding:16px 17px 18px!important;
+ }
+ body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile .sm-article-meta{
+  flex:0 0 auto!important;margin-bottom:10px!important;
+ }
+ body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile .sm-article-tile-copy > strong{
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;
+  -webkit-line-clamp:4!important;line-clamp:4;
+  overflow:hidden!important;line-height:1.35!important;
+  margin:0 0 10px!important;
+ }
+ body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile .sm-article-tile-copy > small{
+  display:-webkit-box!important;-webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;line-clamp:2;
+  overflow:hidden!important;line-height:1.5!important;
+ }
+ body.sm-inner-view:has(#main #sm-articles-results) #main #sm-articles-results > .sm-article-tile .sm-article-read-more{
+  align-self:flex-start!important;margin-top:auto!important;
+  flex:0 0 auto!important;transform:translateY(10px);
+ }
+}
