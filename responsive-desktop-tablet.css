@@ -326,3 +326,145 @@
     padding-inline:12px!important;
   }
 }
+
+
+/* SafaMarwah v4.4 — Premium desktop/tablet refinement.
+   Deliberately scoped to >=768px; mobile styles are unchanged. */
+@media (min-width:768px) {
+  /* 1. Navigation: polished glass treatment and accessible focus. */
+  html body .app>.bottom.sm53-nav {
+    background:rgba(0,42,34,.94)!important;
+    -webkit-backdrop-filter:blur(18px) saturate(125%);
+    backdrop-filter:blur(18px) saturate(125%);
+    border-bottom:1px solid rgba(234,203,139,.22)!important;
+    box-shadow:0 8px 24px rgba(0,18,13,.14)!important;
+  }
+  html body .app>.bottom.sm53-nav .sm42-nav-brand img {
+    object-fit:contain!important;
+  }
+  html body .app>.bottom.sm53-nav button {
+    transition:background-color .18s ease,color .18s ease,box-shadow .18s ease!important;
+  }
+  html body .app>.bottom.sm53-nav button:focus-visible {
+    outline:2px solid #f3d395!important;
+    outline-offset:2px!important;
+  }
+
+  /* 2. Hero: maintain clear type hierarchy and consistent spacing. */
+  html body:has(.sm53-hero) .sm53-hero-copy {
+    max-width:780px!important;
+    padding-bottom:20px!important;
+  }
+  html body:has(.sm53-hero) .sm53-hero h1 {
+    font-size:clamp(2.75rem,4.1vw,4.45rem)!important;
+    line-height:1.12!important;
+    letter-spacing:-.025em!important;
+    text-wrap:balance;
+  }
+  html body:has(.sm53-hero) .sm53-hero-copy p {
+    max-width:48ch!important;
+    line-height:1.65!important;
+  }
+
+  /* 3. Prayer cards: consistent gutters, legible numbers and safe widths. */
+  html body:has(.sm53-hero) .prayer-widget {
+    box-sizing:border-box!important;
+    border-radius:18px!important;
+    overflow:hidden;
+  }
+  html body:has(.sm53-hero) .prayer-widget .prayer-cities {
+    gap:14px!important;
+    min-width:0!important;
+  }
+  html body:has(.sm53-hero) .prayer-widget .prayer-city {
+    min-width:0!important;
+    border-radius:14px!important;
+    font-variant-numeric:tabular-nums;
+  }
+
+  /* 4. Guidance: unified card height, spacing and keyboard interaction. */
+  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid {
+    gap:12px!important;
+    align-items:stretch!important;
+  }
+  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid>button {
+    min-width:0!important;
+    min-height:92px!important;
+    border-radius:13px!important;
+    transition:transform .2s ease,background-color .2s ease,border-color .2s ease!important;
+  }
+  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid>button:focus-visible {
+    outline:2px solid #f3d395!important;
+    outline-offset:3px!important;
+  }
+
+  /* 5. Article cards: equal height and tidy internal rhythm. */
+  html body:has(.sm53-hero) #sm-articles-home-grid {
+    align-items:stretch!important;
+    gap:20px!important;
+  }
+  html body:has(.sm53-hero) #sm-articles-home-grid>.sm-article-tile {
+    display:flex!important;
+    flex-direction:column!important;
+    min-width:0!important;
+    height:100%!important;
+    border-radius:15px!important;
+    overflow:hidden!important;
+  }
+  html body:has(.sm53-hero) #sm-articles-home-grid>.sm-article-tile .sm-article-cover {
+    aspect-ratio:16/9!important;
+    width:100%!important;
+    object-fit:cover!important;
+    object-position:center!important;
+  }
+  html body:has(.sm53-hero) #sm-articles-home-grid>.sm-article-tile .sm-article-tile-copy {
+    flex:1!important;
+    min-width:0!important;
+  }
+
+  /* 6. Footer: controlled rhythm and alignment. */
+  html body .sm-desktop-footer {
+    margin-top:20px!important;
+    padding-top:24px!important;
+    padding-bottom:22px!important;
+  }
+  html body .sm-desktop-footer-inner {
+    align-items:start!important;
+    column-gap:clamp(24px,3vw,48px)!important;
+    row-gap:20px!important;
+  }
+  html body .sm-desktop-footer-inner>div {
+    min-width:0!important;
+  }
+  html body .sm-desktop-footer-bottom {
+    margin-top:20px!important;
+    padding-top:14px!important;
+  }
+}
+@media (min-width:768px) and (max-width:899px) {
+  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid {
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+  html body:has(.sm53-hero) #sm-articles-home-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  html body:has(.sm53-hero) .prayer-widget .prayer-cities {
+    grid-template-columns:1fr!important;
+  }
+}
+@media (min-width:900px) and (max-width:1199px) {
+  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid {
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+}
+@media (min-width:1200px) {
+  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid {
+    grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  }
+}
+@media (prefers-reduced-motion:reduce) and (min-width:768px) {
+  html body .app>.bottom.sm53-nav button,
+  html body:has(.sm53-hero) .sm63-editorial-panel .dash-grid>button {
+    transition:none!important;
+  }
+}
