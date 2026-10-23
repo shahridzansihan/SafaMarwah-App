@@ -37,6 +37,7 @@ test("mobile navigation closes after route change", async ({ page }) => {
 });
 
 test("Saudi clock city selector and refresh remain functional", async ({page}) => {
+ await page.route("https://api.aladhan.com/v1/timingsByCity/**",route=>route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({code:200,data:{meta:{timezone:"Asia/Riyadh"},timings:{Fajr:"05:00",Dhuhr:"12:10",Asr:"15:20",Maghrib:"18:30",Isha:"20:00"}}})}));
  await page.goto("/#/");
  const widget=page.getByRole("region",{name:"Waktu Solat"});
  await expect(widget.getByText("WAKTU SEMASA · ARAB SAUDI")).toBeVisible();
@@ -45,7 +46,8 @@ test("Saudi clock city selector and refresh remain functional", async ({page}) =
  await expect(makkah).toHaveAttribute("aria-pressed","true");
  await madinah.click();
  await expect(madinah).toHaveAttribute("aria-pressed","true");
- await expect(widget.getByText(/Madinah · Jadual waktu solat sedang disediakan/)).toBeVisible();
+ await expect(widget.getByText("05:00")).toBeVisible();
+ await expect(widget.getByText(/Madinah · Waktu solat hari ini/)).toBeVisible();
  await widget.getByRole("button",{name:"Segar semula jam Arab Saudi"}).click();
  await expect(widget.getByText(/Jam di atas menunjukkan waktu semasa Arab Saudi/)).toBeVisible();
 });
