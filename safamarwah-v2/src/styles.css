@@ -685,3 +685,35 @@ html,body,#root{min-height:100%;background:#002f27}
  .home-app__articles .article-card__title{font-size:1.11rem;line-height:1.37;margin-bottom:13px}
  .home-app__articles .article-card__snippet{font-size:.94rem;line-height:1.6;margin-bottom:19px}
 }
+
+
+/* Premium v2 mockup alignment: homepage hero, no notification bell */
+.home-app__hero{background-image:linear-gradient(90deg,rgba(0,42,34,.82) 0%,rgba(0,42,34,.48) 48%,rgba(0,42,34,.13) 100%),url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg");background-position:center 52%;background-size:cover}
+.home-app__top{position:relative;z-index:2}
+.home-app__brand{max-width:min(46vw,270px)}
+.home-app__brand img{max-height:67px}
+.home-app__headline{max-width:520px;margin:clamp(45px,7vw,90px) 0 30px}
+.home-app__headline>p:first-child{display:block;margin-bottom:8px;font-size:.7rem;letter-spacing:.14em;color:#e9c78b}
+.home-app__headline h1{max-width:490px;font-size:clamp(2.6rem,5vw,4.7rem);line-height:1.06;margin:8px 0 14px}
+.home-app__description{max-width:390px;font-size:clamp(.92rem,1.5vw,1.05rem);line-height:1.52}
+.home-app__search{display:flex;align-items:center;gap:10px;max-width:470px;margin-top:22px;padding:5px 5px 5px 15px;border-radius:999px;background:#faf8f3;color:#285045;box-shadow:0 5px 20px #001c1640}
+.home-app__search input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#173f33;font:inherit;font-size:.86rem}
+.home-app__search input::placeholder{color:#65776d}
+.home-app__search button{display:grid;place-items:center;flex:none;width:37px;height:37px;border:0;border-radius:50%;background:#003d32;color:#fff}
+.home-app__shortcuts{max-width:500px;margin:0 0 22px;gap:10px}
+.home-app__shortcuts a{font-size:.76rem;gap:7px}
+.home-app__shortcut-icon{width:54px;height:54px}
+.home-app__shortcut-icon svg{width:24px;height:24px}
+@media(max-width:767px){
+ .home-app__hero{padding:20px 20px 28px;background-position:57% top}
+ .home-app__brand{max-width:min(52vw,230px)}
+ .home-app__brand img{max-height:59px}
+ .home-app__headline{margin:45px 0 25px}
+ .home-app__headline>p:first-child{font-size:.62rem;letter-spacing:.13em}
+ .home-app__headline h1{max-width:360px;font-size:clamp(2.4rem,10.3vw,3.5rem);line-height:1.06}
+ .home-app__description{max-width:320px;font-size:.91rem;line-height:1.45}
+ .home-app__search{margin-top:17px}
+ .home-app__shortcuts{gap:5px;margin-bottom:21px}
+ .home-app__shortcuts a{font-size:.68rem}
+ .home-app__shortcut-icon{width:clamp(48px,13vw,56px);height:clamp(48px,13vw,56px)}
+}
