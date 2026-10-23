@@ -497,3 +497,63 @@ body:not(:has(.home-app)) .tools-grid>a{background:rgba(255,255,255,.055);border
  body:not(:has(.home-app)) .page-intro h1{font-size:clamp(1.85rem,7.2vw,2.45rem)}
  body:not(:has(.home-app)) .article-card{border-radius:15px}
 }
+
+
+/* Unified Premium UI — resolve legacy light surfaces and Android system insets */
+:root{--sm-safe-top:env(safe-area-inset-top, 0px);--sm-safe-bottom:env(safe-area-inset-bottom, 0px)}
+body{padding-top:var(--sm-safe-top)}
+.site-header{top:0}
+.home-app__hero{padding-top:calc(clamp(22px,3.8vw,48px) + 4px)}
+body:not(:has(.home-app)) .page-hero{
+  min-height:0;display:block;isolation:isolate;overflow:hidden;
+  margin:0 0 24px;padding:clamp(28px,4vw,50px);
+  border:1px solid rgba(214,183,122,.28);border-radius:18px;
+  background:linear-gradient(105deg,rgba(0,47,38,.95),rgba(1,70,54,.88)),
+  url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg") center/cover;
+  box-shadow:none
+}
+body:not(:has(.home-app)) .page-hero::after{display:none!important;content:none}
+body:not(:has(.home-app)) .page-hero .page-heading{color:#faf8f3;font-family:Georgia,serif}
+body:not(:has(.home-app)) .page-hero>p:last-child:not(.page-hero__eyebrow){color:#dce6de}
+body:not(:has(.home-app)) .page-hero .breadcrumbs{color:#d6b77a}
+body:not(:has(.home-app)) .topic-search{
+  margin-bottom:20px;padding:0 0 18px;gap:12px;border:0;border-bottom:1px solid rgba(214,183,122,.22);
+  border-radius:0;background:transparent
+}
+body:not(:has(.home-app)) .topic-search label{color:#e6c991}
+body:not(:has(.home-app)) .topic-search input{
+  background:rgba(250,248,243,.97);border-color:rgba(214,183,122,.38);
+  color:#25332f
+}
+body:not(:has(.home-app)) .topic-search span{color:#c6d7cd}
+body:not(:has(.home-app)) .topic-card{
+  min-height:0;padding:22px;border:1px solid rgba(214,183,122,.28);
+  border-radius:15px;background:linear-gradient(145deg,rgba(8,83,65,.88),rgba(0,48,39,.96));
+  box-shadow:none;color:#faf8f3
+}
+body:not(:has(.home-app)) .topic-card h3{font-family:Georgia,serif;font-size:1.16rem;color:#faf8f3}
+body:not(:has(.home-app)) .topic-card p{color:#c8d8cf}
+body:not(:has(.home-app)) .topic-card__action{padding-top:15px;color:#e6c991}
+body:not(:has(.home-app)) .topic-card:hover{border-color:#d6b77a;box-shadow:0 8px 20px rgba(0,20,16,.15)}
+body:not(:has(.home-app)) .topic-empty{color:#e6ebe6;border-color:rgba(214,183,122,.3)}
+body:not(:has(.home-app)) .topic-empty button{color:#e6c991}
+body:not(:has(.home-app)) .single-article__meta{color:#c8d8cf}
+body:not(:has(.home-app)) .single-article__body{color:#e7eee8}
+body:not(:has(.home-app)) .single-article__body h2,body:not(:has(.home-app)) .single-article__body h3{color:#e6c991}
+body:not(:has(.home-app)) .single-article__body figcaption{color:#b9cbc0}
+body:not(:has(.home-app)) .single-article__body blockquote{background:rgba(255,255,255,.07);color:#e7eee8}
+body:not(:has(.home-app)) .single-article__share{background:transparent;color:#e6c991;border-color:rgba(214,183,122,.4)}
+body:not(:has(.home-app)) .single-article__end{border-color:rgba(214,183,122,.25)}
+body:not(:has(.home-app)) .single-article__end>a:not(.btn-primary){color:#e6c991}
+@media(max-width:767px){
+ body{padding-bottom:calc(88px + var(--sm-safe-bottom))}
+ .site-nav__top{min-height:58px}
+ .site-menu-toggle{padding:8px 10px;font-size:.78rem;min-height:42px}
+ body:not(:has(.home-app)) .page-hero{margin-bottom:20px;padding:22px 19px;border-radius:15px}
+ body:not(:has(.home-app)) .page-hero .page-heading{font-size:clamp(1.85rem,7vw,2.35rem)}
+ body:not(:has(.home-app)) .topic-card{padding:19px 18px}
+ body:not(:has(.home-app)) .topic-card h3{font-size:1.1rem}
+ body:not(:has(.home-app)) .topic-card p{font-size:.88rem}
+ .app-bottom-nav{padding-bottom:calc(9px + var(--sm-safe-bottom))}
+ .app-more-menu{bottom:calc(77px + var(--sm-safe-bottom))}
+}
