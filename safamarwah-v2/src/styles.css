@@ -393,3 +393,15 @@ body:has(.home-app) .site-footer{margin-top:0}
 .home-app__articles .article-card__avatar,.home-app__articles .article-card__avatar img{width:32px;height:32px;min-width:32px;max-width:32px;border-radius:50%;object-fit:cover;overflow:hidden}
 @media(max-width:767px){.home-app__articles .article-card__image{aspect-ratio:4/3}}
 @media(prefers-reduced-motion:reduce){.home-app__articles .article-card__image img{transition:none}.home-app__articles .article-card__image:hover img{transform:none}}
+
+
+/* Five-tab mobile navigation with working More menu */
+@media(max-width:767px){
+ .app-bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding-inline:5px}
+ .app-bottom-nav__link{width:100%;min-width:0;padding:5px 1px;font-size:clamp(.63rem,2.5vw,.73rem);font-family:inherit;border:0;background:transparent;cursor:pointer}
+ .app-bottom-nav__link.is-active{background:rgba(255,255,255,.055)}
+ .app-more-menu{position:fixed;z-index:99;bottom:calc(77px + env(safe-area-inset-bottom));right:12px;left:12px;display:flex;flex-direction:column;gap:3px;max-width:420px;margin-left:auto;padding:12px;border:1px solid rgba(214,183,122,.4);border-radius:17px;background:#003d32;color:#faf8f3;box-shadow:0 16px 48px rgba(0,25,20,.38)}
+ .app-more-menu a{display:block;padding:13px 16px;border-radius:10px;font-size:.92rem}
+ .app-more-menu a:hover,.app-more-menu a:focus-visible{background:#075646}
+}
+@media(min-width:768px){.app-more-menu{display:none}}
