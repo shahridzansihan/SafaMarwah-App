@@ -9,8 +9,8 @@ function Layout({children}:{children:React.ReactNode}){return <><Header/><main c
 function PageHeading({title,description,crumbs=[]}:{title:string;description?:string;crumbs?:{label:string;to:string}[]}){return <header className="page-intro">{crumbs.length>0&&<nav aria-label="Breadcrumb" className="breadcrumbs"><Link to="/">Utama</Link>{crumbs.map(c=><React.Fragment key={c.to}><span aria-hidden="true"> / </span><Link to={c.to}>{c.label}</Link></React.Fragment>)}</nav>}<h1 className="page-heading">{title}</h1>{description&&<p>{description}</p>}</header>}
 const BLOG_ORIGIN="https://www.safamarwah.my";
 const FALLBACK_IMAGE="https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg";
-type FeedArticle={id:string;title:string;url:string;description:string;image:string;published:string};
-type BloggerEntry={id?:{$t:string};title?:{$t:string};content?:{$t:string};summary?:{$t:string};published?:{$t:string};media$thumbnail?:{url:string};link?:{rel:string;href:string}[]};
+type FeedArticle={id:string;title:string;url:string;description:string;image:string;published:string;author:string;avatar:string};
+type BloggerEntry={id?:{$t:string};title?:{$t:string};content?:{$t:string};summary?:{$t:string};published?:{$t:string};media$thumbnail?:{url:string};author?:{name?:{$t:string};gd$image?:{src:string}}[];link?:{rel:string;href:string}[]};
 type BloggerResponse={feed?:{entry?:BloggerEntry[]}};
 function highResolutionBloggerImage(src:string):string{
  if(!src)return FALLBACK_IMAGE;
@@ -32,7 +32,7 @@ function parseFeed(data:BloggerResponse):FeedArticle[]{return (data.feed?.entry|
  const image=highResolutionBloggerImage(rawImage);
  const link=entry.link?.find(x=>x.rel==="alternate")?.href||"";
  let safeUrl="";try{const url=new URL(link);if(url.protocol==="https:"&&(url.hostname==="safamarwah.my"||url.hostname==="www.safamarwah.my"))safeUrl=url.href;}catch{}
- return {id:entry.id?.$t||String(index),title:entry.title?.$t||"Artikel SafaMarwah",url:safeUrl,description,image,published:entry.published?.$t||""};
+ return {id:entry.id?.$t||String(index),title:entry.title?.$t||"Artikel SafaMarwah",url:safeUrl,description,image,published:entry.published?.$t||"",author:entry.author?.[0]?.name?.$t||"SafaMarwah",avatar:entry.author?.[0]?.["gd$image"]?.src||""};
 }).filter(x=>Boolean(x.url));}
 function useBloggerFeed(limit=12){const[items,setItems]=React.useState<FeedArticle[]>([]);const[loading,setLoading]=React.useState(true);const[error,setError]=React.useState(false);
  React.useEffect(()=>{let active=true;const callback="safamarwahFeed"+Math.random().toString(36).slice(2);const globalCallbacks=window as unknown as Record<string,unknown>;const script=document.createElement("script");
