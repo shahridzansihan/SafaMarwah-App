@@ -61,9 +61,10 @@ const fs = require('node:fs');
    await page.waitForSelector('#main .sm-id-screen .sm-id-card',{timeout:10000});
    await page.screenshot({path:'qa-screenshots/'+size.name+'-digital-card.png',fullPage:true});
    if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('digital card horizontal overflow at '+size.width+'px');
+   // showMore() now navigates home; the legacy .more-list screen is retired.
    await page.evaluate("showMore()");
-   await page.waitForSelector('#main .more-list',{timeout:10000});
-   await page.screenshot({path:'qa-screenshots/'+size.name+'-more.png',fullPage:true});
+   await page.waitForSelector('#main .sm53-hero',{timeout:10000});
+   await page.screenshot({path:'qa-screenshots/'+size.name+'-more-home.png',fullPage:true});
    await page.evaluate("smArticlesPage()");
    await page.waitForSelector('#sm-articles-content',{timeout:10000});
    await page.screenshot({path:'qa-screenshots/'+size.name+'-articles.png',fullPage:true});
