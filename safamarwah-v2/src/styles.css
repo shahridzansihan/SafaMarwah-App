@@ -42,3 +42,12 @@
 .hero-home h1{max-width:640px;text-shadow:0 2px 16px rgba(0,0,0,.15)}
 .hero-home>p{position:relative}
 @media(max-width:767px){.hero-home{min-height:430px;background-image:linear-gradient(90deg,rgba(0,36,29,.93),rgba(0,49,40,.66)),url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg");background-position:center center}}
+
+/* Article photography replaces decorative placeholders */
+.article-card__image{isolation:isolate;overflow:hidden;background:#e5ece7}
+.article-card__image::before,.article-card__image::after{content:none;display:none}
+.article-card__image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .35s ease}
+.article-card:hover .article-card__image img{transform:scale(1.035)}
+.article-card__meta{font-size:.73rem;letter-spacing:.045em;text-transform:uppercase;color:#697b72}
+.article-card__title{font-size:clamp(1.02rem,1.4vw,1.2rem);line-height:1.4}
+@media(prefers-reduced-motion:reduce){.article-card__image img{transition:none}.article-card:hover .article-card__image img{transform:none}}
