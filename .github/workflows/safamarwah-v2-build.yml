@@ -1,5 +1,6 @@
 name: SafaMarwah v2 Build Check
 on:
+  workflow_dispatch:
   push:
     branches: [safamarwah-v2-foundation]
     paths:
@@ -9,6 +10,9 @@ on:
     paths:
       - 'safamarwah-v2/**'
       - '.github/workflows/safamarwah-v2-build.yml'
+concurrency:
+  group: safamarwah-v2-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -30,8 +34,21 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run navigation and responsive smoke tests
         run: npm run test:e2e
+      - name: Upload Playwright failure report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: safamarwah-v2-playwright-report
+          path: |
+            safamarwah-v2/playwright-report/
+            safamarwah-v2/test-results/
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Upload preview build
+        if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
           name: safamarwah-v2-dist
           path: safamarwah-v2/dist/
+          if-no-files-found: ignore
+          retention-days: 7
