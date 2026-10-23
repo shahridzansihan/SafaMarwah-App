@@ -17,7 +17,7 @@ function parseFeed(data:BloggerResponse):FeedArticle[]{return (data.feed?.entry|
  const doc=new DOMParser().parseFromString(html,"text/html");
  const description=(doc.body.textContent||"").replace(/\\s+/g," ").trim().slice(0,145);
  const rawImage=entry.media$thumbnail?.url||doc.querySelector("img")?.getAttribute("src")||"";
- const image=rawImage.replace(/\\/s72(-c)?\\//,"/s640/");
+ const image=rawImage;
  const link=entry.link?.find(x=>x.rel==="alternate")?.href||"";
  let safeUrl="";try{const url=new URL(link);if(url.protocol==="https:"&&(url.hostname==="safamarwah.my"||url.hostname==="www.safamarwah.my"))safeUrl=url.href;}catch{}
  return {id:entry.id?.$t||String(index),title:entry.title?.$t||"Artikel SafaMarwah",url:safeUrl,description,image:image.startsWith("https://")?image:FALLBACK_IMAGE,published:entry.published?.$t||""};
