@@ -38,7 +38,7 @@ export function parseFeed(data:BloggerResponse):FeedArticle[]{return (data.feed?
  const image=highResolutionBloggerImage(rawImage);
  const link=entry.link?.find(x=>x.rel==="alternate")?.href||"";
  let safeUrl="";try{const url=new URL(link);if(url.protocol==="https:"&&(url.hostname==="safamarwah.my"||url.hostname==="www.safamarwah.my"))safeUrl=url.href;}catch{}
- return {id:entry.id?.$t||String(index),title:entry.title?.$t||"Artikel SafaMarwah",url:safeUrl,description,image,published:entry.published?.$t||"",author:entry.author?.[0]?.name?.$t||"SafaMarwah",avatar:entry.author?.[0]?.["gd$image"]?.src||"",labels:(entry.category||[]).map(c=>c.term).filter(Boolean),paragraphs,blocks,slug:safeUrl?new URL(safeUrl).pathname.split("/").pop()?.replace(/\.html$/,"")||"":""};
+ return {id:entry.id?.$t||String(index),title:entry.title?.$t||"Artikel SafaMarwah",url:safeUrl,description,image,published:entry.published?.$t||"",author:entry.author?.[0]?.name?.$t||"SafaMarwah",avatar:entry.author?.[0]?.["gd$image"]?.src||"",labels:(entry.category||[]).map(c=>c.term).filter(Boolean),paragraphs,blocks,slug:safeUrl?new URL(safeUrl).pathname.replace(/^\//,"").replace(/\.html$/,"").replace(/\//g,"--"):""};
 }).filter(x=>Boolean(x.url));}
 export function useBloggerFeed(limit=12){const[items,setItems]=React.useState<FeedArticle[]>([]);const[loading,setLoading]=React.useState(true);const[error,setError]=React.useState(false);
  React.useEffect(()=>{let active=true;const callback="safamarwahFeed"+Math.random().toString(36).slice(2);const globalCallbacks=window as unknown as Record<string,unknown>;const script=document.createElement("script");
