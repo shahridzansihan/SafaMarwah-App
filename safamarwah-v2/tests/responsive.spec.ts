@@ -202,3 +202,31 @@ test("homepage removes retired tools instead of redirecting to unrelated pages",
   await expect(page.locator(".home-app").getByRole("link",{name:new RegExp(label,"i")})).toHaveCount(0);
  }
 });
+
+
+test("unified mobile app shell hides desktop footer on every main route",async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ for(const route of ["/","/panduan","/panduan/persediaan","/doa","/doa/doa-perjalanan","/blog"]){
+  await page.goto("/#"+route);
+  await expect(page.getByRole("navigation",{name:"Navigasi aplikasi"})).toBeVisible();
+  await expect(page.locator("footer.site-footer")).toBeHidden();
+  const nav=page.locator(".app-bottom-nav");
+  const metrics=await nav.evaluate(el=>({position:getComputedStyle(el).position,bottom:Math.round(el.getBoundingClientRect().bottom),height:innerHeight}));
+  expect(metrics.position,route).toBe("fixed");
+  expect(metrics.bottom,route).toBe(metrics.height);
+ }
+});
+test("approved homepage article cards retain category, byline, excerpt and read more",async({page})=>{
+ await page.route("**/feeds/posts/default**",async route=>{
+  const url=new URL(route.request().url());
+  const callback=url.searchParams.get("callback")||"callback";
+  const article={id:{$t:"home-card"},title:{$t:"Panduan Umrah Contoh"},content:{$t:"<p>Ringkasan artikel yang perlu dipaparkan pada kad homepage.</p>"},category:[{term:"Umrah"}],author:[{name:{$t:"Penulis Contoh"}}],link:[{rel:"alternate",href:"https://www.safamarwah.my/2026/10/home-card.html"}]};
+  await route.fulfill({status:200,contentType:"application/javascript",body:callback+"("+JSON.stringify({feed:{entry:[article]}})+");"});
+ });
+ await page.goto("/#/");
+ const card=page.locator(".home-app__articles .article-card").first();
+ await expect(card).toBeVisible();
+ await expect(card.getByRole("heading",{name:"Panduan Umrah Contoh"})).toBeVisible();
+ await expect(card.locator(".article-card__snippet")).toBeVisible();
+ await expect(card.locator(".article-card__readmore")).toBeVisible();
+});
