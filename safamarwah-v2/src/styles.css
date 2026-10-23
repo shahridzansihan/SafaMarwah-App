@@ -94,3 +94,11 @@
 .site-links a:hover::after,.site-links a:focus-visible::after{transform:scaleX(1)}
 @media(max-width:767px){.site-nav{gap:5px;padding-block:12px 0}.site-links{width:100%;display:flex;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;gap:22px;padding-bottom:4px;scrollbar-width:thin}.site-links a{flex:none;font-size:.86rem;min-height:42px}}
 @media(prefers-reduced-motion:reduce){.site-links a,.site-links a::after{transition:none}}
+
+/* Blogger article labels and filter chips */
+.article-card__labels{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.article-label{display:inline-flex;align-items:center;max-width:100%;padding:5px 9px;border-radius:6px;background:#e8efe9;color:#005143;font-size:.7rem;font-weight:650;line-height:1.2;overflow-wrap:anywhere}
+.article-filters{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:0 0 28px}
+.article-filters button{border:1px solid rgba(0,61,50,.17);border-radius:999px;background:#fff;color:#31574d;padding:9px 14px;font:inherit;font-size:.83rem;font-weight:600;transition:background-color .2s,color .2s}
+.article-filters button:hover,.article-filters button.is-active{background:#003D32;color:#fff;border-color:#003D32}
+@media(max-width:767px){.article-filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}.article-filters button{flex:none}}
