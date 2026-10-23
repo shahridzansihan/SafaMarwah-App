@@ -422,3 +422,78 @@ body:not(:has(.home-app)) .article-card__snippet{display:-webkit-box;-webkit-box
 @media(min-width:768px) and (max-width:1199px){body:not(:has(.home-app)) .article-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1200px){body:not(:has(.home-app)) .article-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:767px){body:not(:has(.home-app)) .page-intro{padding-top:18px}body:not(:has(.home-app)) .article-grid{grid-template-columns:minmax(0,1fr)}}
+
+
+/* v2 visual unification — approved Hybrid Premium mockup, shared across routes */
+:root{--sm-emerald:#002f27;--sm-deep:#00261f;--sm-gold:#e6c991;--sm-cream:#faf8f3}
+html{background:var(--sm-emerald)}
+body{background:var(--sm-emerald);color:var(--sm-cream)}
+.site-header{background:rgba(0,45,36,.97);border-bottom:1px solid rgba(214,183,122,.2);box-shadow:none}
+.site-brand{display:flex;align-items:center;width:clamp(150px,20vw,230px);min-height:52px}
+.site-brand img{display:block;width:100%;height:auto;max-height:58px;object-fit:contain;object-position:left center}
+.site-links a{color:rgba(250,248,243,.84)}
+.site-footer{background:#00271f;color:var(--sm-cream);border-top:1px solid rgba(214,183,122,.15)}
+.app-main{color:var(--sm-cream);background:transparent}
+body:not(:has(.home-app)) .page-intro{border-bottom:1px solid rgba(214,183,122,.22);padding:clamp(28px,4vw,55px) 0}
+body:not(:has(.home-app)) .page-intro h1{font-family:Georgia,serif;color:var(--sm-cream);font-weight:700;letter-spacing:-.025em}
+body:not(:has(.home-app)) .page-intro>p:not(.page-hero__eyebrow){color:#d3dfd7}
+body:not(:has(.home-app)) .page-hero__eyebrow,body:not(:has(.home-app)) .section-eyebrow{color:var(--sm-gold)}
+body:not(:has(.home-app)) .breadcrumbs{color:#d6c7a8}
+body:not(:has(.home-app)) .breadcrumbs a{color:var(--sm-gold)}
+body:not(:has(.home-app)) .section-heading{font-family:Georgia,serif;color:var(--sm-gold)}
+body:not(:has(.home-app)) .article-card{background:var(--sm-cream);color:#25332f;border:1px solid rgba(214,183,122,.22);border-radius:17px;overflow:hidden;padding-bottom:18px;box-shadow:0 8px 28px rgba(0,16,12,.12)}
+body:not(:has(.home-app)) .article-card__image{border-radius:0;margin-bottom:15px}
+body:not(:has(.home-app)) .article-card>*:not(.article-card__image){margin-left:17px;margin-right:17px}
+body:not(:has(.home-app)) .article-card__title,body:not(:has(.home-app)) .article-card__author{color:#25332f}
+body:not(:has(.home-app)) .article-card__snippet,body:not(:has(.home-app)) .article-card__byline{color:#66766d}
+body:not(:has(.home-app)) .article-filters button{background:rgba(255,255,255,.08);color:#faf8f3;border-color:rgba(214,183,122,.36)}
+body:not(:has(.home-app)) .article-filters button.is-active,body:not(:has(.home-app)) .article-filters button:hover{background:var(--sm-gold);color:#003d32}
+body:not(:has(.home-app)) .btn-primary{background:var(--sm-gold);color:#003d32}
+body:not(:has(.home-app)) .text-prose{color:#e6ebe6}
+body:not(:has(.home-app)) .tools-grid>a{background:rgba(255,255,255,.055);border:1px solid rgba(214,183,122,.24);color:#faf8f3}
+.home-app__hero{background-image:linear-gradient(180deg,rgba(0,35,28,.76) 0%,rgba(0,40,32,.53) 30%,rgba(0,42,33,.91) 82%,#002f27 100%),url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg");background-position:center top}
+.home-app__headline{max-width:570px}
+.home-app__headline h1{font-size:clamp(2.6rem,5vw,4.5rem);line-height:1.08}
+.home-app__shortcuts{max-width:540px}
+.home-prayer{max-width:760px;background:linear-gradient(150deg,rgba(1,66,52,.92),rgba(0,44,35,.94));border-radius:19px}
+.home-prayer__clock{align-items:flex-start;gap:6px;padding:17px 20px;border-radius:14px}
+.home-prayer__clock strong{font-size:clamp(2.1rem,5vw,3.3rem)}
+.home-prayer__times{gap:7px}
+.home-prayer__note{padding:12px 14px;font-size:.76rem;line-height:1.5}
+.home-app__articles .article-card{border:1px solid rgba(214,183,122,.2);box-shadow:0 8px 28px rgba(0,16,12,.15)}
+.app-bottom-nav{background:rgba(0,44,35,.98)}
+@media(max-width:767px){
+ body:not(:has(.home-app)) .site-header{position:sticky}
+ .site-nav__top{min-height:60px}
+ .site-brand{width:160px;min-height:46px}
+ .site-brand img{max-height:52px}
+ .app-main{padding-top:14px!important;padding-bottom:28px!important}
+ .site-footer{display:none}
+ .home-app__hero{padding:22px 17px 28px;background-position:57% top}
+ .home-app__headline{margin:60px 0 42px}
+ .home-app__headline h1{font-size:clamp(2.35rem,9vw,3.1rem);line-height:1.1;margin:10px 0 14px}
+ .home-app__headline>p:first-child{font-size:.63rem;letter-spacing:.15em}
+ .home-app__description{font-size:.94rem;line-height:1.55}
+ .home-app__shortcuts{gap:6px;margin-bottom:24px}
+ .home-app__shortcut-icon{width:clamp(49px,13vw,58px);height:clamp(49px,13vw,58px)}
+ .home-app__shortcuts a{font-size:.72rem;gap:8px}
+ .home-prayer{padding:15px 13px;border-radius:17px}
+ .home-prayer__head h2{font-size:1.16rem}
+ .home-prayer__clock{margin-top:11px;padding:12px 15px}
+ .home-prayer__clock strong{font-size:2.15rem}
+ .home-prayer__cities{margin-top:12px}
+ .home-prayer__cities button{min-height:39px}
+ .home-prayer__times{gap:4px;margin-top:11px}
+ .home-prayer__times>div{padding:10px 2px;gap:5px}
+ .home-prayer__times span{font-size:.67rem}
+ .home-prayer__times strong{font-size:.8rem}
+ .home-prayer__note{margin-top:12px;padding:10px;font-size:.72rem}
+ .home-app__tools,.home-app__articles{padding:24px 17px}
+ .home-app__section-title{margin-bottom:18px}
+ .home-app__section-title h2{font-size:1.36rem}
+ .home-app__tool-grid{gap:18px 6px}
+ .home-app__tool-icon{width:clamp(47px,13vw,55px);height:clamp(47px,13vw,55px)}
+ body:not(:has(.home-app)) .page-intro{padding:18px 0 24px;margin-bottom:23px}
+ body:not(:has(.home-app)) .page-intro h1{font-size:clamp(1.85rem,7.2vw,2.45rem)}
+ body:not(:has(.home-app)) .article-card{border-radius:15px}
+}
