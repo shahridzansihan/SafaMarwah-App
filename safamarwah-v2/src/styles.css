@@ -330,3 +330,13 @@ body:has(.home-app) .site-footer{margin-top:0}
 .home-app__hero{background-image:linear-gradient(90deg,rgba(0,35,28,.94),rgba(0,47,38,.68) 53%,rgba(0,45,35,.27)),url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg")}
 .home-app__headline h1{max-width:750px}
 @media(max-width:767px){.home-app__brand{max-width:min(66vw,310px);min-height:54px}.home-app__brand img{max-height:75px}.home-app__hero{background-image:linear-gradient(90deg,rgba(0,35,28,.91),rgba(0,47,38,.69)),url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg")}}
+
+
+/* Prayer widget controls matching the approved hybrid mockup */
+.home-prayer__refresh{display:grid;place-items:center;flex:none;width:46px;height:46px;border:1px solid rgba(214,183,122,.48);border-radius:13px;color:#e5c991;background:rgba(255,255,255,.08)}
+.home-prayer__refresh:hover{background:rgba(255,255,255,.16)}
+.home-prayer__cities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:18px;padding:5px;border:1px solid rgba(214,183,122,.45);border-radius:14px;background:rgba(255,255,255,.12)}
+.home-prayer__cities button{min-height:46px;border:0;border-radius:10px;background:transparent;color:#fff;font:inherit;font-size:.95rem;font-weight:700}
+.home-prayer__cities button.is-active{background:#faf8f3;color:#005143;box-shadow:0 2px 9px rgba(0,25,19,.16)}
+.home-prayer__note strong{color:#003d32}
+@media(max-width:767px){.home-prayer__cities button{min-height:44px}}
