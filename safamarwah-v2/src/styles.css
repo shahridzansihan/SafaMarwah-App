@@ -348,3 +348,35 @@ body:has(.home-app) .site-footer{margin-top:0}
 .home-prayer__times span{font-size:.8rem;color:#e9d8ad}
 .home-prayer__times strong{font-size:clamp(.9rem,1.7vw,1.25rem);color:#fff}
 @media(max-width:390px){.home-prayer__times{gap:4px}.home-prayer__times>div{padding:12px 2px}.home-prayer__times span{font-size:.69rem}.home-prayer__times strong{font-size:.85rem}}
+
+
+/* Hybrid Premium: final homepage spacing and adaptive cards */
+.home-app__hero{min-height:0;padding-top:clamp(22px,3.8vw,48px);padding-bottom:clamp(40px,5vw,68px);background-position:center top}
+.home-app__headline{margin:clamp(68px,8vw,112px) 0 clamp(45px,6vw,78px)}
+.home-app__shortcuts{margin-inline:auto;margin-bottom:clamp(22px,3vw,35px)}
+.home-app__shortcuts a,.home-app__tool-grid a{min-width:0;overflow-wrap:anywhere;text-decoration:none}
+.home-app__tool-grid{margin-inline:auto;justify-items:center}
+.home-app__tool-grid a{width:100%;max-width:110px}
+.home-app__tools,.home-app__articles{padding-top:clamp(32px,4vw,50px);padding-bottom:clamp(32px,4vw,50px)}
+.home-app__articles .article-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,26px)}
+.home-app__articles .article-card{min-width:0;height:100%;display:flex;flex-direction:column}
+.home-app__articles .article-card__readmore{margin-top:auto}
+.home-app__section-title h2{line-height:1.25}
+@media(min-width:768px) and (max-width:1199px){
+ .home-app__hero{padding-inline:clamp(30px,6vw,70px)}
+ .home-app__articles .article-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .home-app__headline{margin-top:85px}
+}
+@media(max-width:767px){
+ .home-app__hero{padding:22px 18px 30px}
+ .home-app__headline{margin:clamp(58px,14vw,82px) 0 clamp(36px,9vw,55px)}
+ .home-app__headline h1{font-size:clamp(2.25rem,9vw,3.4rem);line-height:1.12}
+ .home-app__shortcuts{gap:8px}
+ .home-app__tools,.home-app__articles{padding:32px 18px}
+ .home-app__articles .article-grid{grid-template-columns:minmax(0,1fr);gap:20px}
+ .home-app__section-title{align-items:flex-start;gap:10px;margin-bottom:22px}
+ .home-app__section-title h2{font-size:clamp(1.3rem,5vw,1.55rem)}
+ .home-app__tool-grid{gap:22px 7px}
+ .home-app__tool-icon{width:clamp(48px,14vw,58px);height:clamp(48px,14vw,58px)}
+}
+@media(prefers-reduced-motion:reduce){.home-app__shortcut-icon,.home-app__tool-icon{transition:none!important}}
