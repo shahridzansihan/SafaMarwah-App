@@ -112,3 +112,34 @@ test("Blogger pagination avoids duplicate articles across pages", async ({ page 
   await expect(page.getByRole("heading", { name: "post-12" })).toHaveCount(1);
   await expect(page.getByRole("heading", { name: "post-13" })).toHaveCount(1);
 });
+
+test("Blogger label pagination stays within selected category", async ({ page }) => {
+  const requested: string[] = [];
+  await page.route(/safamarwah\.my\/feeds\/posts\/default/, async route => {
+    const url = new URL(route.request().url());
+    const callback = url.searchParams.get("callback") || "callback";
+    const label = decodeURIComponent(url.pathname.split("/-/")[1] || "");
+    const start = Number(url.searchParams.get("start-index") || 1);
+    if (label) requested.push(label + ":" + start);
+    const entry = (id: string) => ({
+      id: { $t: id }, title: { $t: id },
+      category: [{ term: "Doa" }],
+      content: { $t: "<p>Doa content</p>" },
+      link: [{ rel: "alternate", href: "https://www.safamarwah.my/2026/10/" + id + ".html" }]
+    });
+    const entries = label === "Doa"
+      ? (start === 1 ? Array.from({ length: 12 }, (_, i) => entry("doa-" + i)) : [entry("doa-12")])
+      : [entry("general")];
+    await route.fulfill({
+      status: 200, contentType: "application/javascript",
+      body: callback + "(" + JSON.stringify({ feed: { category: [{ term: "Doa" }], entry: entries } }) + ");"
+    });
+  });
+  await page.goto("/#/blog");
+  await page.getByRole("button", { name: "Doa", exact: true }).click();
+  await expect(page.locator(".article-grid .article-card")).toHaveCount(12);
+  await page.getByRole("button", { name: "Muat Lagi Artikel" }).click();
+  await expect(page.locator(".article-grid .article-card")).toHaveCount(13);
+  expect(requested).toContain("Doa:1");
+  expect(requested).toContain("Doa:13");
+});
