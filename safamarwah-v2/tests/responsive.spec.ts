@@ -143,3 +143,26 @@ test("Blogger label pagination stays within selected category", async ({ page })
   expect(requested).toContain("Doa:1");
   expect(requested).toContain("Doa:13");
 });
+
+
+test("homepage keeps approved responsive article cards and image ratio",async({page})=>{
+ const viewport=page.viewportSize()!;
+ await page.route(/safamarwah\\.my\\/feeds\\/posts\\/default/,async route=>{
+  const url=new URL(route.request().url());
+  const callback=url.searchParams.get("callback")||"callback";
+  const entry=(id:number)=>({id:{$t:"home-"+id},title:{$t:"Artikel "+id},content:{$t:"<p>Ringkasan artikel Umrah.</p>"},link:[{rel:"alternate",href:"https://www.safamarwah.my/2026/10/home-"+id+".html"}]});
+  await route.fulfill({status:200,contentType:"application/javascript",body:callback+"("+JSON.stringify({feed:{entry:[entry(1),entry(2),entry(3)]}})+");"});
+ });
+ await page.goto("/#/");
+ await expect(page.locator(".home-app__articles .article-card")).toHaveCount(3);
+ const grid=page.locator(".home-app__articles .article-grid");
+ const cols=await grid.evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").filter(Boolean).length);
+ expect(cols).toBe(viewport.width>=1200?3:viewport.width>=768?2:1);
+ const ratio=await page.locator(".home-app__articles .article-card__image").first().evaluate(el=>{
+  const box=el.getBoundingClientRect();return box.width/box.height;
+ });
+ expect(ratio).toBeGreaterThan(1.30);
+ expect(ratio).toBeLessThan(1.37);
+ const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+ expect(overflow).toBeLessThanOrEqual(1);
+});
