@@ -28,7 +28,7 @@ function SaudiClock(){
 export function Home(){return <Layout>
   <div className="home-app">
     <section className="home-app__hero" aria-labelledby="home-title">
-      <div className="home-app__top"><span className="home-app__brand">Safa<span>Marwah</span><small>Menelusuri Ilmu, Menghayati Ibadah</small></span><span className="home-app__settings" aria-label="Identiti aplikasi"><Settings size={23} aria-hidden="true"/></span></div>
+      <div className="home-app__top"><Link to="/" className="home-app__brand" aria-label="SafaMarwah — Utama"><img src="https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/header-logo.png" alt="SafaMarwah" loading="eager" decoding="async"/></Link><Link to="/panduan" className="home-app__settings" aria-label="Buka panduan"><Settings size={23} aria-hidden="true"/></Link></div>
       <div className="home-app__headline"><p>PERJALANAN UMRAH ANDA</p><h1 id="home-title">Perjalanan Umrah Anda <em>Bermula di Sini</em></h1><p className="home-app__description">Panduan lengkap, sahih dan mudah difahami untuk setiap langkah ibadah anda.</p></div>
       <nav className="home-app__shortcuts" aria-label="Akses pantas">{shortcuts.map(({title,to,Icon})=><Link key={title} to={to}><span className="home-app__shortcut-icon"><Icon size={27} strokeWidth={1.8}/></span><span>{title}</span></Link>)}</nav>
       <SaudiClock/>
