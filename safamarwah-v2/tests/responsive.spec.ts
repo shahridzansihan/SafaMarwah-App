@@ -166,3 +166,25 @@ test("homepage keeps approved responsive article cards and image ratio",async({p
  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
  expect(overflow).toBeLessThanOrEqual(1);
 });
+
+
+test("inner-page article grid follows mobile tablet and desktop breakpoints",async({page})=>{
+ await page.route("**/feeds/posts/default**",async route=>{
+  const url=new URL(route.request().url());
+  const callback=url.searchParams.get("callback")||"callback";
+  const entry=(id:number)=>({id:{$t:"inner-"+id},title:{$t:"Panduan "+id},content:{$t:"<p>Artikel panduan Umrah.</p>"},link:[{rel:"alternate",href:"https://www.safamarwah.my/2026/10/inner-"+id+".html"}]});
+  await route.fulfill({status:200,contentType:"application/javascript",body:callback+"("+JSON.stringify({feed:{category:[{term:"Panduan"}],entry:[entry(1),entry(2),entry(3)]}})+");"});
+ });
+ for(const viewport of [{width:390,height:844,columns:1},{width:820,height:1180,columns:2},{width:1180,height:820,columns:2},{width:1440,height:900,columns:3}]){
+  await page.setViewportSize({width:viewport.width,height:viewport.height});
+  await page.goto("/#/blog");
+  await expect(page.locator(".article-grid .article-card")).toHaveCount(3);
+  const columns=await page.locator(".article-grid").first().evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(" ").filter(Boolean).length);
+  expect(columns,"viewport "+viewport.width+"x"+viewport.height).toBe(viewport.columns);
+  const ratio=await page.locator(".article-card__image").first().evaluate(el=>{const b=el.getBoundingClientRect();return b.width/b.height});
+  expect(ratio).toBeGreaterThan(1.30);
+  expect(ratio).toBeLessThan(1.37);
+  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(1);
+ }
+});
