@@ -156,3 +156,13 @@
 .topic-empty{padding:36px 20px;text-align:center;border:1px dashed rgba(0,61,50,.2);border-radius:12px;color:#526a5d}
 .topic-empty button{display:inline-block;margin-left:8px;color:#006451;font-weight:700;text-decoration:underline}
 @media(max-width:767px){.topic-search{padding:15px;gap:10px}.topic-search label{width:100%}.topic-search input{flex-basis:100%}.topic-search span{margin-left:0}}
+
+/* v2.8 loading and connection feedback */
+.connection-notice{position:relative;z-index:80;padding:10px 18px;text-align:center;background:#fff0d5;color:#6b4b16;border-bottom:1px solid #dfc58e;font-size:.86rem;font-weight:650}
+.feed-skeleton-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.2vw,25px);margin:0 0 20px}
+.feed-skeleton{overflow:hidden;padding:0 0 22px;border:1px solid rgba(0,61,50,.08);border-radius:13px;background:#fff}
+.feed-skeleton__image{width:100%;aspect-ratio:4/3;background:#e8efe9}
+.feed-skeleton__line{height:13px;margin:18px 20px 0;border-radius:5px;background:#e8efe9}
+.feed-skeleton__line.short{width:55%}
+@media(prefers-reduced-motion:no-preference){.feed-skeleton__image,.feed-skeleton__line{animation:safa-pulse 1.7s ease-in-out infinite alternate}@keyframes safa-pulse{to{opacity:.42}}}
+@media(max-width:767px){.feed-skeleton-grid{grid-template-columns:1fr}.feed-skeleton-grid .feed-skeleton:nth-child(n+2){display:none}}
