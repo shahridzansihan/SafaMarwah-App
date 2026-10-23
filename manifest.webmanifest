@@ -1,0 +1,19 @@
+{
+  "name": "SafaMarwah — Panduan Umrah & Haji",
+  "short_name": "SafaMarwah",
+  "description": "Panduan dan ilmu untuk perjalanan Umrah dan Haji",
+  "lang": "ms",
+  "start_url": "./#/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FAF8F3",
+  "theme_color": "#003D32",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
