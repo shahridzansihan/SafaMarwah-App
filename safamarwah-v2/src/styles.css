@@ -405,3 +405,20 @@ body:has(.home-app) .site-footer{margin-top:0}
  .app-more-menu a:hover,.app-more-menu a:focus-visible{background:#075646}
 }
 @media(min-width:768px){.app-more-menu{display:none}}
+
+
+/* Unified editorial layout for all inner pages, without nested background cards */
+body:not(:has(.home-app)) .page-intro{max-width:100%;padding:clamp(26px,4vw,52px) 0 clamp(24px,3vw,38px);margin-bottom:clamp(24px,3vw,40px);border-bottom:1px solid rgba(0,61,50,.14);background:transparent}
+body:not(:has(.home-app)) .page-intro h1{max-width:900px;font-size:clamp(2rem,4.4vw,3.25rem);line-height:1.15;letter-spacing:-.035em;text-wrap:balance}
+body:not(:has(.home-app)) .page-intro>p:not(.page-hero__eyebrow){max-width:750px;line-height:1.7;color:#65756c}
+body:not(:has(.home-app)) .article-grid{align-items:stretch}
+body:not(:has(.home-app)) .article-card{height:100%;min-width:0}
+body:not(:has(.home-app)) .article-card__image{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;position:relative;border-radius:14px}
+body:not(:has(.home-app)) .article-card__image::before,body:not(:has(.home-app)) .article-card__image::after{display:none!important}
+body:not(:has(.home-app)) .article-card__image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+body:not(:has(.home-app)) .article-card__avatar,body:not(:has(.home-app)) .article-card__avatar img{width:32px;height:32px;min-width:32px;border-radius:50%;object-fit:cover;overflow:hidden}
+body:not(:has(.home-app)) .article-card__readmore{margin-top:auto}
+body:not(:has(.home-app)) .article-card__snippet{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;line-height:1.65}
+@media(min-width:768px) and (max-width:1199px){body:not(:has(.home-app)) .article-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1200px){body:not(:has(.home-app)) .article-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:767px){body:not(:has(.home-app)) .page-intro{padding-top:18px}body:not(:has(.home-app)) .article-grid{grid-template-columns:minmax(0,1fr)}}
