@@ -1,12 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {BookOpen,BookOpenText,ArrowRight,Settings,Sun,RefreshCw} from "lucide-react";
+import {BookOpen,BookOpenText,ArrowRight,Settings,Sun,RefreshCw,Search,ClipboardCheck} from "lucide-react";
 import {Layout} from "../components/SiteLayout";
 import {FeedGrid} from "../components/BlogFeed";
 
 const shortcuts=[
   {title:"Panduan Umrah",to:"/panduan",Icon:BookOpen},
-  {title:"Doa & Zikir",to:"/doa",Icon:Sun}
+  {title:"Doa & Zikir",to:"/doa",Icon:Sun},
+  {title:"Checklist Perjalanan",to:"/panduan",Icon:ClipboardCheck},
+  {title:"Carian",to:"/blog",Icon:Search}
 ];
 const tools=[
   {title:"Panduan",to:"/panduan",Icon:BookOpen},
@@ -57,11 +59,11 @@ function SaudiClock(){
   const nextPrayer=timings?prayerEntries.map(([label,key])=>({label,time:timings[key],minutes:Number(timings[key].slice(0,2))*60+Number(timings[key].slice(3,5))})).find(item=>item.minutes>currentMinutes)||{label:"Subuh",time:timings.Fajr,minutes:0}:null;
   return <section className="home-prayer" aria-labelledby="prayer-heading"><div className="home-prayer__head"><div><h2 id="prayer-heading">Waktu Solat</h2><p className="home-prayer__timezone">Waktu Saudi (UTC+3)</p></div><button type="button" className="home-prayer__refresh" onClick={()=>{setNow(new Date());setRefreshKey(value=>value+1)}} aria-label="Segar semula jam Arab Saudi"><RefreshCw size={22} aria-hidden="true"/></button></div><div className="home-prayer__clock"><span>WAKTU SEMASA · {city.toUpperCase()}</span><strong aria-label={`Waktu semasa Arab Saudi ${time}`}>{time}</strong><small>{date}</small></div><div className="home-prayer__cities" role="group" aria-label="Pilih bandar waktu solat"><button type="button" className={city==="Makkah"?"is-active":""} aria-pressed={city==="Makkah"} onClick={()=>setCity("Makkah")}>Makkah</button><button type="button" className={city==="Madinah"?"is-active":""} aria-pressed={city==="Madinah"} onClick={()=>setCity("Madinah")}>Madinah</button></div>{nextPrayer&&<div className="home-prayer__next"><span>SOLAT SETERUSNYA · {nextPrayer.label}</span><strong>{nextPrayer.time}</strong></div>}{timings&&<div className="home-prayer__times" aria-label={`Jadual solat ${city}`}>{[["Subuh","Fajr"],["Zohor","Dhuhr"],["Asar","Asr"],["Maghrib","Maghrib"],["Isyak","Isha"]].map(([label,key])=><div key={key}><span>{label}</span><strong>{timings[key]}</strong></div>)}</div>}<div className="home-prayer__note" role="status"><Sun size={19} aria-hidden="true"/><p><strong>{city}</strong> · {loading?"Sedang mendapatkan jadual waktu solat…":error?timings?"Menggunakan jadual tersimpan untuk hari ini kerana sambungan tidak tersedia. Sila sahkan dengan masjid setempat.":"Jadual waktu solat tidak dapat dimuatkan. Cuba segar semula apabila ada sambungan internet.":"Waktu solat hari ini daripada AlAdhan API (kaedah Umm Al-Qura, waktu Arab Saudi). Sila semak dengan jadual masjid setempat kerana waktu pengiraan boleh berbeza."} Jam di atas menunjukkan waktu semasa Arab Saudi.</p></div></section>
 }
-export function Home(){return <Layout>
+export function Home(){const [search,setSearch]=React.useState("");return <Layout>
   <div className="home-app">
     <section className="home-app__hero" aria-labelledby="home-title">
       <div className="home-app__top"><Link to="/" className="home-app__brand" aria-label="SafaMarwah — Utama"><img src="https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/header-logo.png" alt="SafaMarwah" loading="eager" decoding="async"/></Link><Link to="/panduan" className="home-app__settings" aria-label="Buka panduan"><Settings size={23} aria-hidden="true"/></Link></div>
-      <div className="home-app__headline"><p>PERJALANAN UMRAH ANDA</p><h1 id="home-title">Bermula <em>di Sini</em></h1><p className="home-app__description">Panduan lengkap, sahih dan mudah difahami untuk setiap langkah ibadah anda.</p></div>
+      <div className="home-app__headline"><p>PERJALANAN UMRAH ANDA</p><h1 id="home-title">Bermula <em>di Sini</em></h1><p className="home-app__description">Panduan lengkap, sahih dan mudah difahami untuk setiap langkah ibadah anda.</p><form className="home-app__search" role="search" onSubmit={event=>{event.preventDefault();if(search.trim())window.location.hash=`#/blog?q=${encodeURIComponent(search.trim())}`}}><Search size={19} aria-hidden="true"/><input aria-label="Cari panduan, doa atau artikel" placeholder="Cari panduan, doa atau artikel..." value={search} onChange={event=>setSearch(event.target.value)}/><button type="submit" aria-label="Cari"><ArrowRight size={20}/></button></form></div>
       <nav className="home-app__shortcuts" aria-label="Akses pantas">{shortcuts.map(({title,to,Icon})=><Link key={title} to={to}><span className="home-app__shortcut-icon"><Icon size={27} strokeWidth={1.8}/></span><span>{title}</span></Link>)}</nav>
       <SaudiClock/>
     </section>
