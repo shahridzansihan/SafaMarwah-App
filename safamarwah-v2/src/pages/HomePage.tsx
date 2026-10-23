@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {BookOpen,BookOpenText,ClipboardCheck,Search,HelpCircle,Map,Globe,ArrowRight,Settings,Sun,Clock3} from "lucide-react";
+import {BookOpen,BookOpenText,ClipboardCheck,Search,HelpCircle,Map,Globe,ArrowRight,Settings,Sun,Clock3,RefreshCw} from "lucide-react";
 import {Layout} from "../components/SiteLayout";
 import {FeedGrid} from "../components/BlogFeed";
 
@@ -20,10 +20,11 @@ const tools=[
 ];
 function SaudiClock(){
   const [now,setNow]=React.useState(()=>new Date());
+  const [city,setCity]=React.useState<"Makkah"|"Madinah">("Makkah");
   React.useEffect(()=>{const id=window.setInterval(()=>setNow(new Date()),1000);return()=>window.clearInterval(id)},[]);
   const time=new Intl.DateTimeFormat("ms-MY",{timeZone:"Asia/Riyadh",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(now);
   const date=new Intl.DateTimeFormat("ms-MY",{timeZone:"Asia/Riyadh",day:"numeric",month:"long",year:"numeric"}).format(now);
-  return <section className="home-prayer" aria-labelledby="prayer-heading"><div className="home-prayer__head"><div><p className="section-eyebrow">WAKTU ARAB SAUDI (UTC+3)</p><h2 id="prayer-heading">Waktu Solat</h2></div><Clock3 aria-hidden="true" size={27}/></div><div className="home-prayer__clock"><span>WAKTU SEMASA · ARAB SAUDI</span><strong aria-label={`Waktu semasa Arab Saudi ${time}`}>{time}</strong><small>{date}</small></div><div className="home-prayer__note"><Sun size={19} aria-hidden="true"/><p>Jadual waktu solat Makkah dan Madinah akan dipaparkan selepas integrasi sumber waktu solat disahkan. Jam di atas menunjukkan waktu semasa Arab Saudi.</p></div></section>
+  return <section className="home-prayer" aria-labelledby="prayer-heading"><div className="home-prayer__head"><div><p className="section-eyebrow">WAKTU ARAB SAUDI (UTC+3)</p><h2 id="prayer-heading">Waktu Solat</h2></div><button type="button" className="home-prayer__refresh" onClick={()=>setNow(new Date())} aria-label="Segar semula jam Arab Saudi"><RefreshCw size={22} aria-hidden="true"/></button></div><div className="home-prayer__clock"><span>WAKTU SEMASA · ARAB SAUDI</span><strong aria-label={`Waktu semasa Arab Saudi ${time}`}>{time}</strong><small>{date}</small></div><div className="home-prayer__cities" role="group" aria-label="Pilih bandar waktu solat"><button type="button" className={city==="Makkah"?"is-active":""} aria-pressed={city==="Makkah"} onClick={()=>setCity("Makkah")}>Makkah</button><button type="button" className={city==="Madinah"?"is-active":""} aria-pressed={city==="Madinah"} onClick={()=>setCity("Madinah")}>Madinah</button></div><div className="home-prayer__note"><Sun size={19} aria-hidden="true"/><p><strong>{city}</strong> · Jadual waktu solat sedang disediakan. Waktu solat belum dipaparkan sehingga data daripada sumber yang disahkan tersedia. Jam di atas menunjukkan waktu semasa Arab Saudi, bukan waktu solat.</p></div></section>
 }
 export function Home(){return <Layout>
   <div className="home-app">
