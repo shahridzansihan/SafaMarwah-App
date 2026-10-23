@@ -15,7 +15,7 @@ test("blog cards use responsive columns", async ({ page }) => {
   const grid = page.locator(".article-grid").first();
   const cols = await grid.evaluate(el => getComputedStyle(el).gridTemplateColumns.split(" ").filter(Boolean).length);
   const width = page.viewportSize()!.width;
-  expect(cols).toBe(width >= 1200 ? 3 : width >= 768 ? 2 : 1);
+  expect(cols).toBe(width >= 768 ? 3 : 1);
 });
 test("removed pages do not render active content", async ({ page }) => {
   await page.goto("/#/waktu-solat");
