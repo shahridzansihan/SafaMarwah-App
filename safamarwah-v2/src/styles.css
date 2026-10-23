@@ -262,3 +262,49 @@
 @media(max-width:767px){.home-quick-nav{align-items:stretch;flex-direction:column;gap:12px;padding:15px}.home-quick-nav__links{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.home-quick-nav__links a{flex-direction:column;align-items:flex-start;justify-content:space-between;padding:12px 10px;min-height:76px;font-size:.77rem;line-height:1.35}.home-quick-nav__links a span{align-self:flex-end}}
 @media(max-width:360px){.home-quick-nav__links{grid-template-columns:1fr}.home-quick-nav__links a{min-height:44px;flex-direction:row;align-items:center}}
 @media(prefers-reduced-motion:reduce){.home-quick-nav__links a{transition:none}}
+
+
+/* Approved visual mockup: SafaMarwah Hybrid Premium homepage */
+body:has(.home-app){background:#002f27}
+body:has(.home-app) .site-header{display:none}
+body:has(.home-app) main.container-page{width:100%;max-width:none;padding:0!important}
+.home-app{color:#faf8f3;background:#002f27;overflow:hidden}
+.home-app__hero{position:relative;isolation:isolate;min-height:720px;padding:clamp(25px,5vw,60px) max(24px,calc((100vw - 1120px)/2));background:linear-gradient(90deg,rgba(0,35,28,.94),rgba(0,47,38,.68) 53%,rgba(0,45,35,.27)),url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg") center/cover}
+.home-app__top{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.home-app__brand{font-family:Georgia,serif;font-size:clamp(1.5rem,3vw,2.3rem);font-weight:700;line-height:1.1;text-shadow:0 2px 15px #001d17}
+.home-app__brand span{color:#e6c991}
+.home-app__brand small{display:block;font:500 .55rem Inter,system-ui,sans-serif;letter-spacing:.07em;color:#e9d8ad;margin-top:6px}
+.home-app__settings{color:#d6b77a}
+.home-app__headline{max-width:660px;margin:clamp(80px,11vw,145px) 0 85px}
+.home-app__headline>p:first-child{font-size:.76rem;letter-spacing:.19em;font-weight:800;color:#e6c991}
+.home-app__headline h1{font-family:Georgia,serif;font-size:clamp(2.7rem,6.2vw,5.4rem);line-height:1.09;letter-spacing:-.035em;font-weight:700;margin:14px 0 24px;text-shadow:0 2px 15px #001d1766}
+.home-app__headline h1 em{font-style:normal;color:#e6c991}
+.home-app__description{font-size:clamp(1rem,1.8vw,1.25rem);line-height:1.7;max-width:470px;color:#f6f4ed}
+.home-app__shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;max-width:660px;margin-bottom:36px}
+.home-app__shortcuts a,.home-app__tool-grid a{display:flex;flex-direction:column;align-items:center;gap:11px;text-align:center;font-size:.88rem;line-height:1.35}
+.home-app__shortcut-icon,.home-app__tool-icon{display:grid;place-items:center;flex:none;width:68px;height:68px;border:1px solid rgba(214,183,122,.55);border-radius:50%;color:#e6c991;background:linear-gradient(135deg,rgba(6,109,85,.95),rgba(0,54,44,.94));box-shadow:inset 0 1px 8px rgba(255,255,255,.13),0 5px 20px #001e1944}
+.home-app__shortcuts a:hover .home-app__shortcut-icon,.home-app__tool-grid a:hover .home-app__tool-icon{background:#08745c}
+.home-prayer{max-width:860px;margin:0 auto;border:1px solid rgba(214,183,122,.45);border-radius:22px;background:linear-gradient(145deg,rgba(5,85,68,.88),rgba(0,50,41,.86));padding:clamp(20px,3vw,32px);box-shadow:0 14px 45px #001b1755;backdrop-filter:blur(12px)}
+.home-prayer__head{display:flex;align-items:center;justify-content:space-between;color:#e5c991}
+.home-prayer__head h2{font-size:1.4rem;color:#fff;font-weight:650}
+.home-prayer .section-eyebrow{color:#d6b77a;margin-bottom:7px}
+.home-prayer__clock{display:flex;flex-direction:column;align-items:center;gap:12px;border:1px solid rgba(214,183,122,.55);border-radius:18px;margin-top:20px;padding:24px 15px;background:#003b30a8}
+.home-prayer__clock span{font-size:.72rem;font-weight:750;letter-spacing:.12em;color:#e5c991}
+.home-prayer__clock strong{font-size:clamp(2.4rem,6vw,4rem);letter-spacing:.035em;font-variant-numeric:tabular-nums;line-height:1.2}
+.home-prayer__clock small{font-size:.84rem;color:#e1e9df}
+.home-prayer__note{display:flex;align-items:flex-start;gap:13px;background:#faf8f3;color:#315447;border-radius:15px;padding:18px;margin-top:17px;font-size:.88rem;line-height:1.65}
+.home-prayer__note p{margin:0}
+.home-prayer__note svg{flex:none;color:#ae8641}
+.home-app__tools,.home-app__articles{max-width:1180px;margin:0 auto;padding:clamp(35px,5vw,65px) 28px}
+.home-app__section-title{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:27px}
+.home-app__section-title h2{font:700 clamp(1.5rem,3vw,2rem) Georgia,serif;color:#e8ca91}
+.home-app__section-title a{display:inline-flex;align-items:center;gap:6px;color:#e8ca91;font-size:.88rem;white-space:nowrap}
+.home-app__tool-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px 18px;max-width:660px}
+.home-app__tool-icon{width:65px;height:65px;border-radius:16px}
+.home-app__articles .article-card{background:#faf8f3;border-radius:16px;overflow:hidden;color:#25332f;padding-bottom:18px}
+.home-app__articles .article-card>*:not(.article-card__image){margin-left:18px;margin-right:18px}
+.home-app__articles .article-card__image{border-radius:0;margin-bottom:16px}
+.home-app__articles .article-card__readmore{color:#fff}
+body:has(.home-app) .site-footer{margin-top:0}
+@media(max-width:767px){.home-app__hero{padding:28px 22px 34px;min-height:0;background-position:57% top}.home-app__headline{margin:105px 0 75px}.home-app__headline h1{font-size:clamp(2.55rem,10vw,4rem)}.home-app__description{font-size:1.04rem}.home-app__shortcuts{gap:8px;margin-bottom:30px}.home-app__shortcuts a{font-size:.75rem}.home-app__shortcut-icon{width:59px;height:59px}.home-prayer{padding:18px;border-radius:19px}.home-app__tools,.home-app__articles{padding:35px 22px}.home-app__tool-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:25px 8px}.home-app__tool-grid a{font-size:.72rem}.home-app__tool-icon{width:58px;height:58px}.home-app__section-title h2{font-size:1.5rem}}
+@media(max-width:390px){.home-app__shortcut-icon{width:52px;height:52px}.home-app__tool-icon{width:50px;height:50px}.home-app__shortcuts a{font-size:.69rem}.home-app__tool-grid a{font-size:.67rem}}
