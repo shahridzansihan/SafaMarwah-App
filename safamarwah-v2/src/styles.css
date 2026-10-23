@@ -166,3 +166,10 @@
 .feed-skeleton__line.short{width:55%}
 @media(prefers-reduced-motion:no-preference){.feed-skeleton__image,.feed-skeleton__line{animation:safa-pulse 1.7s ease-in-out infinite alternate}@keyframes safa-pulse{to{opacity:.42}}}
 @media(max-width:767px){.feed-skeleton-grid{grid-template-columns:1fr}.feed-skeleton-grid .feed-skeleton:nth-child(n+2){display:none}}
+
+/* v2.9 responsive QA and keyboard accessibility */
+:where(a,button,input):focus-visible{outline:3px solid #b68b38;outline-offset:3px}
+.site-menu-toggle,.article-filters button,.btn-primary{touch-action:manipulation}
+@media(min-width:768px) and (max-width:1024px){.site-nav{gap:16px}.site-links{gap:clamp(9px,1.5vw,18px)}.site-links a{font-size:clamp(.76rem,1.4vw,.9rem)}.site-brand{font-size:1.3rem}}
+@media(max-width:767px){.page-hero .page-heading{overflow-wrap:anywhere}.article-card__title{overflow-wrap:anywhere}.footer-inner{gap:26px}.site-menu-toggle{min-height:44px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
