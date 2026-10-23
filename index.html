@@ -3326,4 +3326,24 @@ html body .app #main .sm63-editorial-panel,
 html body .app #main .sm63-editorial-panel .dash-section{background:transparent!important;box-shadow:none!important}
 html body .app .bottom,html body .app .bottom-inner{background:#14382E!important}
 html body .app #main .page-head{background:transparent!important}
+</style><style id="sm-article-routes-true-14382e-20261023">
+/* Fix remaining near-black canvas on article index and single article routes.
+   Only outer page surfaces change; ivory article cards remain untouched. */
+html body:not(:has(.sm53-hero)),
+html body:not(:has(.sm53-hero)) .app,
+html body:not(:has(.sm53-hero)) .app #main,
+html body:not(:has(.sm53-hero)) .app #main.main,
+html body:not(:has(.sm53-hero)) .app #sm-articles-content,
+html body:not(:has(.sm53-hero)) .app #sm-articles-results,
+html body:not(:has(.sm53-hero)) .app .sm-articles,
+html body:not(:has(.sm53-hero)) .app .sm-articles-list{
+background:#14382E!important;background-image:none!important;
+}
+html body:not(:has(.sm53-hero)) .app::before,
+html body:not(:has(.sm53-hero)) #main::before,
+html body:not(:has(.sm53-hero)) #sm-articles-content::before{
+content:none!important;display:none!important;
+}
+html body:not(:has(.sm53-hero)) .app .bottom,
+html body:not(:has(.sm53-hero)) .app .bottom-inner{background:#14382E!important;background-image:none!important}
 </style></body></html>
