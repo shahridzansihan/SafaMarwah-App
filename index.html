@@ -3215,4 +3215,45 @@ background:#00382e!important;background-image:none!important;box-shadow:none!imp
 }
 body.sm-home-view .bottom,
 body:has(.sm53-hero) .bottom{border-top:1px solid rgba(201,169,106,.22)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+</style><style id="sm-global-unified-emerald-background-20261023">
+/* All routes: shared emerald page canvas, including subpages and single posts.
+   Content cards deliberately retain their light reading surfaces for contrast. */
+:root{--sm-unified-page-bg:#00382e}
+html,body,body.dark,html.dark{background:var(--sm-unified-page-bg)!important}
+html body .app,html body.dark .app,
+html body .app #main.main,html body.dark .app #main.main,
+html body .app #main:not(:has(.sm53-hero)),
+html body .app .main,
+html body .app .content,
+html body .app .page-content{
+background-color:var(--sm-unified-page-bg)!important;
+background-image:none!important;
+}
+html body .app #main.main{min-height:calc(100dvh - 160px)}
+/* Keep homepage Kaabah image on its dedicated shared image layer. */
+html body:has(.sm53-hero) .app::before{background-color:transparent}
+/* Non-home headers, section titles and navigation use the same emerald canvas. */
+html body:not(:has(.sm53-hero)) .top,
+html body:not(:has(.sm53-hero)) .page-head,
+html body .bottom,html body .bottom-inner,
+html body.dark .bottom,html body.dark .bottom-inner{
+background-color:var(--sm-unified-page-bg)!important;
+background-image:none!important;
+}
+html body .bottom{border-top:1px solid rgba(201,169,106,.24)!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html body .bottom button{color:#b7c5ba!important}
+html body .bottom button.active{color:#f1d59d!important}
+html body:not(:has(.sm53-hero)) #main>.page-head,
+html body:not(:has(.sm53-hero)) #main>.section-title,
+html body:not(:has(.sm53-hero)) #main>.section-heading{color:#f1d59d!important}
+html body:not(:has(.sm53-hero)) #main>.page-head h1,
+html body:not(:has(.sm53-hero)) #main>.section-title h2,
+html body:not(:has(.sm53-hero)) #main>.section-heading h2{color:#f1d59d!important}
+html body:not(:has(.sm53-hero)) #main>.page-head .back{background:rgba(255,255,255,.10)!important;color:#fff4d7!important;border-color:rgba(201,169,106,.3)!important}
+/* Keep all article readers, forms, article cards, and information panels legible. */
+html body #main .sm-article-reader,
+html body #main .card,
+html body #main .step,
+html body #main .sm-article-tile,
+html body #main .sm-home-editorial-card{color:#173b31}
 </style></body></html>
