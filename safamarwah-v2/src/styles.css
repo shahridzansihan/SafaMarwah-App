@@ -633,3 +633,55 @@ html,body,#root{min-height:100%;background:#002f27}
  .article-card__image{border-radius:0!important}
  .feed-pagination__count{color:#cad8cf}
 }
+
+
+/* Homepage article cards: retain the exact editorial stack from approved screenshot.
+   Scope exclusively to homepage; Blog listing remains unchanged. */
+.home-app__articles .article-card{
+  display:flex;flex-direction:column;gap:0;
+  background:#faf8f3;color:#25332f;border-radius:20px;
+  padding:0 0 20px;overflow:hidden;
+  box-shadow:0 8px 26px rgba(0,20,15,.14);
+}
+.home-app__articles .article-card__image{
+  display:block;width:100%;aspect-ratio:4/3;margin:0 0 18px;
+  border-radius:0;overflow:hidden;
+}
+.home-app__articles .article-card__image img{
+  width:100%;height:100%;object-fit:cover;object-position:center;
+}
+.home-app__articles .article-card>*:not(.article-card__image){
+  margin-left:18px;margin-right:18px;
+}
+.home-app__articles .article-card__labels{margin-bottom:13px}
+.home-app__articles .article-card__byline{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:14px;min-height:32px;color:#73817b;
+}
+.home-app__articles .article-card__author{color:#25332f;font-weight:700}
+.home-app__articles .article-card__title{
+  display:block;overflow:visible;
+  font-size:clamp(1.07rem,1.5vw,1.23rem);
+  line-height:1.35;font-weight:750;
+  min-height:0;margin-bottom:14px;
+}
+.home-app__articles .article-card__snippet{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;
+  overflow:hidden;min-height:0;margin-bottom:20px;
+  color:#758179;font-size:.94rem;line-height:1.6;
+}
+.home-app__articles .article-card__readmore{
+  display:inline-flex;align-self:flex-start;
+  margin-top:auto;min-height:42px;
+  padding:10px 17px;background:#003d32;color:#fff;
+  border-radius:10px;font-size:.88rem;font-weight:700;
+}
+@media(max-width:767px){
+ .home-app__articles .article-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+ .home-app__articles .article-card{border-radius:18px;padding-bottom:19px}
+ .home-app__articles .article-card__image{aspect-ratio:4/3;margin-bottom:16px}
+ .home-app__articles .article-card>*:not(.article-card__image){margin-left:17px;margin-right:17px}
+ .home-app__articles .article-card__title{font-size:1.11rem;line-height:1.37;margin-bottom:13px}
+ .home-app__articles .article-card__snippet{font-size:.94rem;line-height:1.6;margin-bottom:19px}
+}
