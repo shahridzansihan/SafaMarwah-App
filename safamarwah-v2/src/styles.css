@@ -557,3 +557,9 @@ body:not(:has(.home-app)) .single-article__end>a:not(.btn-primary){color:#e6c991
  .app-bottom-nav{padding-bottom:calc(9px + var(--sm-safe-bottom))}
  .app-more-menu{bottom:calc(77px + var(--sm-safe-bottom))}
 }
+
+/* Only currently supported homepage destinations remain */
+.home-app__shortcuts{grid-template-columns:repeat(2,minmax(0,1fr));max-width:320px;margin-left:auto;margin-right:auto;justify-items:center}
+.home-app__shortcuts a{width:100%;max-width:155px}
+.home-app__tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:320px;justify-items:center}
+@media(max-width:767px){.home-app__shortcuts{max-width:280px}.home-app__tool-grid{max-width:280px}}
