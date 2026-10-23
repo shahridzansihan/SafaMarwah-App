@@ -1,7 +1,7 @@
 import {test,expect} from "@playwright/test";
 test("homepage, navigation and article grid",async({page})=>{
  await page.goto("http://127.0.0.1:4173/");
- await expect(page.getByRole("heading",{name:/Perjalanan Umrah Anda/i})).toBeVisible();
+ await expect(page.getByRole("heading",{name:/Bermula di Sini/i})).toBeVisible();
  await page.getByRole("navigation",{name:"Akses pantas"}).getByRole("link",{name:"Panduan Umrah"}).click();
  await expect(page).toHaveURL(/#\/panduan$/);
  await expect(page.getByRole("heading",{name:"Panduan Umrah"})).toBeVisible();
@@ -40,7 +40,7 @@ test("Saudi clock city selector and refresh remain functional", async ({page}) =
  await page.route("https://api.aladhan.com/v1/timingsByCity/**",route=>route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({code:200,data:{meta:{timezone:"Asia/Riyadh"},timings:{Fajr:"05:00",Dhuhr:"12:10",Asr:"15:20",Maghrib:"18:30",Isha:"20:00"}}})}));
  await page.goto("/#/");
  const widget=page.getByRole("region",{name:"Waktu Solat"});
- await expect(widget.getByText("WAKTU SEMASA · ARAB SAUDI")).toBeVisible();
+ await expect(widget.getByText("WAKTU SEMASA · MAKKAH")).toBeVisible();
  const makkah=widget.getByRole("button",{name:"Makkah"});
  const madinah=widget.getByRole("button",{name:"Madinah"});
  await expect(makkah).toHaveAttribute("aria-pressed","true");
@@ -114,7 +114,7 @@ test("Lainnya closes when tapping outside menu",async({page})=>{
  const more=page.getByRole("navigation",{name:"Navigasi aplikasi"}).getByRole("button",{name:"Lainnya"});
  await more.click();
  await expect(more).toHaveAttribute("aria-expanded","true");
- await page.getByRole("heading",{name:/Perjalanan Umrah Anda/i}).click();
+ await page.getByRole("heading",{name:/Bermula di Sini/i}).click();
  await expect(more).toHaveAttribute("aria-expanded","false");
  await expect(page.getByRole("navigation",{name:"Menu tambahan"})).toHaveCount(0);
 });
