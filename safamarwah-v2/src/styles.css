@@ -250,3 +250,15 @@
 @media(min-width:768px){.tools-grid--hybrid{grid-template-columns:repeat(3,minmax(0,1fr))}.home-guide-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border:0}.home-guide{grid-template-columns:28px minmax(0,1fr) 20px;align-items:start;border-top:1px solid rgba(0,61,50,.15);gap:10px;padding:23px 0}.hero-home__signature{right:36px;bottom:30px}}
 @media(max-width:767px){.hero-home--hybrid{min-height:490px;padding:30px 25px 55px;background-position:55% center}.hero-home__actions{gap:10px}.hero-home__actions a{min-height:46px;padding:11px 15px}.hero-home__signature{right:24px;bottom:20px}.section-head{align-items:start;flex-direction:column;gap:8px}.section-head__description{max-width:none}.home-tool{min-height:155px;padding:22px 24px}.home-tool__index{margin-bottom:14px}}
 @media(prefers-reduced-motion:reduce){.hero-home__actions a,.home-tool,.home-guide__arrow{transition:none}}
+
+
+/* Hybrid v2: familiar app shortcuts with restrained editorial finish */
+.home-quick-nav{display:flex;align-items:center;gap:24px;margin:18px 0 0;padding:18px 22px;border:1px solid rgba(0,61,50,.12);border-radius:16px;background:#fff;box-shadow:0 8px 28px rgba(0,61,50,.035)}
+.home-quick-nav__label{flex:none;color:#8d713f;font-size:.68rem;letter-spacing:.15em;font-weight:750}
+.home-quick-nav__links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;flex:1}
+.home-quick-nav__links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:11px 15px;border-radius:10px;background:#e8efe9;color:#003D32;font-size:.86rem;font-weight:700;transition:background .2s,transform .2s}
+.home-quick-nav__links a:hover{background:#dbe9df;transform:translateY(-2px)}
+.home-quick-nav__links a span{color:#8d713f}
+@media(max-width:767px){.home-quick-nav{align-items:stretch;flex-direction:column;gap:12px;padding:15px}.home-quick-nav__links{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.home-quick-nav__links a{flex-direction:column;align-items:flex-start;justify-content:space-between;padding:12px 10px;min-height:76px;font-size:.77rem;line-height:1.35}.home-quick-nav__links a span{align-self:flex-end}}
+@media(max-width:360px){.home-quick-nav__links{grid-template-columns:1fr}.home-quick-nav__links a{min-height:44px;flex-direction:row;align-items:center}}
+@media(prefers-reduced-motion:reduce){.home-quick-nav__links a{transition:none}}
