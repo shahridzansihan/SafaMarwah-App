@@ -209,3 +209,7 @@
 .single-article__body figure img{display:block;width:100%;height:auto;border-radius:12px;object-fit:contain}
 .single-article__body figcaption{text-align:center;font-size:.8rem;color:#66766d;margin-top:9px;line-height:1.5}
 .single-article__body blockquote{border-left:3px solid #d6b77a;margin:1.7em 0;padding:12px 20px;background:#f0f3ed;border-radius:0 9px 9px 0;font-style:italic}
+
+/* v3.3 — accessible native article sharing */
+.single-article__share{border:1px solid rgba(0,61,50,.2);border-radius:9px;background:#fff;color:#003d32;padding:10px 15px;font:inherit;font-size:.9rem;font-weight:650;cursor:pointer;min-height:44px}
+.single-article__share:hover{background:#e8efe9}
