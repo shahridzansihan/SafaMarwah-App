@@ -65,3 +65,16 @@
 .article-card__snippet{color:#66766d;font-size:.91rem;line-height:1.6;margin:0 0 16px}
 .article-card__readmore{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;gap:10px;min-height:40px;margin-top:auto;padding:9px 15px;background:#003D32;color:#fff;border-radius:9px;font-size:.84rem;font-weight:650;transition:background-color .2s}
 .article-card__readmore:hover{background:#075646}
+
+/* v2.2: balanced article rows and consistent reading rhythm */
+.article-grid{align-items:stretch;row-gap:clamp(30px,4vw,46px)}
+.article-card{height:100%;display:flex;flex-direction:column;align-items:stretch;min-width:0}
+.article-card__image{flex:none;aspect-ratio:4/3;margin-bottom:14px}
+.article-card__byline{min-height:32px;flex-wrap:nowrap;margin-bottom:12px}
+.article-card__title{min-height:0;margin-bottom:10px;text-wrap:pretty}
+.article-card__snippet{margin-bottom:18px;line-height:1.55}
+.article-card__readmore{margin-top:auto}
+.article-card__image img{max-width:100%;object-fit:cover}
+@media(min-width:768px){.article-card__title{min-height:3.9em}.article-card__snippet{min-height:3.1em}}
+@media(max-width:767px){.article-grid{row-gap:34px}.article-card__image{aspect-ratio:16/10}.article-card__title{font-size:1.12rem}}
+@media(max-width:420px){.article-card__byline{gap:7px;font-size:.73rem}}
