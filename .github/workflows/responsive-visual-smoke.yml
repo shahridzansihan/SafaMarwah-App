@@ -4,6 +4,12 @@ on:
     branches:
       - refactor/design-preservation-v1
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - index.html
+      - scripts/visual_smoke.mjs
+      - .github/workflows/responsive-visual-smoke.yml
 jobs:
   visual-smoke:
     runs-on: ubuntu-latest
