@@ -67,3 +67,30 @@ test("five-tab bottom navigation opens and closes Lainnya",async({page})=>{
  await expect(more).toHaveAttribute("aria-expanded","false");
  await expect(page.getByRole("navigation",{name:"Menu tambahan"})).toHaveCount(0);
 });
+
+
+test("Saudi prayer times use same-day cached data when API is unavailable",async({page})=>{
+ const timings={Fajr:"05:12",Dhuhr:"12:22",Asr:"15:32",Maghrib:"18:42",Isha:"20:02"};
+ await page.route("https://api.aladhan.com/v1/timingsByCity/**",route=>route.fulfill({status:200,contentType:"application/json",body:JSON.stringify({code:200,data:{meta:{timezone:"Asia/Riyadh"},timings}})}));
+ await page.goto("/#/");
+ const widget=page.getByRole("region",{name:"Waktu Solat"});
+ await expect(widget.getByText("05:12")).toBeVisible();
+ await page.unrouteAll();
+ await page.route("https://api.aladhan.com/v1/timingsByCity/**",route=>route.abort());
+ await page.reload();
+ await expect(widget.getByText("05:12")).toBeVisible();
+ await expect(widget.getByText(/Menggunakan jadual tersimpan untuk hari ini/)).toBeVisible();
+});
+
+test("Saudi prayer cache does not substitute yesterday's timetable",async({page})=>{
+ await page.addInitScript(()=>{
+  const yesterday=new Date(Date.now()-86400000);
+  const date=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Riyadh",day:"2-digit",month:"2-digit",year:"numeric"}).format(yesterday).replace(/\\//g,"-");
+  localStorage.setItem("safamarwah-prayer-v2:Makkah:"+date,JSON.stringify({Fajr:"01:01",Dhuhr:"02:02",Asr:"03:03",Maghrib:"04:04",Isha:"05:05"}));
+ });
+ await page.route("https://api.aladhan.com/v1/timingsByCity/**",route=>route.abort());
+ await page.goto("/#/");
+ const widget=page.getByRole("region",{name:"Waktu Solat"});
+ await expect(widget.getByText(/Jadual waktu solat tidak dapat dimuatkan/)).toBeVisible();
+ await expect(widget.getByText("01:01")).toHaveCount(0);
+});
