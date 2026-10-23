@@ -51,3 +51,19 @@ test("Saudi clock city selector and refresh remain functional", async ({page}) =
  await widget.getByRole("button",{name:"Segar semula jam Arab Saudi"}).click();
  await expect(widget.getByText(/Jam di atas menunjukkan waktu semasa Arab Saudi/)).toBeVisible();
 });
+
+
+test("five-tab bottom navigation opens and closes Lainnya",async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto("/#/");
+ const bottom=page.getByRole("navigation",{name:"Navigasi aplikasi"});
+ await expect(bottom.getByRole("link")).toHaveCount(4);
+ const more=bottom.getByRole("button",{name:"Lainnya"});
+ await expect(more).toHaveAttribute("aria-expanded","false");
+ await more.click();
+ await expect(more).toHaveAttribute("aria-expanded","true");
+ await page.getByRole("navigation",{name:"Menu tambahan"}).getByRole("link",{name:"Persediaan Umrah"}).click();
+ await expect(page).toHaveURL(/#\/panduan\/persediaan$/);
+ await expect(more).toHaveAttribute("aria-expanded","false");
+ await expect(page.getByRole("navigation",{name:"Menu tambahan"})).toHaveCount(0);
+});
