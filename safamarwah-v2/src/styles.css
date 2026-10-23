@@ -380,3 +380,16 @@ body:has(.home-app) .site-footer{margin-top:0}
  .home-app__tool-icon{width:clamp(48px,14vw,58px);height:clamp(48px,14vw,58px)}
 }
 @media(prefers-reduced-motion:reduce){.home-app__shortcut-icon,.home-app__tool-icon{transition:none!important}}
+
+
+/* Homepage article photography: fix actual nested img sizing */
+.home-app__articles .article-card__image{display:block;position:relative;overflow:hidden;width:100%;aspect-ratio:4/3;flex:none;background:#e8efe9}
+.home-app__articles .article-card__image::before,.home-app__articles .article-card__image::after{display:none!important}
+.home-app__articles .article-card__image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .25s ease}
+.home-app__articles .article-card__image:hover img{transform:scale(1.035)}
+.home-app__articles .article-card__title{line-height:1.4;overflow-wrap:anywhere}
+.home-app__articles .article-card__snippet{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;line-height:1.65}
+.home-app__articles .article-card__byline{min-width:0;overflow-wrap:anywhere}
+.home-app__articles .article-card__avatar,.home-app__articles .article-card__avatar img{width:32px;height:32px;min-width:32px;max-width:32px;border-radius:50%;object-fit:cover;overflow:hidden}
+@media(max-width:767px){.home-app__articles .article-card__image{aspect-ratio:4/3}}
+@media(prefers-reduced-motion:reduce){.home-app__articles .article-card__image img{transition:none}.home-app__articles .article-card__image:hover img{transform:none}}
