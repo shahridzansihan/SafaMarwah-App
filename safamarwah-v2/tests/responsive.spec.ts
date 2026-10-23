@@ -86,3 +86,29 @@ test("Blogger categories fetch matching articles and reset to all", async ({ pag
   await page.getByRole("button", { name: "Segar Semula" }).click();
   await expect(page.getByRole("heading", { name: "panduan-sample" })).toBeVisible();
 });
+
+test("Blogger pagination avoids duplicate articles across pages", async ({ page }) => {
+  await page.route(/safamarwah\.my\/feeds\/posts\/default/, async route => {
+    const url = new URL(route.request().url());
+    const callback = url.searchParams.get("callback") || "callback";
+    const start = Number(url.searchParams.get("start-index") || 1);
+    const entry = (id: string) => ({
+      id: { $t: id }, title: { $t: id },
+      content: { $t: "<p>Article content</p>" },
+      link: [{ rel: "alternate", href: "https://www.safamarwah.my/2026/10/" + id + ".html" }]
+    });
+    const entries = start === 1
+      ? Array.from({ length: 12 }, (_, index) => entry("post-" + (index + 1)))
+      : [entry("post-12"), entry("post-13")];
+    await route.fulfill({
+      status: 200, contentType: "application/javascript",
+      body: callback + "(" + JSON.stringify({ feed: { entry: entries, category: [] } }) + ");"
+    });
+  });
+  await page.goto("/#/blog");
+  await expect(page.locator(".article-grid .article-card")).toHaveCount(12);
+  await page.getByRole("button", { name: "Muat Lagi Artikel" }).click();
+  await expect(page.locator(".article-grid .article-card")).toHaveCount(13);
+  await expect(page.getByRole("heading", { name: "post-12" })).toHaveCount(1);
+  await expect(page.getByRole("heading", { name: "post-13" })).toHaveCount(1);
+});
