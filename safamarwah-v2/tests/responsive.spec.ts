@@ -188,3 +188,17 @@ test("inner-page article grid follows mobile tablet and desktop breakpoints",asy
   expect(overflow).toBeLessThanOrEqual(1);
  }
 });
+
+
+test("homepage removes retired tools instead of redirecting to unrelated pages",async({page})=>{
+ await page.goto("/#/");
+ const shortcuts=page.getByRole("navigation",{name:"Akses pantas"});
+ await expect(shortcuts.getByRole("link")).toHaveCount(2);
+ await expect(shortcuts.getByRole("link",{name:"Panduan Umrah"})).toHaveAttribute("href","#/panduan");
+ await expect(shortcuts.getByRole("link",{name:"Doa & Zikir"})).toHaveAttribute("href","#/doa");
+ const tools=page.locator(".home-app__tool-grid");
+ await expect(tools.getByRole("link")).toHaveCount(2);
+ for(const label of ["Checklist","Carian","FAQ Umrah","Miqat","Bahasa"]){
+  await expect(page.locator(".home-app").getByRole("link",{name:new RegExp(label,"i")})).toHaveCount(0);
+ }
+});
