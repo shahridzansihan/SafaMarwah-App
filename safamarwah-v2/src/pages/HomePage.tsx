@@ -34,7 +34,7 @@ function SaudiClock(){
       const saved=localStorage.getItem(cacheKey);
       if(saved){
         const parsed=JSON.parse(saved) as Record<string,string>;
-        if(["Fajr","Dhuhr","Asr","Maghrib","Isha"].every(key=>typeof parsed[key]==="string"&&/^\\d{2}:\\d{2}$/.test(parsed[key]))){
+        if(["Fajr","Dhuhr","Asr","Maghrib","Isha"].every(key=>typeof parsed[key]==="string"&&/^\d{2}:\d{2}$/.test(parsed[key]))){
           setTimings(parsed);setLoading(false);
         }
       }
