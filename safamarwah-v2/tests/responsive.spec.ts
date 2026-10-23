@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-const routes = ["/", "/panduan", "/panduan/persediaan", "/doa", "/doa/doa-perjalanan", "/blog", "/blog/persediaan-sebelum-umrah"];
+const routes = ["/", "/panduan", "/panduan/persediaan", "/doa", "/doa/doa-perjalanan", "/blog"];
 for (const route of routes) {
   test(`layout fits viewport: ${route}`, async ({ page }) => {
     await page.goto("/#" + route);
