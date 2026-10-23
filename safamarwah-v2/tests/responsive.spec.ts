@@ -53,9 +53,8 @@ test("blog feed offers a retry action when Blogger is unreachable", async ({ pag
   await expect(page.getByRole("link", { name: /Baca terus di SafaMarwah/i })).toBeVisible();
 });
 
-test("blog category filter changes selected state", async ({ page }) => {
+test("blog exposes a refresh control", async ({ page }) => {
   await page.goto("/#/blog");
-  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Segar Semula" })).toBeVisible();
 });
 
@@ -78,8 +77,10 @@ test("Blogger categories fetch matching articles and reset to all", async ({ pag
   await page.goto("/#/blog");
   await expect(page.getByRole("button", { name: "Doa", exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Doa", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Doa", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("heading", { name: "doa-sample" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "panduan-sample" })).toHaveCount(0);
   await page.getByRole("button", { name: "Semua", exact: true }).click();
+  await expect(page.getByRole("button", { name: "Semua", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("heading", { name: "panduan-sample" })).toBeVisible();
 });
