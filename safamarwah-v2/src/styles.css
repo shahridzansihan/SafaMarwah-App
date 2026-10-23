@@ -78,3 +78,10 @@
 @media(min-width:768px){.article-card__title{min-height:3.9em}.article-card__snippet{min-height:3.1em}}
 @media(max-width:767px){.article-grid{row-gap:34px}.article-card__image{aspect-ratio:16/10}.article-card__title{font-size:1.12rem}}
 @media(max-width:420px){.article-card__byline{gap:7px;font-size:.73rem}}
+
+/* Blogger pagination */
+.feed-pagination{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:clamp(34px,5vw,54px);text-align:center}
+.feed-pagination .btn-primary{min-width:176px;border:0}
+.feed-pagination .btn-primary:disabled{opacity:.6;cursor:wait}
+.feed-pagination__count{font-size:.78rem;color:#73817b}
+.feed-pagination [role="alert"]{font-size:.85rem;color:#8b3b32}
