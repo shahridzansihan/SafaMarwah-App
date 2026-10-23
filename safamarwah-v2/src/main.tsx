@@ -35,7 +35,7 @@ function parseFeed(data:BloggerResponse):FeedArticle[]{return (data.feed?.entry|
  const container=doc.body;
  function collect(parent:Element){for(const node of Array.from(parent.children)){const tag=node.tagName.toLowerCase();if(["script","style","iframe","form","button","svg","object","embed"].includes(tag))continue;
  if(tag==="img"){const src=node.getAttribute("data-src")||node.getAttribute("src")||"";if(src)blocks.push({kind:"img",text:node.getAttribute("alt")||"",src:highResolutionBloggerImage(src)});continue;}
- if(tag==="h2"||tag==="h3"||tag==="p"||tag==="blockquote"){const text=(node.textContent||"").trim();if(text)blocks.push({kind:tag==="blockquote"?"quote":tag,text});if(tag==="p"){for(const img of Array.from(node.querySelectorAll("img"))){const src=img.getAttribute("data-src")||img.getAttribute("src");if(src)blocks.push({kind:"img",text:img.getAttribute("alt")||"",src:highResolutionBloggerImage(src)});}}continue;}
+ if(tag==="h2"||tag==="h3"||tag==="p"||tag==="blockquote"){const text=(node.textContent||"").trim();if(text)blocks.push({kind:(tag==="blockquote"?"quote":tag) as ArticleBlock["kind"],text});if(tag==="p"){for(const img of Array.from(node.querySelectorAll("img"))){const src=img.getAttribute("data-src")||img.getAttribute("src");if(src)blocks.push({kind:"img",text:img.getAttribute("alt")||"",src:highResolutionBloggerImage(src)});}}continue;}
  if(tag==="ul"||tag==="ol"){const items=Array.from(node.children).filter(x=>x.tagName.toLowerCase()==="li").map(x=>(x.textContent||"").trim()).filter(Boolean);if(items.length)blocks.push({kind:tag,text:"",items});continue;}
  collect(node);
  }}
