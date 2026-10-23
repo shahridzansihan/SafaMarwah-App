@@ -85,7 +85,7 @@ test("Saudi prayer times use same-day cached data when API is unavailable",async
 test("Saudi prayer cache does not substitute yesterday's timetable",async({page})=>{
  await page.addInitScript(()=>{
   const yesterday=new Date(Date.now()-86400000);
-  const date=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Riyadh",day:"2-digit",month:"2-digit",year:"numeric"}).format(yesterday).replace(/\\//g,"-");
+  const date=new Intl.DateTimeFormat("en-GB",{timeZone:"Asia/Riyadh",day:"2-digit",month:"2-digit",year:"numeric"}).format(yesterday).split("/").join("-");
   localStorage.setItem("safamarwah-prayer-v2:Makkah:"+date,JSON.stringify({Fajr:"01:01",Dhuhr:"02:02",Asr:"03:03",Maghrib:"04:04",Isha:"05:05"}));
  });
  await page.route("https://api.aladhan.com/v1/timingsByCity/**",route=>route.abort());
