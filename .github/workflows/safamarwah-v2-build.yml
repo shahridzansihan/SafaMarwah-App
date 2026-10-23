@@ -34,11 +34,11 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run navigation and responsive smoke tests
         run: npm run test:e2e
-      - name: Upload Playwright failure report
-        if: failure()
+      - name: Upload Playwright test report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: safamarwah-v2-playwright-report
+          name: safamarwah-v2-test-report
           path: |
             safamarwah-v2/playwright-report/
             safamarwah-v2/test-results/
