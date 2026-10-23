@@ -29,7 +29,7 @@ const fs = require('node:fs');
    await page.screenshot({path:'qa-screenshots/'+size.name+'-home.png',fullPage:true});
    for(const [label,expression,selector] of [
     ['panduan',"show('steps')",'.steps .step'],
-    ['doa',"show('dua')",'#main .sm-master-header'],
+    ['doa',"show('dua')",'#main .dua-card'],
     ['checklist',"phasePage('checklist')",'#main input[data-phase-check]'],
     ['rukun',"phase2Page('ilm')",'#main .phase2-panel'],
     ['panduan-subpage',"show('step',0)",'#main .step-panel']
@@ -49,7 +49,7 @@ const fs = require('node:fs');
     ['notes',"phasePage('notes')",'#main #phase-notes'],
     ['bookmarks',"phasePage('bookmark')",'#main .phase-bookmarks'],
     ['schedule',"phase3Page('schedule')",'#main .phase3-form'],
-    ['emergency',"phase3Page('emergency')",'#main .sm-master-header'],
+    ['emergency',"phase3Page('emergency')",'#main .phase3-form'],
     ['backup',"phase5Page()",'#main .phase5-panel']
    ]){
     await page.evaluate(expression);
