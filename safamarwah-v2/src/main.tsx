@@ -26,7 +26,7 @@ function highResolutionBloggerImage(src:string):string{
 function parseFeed(data:BloggerResponse):FeedArticle[]{return (data.feed?.entry||[]).map((entry,index)=>{
  const html=entry.content?.$t||entry.summary?.$t||"";
  const doc=new DOMParser().parseFromString(html,"text/html");
- const description=(doc.body.textContent||"").replace(/\\s+/g," ").trim().slice(0,145);
+ const description=(doc.body.textContent||"").trim().split(/\s+/).filter(Boolean).slice(0,15).join(" ");
  const contentImage=doc.querySelector("img")?.getAttribute("data-src")||doc.querySelector("img")?.getAttribute("src")||"";
  const rawImage=contentImage||entry.media$thumbnail?.url||"";
  const image=highResolutionBloggerImage(rawImage);
