@@ -29,7 +29,7 @@ const fs = require('node:fs');
    await page.screenshot({path:'qa-screenshots/'+size.name+'-home.png',fullPage:true});
    for(const [label,expression,selector] of [
     ['panduan',"show('steps')",'.steps .step'],
-    ['doa',"show('dua')",'#main .dua-card'],
+    ['doa',"show('dua')",'#main #results'],
     ['checklist',"phasePage('checklist')",'#main input[data-phase-check]'],
     ['rukun',"phase2Page('ilm')",'#main .phase2-panel'],
     ['panduan-subpage',"show('step',0)",'#main .step-panel']
