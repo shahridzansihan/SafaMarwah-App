@@ -2023,7 +2023,7 @@ const phase2Miqat=[
 ['Dzat Irq','Laluan dari arah Iraq','Dhat Irq Miqat']
 ];
 function phase2Page(type){
-if(smDuaAudio){smDuaAudio.pause();smDuaAudio=null}if('speechSynthesis' in window)window.speechSynthesis.cancel();current='phase2';document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-more')?.classList.add('active');
+if(smDuaAudio){smDuaAudio.pause();smDuaAudio=null}if('speechSynthesis' in window)window.speechSynthesis.cancel();current='phase2';document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-steps')?.classList.add('active');
 let title='',html='';
 if(type==='ilm'){
 title='Rukun & Wajib Umrah';
@@ -2035,7 +2035,13 @@ title='Miqat & Peta';html='<p class="muted">Kenali miqat berdasarkan laluan perj
 }else if(type==='audio'){
 title='Audio Doa & Zikir';html='<p class="muted">Bacaan ayat Al-Quran menggunakan rakaman qari lelaki Mishary Rashid Alafasy (ayat penuh). Zikir dan doa bukan ayat Al-Quran belum mempunyai rakaman yang disahkan.</p><div class="phase2-panel"><label for="phase2-dua">Pilih bacaan</label><select id="phase2-dua" class="search">'+duas.map((d,i)=>'<option value="'+i+'">'+phaseSafe(d.title)+'</option>').join('')+'</select><div class="phase2-audio-buttons"><button class="primary" onclick="phase2Play()">▶ Mainkan</button><button class="secondary" onclick="phase2Stop()">■ Henti</button></div><p id="phase2-audio-status" role="status"></p></div><div class="notice sm-audio-guide-note">Audio distrim melalui internet daripada Al Quran Cloud. Rakaman memainkan ayat Al-Quran penuh, yang mungkin lebih panjang daripada petikan doa dipaparkan. Bacaan bukan Al-Quran belum tersedia.</div>';
 }else return;
-main.innerHTML=header(title)+html;
+const smPhase2BannerCopy={
+faq:'Jawapan ringkas untuk pembelajaran, bukan nasihat hukum khusus.',
+miqat:'Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet.',
+ilm:'Rujukan ringkas rukun dan wajib Umrah untuk jemaah.',
+audio:'Dengar dan pelajari bacaan doa serta zikir.'
+};
+main.innerHTML=smSubpageMasterBanner(title,smPhase2BannerCopy[type]||'Panduan dan rujukan jemaah.')+html;
 if(type==='faq')phase2FilterFaq();window.scrollTo(0,0);
 }
 function phase2FilterFaq(){const q=(document.getElementById('phase2-search')?.value||'').toLowerCase();const el=document.getElementById('phase2-faq-results');if(!el)return;const found=smActiveFaq().filter(x=>x.join(' ').toLowerCase().includes(q));el.innerHTML=found.length?found.map(x=>'<details class="phase2-panel"><summary>'+phaseSafe(x[0])+'</summary><p>'+phaseSafe(x[1])+'</p></details>').join(''):'<p class="muted">Tiada soalan sepadan.</p>'}
@@ -2054,7 +2060,7 @@ function phase3Text(k){return phase3Words[phase3Lang()][k]||k}
 function phase3Read(k){try{const v=JSON.parse(localStorage.getItem(k)||'[]');return Array.isArray(v)?v:[]}catch(e){return []}}
 function phase3Save(k,v){localStorage.setItem(k,JSON.stringify(v))}
 function phase3Page(type){
-current='phase3';document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-more')?.classList.add('active');
+current='phase3';document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-steps')?.classList.add('active');
 let html='',title=phase3Text(type);
 if(type==='schedule'){
 const items=phase3Read('sm-phase3-schedule').sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
@@ -2069,7 +2075,13 @@ const lang=phase3Lang();const intro={ms:'Pilih bahasa paparan aplikasi. Sebahagi
 const items=phase3Read('sm-phase3-reminders').sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
 html='<p class="muted">Peringatan dipaparkan apabila aplikasi dibuka. Ia tidak menghantar notifikasi automatik semasa aplikasi ditutup.</p><form class="phase3-form" onsubmit="phase3Add(event,\'reminders\')"><label>'+phase3Text('name')+'<input name="name" maxlength="100" required placeholder="Contoh: Berkumpul di lobi"></label><label>'+phase3Text('date')+'<input name="date" type="date" required></label><label>'+phase3Text('time')+'<input name="time" type="time" required></label><label>'+phase3Text('notes')+'<textarea name="notes" maxlength="400" rows="2"></textarea></label><button class="primary" type="submit">'+phase3Text('add')+'</button></form><div class="phase3-list">'+(items.length?items.map(x=>'<article class="phase3-item"><div><strong>'+phaseSafe(x.name)+'</strong><small>'+phaseSafe(x.date)+' '+phaseSafe(x.time)+'</small><p>'+phaseSafe(x.notes||'')+'</p></div><button onclick="phase3Delete(\'reminders\',\''+x.id+'\')" aria-label="'+phase3Text('remove')+'">×</button></article>').join(''):'<p class="muted">Belum ada peringatan.</p>')+'</div>';
 }else return;
-main.innerHTML=header(title)+html;
+const smPhase3BannerCopy={
+language:'Pilih bahasa paparan aplikasi.',
+schedule:'Susun aktiviti dan jadual perjalanan anda.',
+emergency:'Simpan maklumat penting untuk kecemasan.',
+reminders:'Urus peringatan sepanjang perjalanan.'
+};
+main.innerHTML=smSubpageMasterBanner(title,smPhase3BannerCopy[type]||'Alat bantuan jemaah.')+html;
 if(type==='emergency')phase3RenderCard();smTranslateCurrent();window.scrollTo(0,0);
 }
 function phase3Add(event,type){event.preventDefault();const data=Object.fromEntries(new FormData(event.currentTarget).entries());data.id=String(Date.now())+'-'+Math.floor(Math.random()*100000);const key='sm-phase3-'+type,items=phase3Read(key);items.push(data);phase3Save(key,items);phase3Page(type)}
@@ -3656,4 +3668,11 @@ html body #main:has(.sm-subpage-master-hero) .phase-progress{margin-top:0!import
 @media(max-width:380px){html body #main .sm-subpage-master-hero{height:190px!important;min-height:190px!important;max-height:190px!important}}
 @media(min-width:768px){html body #main .sm-subpage-master-hero{height:240px!important;min-height:240px!important;max-height:240px!important;padding:28px!important}}
 @media(min-width:1100px){html body #main .sm-subpage-master-hero{height:300px!important;min-height:300px!important;max-height:300px!important;padding:36px!important}}
+</style><style id="sm-faq-miqat-language-panduan-master-v1">
+/* Hide only the duplicate introductory copy now presented inside the master hero. */
+html body #main:has(.sm-subpage-master-hero) > .sm-subpage-master-hero + p.muted{display:none!important}
+/* Restore readable text contrast on Miqat cards regardless of inherited dark-card rules. */
+html body #main .phase2-panel{background:#f8f1e2!important;color:#173e34!important;border:1px solid #d5c5a4!important}
+html body #main .phase2-panel h2,html body #main .phase2-panel p,html body #main .phase2-panel li{color:#173e34!important;opacity:1!important}
+html body #main .phase2-panel a{color:#fffdf7!important}
 </style></body></html>
