@@ -17,8 +17,8 @@ function highResolutionBloggerImage(src:string):string{
  try{
   const url=new URL(src,BLOG_ORIGIN);
   if(url.protocol!=="https:")return FALLBACK_IMAGE;
-  if(/(^|const contentImage=doc.querySelector("img")?.getAttribute("data-src")||doc.querySelector("img")?.getAttribute("src")||"";\n const rawImage=contentImage||entry.media$thumbnail?.url||"";\n const image=highResolutionBloggerImage(rawImage);\.)(blogger\\.googleusercontent\\.com|bp\\.blogspot\\.com)$/.test(url.hostname)||/^lh[3-6]\\.googleusercontent\\.com$/.test(url.hostname)){
-   url.pathname=url.pathname.replace(/\\/s\\d+(?:-c)?\\//g,"/s1200/").replace(/=s\\d+(?:-c)?$/,"=s1200");
+  if(url.hostname==="blogger.googleusercontent.com"||url.hostname.endsWith(".bp.blogspot.com")||/^lh[3-6]\.googleusercontent\.com$/.test(url.hostname)){
+   url.pathname=url.pathname.replace(/\/s\d+(?:-c)?\//g,"/s1200/").replace(/=s\d+(?:-c)?$/,"=s1200");
   }
   return url.href;
  }catch{return FALLBACK_IMAGE;}
@@ -27,8 +27,9 @@ function parseFeed(data:BloggerResponse):FeedArticle[]{return (data.feed?.entry|
  const html=entry.content?.$t||entry.summary?.$t||"";
  const doc=new DOMParser().parseFromString(html,"text/html");
  const description=(doc.body.textContent||"").replace(/\\s+/g," ").trim().slice(0,145);
- const rawImage=entry.media$thumbnail?.url||doc.querySelector("img")?.getAttribute("src")||"";
- const image=rawImage;
+ const contentImage=doc.querySelector("img")?.getAttribute("data-src")||doc.querySelector("img")?.getAttribute("src")||"";
+ const rawImage=contentImage||entry.media$thumbnail?.url||"";
+ const image=highResolutionBloggerImage(rawImage);
  const link=entry.link?.find(x=>x.rel==="alternate")?.href||"";
  let safeUrl="";try{const url=new URL(link);if(url.protocol==="https:"&&(url.hostname==="safamarwah.my"||url.hostname==="www.safamarwah.my"))safeUrl=url.href;}catch{}
  return {id:entry.id?.$t||String(index),title:entry.title?.$t||"Artikel SafaMarwah",url:safeUrl,description,image,published:entry.published?.$t||""};
