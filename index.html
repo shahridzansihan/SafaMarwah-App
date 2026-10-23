@@ -1965,15 +1965,25 @@ const main=document.getElementById('main');let activeDuaGroup='Semua';function h
 
 const phaseChecklist=['Pasport dan dokumen perjalanan','Visa atau kelulusan perjalanan yang diperlukan','Tiket penerbangan dan butiran hotel','Maklumat mutawif dan nombor waris','Pakaian ihram dan pakaian sesuai','Ubat-ubatan peribadi dan preskripsi','Kelengkapan kebersihan dan beg kecil','Semak panduan rukun dan wajib Umrah','Semak maklumat miqat perjalanan','Simpan salinan dokumen secara selamat'];
 function phaseSafe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function smSubpageMasterBanner(title,subtitle,eyebrow='Panduan & Alat Jemaah'){
+return '<section class="sm51-page-hero sm-subpage-master-hero" aria-label="'+phaseSafe(title)+'"><span>'+phaseSafe(eyebrow)+'</span><h2>'+phaseSafe(title)+'</h2><p>'+phaseSafe(subtitle)+'</p></section>';
+}
 function phasePage(type){
-current='phase';document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));if(type==='checklist')document.getElementById('nav-checklist')?.classList.add('active');else document.getElementById('nav-more')?.classList.add('active');
+current='phase';document.querySelectorAll('.bottom button').forEach(x=>x.classList.remove('active'));document.getElementById('nav-steps')?.classList.add('active');
 let title='',html='';
-if(type==='checklist'){title='Checklist Persediaan';const done=JSON.parse(localStorage.getItem('sm-phase-checks')||'[]');html='<p class="muted">Tandakan persediaan yang sudah selesai. Disimpan pada peranti ini.</p><div class="phase-progress" id="phase-progress"></div><div class="phase-checks">'+phaseChecklist.map((t,i)=>'<label><input type="checkbox" data-phase-check="'+i+'" '+(done.includes(i)?'checked':'')+' onchange="phaseCheck()"> <span>'+phaseSafe(t)+'</span></label>').join('')+'</div><div class="notice sm-checklist-guide-note">Senarai ini panduan umum. Keperluan dokumen dan perjalanan perlu disahkan dengan pihak berkaitan.</div>'}
+if(type==='checklist'){title='Checklist Persediaan';const done=JSON.parse(localStorage.getItem('sm-phase-checks')||'[]');html='<div class="phase-progress" id="phase-progress"></div><div class="phase-checks">'+phaseChecklist.map((t,i)=>'<label><input type="checkbox" data-phase-check="'+i+'" '+(done.includes(i)?'checked':'')+' onchange="phaseCheck()"> <span>'+phaseSafe(t)+'</span></label>').join('')+'</div><div class="notice sm-checklist-guide-note">Senarai ini panduan umum. Keperluan dokumen dan perjalanan perlu disahkan dengan pihak berkaitan.</div>'}
 else if(type==='tawaf'||type==='saie'){const tawaf=type==='tawaf';title=tawaf?'Kaunter Tawaf':'Kaunter Sa’ie';const n=Math.max(0,Math.min(7,Number(localStorage.getItem('sm-phase-'+type)||0)));html='<div class="phase-counter"><p>'+(tawaf?'Satu kiraan bagi satu pusingan lengkap mengelilingi Kaabah.':'Safa ke Marwah ialah perjalanan pertama; Marwah ke Safa perjalanan kedua.')+'</p><div class="phase-counter-row"><button onclick="phaseCount(\''+type+'\',-1)" aria-label="Kurangkan kiraan">−</button><strong id="phase-count">'+n+' / 7</strong><button onclick="phaseCount(\''+type+'\',1)" aria-label="Tambah kiraan">+</button></div><div class="progress-line"><span id="phase-bar" style="width:'+(n/7*100)+'%"></span></div><p id="phase-hint" aria-live="polite">'+(n===7?'Kiraan tujuh dicapai. Sahkan sendiri ibadah anda.':'Kiraan disimpan secara automatik.')+'</p><button class="secondary" onclick="phaseReset(\''+type+'\')">Set Semula</button></div><div class="notice">Kaunter ini alat bantuan sahaja dan bukan pengesahan kesahan ibadah. Jika ragu, rujuk mutawif.</div>'}
 else if(type==='notes'){title='Nota Saya';html='<p class="muted">Nota disimpan pada peranti ini sahaja. Elakkan maklumat sulit.</p><input id="phase-note-title" class="phase-textarea" style="min-height:0;height:54px;margin-bottom:12px" placeholder="Tajuk nota (pilihan)" aria-label="Tajuk nota"><textarea class="phase-textarea" id="phase-notes" rows="6" placeholder="Tulis nota atau peringatan di sini..."></textarea><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="primary" onclick="phaseSaveNotes()">Simpan Nota</button><button class="secondary" onclick="phaseNewNote()">Nota Baharu</button></div><p id="phase-notes-status" role="status"></p><h2 style="margin-top:24px">Nota Tersimpan</h2><div id="phase-notes-list"></div>'}
 else if(type==='bookmark'){title='Bookmark Panduan';const saved=JSON.parse(localStorage.getItem('sm-phase-bookmarks')||'[]');html='<p class="muted">Pilih langkah untuk disimpan dan dibuka semula dengan pantas.</p><div class="phase-bookmarks">'+steps.map((step,i)=>'<div class="phase-bookmark"><button class="phase-bookmark-title" onclick="show(\'step\','+i+')">'+(i+1)+'. '+phaseSafe(step[0])+'</button><button class="phase-bookmark-toggle" type="button" aria-label="'+(saved.includes(i)?'Buang bookmark langkah ':'Simpan langkah ')+(i+1)+'" aria-pressed="'+saved.includes(i)+'" onclick="phaseBookmark('+i+')"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4.75A1.75 1.75 0 0 1 7.75 3h8.5A1.75 1.75 0 0 1 18 4.75V21l-6-4-6 4V4.75Z"/></svg></button></div>').join('')+'</div>'}
 else return;
-main.innerHTML=header(title)+html;
+const smPhaseDescriptions={
+checklist:'Tandakan persediaan yang sudah selesai. Disimpan pada peranti ini.',
+tawaf:'Kira tujuh pusingan tawaf dengan mudah.',
+saie:'Jejak tujuh perjalanan Sa’ie antara Safa dan Marwah.',
+notes:'Catat peringatan penting sepanjang perjalanan ibadah.',
+bookmark:'Simpan langkah panduan untuk rujukan pantas.'
+};
+main.innerHTML=smSubpageMasterBanner(title,smPhaseDescriptions[type]||'Panduan dan alat jemaah SafaMarwah.')+html;
 if(type==='checklist')phaseCheck(false);
 if(type==='notes'){phaseMigrateNotes();phaseRenderNotes()}
 window.scrollTo(0,0);
@@ -3629,4 +3639,21 @@ backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
 box-shadow:none!important;isolation:isolate!important;
 }
 html body nav.bottom{border-top:1px solid rgba(201,169,106,.24)!important}
+</style><style id="sm-subpage-panduan-master-v1">
+/* Every phase subpage follows Panduan's Kaabah hero; retain each tool's functionality. */
+html body #main .sm-subpage-master-hero{
+box-sizing:border-box!important;display:flex!important;flex-direction:column!important;
+justify-content:flex-end!important;width:100%!important;height:176px!important;
+min-height:176px!important;max-height:176px!important;margin:10px 0 15px!important;
+padding:20px!important;overflow:hidden!important;border-radius:19px!important;
+background:linear-gradient(0deg,#002d25dd,#002d2544),url('kaaba.jpg') center 57%/cover no-repeat!important;
+}
+html body #main .sm-subpage-master-hero span{font:500 .88rem/1.2 Inter,system-ui,sans-serif!important;color:#f4e6cb!important}
+html body #main .sm-subpage-master-hero h2{font:600 clamp(1.65rem,5vw,2.25rem)/1.13 'Playfair Display',Georgia,serif!important;margin:4px 0!important;color:#fff7e6!important}
+html body #main .sm-subpage-master-hero p{font:400 clamp(.84rem,2.6vw,1rem)/1.35 Inter,system-ui,sans-serif!important;margin:0!important;color:#fff4dd!important;max-width:450px!important}
+html body #main:has(.sm-subpage-master-hero) .page-head{display:none!important}
+html body #main:has(.sm-subpage-master-hero) .phase-progress{margin-top:0!important}
+@media(max-width:380px){html body #main .sm-subpage-master-hero{height:190px!important;min-height:190px!important;max-height:190px!important}}
+@media(min-width:768px){html body #main .sm-subpage-master-hero{height:240px!important;min-height:240px!important;max-height:240px!important;padding:28px!important}}
+@media(min-width:1100px){html body #main .sm-subpage-master-hero{height:300px!important;min-height:300px!important;max-height:300px!important;padding:36px!important}}
 </style></body></html>
