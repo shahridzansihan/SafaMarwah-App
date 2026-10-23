@@ -22,3 +22,15 @@ for(const viewport of [{width:390,height:844},{width:820,height:1180},{width:144
   expect(dimensions.scroll).toBeLessThanOrEqual(dimensions.client+1);
  });
 }
+
+test("mobile navigation closes after route change", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/#/");
+  const openMenu = page.getByRole("button", { name: "Buka menu" });
+  await expect(openMenu).toBeVisible();
+  await openMenu.click();
+  await expect(page.getByRole("button", { name: "Tutup menu" })).toHaveAttribute("aria-expanded", "true");
+  await page.locator("#site-navigation").getByRole("link", { name: "Panduan Umrah", exact: true }).click();
+  await expect(page).toHaveURL(/#\/panduan$/);
+  await expect(openMenu).toHaveAttribute("aria-expanded", "false");
+});
