@@ -1,0 +1,41 @@
+name: SafaMarwah responsive visual smoke
+on:
+  push:
+    branches:
+      - refactor/design-preservation-v1
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - index.html
+      - scripts/visual_smoke.mjs
+      - .github/workflows/responsive-visual-smoke.yml
+jobs:
+  visual-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Start local SafaMarwah app
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/safamarwah-server.log 2>&1 &
+          sleep 2
+      - name: Check responsive views and capture screenshots
+        run: node scripts/visual_smoke.mjs
+      - name: Upload screenshots for visual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: safamarwah-responsive-screenshots
+          path: artifacts/design-smoke/
+          if-no-files-found: warn

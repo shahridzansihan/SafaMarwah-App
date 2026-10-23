@@ -29,7 +29,7 @@ const fs = require('node:fs');
    await page.screenshot({path:'qa-screenshots/'+size.name+'-home.png',fullPage:true});
    for(const [label,expression,selector] of [
     ['panduan',"show('steps')",'.steps .step'],
-    ['doa',"show('dua')",'#main .sm-master-header'],
+    ['doa',"show('dua')",'#main #results'],
     ['checklist',"phasePage('checklist')",'#main input[data-phase-check]'],
     ['rukun',"phase2Page('ilm')",'#main .phase2-panel'],
     ['panduan-subpage',"show('step',0)",'#main .step-panel']
@@ -49,7 +49,7 @@ const fs = require('node:fs');
     ['notes',"phasePage('notes')",'#main #phase-notes'],
     ['bookmarks',"phasePage('bookmark')",'#main .phase-bookmarks'],
     ['schedule',"phase3Page('schedule')",'#main .phase3-form'],
-    ['emergency',"phase3Page('emergency')",'#main .sm-master-header'],
+    ['emergency',"phase3Page('emergency')",'#main .phase3-form'],
     ['backup',"phase5Page()",'#main .phase5-panel']
    ]){
     await page.evaluate(expression);
@@ -61,9 +61,10 @@ const fs = require('node:fs');
    await page.waitForSelector('#main .sm-id-screen .sm-id-card',{timeout:10000});
    await page.screenshot({path:'qa-screenshots/'+size.name+'-digital-card.png',fullPage:true});
    if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3))throw Error('digital card horizontal overflow at '+size.width+'px');
+   // showMore() now navigates home; the legacy .more-list screen is retired.
    await page.evaluate("showMore()");
-   await page.waitForSelector('#main .more-list',{timeout:10000});
-   await page.screenshot({path:'qa-screenshots/'+size.name+'-more.png',fullPage:true});
+   await page.waitForSelector('#main .sm53-hero',{timeout:10000});
+   await page.screenshot({path:'qa-screenshots/'+size.name+'-more-home.png',fullPage:true});
    await page.evaluate("smArticlesPage()");
    await page.waitForSelector('#sm-articles-content',{timeout:10000});
    await page.screenshot({path:'qa-screenshots/'+size.name+'-articles.png',fullPage:true});

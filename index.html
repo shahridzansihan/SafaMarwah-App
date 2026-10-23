@@ -3237,7 +3237,9 @@ background:#14382E!important;background-image:none!important;box-shadow:none!imp
 }
 body.sm-home-view .bottom,
 body:has(.sm53-hero) .bottom{border-top:1px solid rgba(201,169,106,.22)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
-</style><style id="sm-global-unified-emerald-background-20261023">
+</style><style id="sm-unified-background-14382e-20261023">
+/* Consolidated earlier canvas declarations; cascade order preserved. */
+
 /* All routes: shared emerald page canvas, including subpages and single posts.
    Content cards deliberately retain their light reading surfaces for contrast. */
 :root{--sm-unified-page-bg:#00382e}
@@ -3278,7 +3280,8 @@ html body #main .card,
 html body #main .step,
 html body #main .sm-article-tile,
 html body #main .sm-home-editorial-card{color:#173b31}
-</style><style id="sm-unified-background-14382e-20261023">
+
+
 /* Global SafaMarwah canvas: every route, article and fixed bottom navigation. */
 :root{--sm-unified-page-bg:#14382E;--sm-page-bg:#14382E;--sm-deep:#14382E}
 html,body,body.dark,html.dark,
@@ -3336,7 +3339,9 @@ html body #main .sm-home-editorial-card .sm-article-date{font-size:11px!importan
 html body #main .sm-home-category{font-size:11px!important}
 html body #main .sm53-hero p{font-size:14px!important;line-height:1.5!important}
 }
-</style><style id="sm-route-canvas-consistency-20261023">
+</style><style id="sm-article-routes-true-14382e-20261023">
+/* Earlier route-canvas rules retained in their original cascade position. */
+
 /* Match Panduan, Doa, nested routes, and post page canvas to homepage. */
 :root{--sm-unified-page-bg:#14382E!important}
 html,html body,html body .app,html body .app #main,html body .app #main.main,
@@ -3348,7 +3353,8 @@ html body .app #main .sm63-editorial-panel,
 html body .app #main .sm63-editorial-panel .dash-section{background:transparent!important;box-shadow:none!important}
 html body .app .bottom,html body .app .bottom-inner{background:#14382E!important}
 html body .app #main .page-head{background:transparent!important}
-</style><style id="sm-article-routes-true-14382e-20261023">
+
+
 /* Fix remaining near-black canvas on article index and single article routes.
    Only outer page surfaces change; ivory article cards remain untouched. */
 html body:not(:has(.sm53-hero)),
@@ -3589,25 +3595,6 @@ html body:has(.sm53-hero) #main .sm63-editorial-panel .dash-grid .dash-icon svg{
 width:clamp(24px,6vw,29px)!important;height:clamp(24px,6vw,29px)!important;
 stroke:currentColor!important}
 @media(max-width:360px){html body:has(.sm53-hero) #main .sm63-editorial-panel .dash-grid .dash-icon{width:43px!important;height:43px!important;min-width:43px!important;min-height:43px!important;max-width:43px!important;max-height:43px!important;flex-basis:43px!important}}
-</style><style id="sm-footer-single-solid-emerald-v1">
-/* One opaque surface for the fixed bottom navigation on every route. */
-html body nav.bottom,
-html body .bottom,
-html body .bottom .bottom-inner,
-html body .app .bottom,
-html body .app .bottom .bottom-inner,
-html body.sm-home-view .bottom,
-html body.sm-inner-view .bottom,
-html body:has(.sm53-hero) .bottom {
-background:#14382E!important;
-background-color:#14382E!important;
-background-image:none!important;
-backdrop-filter:none!important;
--webkit-backdrop-filter:none!important;
-box-shadow:none!important;
-opacity:1!important;
-}
-html body .bottom{border-top:1px solid rgba(201,169,106,.24)!important}
 </style><style id="sm-search-fields-unified-52px-v1">
 /* Identical search fields on Doa & Zikir and Artikel & Ilmu, all viewport widths. */
 html body #main input#q.search,
@@ -3634,6 +3621,27 @@ color:#818b83!important;opacity:1!important}
 html body #main input#q.search{margin:0 0 16px!important}
 html body #main input#sm-article-search.sm-article-search{margin:0 0 16px!important}
 </style><style id="sm-true-page-footer-canvas-sync-v2">
+/* Consolidated legacy footer rules; retained unchanged to preserve rendering. */
+/* One opaque surface for the fixed bottom navigation on every route. */
+html body nav.bottom,
+html body .bottom,
+html body .bottom .bottom-inner,
+html body .app .bottom,
+html body .app .bottom .bottom-inner,
+html body.sm-home-view .bottom,
+html body.sm-inner-view .bottom,
+html body:has(.sm53-hero) .bottom {
+background:#14382E!important;
+background-color:#14382E!important;
+background-image:none!important;
+backdrop-filter:none!important;
+-webkit-backdrop-filter:none!important;
+box-shadow:none!important;
+opacity:1!important;
+}
+html body .bottom{border-top:1px solid rgba(201,169,106,.24)!important}
+
+
 /* Match the visible page canvas to the fixed footer, not merely its declared color. */
 html,html body,html body .app,html body #main.main,
 html body.sm-inner-view .app,html body.sm-inner-view #main.main,
@@ -3668,11 +3676,14 @@ html body #main:has(.sm-subpage-master-hero) .phase-progress{margin-top:0!import
 @media(max-width:380px){html body #main .sm-subpage-master-hero{height:190px!important;min-height:190px!important;max-height:190px!important}}
 @media(min-width:768px){html body #main .sm-subpage-master-hero{height:240px!important;min-height:240px!important;max-height:240px!important;padding:28px!important}}
 @media(min-width:1100px){html body #main .sm-subpage-master-hero{height:300px!important;min-height:300px!important;max-height:300px!important;padding:36px!important}}
-</style><style id="sm-faq-miqat-language-panduan-master-v1">
+
+/* Consolidated companion subpage styles; original declarations retained. */
+
 /* Hide only the duplicate introductory copy now presented inside the master hero. */
 html body #main:has(.sm-subpage-master-hero) > .sm-subpage-master-hero + p.muted{display:none!important}
 /* Restore readable text contrast on Miqat cards regardless of inherited dark-card rules. */
 html body #main .phase2-panel{background:#f8f1e2!important;color:#173e34!important;border:1px solid #d5c5a4!important}
 html body #main .phase2-panel h2,html body #main .phase2-panel p,html body #main .phase2-panel li{color:#173e34!important;opacity:1!important}
 html body #main .phase2-panel a{color:#fffdf7!important}
+
 </style></body></html>
