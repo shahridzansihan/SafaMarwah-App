@@ -29,6 +29,16 @@ function SaudiClock(){
   React.useEffect(()=>{
     const controller=new AbortController();
     setLoading(true);setError(false);setTimings(null);
+    const cacheKey="safamarwah-prayer-v2:"+city+":"+dateKey;
+    try{
+      const saved=localStorage.getItem(cacheKey);
+      if(saved){
+        const parsed=JSON.parse(saved) as Record<string,string>;
+        if(["Fajr","Dhuhr","Asr","Maghrib","Isha"].every(key=>typeof parsed[key]==="string"&&/^\\d{2}:\\d{2}$/.test(parsed[key]))){
+          setTimings(parsed);setLoading(false);
+        }
+      }
+    }catch{ /* Browser storage may be unavailable. */ }
     const cityName=city==="Makkah"?"Mecca":"Medina";
     const url=`https://api.aladhan.com/v1/timingsByCity/${dateKey}?city=${cityName}&country=SA&method=4&school=0`;
     fetch(url,{signal:controller.signal}).then(async response=>{
@@ -41,14 +51,14 @@ function SaudiClock(){
         if(typeof value!=="string"||!/^\d{2}:\d{2}/.test(value))throw new Error("Invalid prayer time");
         result[key]=value.slice(0,5);
       }
-      if(!controller.signal.aborted)setTimings(result);
+      if(!controller.signal.aborted){setTimings(result);try{localStorage.setItem(cacheKey,JSON.stringify(result));}catch{ /* Private browsing or storage quota. */ }}
     }).catch(()=>{if(!controller.signal.aborted)setError(true)}).finally(()=>{if(!controller.signal.aborted)setLoading(false)});
     return()=>controller.abort();
   },[city,dateKey,refreshKey]);
   React.useEffect(()=>{const id=window.setInterval(()=>setNow(new Date()),1000);return()=>window.clearInterval(id)},[]);
   const time=new Intl.DateTimeFormat("ms-MY",{timeZone:"Asia/Riyadh",hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:false}).format(now);
   const date=new Intl.DateTimeFormat("ms-MY",{timeZone:"Asia/Riyadh",day:"numeric",month:"long",year:"numeric"}).format(now);
-  return <section className="home-prayer" aria-labelledby="prayer-heading"><div className="home-prayer__head"><div><p className="section-eyebrow">WAKTU ARAB SAUDI (UTC+3)</p><h2 id="prayer-heading">Waktu Solat</h2></div><button type="button" className="home-prayer__refresh" onClick={()=>{setNow(new Date());setRefreshKey(value=>value+1)}} aria-label="Segar semula jam Arab Saudi"><RefreshCw size={22} aria-hidden="true"/></button></div><div className="home-prayer__clock"><span>WAKTU SEMASA · ARAB SAUDI</span><strong aria-label={`Waktu semasa Arab Saudi ${time}`}>{time}</strong><small>{date}</small></div><div className="home-prayer__cities" role="group" aria-label="Pilih bandar waktu solat"><button type="button" className={city==="Makkah"?"is-active":""} aria-pressed={city==="Makkah"} onClick={()=>setCity("Makkah")}>Makkah</button><button type="button" className={city==="Madinah"?"is-active":""} aria-pressed={city==="Madinah"} onClick={()=>setCity("Madinah")}>Madinah</button></div>{timings&&<div className="home-prayer__times" aria-label={`Jadual solat ${city}`}>{[["Subuh","Fajr"],["Zohor","Dhuhr"],["Asar","Asr"],["Maghrib","Maghrib"],["Isyak","Isha"]].map(([label,key])=><div key={key}><span>{label}</span><strong>{timings[key]}</strong></div>)}</div>}<div className="home-prayer__note" role="status"><Sun size={19} aria-hidden="true"/><p><strong>{city}</strong> · {loading?"Sedang mendapatkan jadual waktu solat…":error?"Jadual waktu solat tidak dapat dimuatkan. Cuba segar semula apabila ada sambungan internet.":"Waktu solat hari ini daripada AlAdhan API (kaedah Umm Al-Qura, waktu Arab Saudi). Sila semak dengan jadual masjid setempat kerana waktu pengiraan boleh berbeza."} Jam di atas menunjukkan waktu semasa Arab Saudi.</p></div></section>
+  return <section className="home-prayer" aria-labelledby="prayer-heading"><div className="home-prayer__head"><div><p className="section-eyebrow">WAKTU ARAB SAUDI (UTC+3)</p><h2 id="prayer-heading">Waktu Solat</h2></div><button type="button" className="home-prayer__refresh" onClick={()=>{setNow(new Date());setRefreshKey(value=>value+1)}} aria-label="Segar semula jam Arab Saudi"><RefreshCw size={22} aria-hidden="true"/></button></div><div className="home-prayer__clock"><span>WAKTU SEMASA · ARAB SAUDI</span><strong aria-label={`Waktu semasa Arab Saudi ${time}`}>{time}</strong><small>{date}</small></div><div className="home-prayer__cities" role="group" aria-label="Pilih bandar waktu solat"><button type="button" className={city==="Makkah"?"is-active":""} aria-pressed={city==="Makkah"} onClick={()=>setCity("Makkah")}>Makkah</button><button type="button" className={city==="Madinah"?"is-active":""} aria-pressed={city==="Madinah"} onClick={()=>setCity("Madinah")}>Madinah</button></div>{timings&&<div className="home-prayer__times" aria-label={`Jadual solat ${city}`}>{[["Subuh","Fajr"],["Zohor","Dhuhr"],["Asar","Asr"],["Maghrib","Maghrib"],["Isyak","Isha"]].map(([label,key])=><div key={key}><span>{label}</span><strong>{timings[key]}</strong></div>)}</div>}<div className="home-prayer__note" role="status"><Sun size={19} aria-hidden="true"/><p><strong>{city}</strong> · {loading?"Sedang mendapatkan jadual waktu solat…":error?timings?"Menggunakan jadual tersimpan untuk hari ini kerana sambungan tidak tersedia. Sila sahkan dengan masjid setempat.":"Jadual waktu solat tidak dapat dimuatkan. Cuba segar semula apabila ada sambungan internet.":"Waktu solat hari ini daripada AlAdhan API (kaedah Umm Al-Qura, waktu Arab Saudi). Sila semak dengan jadual masjid setempat kerana waktu pengiraan boleh berbeza."} Jam di atas menunjukkan waktu semasa Arab Saudi.</p></div></section>
 }
 export function Home(){return <Layout>
   <div className="home-app">
