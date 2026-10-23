@@ -1,22 +1,16 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {BookOpen,BookOpenText,ClipboardCheck,Search,HelpCircle,Map,Globe,ArrowRight,Settings,Sun,Clock3,RefreshCw} from "lucide-react";
+import {BookOpen,BookOpenText,ArrowRight,Settings,Sun,RefreshCw} from "lucide-react";
 import {Layout} from "../components/SiteLayout";
 import {FeedGrid} from "../components/BlogFeed";
 
 const shortcuts=[
   {title:"Panduan Umrah",to:"/panduan",Icon:BookOpen},
-  {title:"Doa & Zikir",to:"/doa",Icon:Sun},
-  {title:"Checklist Perjalanan",to:"/panduan/persediaan",Icon:ClipboardCheck},
-  {title:"Carian",to:"/blog",Icon:Search}
+  {title:"Doa & Zikir",to:"/doa",Icon:Sun}
 ];
 const tools=[
   {title:"Panduan",to:"/panduan",Icon:BookOpen},
-  {title:"Doa & Zikir",to:"/doa",Icon:BookOpenText},
-  {title:"Checklist",to:"/panduan/persediaan",Icon:ClipboardCheck},
-  {title:"FAQ Umrah",to:"/panduan",Icon:HelpCircle},
-  {title:"Miqat & Peta",to:"/panduan/ibadah",Icon:Map},
-  {title:"Bahasa",to:"/panduan",Icon:Globe}
+  {title:"Doa & Zikir",to:"/doa",Icon:BookOpenText}
 ];
 function SaudiClock(){
   const [now,setNow]=React.useState(()=>new Date());
