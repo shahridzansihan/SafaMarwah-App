@@ -213,3 +213,40 @@
 /* v3.3 — accessible native article sharing */
 .single-article__share{border:1px solid rgba(0,61,50,.2);border-radius:9px;background:#fff;color:#003d32;padding:10px 15px;font:inherit;font-size:.9rem;font-weight:650;cursor:pointer;min-height:44px}
 .single-article__share:hover{background:#e8efe9}
+
+
+/* Hybrid Premium homepage — familiar Umrah entry points, refined editorial presentation */
+.hero-home--hybrid{min-height:clamp(440px,49vw,620px);padding:clamp(30px,6vw,84px);display:flex;align-items:center;position:relative}
+.hero-home__content{position:relative;z-index:1;max-width:690px}
+.hero-home__eyebrow{font-size:.73rem;font-weight:750;letter-spacing:.18em;color:#e5c991;margin:0 0 18px}
+.hero-home__lead{font-size:clamp(1rem,1.6vw,1.14rem);line-height:1.75;color:rgba(255,255,255,.88);max-width:550px;margin:22px 0 0}
+.hero-home__actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:30px}
+.hero-home__actions a{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:48px;padding:12px 20px;border-radius:11px;font-size:.91rem;font-weight:700;transition:transform .2s,background .2s}
+.hero-home__actions a:hover{transform:translateY(-2px)}
+.hero-home__primary{background:#D6B77A;color:#003D32}
+.hero-home__primary:hover{background:#e9ca90}
+.hero-home__secondary{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.55);color:#fff;backdrop-filter:blur(8px)}
+.hero-home__secondary:hover{background:rgba(255,255,255,.2)}
+.hero-home__signature{position:absolute;right:30px;bottom:24px;font-size:.82rem;font-weight:750;letter-spacing:-.025em;color:rgba(255,255,255,.85)}
+.hero-home__signature span{color:#D6B77A}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.section-head .section-heading{margin:0}
+.section-head__description{font-size:.9rem;color:#65766c;max-width:260px;line-height:1.6}
+.section-head__link{display:inline-flex;align-items:center;gap:9px;color:#005243;font-size:.88rem;font-weight:700;white-space:nowrap}
+.tools-grid--hybrid{grid-template-columns:repeat(1,minmax(0,1fr))}
+.home-tool{position:relative;min-width:0;min-height:180px;padding:26px 28px;border:1px solid rgba(0,61,50,.13);border-radius:16px;background:#fff;transition:transform .2s,border-color .2s,box-shadow .2s}
+.home-tool:hover{transform:translateY(-3px);border-color:rgba(0,61,50,.3);box-shadow:0 14px 28px rgba(0,61,50,.07)}
+.home-tool__index{display:block;color:#96794b;font-size:.75rem;font-weight:800;letter-spacing:.15em;margin-bottom:22px}
+.home-tool h3{font-size:1.13rem;font-weight:750;letter-spacing:-.025em;margin:0 0 9px}
+.home-tool p{font-size:.9rem;line-height:1.65;color:#687a70;max-width:300px;margin:0}
+.home-tool__arrow{position:absolute;right:24px;top:24px;color:#00614f;font-size:1.3rem}
+.home-guide-grid{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid rgba(0,61,50,.15)}
+.home-guide{display:grid;grid-template-columns:40px minmax(0,1fr) 24px;align-items:center;gap:18px;padding:23px 8px;border-bottom:1px solid rgba(0,61,50,.15)}
+.home-guide__number{font-size:.8rem;color:#96794b;font-weight:750}
+.home-guide h3{font-size:1.03rem;font-weight:750;margin:0 0 6px}
+.home-guide p{font-size:.88rem;line-height:1.6;color:#687a70;margin:0}
+.home-guide__arrow{font-size:1.2rem;color:#005243;transition:transform .2s}
+.home-guide:hover .home-guide__arrow{transform:translate(3px,-3px)}
+@media(min-width:768px){.tools-grid--hybrid{grid-template-columns:repeat(3,minmax(0,1fr))}.home-guide-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;border:0}.home-guide{grid-template-columns:28px minmax(0,1fr) 20px;align-items:start;border-top:1px solid rgba(0,61,50,.15);gap:10px;padding:23px 0}.hero-home__signature{right:36px;bottom:30px}}
+@media(max-width:767px){.hero-home--hybrid{min-height:490px;padding:30px 25px 55px;background-position:55% center}.hero-home__actions{gap:10px}.hero-home__actions a{min-height:46px;padding:11px 15px}.hero-home__signature{right:24px;bottom:20px}.section-head{align-items:start;flex-direction:column;gap:8px}.section-head__description{max-width:none}.home-tool{min-height:155px;padding:22px 24px}.home-tool__index{margin-bottom:14px}}
+@media(prefers-reduced-motion:reduce){.hero-home__actions a,.home-tool,.home-guide__arrow{transition:none}}
