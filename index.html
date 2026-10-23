@@ -1804,6 +1804,37 @@ body.sm-inner-view #main .phase3-lang button{
 #main:has(.sm51-page-hero) > .page-head,
 #main:has(.sm51-page-hero) > .phase-header,
 #main:has(.sm51-page-hero) > .sm-master-header {display:none!important}
+</style><style id="sm-unified-header-alignment-v1">
+/* Homepage is the header master. Keep identical logo width, inset, and gear placement
+   on Panduan, Doa and every other web-app route. Do not alter their banners/cards. */
+@media(max-width:767px){
+ html body .app > header.top.home-top{
+  box-sizing:border-box!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  min-height:83px!important;height:83px!important;
+  padding:14px 22px!important;gap:8px!important;
+ }
+ html body .app > header.top.home-top .home-brand{
+  display:flex!important;align-items:center!important;
+  flex:0 1 auto!important;width:auto!important;
+  max-width:calc(100% - 64px)!important;
+  margin:0!important;padding:0!important;
+ }
+ html body .app > header.top.home-top .home-brand img{
+  display:block!important;width:min(60vw,230px)!important;
+  height:54px!important;max-height:54px!important;
+  object-fit:contain!important;object-position:left center!important;
+ }
+ html body .app > header.top.home-top .settings-trigger{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  flex:0 0 42px!important;width:42px!important;height:42px!important;
+  min-width:42px!important;min-height:42px!important;
+  margin:0!important;padding:0!important;transform:none!important;
+ }
+ html body.sm-inner-view .app > header.top.home-top{
+  background:#00382d!important;
+ }
+}
 </style></head><body><div class="app"><nav class="bottom sm50-nav sm53-nav" aria-label="Navigasi utama"><a class="sm42-nav-brand" href="#" onclick="show('home');return false" aria-label="SafaMarwah — Utama"><img src="./header-logo.png" alt="SafaMarwah"></a><div class="bottom-inner"><button onclick="show('home')" id="nav-home" class="active"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v11H3zM9 21v-8h6v8"/></svg></span>Utama</button><button onclick="show('steps')" id="nav-steps"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v14"/></svg></span>Panduan</button><button onclick="show('dua')" id="nav-dua"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="3" r="1.1"/><circle cx="17" cy="5" r="1.1"/><circle cx="20" cy="10" r="1.1"/><circle cx="19" cy="15" r="1.1"/><circle cx="15" cy="19" r="1.1"/><circle cx="10" cy="20" r="1.1"/><circle cx="6" cy="17" r="1.1"/><circle cx="4" cy="12" r="1.1"/><circle cx="6" cy="7" r="1.1"/><path d="m15 19 3 3"/></svg></span>Doa</button></div></nav><header class="top home-top"><a class="home-brand" href="https://www.safamarwah.my/" target="_blank" rel="noopener noreferrer" aria-label="Lawati laman utama SafaMarwah"><img src="./header-logo.png" alt="SafaMarwah — Menelusuri Ilmu, Menghayati Ibadah"></a><span class="sm51-header-caption">UMRAH COMPANION</span><button class="settings-trigger" id="settings-trigger" aria-label="Tetapan paparan" aria-expanded="false" aria-controls="display-settings" onclick="smToggleDisplaySettings()">⚙ <span>Tetapan</span></button><div class="toolbar" id="display-settings" hidden><button id="smaller" aria-label="Kecilkan tulisan" title="Kecilkan tulisan">A−</button><button id="bigger" aria-label="Besarkan tulisan" title="Besarkan tulisan">A+</button><button id="reset-font" aria-label="Tetapkan semula saiz tulisan" title="Saiz tulisan normal">A↺</button><button id="theme" aria-label="Tukar tema" title="Mod gelap">☾</button></div></header><main class="main" id="main"><section class="sm53-hero"><div class="sm53-hero-photo" aria-hidden="true"></div><div class="sm53-hero-copy"><h1>Perjalanan<br>Umrah Anda<br>Bermula di Sini</h1><p>Panduan lengkap, sahih dan mudah difahami untuk setiap langkah ibadah anda.</p></div></section><section class="sm53-quick" aria-label="Akses pantas"><button onclick="show('steps')"><span class="sm53-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Zm0 0v14"/></svg></span><span>Panduan<br>Umrah</span></button><button onclick="show('dua')"><span class="sm53-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="3" r="1.1"/><circle cx="17" cy="5" r="1.1"/><circle cx="20" cy="10" r="1.1"/><circle cx="19" cy="15" r="1.1"/><circle cx="15" cy="19" r="1.1"/><circle cx="10" cy="20" r="1.1"/><circle cx="6" cy="17" r="1.1"/><circle cx="4" cy="12" r="1.1"/><circle cx="6" cy="7" r="1.1"/><path d="m15 19 3 3"/></svg></span><span>Doa &amp; Zikir</span></button><button onclick="phasePage('checklist')"><span class="sm53-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2M8 10h2m2 0h4M8 15l2 2 4-4"/></svg></span><span>Checklist<br>Perjalanan</span></button><button type="button" onclick="smOpenHeroSearch()" aria-label="Cari panduan dan doa"><span class="sm53-round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></span><span>Carian</span></button></section>
 <section class="prayer-widget" aria-labelledby="prayer-heading">
 <div class="prayer-head"><div><span class="prayer-eyebrow">SAFAMARWAH · LIVE PRAYER TIMES</span><h2 id="prayer-heading">Waktu Solat</h2><span class="prayer-zone">Waktu Saudi (UTC+3)</span></div><button class="prayer-refresh" type="button" onclick="smPrayerLoad(true)" aria-label="Kemas kini waktu solat" title="Kemas kini">↻</button></div>
