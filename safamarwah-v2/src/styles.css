@@ -340,3 +340,11 @@ body:has(.home-app) .site-footer{margin-top:0}
 .home-prayer__cities button.is-active{background:#faf8f3;color:#005143;box-shadow:0 2px 9px rgba(0,25,19,.16)}
 .home-prayer__note strong{color:#003d32}
 @media(max-width:767px){.home-prayer__cities button{min-height:44px}}
+
+
+/* Verified daily prayer times: compact and legible on every viewport */
+.home-prayer__times{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin-top:16px}
+.home-prayer__times>div{display:flex;flex-direction:column;align-items:center;gap:7px;padding:14px 5px;border:1px solid rgba(214,183,122,.35);border-radius:12px;background:rgba(0,31,25,.32);font-variant-numeric:tabular-nums}
+.home-prayer__times span{font-size:.8rem;color:#e9d8ad}
+.home-prayer__times strong{font-size:clamp(.9rem,1.7vw,1.25rem);color:#fff}
+@media(max-width:390px){.home-prayer__times{gap:4px}.home-prayer__times>div{padding:12px 2px}.home-prayer__times span{font-size:.69rem}.home-prayer__times strong{font-size:.85rem}}
