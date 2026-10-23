@@ -308,3 +308,15 @@ body:has(.home-app) main.container-page{width:100%;max-width:none;padding:0!impo
 body:has(.home-app) .site-footer{margin-top:0}
 @media(max-width:767px){.home-app__hero{padding:28px 22px 34px;min-height:0;background-position:57% top}.home-app__headline{margin:105px 0 75px}.home-app__headline h1{font-size:clamp(2.55rem,10vw,4rem)}.home-app__description{font-size:1.04rem}.home-app__shortcuts{gap:8px;margin-bottom:30px}.home-app__shortcuts a{font-size:.75rem}.home-app__shortcut-icon{width:59px;height:59px}.home-prayer{padding:18px;border-radius:19px}.home-app__tools,.home-app__articles{padding:35px 22px}.home-app__tool-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:25px 8px}.home-app__tool-grid a{font-size:.72rem}.home-app__tool-icon{width:58px;height:58px}.home-app__section-title h2{font-size:1.5rem}}
 @media(max-width:390px){.home-app__shortcut-icon{width:52px;height:52px}.home-app__tool-icon{width:50px;height:50px}.home-app__shortcuts a{font-size:.69rem}.home-app__tool-grid a{font-size:.67rem}}
+
+
+/* App navigation follows the approved mobile mockup */
+.app-bottom-nav{display:none}
+@media(max-width:767px){
+ .app-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:100;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;min-height:70px;padding:8px 10px max(9px,env(safe-area-inset-bottom));background:rgba(0,47,38,.98);border-top:1px solid rgba(214,183,122,.25);box-shadow:0 -8px 28px rgba(0,20,15,.18);color:#e5d4ad}
+ .app-bottom-nav__link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:54px;border-radius:11px;font-size:.73rem;color:#d0c3a8}
+ .app-bottom-nav__link.is-active{color:#f1d18d;background:rgba(255,255,255,.055);font-weight:750}
+ .app-bottom-nav__link svg{flex:none}
+ body{padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+ body:has(.home-app) .site-footer{display:none}
+}
