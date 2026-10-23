@@ -1,0 +1,11 @@
+import {useState} from 'react';
+const questions=[
+['Apakah rukun Umrah?','Rukun Umrah meliputi niat ihram, tawaf, saie, bergunting atau bercukur (tahallul), serta tertib. Rujuk pembimbing bertauliah untuk penerangan hukum terperinci.'],
+['Bilakah saya perlu berniat ihram?','Niat ihram dilakukan apabila tiba di miqat yang berkenaan. Miqat berbeza mengikut laluan perjalanan; semak dengan mutawif atau pembimbing anda.'],
+['Berapa pusingan tawaf?','Tawaf Umrah dilakukan sebanyak tujuh pusingan mengelilingi Kaabah.'],
+['Berapa perjalanan saie?','Saie dilakukan sebanyak tujuh perjalanan antara Safa dan Marwah, bermula di Safa dan berakhir di Marwah.'],
+['Bolehkah menggunakan kad digital sebagai dokumen rasmi?','Tidak. Kad Digital SafaMarwah hanyalah catatan peribadi dan tidak menggantikan pasport, visa atau dokumen perjalanan rasmi.'],
+['Adakah aplikasi memerlukan akaun?','Fungsi setempat seperti senarai semak, tasbih dan kad digital tidak memerlukan akaun. Data disimpan dalam pelayar peranti dan boleh hilang jika storan pelayar dibersihkan.'],
+['Adakah pengiraan kiblat memerlukan internet?','Pengiraan matematik boleh dilakukan pada peranti, tetapi kebenaran lokasi dan ketersediaan geolokasi bergantung pada pelayar dan peranti. Semak arah dengan sumber setempat jika perlu.']
+] as const;
+export default function FAQ(){const [query,setQuery]=useState('');const filtered=questions.filter(([q,a])=>(q+' '+a).toLocaleLowerCase('ms').includes(query.toLocaleLowerCase('ms')));return <><section className="inner-hero"><div className="shell"><span className="eyebrow">SAFAMARWAH · PUSAT BANTUAN</span><h1>Soalan Lazim</h1><p>Jawapan ringkas untuk persediaan perjalanan dan penggunaan aplikasi.</p></div></section><main className="shell inner-main"><label className="faq-search">Cari soalan<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Contoh: ihram, tawaf, kad digital"/></label><div className="faq-list">{filtered.map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}{filtered.length===0&&<p>Tiada soalan sepadan dengan carian.</p>}</div><p className="faq-note">Maklumat ibadah ialah panduan umum. Dapatkan pengesahan pembimbing atau pihak berkuasa agama untuk persoalan hukum khusus.</p></main></>}
