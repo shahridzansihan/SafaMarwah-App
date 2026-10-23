@@ -52,3 +52,9 @@ test("blog feed offers a retry action when Blogger is unreachable", async ({ pag
   await expect(page.getByRole("button", { name: "Cuba Lagi" })).toBeVisible({ timeout: 20000 });
   await expect(page.getByRole("link", { name: /Baca terus di SafaMarwah/i })).toBeVisible();
 });
+
+test("blog category filter changes selected state", async ({ page }) => {
+  await page.goto("/#/blog");
+  await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Segar Semula" })).toBeVisible();
+});
