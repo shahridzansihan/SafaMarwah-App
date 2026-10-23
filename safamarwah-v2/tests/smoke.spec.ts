@@ -94,3 +94,15 @@ test("Saudi prayer cache does not substitute yesterday's timetable",async({page}
  await expect(widget.getByText(/Jadual waktu solat tidak dapat dimuatkan/)).toBeVisible();
  await expect(widget.getByText("01:01")).toHaveCount(0);
 });
+
+
+test("Lainnya menu supports keyboard dismissal",async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto("/#/");
+ const more=page.getByRole("navigation",{name:"Navigasi aplikasi"}).getByRole("button",{name:"Lainnya"});
+ await more.click();
+ await expect(more).toHaveAttribute("aria-expanded","true");
+ await page.keyboard.press("Escape");
+ await expect(more).toHaveAttribute("aria-expanded","false");
+ await expect(page.getByRole("navigation",{name:"Menu tambahan"})).toHaveCount(0);
+});
