@@ -2978,7 +2978,7 @@ function homeTile(p){let date='';try{if(p.date)date=new Intl.DateTimeFormat(smCa
 function smHomeBookmark(button){const key='sm-bookmark-'+button.dataset.articleId;const saved=button.getAttribute('aria-pressed')!=='true';button.setAttribute('aria-pressed',String(saved));button.setAttribute('aria-label',saved?'Buang artikel daripada simpanan':'Simpan artikel');try{localStorage.setItem(key,String(saved))}catch(e){}}
 function smRestoreHomeBookmarks(){document.querySelectorAll('.sm-home-bookmark').forEach(b=>{try{const saved=localStorage.getItem('sm-bookmark-'+b.dataset.articleId)==='true';b.setAttribute('aria-pressed',String(saved));b.setAttribute('aria-label',saved?'Buang artikel daripada simpanan':'Simpan artikel')}catch(e){}})}
 function renderHome(){let el=document.getElementById('sm-articles-home-grid');if(el)el.innerHTML=posts.length?posts.slice(0,3).map(homeTile).join(''):'<p class="sm-article-empty">'+message()+'</p>';smTranslateVisibleArticleCards();smRestoreHomeBookmarks()}
-function shell(title){document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-more')?.classList.add('active');document.getElementById('main').innerHTML=header(safe(title),'show(\'home\')')+'<section id="sm-articles-content" style="background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;margin:0!important"></section>';window.scrollTo(0,0)}
+function shell(title){document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-more')?.classList.add('active');document.getElementById('main').innerHTML=(title==='Artikel & Ilmu'?'':header(safe(title),'show(\'home\')'))+'<section id="sm-articles-content" style="background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;margin:0!important"></section>';window.scrollTo(0,0)}
 function smArticleTranslationNotice(){const l=phase3Lang();return l==='ms'?'':('<p class="sm-article-language-note" role="status">'+(l==='en'?'Preparing automatic translation of this article…':'Menyiapkan terjemahan otomatis artikel ini…')+'</p>')}
 window.smArticlesPage=async function(){shell('Artikel & Ilmu');let box=document.getElementById('sm-articles-content');box.innerHTML='<section class="sm-articles-kaaba-banner" aria-label="Banner Artikel dan Ilmu"><span class="sm-articles-kaaba-eyebrow">Perkongsian Ilmu</span><h2>Artikel &amp; Ilmu</h2><p>Panduan, inspirasi dan pengetahuan untuk perjalanan ibadah anda.</p></section><input class="sm-article-search" id="sm-article-search" placeholder="Cari artikel..." aria-label="Cari artikel"><div class="sm-articles-grid" id="sm-articles-results"><p class="sm-article-empty">Memuatkan artikel…</p></div>';await load();let input=document.getElementById('sm-article-search');if(!input)return;let update=()=>{let q=input.value.toLocaleLowerCase();let list=posts.filter(p=>(p.title+' '+p.labels.join(' ')+' '+plain(p.html)).toLocaleLowerCase().includes(q));document.getElementById('sm-articles-results').innerHTML=list.length?list.map(tile).join(''):'<p class="sm-article-empty">'+(q?'Tiada artikel sepadan.':message())+'</p>';smTranslateVisibleArticleCards()};input.addEventListener('input',update);update();smTranslateVisibleArticleCards()};
 /* Single Article Page: translate published text nodes without altering markup, links, media or Arabic quotations. */
@@ -3421,4 +3421,19 @@ color:#fff8ea!important;margin:12px 0 10px!important}
 font:400 clamp(14px,3.4vw,19px)/1.55 Inter,system-ui,sans-serif!important;
 color:#fff8ea!important;margin:0!important;max-width:520px}
 @media(max-width:600px){#main #sm-articles-content .sm-articles-kaaba-banner{min-height:220px;border-radius:20px;margin-bottom:22px}}
+</style><style id="sm-article-banner-match-panduan-v2">
+/* Match Panduan's actual .sm51-page-hero sizing and position. */
+html body #main #sm-articles-content{padding-inline:0!important}
+html body #main #sm-articles-content .sm-articles-kaaba-banner{
+min-height:176px!important;height:auto!important;max-height:none!important;
+margin:10px 0 15px!important;padding:20px!important;border-radius:19px!important;
+background:linear-gradient(0deg,#002d25dd,#002d2544),url('kaaba.jpg') center 57%/cover no-repeat!important;
+justify-content:flex-end!important}
+html body #main #sm-articles-content .sm-articles-kaaba-banner .sm-articles-kaaba-eyebrow{
+font-size:.88rem!important;color:#f4e6cb!important}
+html body #main #sm-articles-content .sm-articles-kaaba-banner h2{
+font:500 2.25rem Georgia,serif!important;margin:3px 0!important;color:#fff7e6!important}
+html body #main #sm-articles-content .sm-articles-kaaba-banner p{
+margin:0!important;max-width:430px!important;line-height:1.45!important;color:#fff4dd!important}
+@media(max-width:600px){html body #main #sm-articles-content .sm-articles-kaaba-banner{min-height:176px!important}}
 </style></body></html>
