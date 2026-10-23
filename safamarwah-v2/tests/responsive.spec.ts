@@ -147,7 +147,7 @@ test("Blogger label pagination stays within selected category", async ({ page })
 
 test("homepage keeps approved responsive article cards and image ratio",async({page})=>{
  const viewport=page.viewportSize()!;
- await page.route(/safamarwah\\.my\\/feeds\\/posts\\/default/,async route=>{
+ await page.route("**/feeds/posts/default**",async route=>{
   const url=new URL(route.request().url());
   const callback=url.searchParams.get("callback")||"callback";
   const entry=(id:number)=>({id:{$t:"home-"+id},title:{$t:"Artikel "+id},content:{$t:"<p>Ringkasan artikel Umrah.</p>"},link:[{rel:"alternate",href:"https://www.safamarwah.my/2026/10/home-"+id+".html"}]});
