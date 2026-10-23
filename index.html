@@ -2980,7 +2980,7 @@ function smRestoreHomeBookmarks(){document.querySelectorAll('.sm-home-bookmark')
 function renderHome(){let el=document.getElementById('sm-articles-home-grid');if(el)el.innerHTML=posts.length?posts.slice(0,3).map(homeTile).join(''):'<p class="sm-article-empty">'+message()+'</p>';smTranslateVisibleArticleCards();smRestoreHomeBookmarks()}
 function shell(title){document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-more')?.classList.add('active');document.getElementById('main').innerHTML=header(safe(title),'show(\'home\')')+'<section id="sm-articles-content" style="background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important;margin:0!important"></section>';window.scrollTo(0,0)}
 function smArticleTranslationNotice(){const l=phase3Lang();return l==='ms'?'':('<p class="sm-article-language-note" role="status">'+(l==='en'?'Preparing automatic translation of this article…':'Menyiapkan terjemahan otomatis artikel ini…')+'</p>')}
-window.smArticlesPage=async function(){shell('Artikel & Ilmu');let box=document.getElementById('sm-articles-content');box.innerHTML='<input class="sm-article-search" id="sm-article-search" placeholder="Cari artikel..." aria-label="Cari artikel"><div class="sm-articles-grid" id="sm-articles-results"><p class="sm-article-empty">Memuatkan artikel…</p></div>';await load();let input=document.getElementById('sm-article-search');if(!input)return;let update=()=>{let q=input.value.toLocaleLowerCase();let list=posts.filter(p=>(p.title+' '+p.labels.join(' ')+' '+plain(p.html)).toLocaleLowerCase().includes(q));document.getElementById('sm-articles-results').innerHTML=list.length?list.map(tile).join(''):'<p class="sm-article-empty">'+(q?'Tiada artikel sepadan.':message())+'</p>';smTranslateVisibleArticleCards()};input.addEventListener('input',update);update();smTranslateVisibleArticleCards()};
+window.smArticlesPage=async function(){shell('Artikel & Ilmu');let box=document.getElementById('sm-articles-content');box.innerHTML='<section class="sm-articles-kaaba-banner" aria-label="Banner Artikel dan Ilmu"><span class="sm-articles-kaaba-eyebrow">Perkongsian Ilmu</span><h2>Artikel &amp; Ilmu</h2><p>Panduan, inspirasi dan pengetahuan untuk perjalanan ibadah anda.</p></section><input class="sm-article-search" id="sm-article-search" placeholder="Cari artikel..." aria-label="Cari artikel"><div class="sm-articles-grid" id="sm-articles-results"><p class="sm-article-empty">Memuatkan artikel…</p></div>';await load();let input=document.getElementById('sm-article-search');if(!input)return;let update=()=>{let q=input.value.toLocaleLowerCase();let list=posts.filter(p=>(p.title+' '+p.labels.join(' ')+' '+plain(p.html)).toLocaleLowerCase().includes(q));document.getElementById('sm-articles-results').innerHTML=list.length?list.map(tile).join(''):'<p class="sm-article-empty">'+(q?'Tiada artikel sepadan.':message())+'</p>';smTranslateVisibleArticleCards()};input.addEventListener('input',update);update();smTranslateVisibleArticleCards()};
 /* Single Article Page: translate published text nodes without altering markup, links, media or Arabic quotations. */
 let smSingleTranslateRun=0;
 const smSingleTranslateCache=new Map();
@@ -3404,4 +3404,21 @@ html body #main .sm63-editorial-panel::before,
 html body #main .sm63-editorial-panel::after,
 html body #main #sm-articles-content::before,
 html body #main #sm-articles-content::after{background:none!important}
+</style><style id="sm-articles-kaaba-banner-v1">
+/* Article listing banner only; matches Panduan's Kaabah hero. */
+#main #sm-articles-content .sm-articles-kaaba-banner{
+position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;
+min-height:clamp(205px,36vw,290px);margin:0 0 24px;padding:clamp(24px,5vw,38px);
+border-radius:22px;display:flex;flex-direction:column;justify-content:flex-end;
+background:linear-gradient(0deg,rgba(0,38,30,.82),rgba(0,38,30,.10)),url('kaaba.jpg') center 54%/cover no-repeat!important;
+color:#fff8ea!important;box-shadow:none!important}
+#main #sm-articles-content .sm-articles-kaaba-banner .sm-articles-kaaba-eyebrow{
+font:500 clamp(13px,2.8vw,16px)/1.3 Inter,system-ui,sans-serif;color:#f5e0b5}
+#main #sm-articles-content .sm-articles-kaaba-banner h2{
+font:600 clamp(32px,7vw,54px)/1.12 'Playfair Display',Georgia,serif!important;
+color:#fff8ea!important;margin:12px 0 10px!important}
+#main #sm-articles-content .sm-articles-kaaba-banner p{
+font:400 clamp(14px,3.4vw,19px)/1.55 Inter,system-ui,sans-serif!important;
+color:#fff8ea!important;margin:0!important;max-width:520px}
+@media(max-width:600px){#main #sm-articles-content .sm-articles-kaaba-banner{min-height:220px;border-radius:20px;margin-bottom:22px}}
 </style></body></html>
