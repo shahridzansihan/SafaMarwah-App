@@ -35,25 +35,29 @@ jobs:
         run: |
           npx cap add android
           npx cap sync android
-      - name: Configure Android status and navigation bars
+      - name: Apply Android system-bar insets
         working-directory: safamarwah-v2
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          p=Path("android/app/src/main/res/values/styles.xml")
-          data=p.read_text()
-          marker='</resources>'
-          style='''<style name="SafaMarwahNativeBars" parent="Theme.AppCompat.DayNight.NoActionBar">
-              <item name="android:statusBarColor">#002f27</item>
-              <item name="android:navigationBarColor">#002f27</item>
-              <item name="android:windowLightStatusBar">false</item>
-              <item name="android:windowLightNavigationBar">false</item>
-              <item name="android:windowActionModeOverlay">true</item>
-              <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
-            </style>'''
-          if marker not in data: raise SystemExit("Android styles.xml missing resources")
-          data=data.replace(marker,style+'\n'+marker)
-          p.write_text(data)
+          p=Path("android/app/src/main/java")
+          candidates=list(p.rglob("MainActivity.java"))
+          if len(candidates)!=1: raise SystemExit("Expected one MainActivity.java")
+          file=candidates[0]
+          data=file.read_text()
+          if "androidx.core.view.WindowCompat" not in data:
+              data=data.replace("import com.getcapacitor.BridgeActivity;", "import com.getcapacitor.BridgeActivity;\nimport androidx.core.view.WindowCompat;")
+          data=data.replace("public class MainActivity extends BridgeActivity {}", """public class MainActivity extends BridgeActivity {
+            @Override
+            public void onCreate(android.os.Bundle savedInstanceState) {
+              super.onCreate(savedInstanceState);
+              WindowCompat.setDecorFitsSystemWindows(getWindow(), true);
+              getWindow().setStatusBarColor(android.graphics.Color.rgb(0, 47, 39));
+              getWindow().setNavigationBarColor(android.graphics.Color.rgb(0, 47, 39));
+            }
+          }""")
+          if "setDecorFitsSystemWindows" not in data: raise SystemExit("MainActivity patch not applied")
+          file.write_text(data)
           PY
       - name: Build debug APK
         working-directory: safamarwah-v2/android
