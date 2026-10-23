@@ -563,3 +563,39 @@ body:not(:has(.home-app)) .single-article__end>a:not(.btn-primary){color:#e6c991
 .home-app__shortcuts a{width:100%;max-width:155px}
 .home-app__tool-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:320px;justify-items:center}
 @media(max-width:767px){.home-app__shortcuts{max-width:280px}.home-app__tool-grid{max-width:280px}}
+
+
+/* Premium mockup refinement: cinematic headline and compact Saudi prayer panel */
+.home-app__hero{background-image:linear-gradient(180deg,rgba(0,33,27,.50) 0%,rgba(0,37,30,.55) 35%,rgba(0,40,31,.94) 83%,#002f27 100%),url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg")}
+.home-app__headline{margin-top:clamp(54px,7vw,95px);margin-bottom:clamp(24px,4vw,42px)}
+.home-app__headline h1{max-width:570px;font-size:clamp(3rem,6vw,5.2rem);line-height:1.03;margin:8px 0 14px}
+.home-app__headline h1 em{display:block}
+.home-app__description{max-width:400px;font-size:clamp(.95rem,1.6vw,1.1rem);line-height:1.55}
+.home-prayer{padding:clamp(15px,2.3vw,24px);max-width:720px}
+.home-prayer__head{align-items:center}
+.home-prayer__head h2{font-size:clamp(1.14rem,2vw,1.45rem);font-weight:700}
+.home-prayer__timezone{font-size:.76rem;color:#d0dfd5;margin:3px 0 0}
+.home-prayer__clock{gap:3px;margin-top:12px;padding:13px 15px;background:linear-gradient(110deg,rgba(0,43,34,.82),rgba(0,80,61,.55))}
+.home-prayer__clock span{font-size:.65rem;letter-spacing:.12em}
+.home-prayer__clock strong{font-size:clamp(2rem,4.5vw,3.25rem);line-height:1.12}
+.home-prayer__clock small{font-size:.72rem}
+.home-prayer__next{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:12px 15px;border-radius:13px;background:#f4f1e6;color:#003d32}
+.home-prayer__next span{font-size:.7rem;font-weight:750;letter-spacing:.045em}
+.home-prayer__next strong{font-size:clamp(1.35rem,2.6vw,2rem);font-variant-numeric:tabular-nums}
+.home-prayer__times>div{background:rgba(248,246,237,.08);border-color:rgba(214,183,122,.22)}
+.home-app__articles .article-card__snippet{display:none}
+.home-app__articles .article-card__title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden;font-weight:750}
+.home-app__articles .article-card__readmore{margin-top:10px}
+@media(max-width:767px){
+ .home-app__hero{background-position:55% top}
+ .home-app__headline{margin:clamp(45px,12vw,68px) 0 27px}
+ .home-app__headline h1{font-size:clamp(2.8rem,11.8vw,3.65rem);line-height:1.04}
+ .home-app__description{max-width:310px;font-size:.9rem}
+ .home-app__shortcuts{margin-bottom:22px}
+ .home-prayer__clock{padding:12px}
+ .home-prayer__clock strong{font-size:2.15rem}
+ .home-prayer__next{padding:11px 12px}
+ .home-prayer__next strong{font-size:1.5rem}
+ .home-app__articles .article-card__title{font-size:1rem;min-height:0}
+ .home-app__articles .article-card__readmore{min-height:34px;padding:7px 12px}
+}
