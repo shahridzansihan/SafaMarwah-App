@@ -5,7 +5,7 @@ export const FALLBACK_IMAGE="https://raw.githubusercontent.com/shahridzansihan/S
 export type ArticleBlock={kind:"p"|"h2"|"h3"|"img"|"ul"|"ol"|"quote";text:string;src?:string;items?:string[]};
 export type FeedArticle={id:string;title:string;url:string;description:string;image:string;published:string;author:string;avatar:string;labels:string[];paragraphs:string[];blocks:ArticleBlock[];slug:string};
 type BloggerEntry={category?:{term:string}[];id?:{$t:string};title?:{$t:string};content?:{$t:string};summary?:{$t:string};published?:{$t:string};media$thumbnail?:{url:string};author?:{name?:{$t:string};gd$image?:{src:string}}[];link?:{rel:string;href:string}[]};
-type BloggerResponse={feed?:{entry?:BloggerEntry[]}};
+export type BloggerResponse={feed?:{entry?:BloggerEntry[]}};
 function highResolutionBloggerImage(src:string):string{
  if(!src)return FALLBACK_IMAGE;
  try{
@@ -17,7 +17,7 @@ function highResolutionBloggerImage(src:string):string{
   return url.href;
  }catch{return FALLBACK_IMAGE;}
 }
-function parseFeed(data:BloggerResponse):FeedArticle[]{return (data.feed?.entry||[]).map((entry,index)=>{
+export function parseFeed(data:BloggerResponse):FeedArticle[]{return (data.feed?.entry||[]).map((entry,index)=>{
  const html=entry.content?.$t||entry.summary?.$t||"";
  const doc=new DOMParser().parseFromString(html,"text/html");
  const description=(doc.body.textContent||"").trim().split(/\s+/).filter(Boolean).slice(0,15).join(" ");
