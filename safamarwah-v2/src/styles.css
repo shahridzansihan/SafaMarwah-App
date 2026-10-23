@@ -599,3 +599,37 @@ body:not(:has(.home-app)) .single-article__end>a:not(.btn-primary){color:#e6c991
  .home-app__articles .article-card__title{font-size:1rem;min-height:0}
  .home-app__articles .article-card__readmore{min-height:34px;padding:7px 12px}
 }
+
+
+/* Unified mobile app shell: the five-tab bar IS the mobile footer on every route.
+   Keep the editorial footer for larger browser layouts only. */
+html,body,#root{min-height:100%;background:#002f27}
+.app-main{background:#002f27;color:#faf8f3}
+.site-footer{background:#002f27;border-top:1px solid rgba(214,183,122,.16)}
+.footer-brand{color:#faf8f3}
+.footer-brand .text-gold-brand{color:#e6c991}
+@media(max-width:767px){
+ html,body,#root{background:#002f27!important}
+ .site-footer,footer.site-footer{display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important}
+ .app-main{background:#002f27!important;color:#faf8f3;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))!important;min-height:calc(100dvh - 72px)}
+ .app-main>.home-app{margin-bottom:0}
+ .app-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:100;background:#003d32;border-top:1px solid rgba(214,183,122,.23)}
+ .site-header{background:#003d32;z-index:60}
+ .site-brand img{max-width:165px;max-height:51px;object-fit:contain}
+ .site-menu-toggle{font-size:0;gap:0;min-width:43px;min-height:43px;justify-content:center;padding:9px}
+ .site-menu-toggle__bars{width:21px;height:21px}
+ .site-nav__top{gap:12px}
+ .topic-card{background:linear-gradient(145deg,#07513f,#003b30)!important;color:#faf8f3!important;border-color:rgba(214,183,122,.24)!important}
+ .topic-card h3{color:#faf8f3!important}
+ .topic-card p{color:#d0ded5!important}
+ .topic-card__action{color:#e6c991!important}
+ .topic-search{background:transparent!important}
+ .page-hero{background:linear-gradient(115deg,rgba(0,43,34,.92),rgba(0,63,49,.82)),url("https://raw.githubusercontent.com/shahridzansihan/SafaMarwah-App/safamarwah-v2-foundation/kaaba.jpg") center/cover!important;color:#faf8f3!important}
+ .page-hero .page-heading{color:#faf8f3!important}
+ .page-hero>p:last-child:not(.page-hero__eyebrow){color:#d9e4db!important}
+ .page-hero__eyebrow{color:#e6c991!important}
+ .article-grid{row-gap:18px}
+ .article-card{background:#faf8f3;color:#25332f;border-radius:16px;overflow:hidden}
+ .article-card__image{border-radius:0!important}
+ .feed-pagination__count{color:#cad8cf}
+}
