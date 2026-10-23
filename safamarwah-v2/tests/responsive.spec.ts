@@ -10,8 +10,9 @@ for (const route of routes) {
     await expect(page.getByRole("link", { name: /SafaMarwah/i }).first()).toBeVisible();
   });
 }
-test("blog cards use responsive columns", async ({ page }) => {
-  await page.goto("/#/blog");
+test("topic cards use responsive columns", async ({ page }) => {
+  await page.goto("/#/panduan");
+  await expect(page.locator(".article-grid > *")).toHaveCount(3);
   const grid = page.locator(".article-grid").first();
   const cols = await grid.evaluate(el => getComputedStyle(el).gridTemplateColumns.split(" ").filter(Boolean).length);
   const width = page.viewportSize()!.width;
