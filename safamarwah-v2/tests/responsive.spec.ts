@@ -83,4 +83,6 @@ test("Blogger categories fetch matching articles and reset to all", async ({ pag
   await page.getByRole("button", { name: "Semua", exact: true }).click();
   await expect(page.getByRole("button", { name: "Semua", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(page.getByRole("heading", { name: "panduan-sample" })).toBeVisible();
+  await page.getByRole("button", { name: "Segar Semula" }).click();
+  await expect(page.getByRole("heading", { name: "panduan-sample" })).toBeVisible();
 });
