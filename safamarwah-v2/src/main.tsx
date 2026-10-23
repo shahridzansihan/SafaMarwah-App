@@ -39,7 +39,7 @@ function useBloggerFeed(limit=12){const[items,setItems]=React.useState<FeedArtic
  const timer=window.setTimeout(()=>finish(false),12000);
  function finish(ok:boolean,data?:BloggerResponse){if(!active)return;window.clearTimeout(timer);if(ok&&data){setItems(parseFeed(data));setError(false);}else{setError(true);}setLoading(false);script.remove();delete globalCallbacks[callback];}
  globalCallbacks[callback]=(data:BloggerResponse)=>finish(true,data);
- script.src=BLOG_ORIGIN+"/feeds/posts/default"+(selectedLabel?"/-/"+encodeURIComponent(selectedLabel):"")+"?alt=json-in-script&max-results="+limit+"&callback="+callback;
+ script.src=BLOG_ORIGIN+"/feeds/posts/default?alt=json-in-script&max-results="+limit+"&callback="+callback;
  script.async=true;script.onerror=()=>finish(false);document.head.appendChild(script);
  return()=>{active=false;window.clearTimeout(timer);script.remove();delete globalCallbacks[callback];};
  },[limit]);return {items,loading,error};}
