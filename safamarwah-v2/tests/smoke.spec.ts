@@ -118,3 +118,16 @@ test("Lainnya closes when tapping outside menu",async({page})=>{
  await expect(more).toHaveAttribute("aria-expanded","false");
  await expect(page.getByRole("navigation",{name:"Menu tambahan"})).toHaveCount(0);
 });
+
+
+test("Lainnya closes on tablet resize and stays closed on mobile return",async({page})=>{
+ await page.setViewportSize({width:390,height:844});
+ await page.goto("/#/");
+ const more=page.getByRole("navigation",{name:"Navigasi aplikasi"}).getByRole("button",{name:"Lainnya"});
+ await more.click();
+ await expect(more).toHaveAttribute("aria-expanded","true");
+ await page.setViewportSize({width:820,height:1180});
+ await expect(page.getByRole("navigation",{name:"Menu tambahan"})).toHaveCount(0);
+ await page.setViewportSize({width:390,height:844});
+ await expect(more).toHaveAttribute("aria-expanded","false");
+});
