@@ -129,3 +129,19 @@
 .site-links a.is-active{background:rgba(214,183,122,.13);color:#F0D39D}
 }
 @media(min-width:768px) and (max-width:900px){.site-links{gap:12px}.site-links a{font-size:.84rem}.site-brand{font-size:1.3rem}}
+
+/* v2.5 unified editorial design for internal pages */
+.page-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:center;min-height:clamp(180px,22vw,260px);margin:0 0 clamp(26px,4vw,42px);padding:clamp(26px,5vw,52px);border:1px solid rgba(0,61,50,.08);border-radius:18px;background:linear-gradient(120deg,#e8efe9 0%,#f5f3e9 68%,#f9f7f1 100%)}
+.page-hero::after{content:"";position:absolute;z-index:-1;right:-5%;top:-90%;width:min(58%,450px);aspect-ratio:1;border:1px solid rgba(0,61,50,.10);border-radius:50%;box-shadow:0 0 0 52px rgba(0,61,50,.025),0 0 0 104px rgba(214,183,122,.05)}
+.page-hero__eyebrow{margin:0 0 12px;color:#8a703e;font-size:.71rem;font-weight:760;letter-spacing:.15em}
+.page-hero .page-heading{max-width:850px;color:#003D32;line-height:1.13}
+.page-hero>p:last-child:not(.page-hero__eyebrow){max-width:650px;margin-top:14px;color:#5f7168;line-height:1.65}
+.page-hero .breadcrumbs{margin-bottom:15px;color:#62776c}
+.topic-card{display:flex;flex-direction:column;align-items:flex-start;min-height:185px;padding:clamp(20px,2.6vw,30px);border:1px solid rgba(0,61,50,.12);border-radius:14px;background:rgba(255,255,255,.7);transition:border-color .2s,transform .2s,box-shadow .2s}
+.topic-card h3{font-size:1.12rem;font-weight:720;line-height:1.35;color:#25332F}
+.topic-card p{margin-top:11px;font-size:.91rem;line-height:1.65;color:#64766c}
+.topic-card__action{display:inline-flex;margin-top:auto;padding-top:22px;font-size:.85rem;font-weight:720;color:#006451}
+.topic-card:hover{transform:translateY(-2px);border-color:rgba(0,61,50,.28);box-shadow:0 12px 28px rgba(0,61,50,.06)}
+.page-content{padding:clamp(20px,4vw,38px);border:1px solid rgba(0,61,50,.09);border-radius:16px;background:rgba(255,255,255,.64)}
+@media(max-width:767px){.page-hero{min-height:175px;padding:25px 22px;border-radius:14px}.page-hero::after{right:-42%;top:-28%;width:90%}.topic-card{min-height:155px}.page-content{padding:22px 18px}}
+@media(prefers-reduced-motion:reduce){.topic-card{transition:none}.topic-card:hover{transform:none}}
