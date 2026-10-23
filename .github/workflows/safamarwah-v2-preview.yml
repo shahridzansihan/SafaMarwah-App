@@ -8,6 +8,9 @@ on:
       - '.github/workflows/safamarwah-v2-preview.yml'
 permissions:
   contents: write
+concurrency:
+  group: safamarwah-v2-preview-publish
+  cancel-in-progress: false
 jobs:
   preview:
     runs-on: ubuntu-latest
