@@ -2129,7 +2129,7 @@ function smPrayerRender(city,record,isOld=false){
  const entries=smPrayerNames.map(([key],i)=>({label:loc.names[i],time:smPrayerTime(record.times[key])})).filter(x=>x.time);
  const next=today?entries.find(x=>Number(x.time.slice(0,2))*60+Number(x.time.slice(3))>now.minutes):null;
  const headline=next?'<span class="prayer-next-label">'+loc.next+next.label+'</span><strong class="prayer-next-time">'+next.time+' <small>SA</small></strong>':(today?'<span class="prayer-next-label">'+loc.finished+'</span>':'<span class="prayer-next-label">'+loc.saved+'</span>');
- el.innerHTML='<h3><span class="prayer-pin">◉</span> '+cityName+'</h3><div class="prayer-next">'+headline+'</div><div class="prayer-times">'+entries.map(x=>'<div class="'+(next&&next.label===x.label?'is-next':'')+'"><span>'+x.label+'</span><b>'+x.time+'</b></div>').join('')+'</div><small class="prayer-date">'+record.date+(isOld||!today?loc.cached:'')+'</small>';
+ el.innerHTML='<h3><span class="prayer-pin">◉</span> '+cityName+'</h3><div class="prayer-next">'+headline+'</div><div class="prayer-times">'+entries.map(x=>'<div class="'+(next&&next.label===x.label?'is-next':'')+'"><span class="prayer-time-symbol" aria-hidden="true">☼</span><span>'+x.label+'</span><b>'+x.time+'</b></div>').join('')+'</div><small class="prayer-date">'+record.date+(isOld||!today?loc.cached:'')+'</small>';
 }
 function smPrayerRefreshLanguage(){
  for(const city of smPrayerCities){
@@ -3062,5 +3062,36 @@ document.addEventListener('click',function(event){
 body #main .navbtns.sm-step-navigation{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important;width:100%!important}
 body #main .navbtns.sm-step-navigation>button{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;max-width:none!important;min-height:60px!important;padding:10px!important;margin:0!important;border-radius:18px!important;font-size:30px!important;line-height:1!important;white-space:nowrap!important}
 body #main .navbtns.sm-step-navigation>button span{font-size:30px!important;line-height:1!important;display:block!important}
+</style>
+
+<style id="sm-prayer-mockup-v1">
+/* Premium compact prayer widget matching approved homepage mockup */
+body:has(.sm53-hero) .prayer-widget{position:relative!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:0 10px!important;padding:14px 12px 12px!important;margin:12px 0 18px!important;border:1px solid rgba(211,184,121,.65)!important;border-radius:19px!important;background:linear-gradient(145deg,rgba(9,85,68,.92),rgba(0,48,39,.96))!important;box-shadow:0 12px 32px rgba(0,0,0,.18)!important;color:#fff!important;overflow:hidden!important}
+body:has(.sm53-hero) .prayer-head{grid-column:1!important;grid-row:1!important;margin:0!important;display:block!important;min-width:0!important}
+body:has(.sm53-hero) .prayer-head h2{font-size:1rem!important;line-height:1.2!important;color:#fff!important;margin:0 0 2px!important}
+body:has(.sm53-hero) .prayer-zone{color:#d5e5dc!important;font-size:.68rem!important}
+body:has(.sm53-hero) .prayer-refresh{position:absolute!important;right:12px!important;top:12px!important;width:31px!important;height:31px!important;border-radius:50%!important;background:rgba(0,60,48,.85)!important;color:#e8c88c!important;border:1px solid #c6aa74!important;font-size:1.15rem!important}
+body:has(.sm53-hero) .prayer-city-tabs{grid-column:2!important;grid-row:1!important;display:flex!important;align-items:center!important;align-self:start!important;margin:0 40px 0 0!important;border:1px solid rgba(218,197,144,.45)!important;border-radius:22px!important;padding:2px!important;background:rgba(0,38,31,.5)!important;gap:0!important}
+body:has(.sm53-hero) .prayer-city-tabs button{min-width:0!important;width:auto!important;min-height:29px!important;padding:4px 9px!important;font-size:.63rem!important;border:0!important;border-radius:20px!important;background:transparent!important;color:#fff!important;white-space:nowrap!important}
+body:has(.sm53-hero) .prayer-city-tabs button.active{background:#f2d59c!important;color:#003e32!important;font-weight:800!important}
+body:has(.sm53-hero) .sm-saudi-clock{grid-column:1/-1!important;grid-row:2!important;border:0!important;box-shadow:none!important;background:linear-gradient(90deg,rgba(0,55,43,.9),rgba(0,66,53,.2))!important;border-radius:12px!important;padding:12px 12px 10px!important;margin:10px 0 0!important;min-height:0!important}
+body:has(.sm53-hero) .sm-saudi-clock-label{font-size:.59rem!important;margin:0 0 4px!important;color:#e7c98e!important}
+body:has(.sm53-hero) .sm-saudi-clock-single strong{font-size:clamp(1.8rem,7vw,2.35rem)!important;line-height:1.1!important;color:#fff!important;letter-spacing:.02em!important}
+body:has(.sm53-hero) .sm-saudi-clock small{font-size:.64rem!important;color:#d7e8df!important}
+body:has(.sm53-hero) .prayer-cities{grid-column:1/-1!important;grid-row:3!important;display:block!important;margin-top:0!important}
+body:has(.sm53-hero) .prayer-city{padding:10px!important;margin:0!important;background:#f9f7f0!important;border:0!important;border-radius:15px!important;color:#153b30!important;box-shadow:none!important}
+body:has(.sm53-hero) .prayer-city[hidden]{display:none!important}
+body:has(.sm53-hero) .prayer-city h3{display:none!important}
+body:has(.sm53-hero) .prayer-next{padding:9px 11px!important;min-height:0!important;margin:0 0 7px!important;border-radius:12px!important;background:#f0eee5!important;color:#073f33!important}
+body:has(.sm53-hero) .prayer-next-label{font-size:.64rem!important;color:#456255!important}
+body:has(.sm53-hero) .prayer-next-time{font-size:1.5rem!important;color:#073f33!important;line-height:1.1!important}
+body:has(.sm53-hero) .prayer-times{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:5px!important}
+body:has(.sm53-hero) .prayer-times>div{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;min-width:0!important;padding:7px 1px!important;border-radius:10px!important;background:#f1f0e9!important;color:#203b32!important;font-size:.59rem!important;line-height:1.1!important;text-align:center!important}
+body:has(.sm53-hero) .prayer-times>div.is-next{outline:1px solid #cdb47c!important;background:#fff9e9!important}
+body:has(.sm53-hero) .prayer-times b{font-size:.68rem!important;color:#123c30!important}
+body:has(.sm53-hero) .prayer-time-symbol{font-size:1rem!important;line-height:1!important;color:#b78b3e!important}
+body:has(.sm53-hero) .prayer-date{font-size:.58rem!important;margin:5px 0 0!important}
+body:has(.sm53-hero) .prayer-foot{grid-column:1/-1!important;grid-row:4!important;font-size:.57rem!important;line-height:1.35!important;color:#dce5d9!important;margin:6px 2px 0!important}
+@media(max-width:390px){body:has(.sm53-hero) .prayer-city-tabs{margin-right:32px!important}body:has(.sm53-hero) .prayer-city-tabs button{padding:4px 6px!important;font-size:.57rem!important}body:has(.sm53-hero) .prayer-widget{padding:11px 9px!important}}
 </style>
 </body></html>
