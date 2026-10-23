@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: "SafaMarwah v2",
   webDir: "dist",
   bundledWebRuntime: false,
-  android: { allowMixedContent: false }
+  android: { allowMixedContent: false, backgroundColor: "#002f27" }
 };
 
 export default config;
