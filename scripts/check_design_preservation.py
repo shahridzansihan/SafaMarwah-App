@@ -21,7 +21,7 @@ checks = {
 }
 style_ids = re.findall(r'<style\s+id="([^"]+)"', html)
 checks["Unique style IDs"] = len(style_ids) == len(set(style_ids))
-checks["Balanced style tags"] = len(re.findall(r"<style(?:\\s[^>]*)?>", html)) == len(re.findall(r"</style>", html))
+checks["Balanced style tags"] = len(re.findall(r"<style(?:\s[^>]*)?>", html)) == len(re.findall(r"</style>", html))
 checks["No unresolved merge markers"] = not re.search(r"^(?:<<<<<<< |=======|>>>>>>> )", html, re.M)
 for name, passed in checks.items():
     print(f"{'PASS' if passed else 'FAIL'}  {name}")
