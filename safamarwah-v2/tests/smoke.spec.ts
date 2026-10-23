@@ -35,3 +35,17 @@ test("mobile navigation closes after route change", async ({ page }) => {
   await expect(page).toHaveURL(/#\/doa$/);
   await expect(openMenu).toHaveAttribute("aria-expanded", "false");
 });
+
+test("Saudi clock city selector and refresh remain functional", async ({page}) => {
+ await page.goto("/#/");
+ const widget=page.getByRole("region",{name:"Waktu Solat"});
+ await expect(widget.getByText("WAKTU SEMASA · ARAB SAUDI")).toBeVisible();
+ const makkah=widget.getByRole("button",{name:"Makkah"});
+ const madinah=widget.getByRole("button",{name:"Madinah"});
+ await expect(makkah).toHaveAttribute("aria-pressed","true");
+ await madinah.click();
+ await expect(madinah).toHaveAttribute("aria-pressed","true");
+ await expect(widget.getByText(/Madinah · Jadual waktu solat sedang disediakan/)).toBeVisible();
+ await widget.getByRole("button",{name:"Segar semula jam Arab Saudi"}).click();
+ await expect(widget.getByText(/Jam di atas menunjukkan waktu semasa Arab Saudi/)).toBeVisible();
+});
