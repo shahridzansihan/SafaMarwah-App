@@ -85,3 +85,12 @@
 .feed-pagination .btn-primary:disabled{opacity:.6;cursor:wait}
 .feed-pagination__count{font-size:.78rem;color:#73817b}
 .feed-pagination [role="alert"]{font-size:.85rem;color:#8b3b32}
+
+/* v2.3 — cohesive responsive navigation */
+.site-header{position:sticky;top:0;z-index:50;box-shadow:0 1px 0 rgba(214,183,122,.12)}
+.site-nav{min-height:72px}
+.site-links a{position:relative;display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-weight:550;transition:color .2s}
+.site-links a::after{content:"";position:absolute;bottom:5px;left:0;right:0;height:2px;background:#D6B77A;transform:scaleX(0);transform-origin:center;transition:transform .2s}
+.site-links a:hover::after,.site-links a:focus-visible::after{transform:scaleX(1)}
+@media(max-width:767px){.site-nav{gap:5px;padding-block:12px 0}.site-links{width:100%;display:flex;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;gap:22px;padding-bottom:4px;scrollbar-width:thin}.site-links a{flex:none;font-size:.86rem;min-height:42px}}
+@media(prefers-reduced-motion:reduce){.site-links a,.site-links a::after{transition:none}}
