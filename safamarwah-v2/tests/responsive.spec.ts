@@ -58,3 +58,28 @@ test("blog category filter changes selected state", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Blog" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Segar Semula" })).toBeVisible();
 });
+
+test("Blogger categories fetch matching articles and reset to all", async ({ page }) => {
+  await page.route(/safamarwah\.my\/feeds\/posts\/default/, async route => {
+    const url = new URL(route.request().url());
+    const callback = url.searchParams.get("callback") || "callback";
+    const selected = decodeURIComponent(url.pathname.split("/-/")[1] || "");
+    const first = Number(url.searchParams.get("start-index") || 1);
+    const article = (id: string, label: string) => ({
+      id: { $t: id }, title: { $t: id },
+      content: { $t: "<p>Sample article</p>" },
+      category: [{ term: label }],
+      link: [{ rel: "alternate", href: "https://www.safamarwah.my/2026/10/" + id + ".html" }]
+    });
+    const entries = selected === "Doa" ? [article("doa-sample", "Doa")] : first > 1 ? [] : [article("panduan-sample", "Panduan")];
+    const feed = { category: [{ term: "Panduan" }, { term: "Doa" }], entry: entries };
+    await route.fulfill({ status: 200, contentType: "application/javascript", body: callback + "(" + JSON.stringify({ feed }) + ");" });
+  });
+  await page.goto("/#/blog");
+  await expect(page.getByRole("button", { name: "Doa", exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Doa", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "doa-sample" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "panduan-sample" })).toHaveCount(0);
+  await page.getByRole("button", { name: "Semua", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "panduan-sample" })).toBeVisible();
+});
