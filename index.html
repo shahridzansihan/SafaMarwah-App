@@ -4021,5 +4021,150 @@ html body #main .phase2-panel a{color:#fffdf7!important}
     margin:0!important;
   }
 }
+
+/* Tablet mockup v4: flatten guide sections into one real 4-column grid.
+   Earlier selectors targeted each nested dash-grid independently and caused
+   uneven columns, clipped labels and misplaced tiles. */
+@media (min-width:768px) and (max-width:1199px) {
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel {
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    column-gap:12px!important;
+    row-gap:22px!important;
+    align-items:start!important;
+    justify-items:stretch!important;
+    padding:18px 0 20px!important;
+    background:transparent!important;
+    margin-top:14px!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel > .home-mini-label {
+    grid-column:1/-1!important;
+    grid-row:auto!important;
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    font-family:Georgia,serif!important;
+    font-size:clamp(21px,2.7vw,29px)!important;
+    font-weight:700!important;
+    line-height:1.2!important;
+    letter-spacing:.02em!important;
+    text-align:left!important;
+    color:#e6c38a!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel > .dash-section,
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel > .dash-section > .dash-grid {
+    display:contents!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel .dash-section-heading {
+    display:none!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel .dash-grid > button {
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:flex-start!important;
+    align-items:center!important;
+    justify-self:stretch!important;
+    min-width:0!important;
+    width:100%!important;
+    max-width:none!important;
+    min-height:100px!important;
+    height:auto!important;
+    margin:0!important;
+    padding:3px 2px!important;
+    gap:8px!important;
+    background:none!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    text-align:center!important;
+    white-space:normal!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel .dash-grid > button .dash-icon {
+    flex:0 0 58px!important;
+    display:grid!important;
+    place-items:center!important;
+    width:58px!important;
+    min-width:58px!important;
+    height:58px!important;
+    min-height:58px!important;
+    margin:0 auto!important;
+    border-radius:50%!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel .dash-grid > button .sm63-tile-copy {
+    display:block!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    text-align:center!important;
+    white-space:normal!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel .dash-grid > button .sm63-tile-copy strong {
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    font-size:clamp(12px,1.6vw,15px)!important;
+    font-weight:600!important;
+    line-height:1.35!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    white-space:normal!important;
+    text-align:center!important;
+    color:#f8efdd!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel .dash-grid > button .sm63-tile-copy small,
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel .dash-grid > button .sm63-chevron {
+    display:none!important;
+  }
+  html body:has(#main > .sm53-hero) #main > #sm-articles-home .sm-articles-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:18px!important;
+    align-items:stretch!important;
+  }
+  html body:has(#main > .sm53-hero) #main > #sm-articles-home .sm-home-editorial-card {
+    position:relative!important;
+    overflow:hidden!important;
+    height:100%!important;
+    display:flex!important;
+    flex-direction:column!important;
+    border-radius:15px!important;
+  }
+  html body:has(#main > .sm53-hero) #main > #sm-articles-home .sm-home-editorial-card .sm-article-tile {
+    flex:1 1 auto!important;
+    height:100%!important;
+    padding-bottom:8px!important;
+  }
+  html body:has(#main > .sm53-hero) #main > #sm-articles-home .sm-home-editorial-card .sm-article-tile-copy {
+    padding:12px 42px 14px 14px!important;
+  }
+  html body:has(#main > .sm53-hero) #main > #sm-articles-home .sm-home-editorial-card .sm-home-bookmark {
+    position:absolute!important;
+    z-index:5!important;
+    right:10px!important;
+    bottom:10px!important;
+    left:auto!important;
+    top:auto!important;
+    display:grid!important;
+    place-items:center!important;
+    width:30px!important;
+    height:34px!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    color:#b08b48!important;
+  }
+  html body:has(#main > .sm53-hero) #main > #sm-articles-home .sm-home-editorial-card .sm-home-bookmark svg {
+    display:block!important;
+    width:22px!important;
+    height:22px!important;
+  }
+}
 </style>
 </body></html>
