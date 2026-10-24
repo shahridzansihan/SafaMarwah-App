@@ -3680,5 +3680,115 @@ html body #main .phase2-panel a{color:#fffdf7!important}
   html body:has(#main > .sm53-hero) #main .sm63-editorial-panel .home-mini-label {color:#f1d19b!important;}
 }
 
+
+/* Tablet v2: remove the empty header strip and restore Makkah/Madinah switcher.
+   The sticky navigation remains intact; changes are homepage-only. */
+@media (min-width:768px) and (max-width:1199px) {
+  html body:has(#main > .sm53-hero) .app {
+    position:relative!important;
+  }
+  html body:has(#main > .sm53-hero) .top.home-top {
+    position:absolute!important;
+    top:90px!important;
+    right:22px!important;
+    left:auto!important;
+    width:42px!important;
+    height:42px!important;
+    min-height:0!important;
+    max-height:42px!important;
+    margin:0!important;
+    padding:0!important;
+    background:none!important;
+    background-image:none!important;
+    border:0!important;
+    box-shadow:none!important;
+    z-index:15!important;
+    overflow:visible!important;
+  }
+  html body:has(#main > .sm53-hero) .top.home-top .home-brand,
+  html body:has(#main > .sm53-hero) .top.home-top .sm51-header-caption {
+    display:none!important;
+  }
+  html body:has(#main > .sm53-hero) .top.home-top .settings-trigger {
+    position:relative!important;
+    top:0!important;
+    right:0!important;
+    margin:0!important;
+    width:42px!important;
+    height:42px!important;
+    min-height:42px!important;
+    padding:0!important;
+  }
+  html body:has(#main > .sm53-hero) #main.main {
+    width:100%!important;
+    max-width:100%!important;
+    padding:0 0 60px!important;
+    margin:0!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm53-hero {
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    border-radius:0!important;
+    height:425px!important;
+    min-height:425px!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm53-hero .sm53-hero-copy {
+    max-width:570px!important;
+    padding:30px clamp(32px,6vw,72px)!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm53-quick {
+    width:min(calc(100% - 48px),880px)!important;
+    max-width:880px!important;
+    margin:8px auto 12px!important;
+    padding:12px 0!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .prayer-widget {
+    width:min(calc(100% - 48px),960px)!important;
+    max-width:960px!important;
+    margin:16px auto 26px!important;
+    box-sizing:border-box!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .prayer-widget .prayer-city-tabs {
+    display:flex!important;
+    position:relative!important;
+    visibility:visible!important;
+    opacity:1!important;
+    width:max-content!important;
+    margin:0 45px 0 auto!important;
+    gap:3px!important;
+    align-items:center!important;
+    justify-content:center!important;
+    padding:4px!important;
+    border:1px solid rgba(240,207,149,.55)!important;
+    border-radius:28px!important;
+    background:rgba(0,38,31,.65)!important;
+    z-index:4!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .prayer-widget .prayer-city-tabs button {
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:auto!important;
+    min-width:76px!important;
+    padding:8px 12px!important;
+    border-radius:22px!important;
+    font-size:13px!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .prayer-widget .prayer-city[hidden] {
+    display:none!important;
+  }
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel {
+    width:min(calc(100% - 48px),960px)!important;
+    max-width:960px!important;
+    margin:14px auto 0!important;
+  }
+  html body:has(#main > .sm53-hero) #main > #sm-articles-home {
+    width:min(calc(100% - 48px),960px)!important;
+    max-width:960px!important;
+    margin:14px auto 30px!important;
+    padding:0!important;
+  }
+}
 </style>
 </body></html>
