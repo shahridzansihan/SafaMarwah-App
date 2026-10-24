@@ -10,8 +10,7 @@ html,body{margin:0;width:100%;height:100%;background:#002b23;color:#fff;font-fam
 <iframe id="app" title="SafaMarwah Umrah Companion" src="./offline.html" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 <div id="notice" role="status"><span id="message"></span><button id="retry" type="button">Cuba lagi</button></div>
 <script>
-/* Use the bundled, current GitHub UI for the native APK.
-   Its Blogger feed and other online APIs remain available when connected. */
+/* Live webapp first; use bundled snapshot only when offline or handshake fails. */
 (()=>{
 'use strict';
 const frame=document.getElementById('app');
@@ -38,10 +37,10 @@ function online(){
   // A loaded iframe is not proof that the remote site rendered.
   // Require an origin-checked response from the website.
   timer=setTimeout(offline,10000);
-  frame.addEventListener('load',function ping(){
-    if(active || frame.src.indexOf(onlineOrigin)!==0)return;
+  frame.onload=()=>{
+    if(active || !frame.src.startsWith(onlineOrigin))return;
     try{frame.contentWindow.postMessage({type:'safamarwah-shell-ping'},onlineOrigin);}catch(e){}
-  },{once:true});
+  };
 }
 window.addEventListener('message',event=>{
   if(event.origin!==onlineOrigin || event.source!==frame.contentWindow)return;
