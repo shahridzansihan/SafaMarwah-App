@@ -13,6 +13,10 @@ const index=path.join(out,'index.html');if(!fs.existsSync(index))throw Error('Mi
 let html=fs.readFileSync(index,'utf8');
 const addon=`<script src="capacitor.js"></script><script>document.documentElement.classList.add('sm-native-android');document.addEventListener('DOMContentLoaded',function(){if(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()){document.documentElement.classList.add('sm-native-android');}});</script><style>html.sm-native-android{background:#002b23}html.sm-native-android body:has(.sm53-hero) .app::before{top:calc(-1 * env(safe-area-inset-top,0px))!important;height:calc(max(100dvh,850px) + env(safe-area-inset-top,0px))!important}html.sm-native-android body:has(.sm53-hero) .top.home-top{padding-top:max(18px,env(safe-area-inset-top,24px))!important}</style>`;
 html=html.replace('</head>',addon+'</head>');
+// Keep the logo and settings button below the transparent Android status bar.
+// Apply only to the bundled native snapshot; do not alter the public website.
+const nativeInsetStyle=`<style id="sm-android-status-safe">html.sm-native-android body:has(.sm53-hero) .app > header.top.home-top{padding-top:calc(env(safe-area-inset-top, 24px) + 30px)!important;min-height:calc(97px + env(safe-area-inset-top, 24px))!important}html.sm-native-android body:not(:has(.sm53-hero)) .app > header.top.home-top{padding-top:calc(env(safe-area-inset-top, 24px) + 18px)!important}</style>`;
+html=html.replace('</head>',nativeInsetStyle+'</head>');
 // A native APK must not retain an old web service worker that could obscure new releases.
 html=html.replace(/if\('serviceWorker' in navigator\)\{window\.addEventListener\('load',\(\)=>navigator\.serviceWorker\.register\('\.\/sw\.js'\)\.catch\(err=>console\.warn\('PWA cache unavailable',err\)\)\)\}/g,'');
 // Bundle a local copy for loss of connectivity and use the online-first shell as entry point.
