@@ -23,6 +23,10 @@ html=html.replace(/if\('serviceWorker' in navigator\)\{window\.addEventListener\
 // Reserve the inset on the native document, independent of page-specific headers.
 const allPagesSafeArea=`<style id="sm-native-all-pages-safe-area">html.sm-native-android{--sm-android-top-inset:env(safe-area-inset-top, 24px)}html.sm-native-android body{padding-top:var(--sm-android-top-inset)!important}html.sm-native-android .app{min-height:calc(100dvh - var(--sm-android-top-inset))}html.sm-native-android .top.home-top{top:var(--sm-android-top-inset)}html.sm-native-android body:has(.sm53-hero) .app > header.top.home-top,html.sm-native-android body:not(:has(.sm53-hero)) .app > header.top.home-top{padding-top:18px!important;min-height:80px!important}</style>`;
 html=html.replace('</head>',allPagesSafeArea+'</head>');
+// Android homepage only: reduce unused hero space without moving its header.
+// Keep the logo/settings position and all inner-page layouts unchanged.
+const nativeHomeCompact=`<style id="sm-native-home-compact">@media(max-width:767px){html.sm-native-android body:has(.sm53-hero) .app #main .sm53-hero{height:clamp(325px,47dvh,445px)!important}html.sm-native-android body:has(.sm53-hero) .app #main .sm53-hero-copy{transform:translateY(-18px)!important}html.sm-native-android body:has(.sm53-hero) .app #main .sm53-search{margin-top:-12px!important}}</style>`;
+html=html.replace('</head>',nativeHomeCompact+'</head>');
 // Bundle a local copy for loss of connectivity and use the online-first shell as entry point.
 fs.writeFileSync(path.join(out,'offline.html'),html);
 const shell=path.resolve(process.cwd(),'hybrid-shell.html');
