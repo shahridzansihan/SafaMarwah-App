@@ -19,6 +19,10 @@ const nativeInsetStyle=`<style id="sm-android-status-safe">html.sm-native-androi
 html=html.replace('</head>',nativeInsetStyle+'</head>');
 // A native APK must not retain an old web service worker that could obscure new releases.
 html=html.replace(/if\('serviceWorker' in navigator\)\{window\.addEventListener\('load',\(\)=>navigator\.serviceWorker\.register\('\.\/sw\.js'\)\.catch\(err=>console\.warn\('PWA cache unavailable',err\)\)\)\}/g,'');
+// Android-only status-bar clearance for every route, including article lists and posts.
+// Reserve the inset on the native document, independent of page-specific headers.
+const allPagesSafeArea=`<style id="sm-native-all-pages-safe-area">html.sm-native-android{--sm-android-top-inset:env(safe-area-inset-top, 24px)}html.sm-native-android body{padding-top:var(--sm-android-top-inset)!important}html.sm-native-android .app{min-height:calc(100dvh - var(--sm-android-top-inset))}html.sm-native-android .top.home-top{top:var(--sm-android-top-inset)}html.sm-native-android body:has(.sm53-hero) .app > header.top.home-top,html.sm-native-android body:not(:has(.sm53-hero)) .app > header.top.home-top{padding-top:18px!important;min-height:80px!important}</style>`;
+html=html.replace('</head>',allPagesSafeArea+'</head>');
 // Bundle a local copy for loss of connectivity and use the online-first shell as entry point.
 fs.writeFileSync(path.join(out,'offline.html'),html);
 const shell=path.resolve(process.cwd(),'hybrid-shell.html');
