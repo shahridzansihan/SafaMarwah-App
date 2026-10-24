@@ -4166,5 +4166,32 @@ html body #main .phase2-panel a{color:#fffdf7!important}
     height:22px!important;
   }
 }
+
+/* Tablet article card finishing: category over image, equal-height cards. */
+@media (min-width:768px) and (max-width:1199px) {
+ html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-home-cover {
+   display:block!important;position:relative!important;overflow:hidden!important;
+   width:100%!important;aspect-ratio:2.05/1!important;
+ }
+ html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-home-cover img {
+   width:100%!important;height:100%!important;object-fit:cover!important;
+ }
+ html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-home-category {
+   position:absolute!important;left:12px!important;bottom:12px!important;top:auto!important;
+   display:inline-flex!important;width:auto!important;max-width:max-content!important;
+   align-items:center!important;padding:5px 12px!important;border-radius:30px!important;
+   background:rgba(74,72,64,.85)!important;color:#fff!important;
+   font-size:12px!important;line-height:1.3!important;z-index:3!important;
+ }
+ html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-article-tile-copy > strong {
+   display:-webkit-box!important;-webkit-box-orient:vertical!important;-webkit-line-clamp:2!important;
+   overflow:hidden!important;font-size:clamp(15px,1.8vw,19px)!important;line-height:1.35!important;
+   min-height:2.7em!important;
+ }
+ html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-article-meta {
+   display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:6px!important;
+   padding-top:8px!important;
+ }
+}
 </style>
 </body></html>
