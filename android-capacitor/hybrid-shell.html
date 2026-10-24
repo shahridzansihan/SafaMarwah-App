@@ -16,7 +16,42 @@ html,body{margin:0;width:100%;height:100%;background:#002b23;color:#fff;font-fam
 'use strict';
 const frame=document.getElementById('app');
 const notice=document.getElementById('notice');
-frame.src='./offline.html';
-notice.style.display='none';
+const message=document.getElementById('message');
+const retry=document.getElementById('retry');
+const onlineUrl='https://app.safamarwah.my/';
+const onlineOrigin=new URL(onlineUrl).origin;
+let timer=null;
+let active=false;
+function offline(){
+  if(active)return;
+  clearTimeout(timer);
+  frame.src='./offline.html';
+  message.textContent='Paparan luar talian. Sambung internet dan tekan Cuba lagi untuk kemas kini.';
+  notice.style.display='block';
+}
+function online(){
+  active=false;
+  clearTimeout(timer);
+  if(!navigator.onLine){offline();return;}
+  notice.style.display='none';
+  frame.src=onlineUrl;
+  // A loaded iframe is not proof that the remote site rendered.
+  // Require an origin-checked response from the website.
+  timer=setTimeout(offline,10000);
+  frame.addEventListener('load',function ping(){
+    if(active || frame.src.indexOf(onlineOrigin)!==0)return;
+    try{frame.contentWindow.postMessage({type:'safamarwah-shell-ping'},onlineOrigin);}catch(e){}
+  },{once:true});
+}
+window.addEventListener('message',event=>{
+  if(event.origin!==onlineOrigin || event.source!==frame.contentWindow)return;
+  if(event.data && event.data.type==='safamarwah-shell-pong'){
+    active=true;clearTimeout(timer);notice.style.display='none';
+  }
+});
+retry.addEventListener('click',online);
+window.addEventListener('online',()=>{if(!active)online();});
+window.addEventListener('offline',()=>{if(!active)offline();});
+online();
 })();
 </script></body></html>
