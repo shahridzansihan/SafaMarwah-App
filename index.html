@@ -4468,4 +4468,28 @@ html body .app :is(.sm-article-meta,.sm-reader-byline,.sm-reader-date,.sm-articl
 html body .app :is(.sm53-nav,.sm53-quick,.sm-articles-head) button {
   font-family:var(--sm-type-body)!important;
 }
+
+/* Typography v3.1: target real homepage markup and override legacy specificity. */
+html body #main .sm63-editorial-panel .home-mini-label,
+html body #main #sm-articles-home .sm-articles-head h2,
+html body #main .sm-articles-head h2 {
+  font-family:var(--sm-type-body)!important;
+  font-size:var(--sm-font-section)!important;
+  font-weight:800!important;
+  line-height:1.18!important;
+  letter-spacing:-.025em!important;
+}
+html body #main .sm63-editorial-panel .home-mini-label {
+  text-transform:uppercase!important;
+}
+html body #main .sm53-hero .sm53-hero-copy h1 {
+  font-family:var(--sm-type-body)!important;
+  font-size:var(--sm-font-hero)!important;
+  font-weight:800!important;
+  line-height:1.08!important;
+}
+html body #main :is(.sm-article-tile,.sm-home-editorial-card) :is(h2,h3,h4,strong),
+html body #main .sm-article-tile-copy :is(h2,h3,h4) {
+  font-family:var(--sm-type-body)!important;
+}
 </style></body></html>
