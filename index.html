@@ -4643,7 +4643,7 @@ html body .app #main #sm-articles-content :is(.sm-article-search,.sm-article-til
 /* Miqat cards: local verified assets, no inline event handlers */
 html body #main .phase2-panel.sm-miqat-card {
   overflow:hidden!important;padding:0!important;border-radius:22px!important;
-  background:#fffdf8!important;color:#193b31!important;
+  background:#123b30!important;color:#ffffff!important;
   border:1px solid rgba(200,167,109,.7)!important;
 }
 html body #main .sm-miqat-card > .sm-miqat-photo {
@@ -4652,16 +4652,24 @@ html body #main .sm-miqat-card > .sm-miqat-photo {
 }
 html body #main .sm-miqat-card > .sm-miqat-content {padding:18px 20px 22px!important;}
 html body #main .sm-miqat-card .sm-miqat-content h2 {
-  margin:0 0 8px!important;color:#173d32!important;
+  margin:0 0 8px!important;color:#ffffff!important;
   font-family:'Mulish',system-ui,sans-serif!important;
   font-size:clamp(20px,4.8vw,26px)!important;font-weight:800!important;line-height:1.25!important;
 }
 html body #main .sm-miqat-card .sm-miqat-content p {
-  margin:0 0 16px!important;color:#50665b!important;
+  margin:0 0 16px!important;color:#d5e5de!important;
   font-family:'Mulish',system-ui,sans-serif!important;font-size:16px!important;line-height:1.55!important;
 }
 html body #main .sm-miqat-card .sm-miqat-content .phase2-maplink {
   max-width:100%;white-space:normal!important;text-align:center!important;
   font-family:'Mulish',system-ui,sans-serif!important;font-size:14px!important;font-weight:700!important;
 }
+
+/* Miqat: high-contrast text in dark cards (light and dark mode) */
+html body #main .phase2-panel.sm-miqat-card,
+html body.dark #main .phase2-panel.sm-miqat-card {background:#123b30!important;color:#fff!important;}
+html body #main .sm-miqat-card .sm-miqat-content h2,
+html body.dark #main .sm-miqat-card .sm-miqat-content h2 {color:#fff!important;opacity:1!important;}
+html body #main .sm-miqat-card .sm-miqat-content p,
+html body.dark #main .sm-miqat-card .sm-miqat-content p {color:#d5e5de!important;opacity:1!important;}
 </style></body></html>
