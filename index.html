@@ -4615,4 +4615,27 @@ html body .app #main :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-sc
   html body .app #main :is(.home-mini-label,.sm-articles-head h2) {font-size:36px!important;}
   html body .app #main :is(.sm-article-reader,.sm-single-v3) :is(p,li) {line-height:1.8!important;}
 }
+
+/* Artikel dan Ilmu typography targeted fix v5.1 */
+/* The article list is dynamically rendered inside #sm-articles-content. */
+html body .app #main #sm-articles-content .sm-articles-kaaba-banner > h2 {
+  font-family:'Mulish',system-ui,sans-serif!important;
+  font-size:var(--sm-font-page,28px)!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  letter-spacing:-.025em!important;
+}
+html body .app #main #sm-articles-content .sm-articles-kaaba-banner > .sm-articles-kaaba-eyebrow,
+html body .app #main #sm-articles-content .sm-articles-kaaba-banner > p {
+  font-family:'Mulish',system-ui,sans-serif!important;
+}
+html body .app #main #sm-articles-content .sm-articles-grid .sm-article-tile strong {
+  font-family:'Mulish',system-ui,sans-serif!important;
+  font-size:var(--sm-font-card,18px)!important;
+  font-weight:800!important;
+  line-height:1.35!important;
+}
+html body .app #main #sm-articles-content :is(.sm-article-search,.sm-article-tile small,.sm-article-meta,.sm-article-author,.sm-article-date) {
+  font-family:'Mulish',system-ui,sans-serif!important;
+}
 </style></body></html>
