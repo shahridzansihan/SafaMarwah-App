@@ -4492,4 +4492,34 @@ html body #main :is(.sm-article-tile,.sm-home-editorial-card) :is(h2,h3,h4,stron
 html body #main .sm-article-tile-copy :is(h2,h3,h4) {
   font-family:var(--sm-type-body)!important;
 }
+
+/* SafaMarwah homepage typography consolidation v4 */
+/* Scoped to homepage only; no dimensions, positioning or navigation changes. */
+html body:has(#main > .sm53-hero) #main {
+  --sm-home-font:'Mulish',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html body:has(#main > .sm53-hero) #main :is(.sm53-hero,.sm53-quick,.prayer-widget,.sm63-editorial-panel,#sm-articles-home),
+html body:has(#main > .sm53-hero) #main :is(.sm53-hero,.sm53-quick,.prayer-widget,.sm63-editorial-panel,#sm-articles-home) :is(h1,h2,h3,h4,h5,h6,p,div,span,strong,small,label,button,a,time,input) {
+  font-family:var(--sm-home-font)!important;
+}
+html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel > .home-mini-label,
+html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-articles-head > h2 {
+  font-family:var(--sm-home-font)!important;
+  font-size:var(--sm-font-section,28px)!important;
+  font-weight:800!important;
+  line-height:1.18!important;
+  letter-spacing:-.025em!important;
+}
+html body:has(#main > .sm53-hero) #main > .sm53-hero .sm53-hero-copy > h1 {
+  font-family:var(--sm-home-font)!important;
+  font-weight:800!important;
+}
+html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-article-tile-copy > strong {
+  font-family:var(--sm-home-font)!important;
+  font-weight:800!important;
+}
+html body:has(#main > .sm53-hero) #main :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-script),
+html body:has(#main > .sm53-hero) #main :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-script) * {
+  font-family:'Noto Naskh Arabic','Amiri',serif!important;
+}
 </style></body></html>
