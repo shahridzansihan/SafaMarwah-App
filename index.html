@@ -1798,7 +1798,7 @@ html body:has(.sm53-hero) .app #main .sm53-quick button{font-size:clamp(10px,2.7
 <div class="sm-saudi-clock" aria-label="Masa semasa di Arab Saudi"><span class="sm-saudi-clock-label">WAKTU SEMASA · ARAB SAUDI</span><div class="sm-saudi-clock-single"><strong id="sm-clock-saudi">--:--:--</strong></div><small id="sm-saudi-date" aria-label="Tarikh Arab Saudi">Tarikh Arab Saudi</small></div>
 <div class="prayer-city-tabs" role="group" aria-label="Pilih bandar waktu solat"><button type="button" id="prayer-tab-makkah" class="active" aria-pressed="true" onclick="smPrayerSelectCity('makkah')">Makkah</button><button type="button" id="prayer-tab-madinah" aria-pressed="false" onclick="smPrayerSelectCity('madinah')">Madinah</button></div><div class="prayer-cities"><article class="prayer-city" id="prayer-makkah"><h3><span class="prayer-pin">◉</span> Makkah</h3><p class="prayer-status">Memuat waktu solat…</p></article><article class="prayer-city" id="prayer-madinah"><h3><span class="prayer-pin">◉</span> Madinah</h3><p class="prayer-status">Memuat waktu solat…</p></article><p class="prayer-foot" id="prayer-foot">Waktu anggaran berdasarkan kaedah Umm al-Qura. Semak pengumuman masjid untuk waktu iqamah.</p></div>
 </section>
-<div class="sm63-editorial-panel"><div class="home-mini-label" style="font-family:Mulish,system-ui,sans-serif!important;font-size:var(--sm-font-section,28px)!important;font-weight:800!important;line-height:1.18!important;letter-spacing:-.025em!important;text-transform:uppercase!important">PANDUAN & ALAT JEMAAH</div><section class="dash-section" aria-labelledby="dash-main"><div class="dash-section-heading"><h2 id="dash-main">Ibadah Umrah</h2><span>Panduan utama</span></div><div class="dash-grid">
+<div class="sm63-editorial-panel"><div class="home-mini-label" style="font-family:Mulish,system-ui,sans-serif!important;font-size:clamp(20px,4.6vw,24px)!important;font-weight:800!important;line-height:1.22!important;letter-spacing:-.025em!important;text-transform:uppercase!important">PANDUAN & ALAT JEMAAH</div><section class="dash-section" aria-labelledby="dash-main"><div class="dash-section-heading"><h2 id="dash-main">Ibadah Umrah</h2><span>Panduan utama</span></div><div class="dash-grid">
 <button onclick="show('steps')"><span class="dash-icon"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5c3-1.5 5.5-1.5 8 0v14c-2.5-1.5-5-1.5-8 0z"/><path d="M20 5.5c-3-1.5-5.5-1.5-8 0v14c2.5-1.5 5-1.5 8 0z"/></svg></span><span class="sm63-tile-copy"><strong>Panduan</strong><small>Langkah demi langkah</small></span><span class="sm63-chevron" aria-hidden="true">›</span></button>
 <button onclick="show('dua')"><span class="dash-icon"><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C9.5 5 6.5 5 3.5 6v13c3-1 6-.8 8.5 1.2 2.5-2 5.5-2.2 8.5-1.2V6c-3-1-6-.8-8.5.5Z"/><path d="M12 6.5v13.7"/><path d="M6.5 10h2.5M15 10h2.5M6.5 13h2.5M15 13h2.5"/></svg></span><span class="sm63-tile-copy"><strong>Doa & Zikir</strong><small>Harian & semasa umrah</small></span><span class="sm63-chevron" aria-hidden="true">›</span></button>
 </div></section>
@@ -4521,5 +4521,22 @@ html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-article-tile-copy 
 html body:has(#main > .sm53-hero) #main :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-script),
 html body:has(#main > .sm53-hero) #main :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-script) * {
   font-family:'Noto Naskh Arabic','Amiri',serif!important;
+}
+
+/* Homepage heading size correction v4.1: compact mobile section headings. */
+@media (max-width:767px) {
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel > .home-mini-label,
+  html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-articles-head > h2 {
+    font-size:clamp(20px,4.6vw,24px)!important;
+    line-height:1.22!important;
+    letter-spacing:-.025em!important;
+    font-weight:800!important;
+  }
+}
+@media (min-width:768px) and (max-width:1199px) {
+  html body:has(#main > .sm53-hero) #main > .sm63-editorial-panel > .home-mini-label,
+  html body:has(#main > .sm53-hero) #main #sm-articles-home .sm-articles-head > h2 {
+    font-size:28px!important;
+  }
 }
 </style></body></html>
