@@ -1948,9 +1948,11 @@ function phase2MiqatPhoto(x,i){
   const photo=phase2MiqatPhotos[i];
   if(!photo)return '';
   const filename=encodeURIComponent(photo[0]).replace(/%2F/g,'/');
-  const image='https://commons.wikimedia.org/wiki/Special:FilePath/'+filename+'?width=900';
+  const remote='https://commons.wikimedia.org/wiki/Special:FilePath/'+filename+'?width=900';
+  const local=['bir-ali.jpg','juhfah.jpg','qarn-al-manazil.jpg','yalamlam.jpg','dzat-irq.jpg'][i];
+  const image='./assets/miqat/'+local;
   const credit='https://commons.wikimedia.org/wiki/File:'+filename;
-  return '<figure class="sm-miqat-photo"><img src="'+image+'" alt="Foto lokasi miqat '+phaseSafe(x[0])+'" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.closest(\'figure\').classList.add(\'sm-miqat-photo-unavailable\')"><figcaption>Foto lokasi · <a href="'+credit+'" target="_blank" rel="noopener noreferrer">Sumber & lesen: Wikimedia Commons ↗</a></figcaption></figure>';
+  return '<figure class="sm-miqat-photo"><img src="'+image+'" alt="Foto lokasi miqat '+phaseSafe(x[0])+'" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="if(!this.dataset.remoteTried){this.dataset.remoteTried='1';this.src=''+remote+' ';}else{this.closest(\'figure\').classList.add(\'sm-miqat-photo-unavailable\')}"><figcaption>Foto lokasi · <a href="'+credit+'" target="_blank" rel="noopener noreferrer">Sumber & lesen: Wikimedia Commons ↗</a></figcaption></figure>';
 }
 const phase2Miqat=[
 ['Dzul Hulaifah (Bir Ali)','Laluan dari Madinah','Dhul Hulaifah Miqat Mosque Medina'],
