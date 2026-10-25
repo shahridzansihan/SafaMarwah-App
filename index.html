@@ -1953,7 +1953,7 @@ html='<p class="muted">Ringkasan berdasarkan kerangka mazhab Syafi‘i yang lazi
 }else if(type==='faq'){
 title='Soalan Lazim Umrah';html='<p class="muted">Jawapan ringkas untuk pembelajaran, bukan nasihat hukum khusus.</p><input class="search" id="phase2-search" placeholder="Cari soalan atau jawapan..." aria-label="Cari soalan lazim" oninput="phase2FilterFaq()"><div id="phase2-faq-results"></div><div class="notice sm-faq-guide-note">Jika berkaitan kesahan ibadah, dam atau masalah kesihatan, rujuk mutawif dan pihak berkelayakan.</div>';
 }else if(type==='miqat'){
-title='Miqat & Peta';html='<p class="muted">Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet dan tidak menentukan miqat secara automatik.</p>'+phase2Miqat.map(x=>'<div class="phase2-panel"><h2>'+x[0]+'</h2><p>'+x[1]+'</p><a class="phase2-maplink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x[2])+'">Buka carian lokasi dalam peta ↗</a></div>').join('')+'<div class="notice sm-miqat-guide-note">Bagi penerbangan terus ke Jeddah/Makkah, pastikan niat ihram dibuat sebelum melepasi miqat yang berkaitan. Sahkan dengan pengendali dan mutawif. Titik carian peta mungkin tidak tepat.</div>';
+title='Miqat & Peta';html='<p class="muted">Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet dan tidak menentukan miqat secara automatik.</p>'+phase2Miqat.map((x,i)=>'<div class="phase2-panel sm-miqat-card"><img class="sm-miqat-photo" src="./assets/miqat/'+['bir-ali.jpg','juhfah.jpg','qarn-al-manazil.jpg','yalamlam.jpg','dzat-irq.jpg'][i]+'" alt="Gambar lokasi miqat" loading="lazy" decoding="async"><div class="sm-miqat-content"><h2>'+x[0]+'</h2><p>'+x[1]+'</p><a class="phase2-maplink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x[2])+'">Buka carian lokasi dalam peta ↗</a></div></div>').join('')+'<div class="notice sm-miqat-guide-note">Bagi penerbangan terus ke Jeddah/Makkah, pastikan niat ihram dibuat sebelum melepasi miqat yang berkaitan. Sahkan dengan pengendali dan mutawif. Titik carian peta mungkin tidak tepat.</div>';
 }else if(type==='audio'){
 title='Audio Doa & Zikir';html='<p class="muted">Bacaan ayat Al-Quran menggunakan rakaman qari lelaki Mishary Rashid Alafasy (ayat penuh). Zikir dan doa bukan ayat Al-Quran belum mempunyai rakaman yang disahkan.</p><div class="phase2-panel"><label for="phase2-dua">Pilih bacaan</label><select id="phase2-dua" class="search">'+duas.map((d,i)=>'<option value="'+i+'">'+phaseSafe(d.title)+'</option>').join('')+'</select><div class="phase2-audio-buttons"><button class="primary" onclick="phase2Play()">▶ Mainkan</button><button class="secondary" onclick="phase2Stop()">■ Henti</button></div><p id="phase2-audio-status" role="status"></p></div><div class="notice sm-audio-guide-note">Audio distrim melalui internet daripada Al Quran Cloud. Rakaman memainkan ayat Al-Quran penuh, yang mungkin lebih panjang daripada petikan doa dipaparkan. Bacaan bukan Al-Quran belum tersedia.</div>';
 }else return;
@@ -4639,4 +4639,29 @@ html body .app #main #sm-articles-content :is(.sm-article-search,.sm-article-til
   font-family:'Mulish',system-ui,sans-serif!important;
 }
 
+
+/* Miqat cards: local verified assets, no inline event handlers */
+html body #main .phase2-panel.sm-miqat-card {
+  overflow:hidden!important;padding:0!important;border-radius:22px!important;
+  background:#fffdf8!important;color:#193b31!important;
+  border:1px solid rgba(200,167,109,.7)!important;
+}
+html body #main .sm-miqat-card > .sm-miqat-photo {
+  display:block;width:100%;height:clamp(180px,30vw,260px);
+  object-fit:cover;object-position:center;background:#e5e7df;
+}
+html body #main .sm-miqat-card > .sm-miqat-content {padding:18px 20px 22px!important;}
+html body #main .sm-miqat-card .sm-miqat-content h2 {
+  margin:0 0 8px!important;color:#173d32!important;
+  font-family:'Mulish',system-ui,sans-serif!important;
+  font-size:clamp(20px,4.8vw,26px)!important;font-weight:800!important;line-height:1.25!important;
+}
+html body #main .sm-miqat-card .sm-miqat-content p {
+  margin:0 0 16px!important;color:#50665b!important;
+  font-family:'Mulish',system-ui,sans-serif!important;font-size:16px!important;line-height:1.55!important;
+}
+html body #main .sm-miqat-card .sm-miqat-content .phase2-maplink {
+  max-width:100%;white-space:normal!important;text-align:center!important;
+  font-family:'Mulish',system-ui,sans-serif!important;font-size:14px!important;font-weight:700!important;
+}
 </style></body></html>
