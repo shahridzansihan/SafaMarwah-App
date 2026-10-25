@@ -4408,4 +4408,64 @@ html body .app :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-script) 
 @media(min-width:768px) {
   html body .app :is(.sm-article-reader,.sm-single-v3) :is(p,li) {line-height:1.8;}
 }
+
+/* SafaMarwah responsive typography scale v3 */
+:root {
+  --sm-font-hero:40px;
+  --sm-font-section:28px;
+  --sm-font-page:28px;
+  --sm-font-card:18px;
+  --sm-font-body:16px;
+  --sm-font-control:14px;
+  --sm-font-meta:13px;
+}
+@media(min-width:768px) {
+  :root {
+    --sm-font-hero:48px;
+    --sm-font-section:32px;
+    --sm-font-page:34px;
+    --sm-font-card:20px;
+    --sm-font-body:16px;
+    --sm-font-control:14px;
+    --sm-font-meta:13px;
+  }
+}
+@media(min-width:1200px) {
+  :root {
+    --sm-font-hero:64px;
+    --sm-font-section:36px;
+    --sm-font-page:40px;
+    --sm-font-card:22px;
+    --sm-font-body:17px;
+    --sm-font-control:15px;
+    --sm-font-meta:14px;
+  }
+}
+html body .app :is(.sm53-hero h1,.sm53-hero-copy h1) {
+  font-size:var(--sm-font-hero)!important;
+  line-height:1.08!important;
+  letter-spacing:-.035em!important;
+}
+html body .app :is(.sm-articles-head h1,.sm-articles-head h2,.sm-articles-head h3) {
+  font-size:var(--sm-font-section)!important;
+  line-height:1.18!important;
+}
+html body .app :is(.page-head h1,.sm-subpage-master-hero h1,.sm-subpage-master-hero h2,.sm-articles-kaaba-banner h1) {
+  font-size:var(--sm-font-page)!important;
+  line-height:1.18!important;
+}
+html body .app :is(.sm-article-tile,.sm-home-editorial-card,.sm-articles-grid) :is(h2,h3,h4),
+html body .app :is(.sm-article-tile-copy,.sm-home-editorial-card) :is(.title,.sm-article-title) {
+  font-size:var(--sm-font-card)!important;
+  line-height:1.35!important;
+}
+html body .app :is(.sm-article-reader,.sm-single-v3) :is(p,li) {
+  font-size:var(--sm-font-body)!important;
+}
+html body .app :is(.sm-article-meta,.sm-reader-byline,.sm-reader-date,.sm-article-date) {
+  font-size:var(--sm-font-meta)!important;
+}
+html body .app :is(.sm53-nav,.sm53-quick,.sm-articles-head) button {
+  font-family:var(--sm-type-body)!important;
+}
 </style></body></html>
