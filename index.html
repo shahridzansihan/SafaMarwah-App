@@ -1937,23 +1937,6 @@ const phase2Faq=[
 ['Bilakah tahallul dilakukan?','Tahallul melalui bergunting atau bercukur dilakukan selepas Sa‘ie dalam turutan Umrah.'],
 ['Apakah maksud miqat?','Miqat makani ialah sempadan tempat untuk memulakan ihram. Jemaah perlu mengenal pasti miqat berdasarkan laluan perjalanan masing-masing.']
 ];
-const phase2MiqatPhotos=[
-  ['Masjid Dzulhulaifah (2).jpg','Imam Khairul Annas'],
-  ['Mosque at Johfa.JPG','Wikimedia Commons'],
-  ['Meeqat Qarn al Manazil.jpg','King Eliot'],
-  ['Miqat Yalamlam.jpg','Yalamlam'],
-  ['ذات عرق.jpg','المؤرخ اسماعيل']
-];
-function phase2MiqatPhoto(x,i){
-  const photo=phase2MiqatPhotos[i];
-  if(!photo)return '';
-  const filename=encodeURIComponent(photo[0]).replace(/%2F/g,'/');
-  const remote='https://commons.wikimedia.org/wiki/Special:FilePath/'+filename+'?width=900';
-  const local=['bir-ali.jpg','juhfah.jpg','qarn-al-manazil.jpg','yalamlam.jpg','dzat-irq.jpg'][i];
-  const image='./assets/miqat/'+local;
-  const credit='https://commons.wikimedia.org/wiki/File:'+filename;
-  return '<figure class="sm-miqat-photo"><img src="'+image+'" data-fallback="'+remote+'" alt="Foto lokasi miqat '+phaseSafe(x[0])+'" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="if(!this.dataset.remoteTried){this.dataset.remoteTried='1';this.src=this.dataset.fallback;}else{this.closest(\'figure\').classList.add(\'sm-miqat-photo-unavailable\')}"><figcaption>Foto lokasi · <a href="'+credit+'" target="_blank" rel="noopener noreferrer">Sumber & lesen: Wikimedia Commons ↗</a></figcaption></figure>';
-}
 const phase2Miqat=[
 ['Dzul Hulaifah (Bir Ali)','Laluan dari Madinah','Dhul Hulaifah Miqat Mosque Medina'],
 ['Al-Juhfah / Rabigh','Laluan dari arah Syam','Rabigh Miqat'],
@@ -1970,7 +1953,7 @@ html='<p class="muted">Ringkasan berdasarkan kerangka mazhab Syafi‘i yang lazi
 }else if(type==='faq'){
 title='Soalan Lazim Umrah';html='<p class="muted">Jawapan ringkas untuk pembelajaran, bukan nasihat hukum khusus.</p><input class="search" id="phase2-search" placeholder="Cari soalan atau jawapan..." aria-label="Cari soalan lazim" oninput="phase2FilterFaq()"><div id="phase2-faq-results"></div><div class="notice sm-faq-guide-note">Jika berkaitan kesahan ibadah, dam atau masalah kesihatan, rujuk mutawif dan pihak berkelayakan.</div>';
 }else if(type==='miqat'){
-title='Miqat & Peta';html='<p class="muted">Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet dan tidak menentukan miqat secara automatik.</p>'+phase2Miqat.map((x,i)=>'<div class="phase2-panel sm-miqat-card">'+phase2MiqatPhoto(x,i)+'<div class="sm-miqat-content"><h2>'+x[0]+'</h2><p>'+x[1]+'</p><a class="phase2-maplink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x[2])+'">Buka carian lokasi dalam peta ↗</a></div></div>').join('')+'<div class="notice sm-miqat-guide-note">Bagi penerbangan terus ke Jeddah/Makkah, pastikan niat ihram dibuat sebelum melepasi miqat yang berkaitan. Sahkan dengan pengendali dan mutawif. Titik carian peta mungkin tidak tepat.</div>';
+title='Miqat & Peta';html='<p class="muted">Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet dan tidak menentukan miqat secara automatik.</p>'+phase2Miqat.map(x=>'<div class="phase2-panel"><h2>'+x[0]+'</h2><p>'+x[1]+'</p><a class="phase2-maplink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x[2])+'">Buka carian lokasi dalam peta ↗</a></div>').join('')+'<div class="notice sm-miqat-guide-note">Bagi penerbangan terus ke Jeddah/Makkah, pastikan niat ihram dibuat sebelum melepasi miqat yang berkaitan. Sahkan dengan pengendali dan mutawif. Titik carian peta mungkin tidak tepat.</div>';
 }else if(type==='audio'){
 title='Audio Doa & Zikir';html='<p class="muted">Bacaan ayat Al-Quran menggunakan rakaman qari lelaki Mishary Rashid Alafasy (ayat penuh). Zikir dan doa bukan ayat Al-Quran belum mempunyai rakaman yang disahkan.</p><div class="phase2-panel"><label for="phase2-dua">Pilih bacaan</label><select id="phase2-dua" class="search">'+duas.map((d,i)=>'<option value="'+i+'">'+phaseSafe(d.title)+'</option>').join('')+'</select><div class="phase2-audio-buttons"><button class="primary" onclick="phase2Play()">▶ Mainkan</button><button class="secondary" onclick="phase2Stop()">■ Henti</button></div><p id="phase2-audio-status" role="status"></p></div><div class="notice sm-audio-guide-note">Audio distrim melalui internet daripada Al Quran Cloud. Rakaman memainkan ayat Al-Quran penuh, yang mungkin lebih panjang daripada petikan doa dipaparkan. Bacaan bukan Al-Quran belum tersedia.</div>';
 }else return;
@@ -4656,42 +4639,4 @@ html body .app #main #sm-articles-content :is(.sm-article-search,.sm-article-til
   font-family:'Mulish',system-ui,sans-serif!important;
 }
 
-/* Miqat card readability and authentic location imagery */
-html body #main .phase2-panel.sm-miqat-card {
-  overflow:hidden!important;
-  padding:0!important;
-  border-radius:22px!important;
-  background:#fffdf8!important;
-  border:1px solid rgba(195,160,99,.65)!important;
-  color:#173e34!important;
-  box-shadow:0 10px 24px rgba(0,25,19,.12)!important;
-}
-html body #main .sm-miqat-card .sm-miqat-photo {margin:0!important;background:#d9dfd6;position:relative;}
-html body #main .sm-miqat-card .sm-miqat-photo img {
-  display:block;width:100%;height:clamp(170px,31vw,250px);
-  object-fit:cover;object-position:center;
-}
-html body #main .sm-miqat-card .sm-miqat-photo figcaption {
-  background:#f4f1e8;color:#52635c;padding:6px 16px;
-  font:400 11px/1.45 'Mulish',sans-serif!important;
-}
-html body #main .sm-miqat-card .sm-miqat-photo figcaption a {color:#245e4d!important;text-decoration:underline;}
-html body #main .sm-miqat-card .sm-miqat-photo.sm-miqat-photo-unavailable img {display:none;}
-html body #main .sm-miqat-card .sm-miqat-photo.sm-miqat-photo-unavailable::before {
-  content:'Foto tidak tersedia tanpa internet';display:block;padding:35px 16px;text-align:center;color:#34594b;
-}
-html body #main .sm-miqat-card .sm-miqat-content {padding:18px 18px 20px;}
-html body #main .sm-miqat-card .sm-miqat-content h2 {
-  margin:0 0 8px!important;color:#173e34!important;
-  font:800 clamp(20px,4.7vw,25px)/1.24 'Mulish',sans-serif!important;
-}
-html body #main .sm-miqat-card .sm-miqat-content p {
-  margin:0 0 16px!important;color:#4b635a!important;
-  font:400 16px/1.5 'Mulish',sans-serif!important;
-}
-html body #main .sm-miqat-card .sm-miqat-content .phase2-maplink {
-  display:inline-flex!important;align-items:center;justify-content:center;
-  max-width:100%;white-space:normal;text-align:center;
-  font:700 14px/1.35 'Mulish',sans-serif!important;
-}
 </style></body></html>
