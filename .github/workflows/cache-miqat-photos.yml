@@ -1,0 +1,49 @@
+name: Cache Miqat location photos
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/cache-miqat-photos.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  cache-miqat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified Wikimedia Commons photos
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/miqat
+          python3 - <<'PY'
+          import urllib.request,urllib.parse,os
+          files={
+            'bir-ali.jpg':'Masjid Dzulhulaifah (2).jpg',
+            'juhfah.jpg':'Mosque at Johfa.JPG',
+            'qarn-al-manazil.jpg':'Meeqat Qarn al Manazil.jpg',
+            'yalamlam.jpg':'Miqat Yalamlam.jpg',
+            'dzat-irq.jpg':'ذات عرق.jpg',
+          }
+          for dest,filename in files.items():
+              url='https://commons.wikimedia.org/wiki/Special:FilePath/'+urllib.parse.quote(filename)+'?width=900'
+              try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'SafaMarwah-Miqat-Asset-Cache/1.0 (educational)'})
+                  with urllib.request.urlopen(req,timeout=35) as r:
+                      data=r.read(3500000)
+                      mime=r.headers.get('Content-Type','')
+                  if not data.startswith(bytes.fromhex('ffd8ff')): raise ValueError('Not JPEG: '+mime)
+                  with open('assets/miqat/'+dest,'wb') as f:f.write(data)
+                  print('Saved',dest,len(data))
+              except Exception as exc:
+                  print('SKIPPED',filename,repr(exc))
+          PY
+      - name: Commit downloaded images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/miqat/
+          if ! git diff --cached --quiet; then
+            git commit -m "Cache Wikimedia Miqat photos locally for offline access"
+            git push
+          fi
