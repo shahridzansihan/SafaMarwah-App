@@ -4784,6 +4784,22 @@ html body #main .prayer-widget .prayer-city-tabs{
   html body #main .sm-ilm-detail{max-width:100%;min-width:0}
   html body #main .sm-ilm-detail .sm-ilm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   html body #main img{max-width:100%}
+  /* V2.1 refinement: existing homepage components only, tablet and desktop */
+  html body #main>.sm53-hero .sm53-hero-copy{width:100%;box-sizing:border-box}
+  html body #main>.sm53-hero .sm-premium-search{width:min(100%,640px);min-width:0;box-sizing:border-box}
+  html body #main>.sm53-quick>button{min-width:0;overflow-wrap:anywhere}
+  html body #main>.sm53-quick .sm53-round{flex-shrink:0}
+  html body #main>.prayer-widget .prayer-head{min-width:0}
+  html body #main>.prayer-widget .prayer-city-tabs{min-width:0;max-width:100%;box-sizing:border-box}
+  html body #main>.sm63-editorial-panel .dash-grid>button{min-width:0;overflow-wrap:anywhere}
+  html body #main .sm-subpage-master-hero{max-width:100%;box-sizing:border-box}
+  html body #main .sm-subpage-master-hero :is(h2,p){max-width:100%;overflow-wrap:break-word}
+  html body #main #sm-articles-home .sm-articles-grid>.sm-article-tile,
+  html body #main #sm-articles-results.sm-articles-grid>.sm-article-tile{height:100%;display:flex;flex-direction:column;overflow:hidden}
+  html body #main #sm-articles-home .sm-article-tile img,
+  html body #main #sm-articles-results .sm-article-tile img{max-width:100%;object-fit:cover}
+  html body #main #sm-articles-home .sm-article-tile :is(strong,h3,p),
+  html body #main #sm-articles-results .sm-article-tile :is(strong,h3,p){overflow-wrap:anywhere}
   /* V2.1: shared tablet/desktop article grid, without touching mobile styles */
   html body #main #sm-articles-home .sm-articles-grid,
   html body #main #sm-articles-results.sm-articles-grid{
