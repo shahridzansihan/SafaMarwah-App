@@ -4761,7 +4761,7 @@ html body #main .prayer-widget .prayer-city-tabs{
 
 /* SafaMarwah unified responsive layout v1 — mobile <768px remains untouched */
 @media (min-width:768px){
-  :root{--sm-responsive-gutter:clamp(24px,3.5vw,48px);--sm-responsive-gap:clamp(16px,2vw,26px);--sm-responsive-max:1180px}
+  :root{--sm-responsive-gutter:clamp(24px,3.5vw,48px);--sm-responsive-gap:clamp(16px,2vw,26px);--sm-responsive-max:1180px;--sm-v21-font-body:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;--sm-v21-font-editorial:Georgia,'Times New Roman',serif;--sm-v21-surface:#fffefa;--sm-v21-emerald:#00382e;--sm-v21-gold:#e6c88b;--sm-v21-text:#103b30;--sm-v21-radius:20px;--sm-v21-shadow:0 12px 32px rgba(0,40,31,.12);--sm-v21-card-gap:clamp(16px,2vw,22px);--sm-v21-button-min:44px}
   html,body{overflow-x:clip}
   html body .app{width:100%;max-width:none;min-width:0}
   html body #main.main{width:100%;max-width:var(--sm-responsive-max);margin-inline:auto;padding-inline:var(--sm-responsive-gutter);box-sizing:border-box}
@@ -4784,6 +4784,20 @@ html body #main .prayer-widget .prayer-city-tabs{
   html body #main .sm-ilm-detail{max-width:100%;min-width:0}
   html body #main .sm-ilm-detail .sm-ilm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   html body #main img{max-width:100%}
+  /* V2.1: shared tablet/desktop article grid, without touching mobile styles */
+  html body #main #sm-articles-home .sm-articles-grid,
+  html body #main #sm-articles-results.sm-articles-grid{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:var(--sm-v21-card-gap)!important;
+    align-items:stretch;
+  }
+  html body #main #sm-articles-home .sm-article-tile,
+  html body #main #sm-articles-results .sm-article-tile{min-width:0;max-width:100%;box-sizing:border-box}
+}
+@media (min-width:1024px){
+  html body #main #sm-articles-home .sm-articles-grid,
+  html body #main #sm-articles-results.sm-articles-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 }
 @media (min-width:1024px){
   html body #main .sm53-hero{min-height:clamp(440px,45vw,560px)}
