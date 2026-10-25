@@ -4376,4 +4376,39 @@ html body #main .phase2-panel a{color:#fffdf7!important}
     margin:0!important;
   }
 }
+</style><style id="sm-unified-typography-v1">
+/* SafaMarwah unified typography v1 2026-10-25 */
+:root {
+  --sm-type-display:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sm-type-body:'Mulish',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --sm-font-ui:'Mulish',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+html body .app,
+html body .app :is(p,li,dd,dt,small,label,input,textarea,select,button,time,figcaption),
+html body .app :is(.sm-article-meta,.sm-reader-byline,.sm-reader-author,.sm-reader-date,.sm-article-date,.sm-article-author) {
+  font-family:var(--sm-type-body)!important;
+}
+html body .app :is(h1,h2,h3,h4,h5,h6) {
+  font-family:var(--sm-type-display)!important;
+}
+html body .app :is(.sm53-hero h1,.sm53-hero .sm53-hero-copy h1,.sm-articles-head h1,.sm-articles-kaaba-banner h1,.page-head h1,.sm-subpage-master-hero h2) {
+  font-family:var(--sm-type-display)!important;
+}
+html body .app :is(.sm-article-tile,.sm-home-editorial-card,.sm-articles-grid) :is(h2,h3,h4),
+html body .app :is(.sm-article-reader,.sm-single-v3) :is(.sm-reader-title,.sm-article-title) {
+  font-family:var(--sm-type-body)!important;
+  font-weight:800;
+}
+html body .app :is(.prayer-widget,.sm53-nav,.sm53-quick,.sm63-editorial-panel) :is(button,span,small,p,label,time) {
+  font-family:var(--sm-type-body)!important;
+}
+html body .app :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-script) {
+  font-family:'Noto Naskh Arabic','Amiri','Traditional Arabic',serif!important;
+}
+@media (max-width:767px) {
+  html body .app :is(.sm-article-reader,.sm-single-v3) :is(p,li) {line-height:1.75;}
+}
+@media (min-width:768px) {
+  html body .app :is(.sm-article-reader,.sm-single-v3) :is(p,li) {line-height:1.8;}
+}
 </style></body></html>
