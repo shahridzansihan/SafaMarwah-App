@@ -4562,4 +4562,57 @@ html body:has(#main > .sm53-hero) #main > #sm-articles-home > .sm-articles-head 
     font-size:36px!important;
   }
 }
+
+/* SafaMarwah global typography harmonization v5 */
+/* One Mulish system for homepage, pages, subpages, article listing and single posts. */
+html body .app,
+html body .app #main,
+html body .app #main :is(h1,h2,h3,h4,h5,h6,p,div,span,strong,em,small,li,a,button,label,input,textarea,select,time,blockquote,figcaption),
+html body .app > nav.bottom,
+html body .app > nav.bottom :is(a,button,span,small) {
+  font-family:'Mulish',system-ui,-apple-system,'Segoe UI',sans-serif!important;
+}
+html body .app #main :is(h1,h2,h3,h4,h5,h6) {
+  font-weight:800!important;
+}
+html body .app #main :is(.home-mini-label,.sm-articles-head h2) {
+  font-family:'Mulish',system-ui,sans-serif!important;
+  font-size:clamp(20px,4.6vw,24px)!important;
+  font-weight:800!important;
+  line-height:1.22!important;
+  letter-spacing:-.025em!important;
+}
+html body .app #main :is(.sm51-page-hero,.sm-subpage-master-hero,.sm-articles-kaaba-banner,.page-head) :is(h1,h2),
+html body .app #main :is(.sm-article-reader,.sm-single-v3) :is(h1,.sm-reader-title,.sm-article-title) {
+  font-family:'Mulish',system-ui,sans-serif!important;
+  font-size:var(--sm-font-page,28px)!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+}
+html body .app #main :is(.sm-articles-results,.sm-articles-grid,.sm-article-tile,.sm-home-editorial-card) :is(h2,h3,h4,.sm-article-title,.title),
+html body .app #main .sm-article-tile-copy > strong {
+  font-family:'Mulish',system-ui,sans-serif!important;
+  font-size:var(--sm-font-card,18px)!important;
+  font-weight:800!important;
+  line-height:1.35!important;
+}
+html body .app #main :is(.sm-article-reader,.sm-single-v3) :is(p,li) {
+  font-size:var(--sm-font-body,16px)!important;
+  line-height:1.75!important;
+}
+html body .app #main :is(.sm-article-meta,.sm-reader-byline,.sm-reader-date,.sm-article-date,.sm-article-author) {
+  font-size:var(--sm-font-meta,13px)!important;
+  font-weight:400!important;
+}
+html body .app #main :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-script),
+html body .app #main :is([lang="ar"],[dir="rtl"],.arabic,.arabic-text,.arabic-script) * {
+  font-family:'Noto Naskh Arabic','Amiri',serif!important;
+}
+@media (min-width:768px) and (max-width:1199px) {
+  html body .app #main :is(.home-mini-label,.sm-articles-head h2) {font-size:28px!important;}
+}
+@media (min-width:1200px) {
+  html body .app #main :is(.home-mini-label,.sm-articles-head h2) {font-size:36px!important;}
+  html body .app #main :is(.sm-article-reader,.sm-single-v3) :is(p,li) {line-height:1.8!important;}
+}
 </style></body></html>
