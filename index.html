@@ -4746,4 +4746,16 @@ html body #main .sm-ilm-navigation .sm-ilm-back-button,
 html body.dark #main .sm-ilm-navigation .sm-ilm-back-button{appearance:none!important;display:inline-flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:10px!important;flex:0 0 auto!important;width:auto!important;min-width:180px!important;max-width:100%!important;height:auto!important;min-height:48px!important;padding:12px 22px!important;margin:0!important;position:relative!important;inset:auto!important;transform:none!important;white-space:nowrap!important;overflow:visible!important;text-align:center!important;font:700 15px/1.4 'Mulish',system-ui,sans-serif!important;letter-spacing:0!important;color:#143e32!important;background:#f8f3e7!important;border:1px solid #c9a768!important;border-radius:14px!important;box-shadow:0 4px 12px rgba(0,0,0,.09)!important;opacity:1!important}
 html body #main .sm-ilm-navigation .sm-ilm-back-button span{display:inline!important;width:auto!important;height:auto!important;position:static!important;float:none!important;color:inherit!important;font:inherit!important;line-height:inherit!important;opacity:1!important;white-space:nowrap!important}
 html body #main .sm-ilm-navigation .sm-ilm-back-button:focus-visible{outline:3px solid #d6b777!important;outline-offset:3px!important}
+
+/* Prayer city switch: align flush right after refresh button removal */
+html body #main .prayer-widget .prayer-city-tabs{
+  justify-self:end!important;
+  margin-left:auto!important;
+  margin-right:0!important;
+  right:auto!important;
+  transform:none!important;
+}
+@media(max-width:600px){
+  html body #main .prayer-widget .prayer-city-tabs{margin:0!important;justify-self:end!important;max-width:100%!important}
+}
 </style></body></html>
