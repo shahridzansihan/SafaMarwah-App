@@ -4675,4 +4675,21 @@ html body.dark #main .sm-miqat-card .sm-miqat-content p {color:#d5e5de!important
 
 /* Informational descriptions for each Miqat */
 html body #main .sm-miqat-card .sm-miqat-content .sm-miqat-info{color:#e5f0e9!important;font-size:clamp(14px,3.6vw,16px)!important;line-height:1.7!important;margin:0 0 18px!important;opacity:1!important;}
+
+/* Prayer card: balanced horizontal gutters, mobile/tablet/desktop */
+html body #main .prayer-widget {
+  box-sizing:border-box!important;
+  width:calc(100% - 32px)!important;
+  max-width:calc(100% - 32px)!important;
+  margin-left:16px!important;
+  margin-right:16px!important;
+}
+@media (min-width:768px) {
+  html body #main .prayer-widget {
+    width:calc(100% - 40px)!important;
+    max-width:calc(100% - 40px)!important;
+    margin-left:20px!important;
+    margin-right:20px!important;
+  }
+}
 </style></body></html>
