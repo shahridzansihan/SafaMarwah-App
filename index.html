@@ -1938,11 +1938,11 @@ const phase2Faq=[
 ['Apakah maksud miqat?','Miqat makani ialah sempadan tempat untuk memulakan ihram. Jemaah perlu mengenal pasti miqat berdasarkan laluan perjalanan masing-masing.']
 ];
 const phase2Miqat=[
-['Dzul Hulaifah (Bir Ali)','Laluan dari Madinah','Dhul Hulaifah Miqat Mosque Medina'],
-['Al-Juhfah / Rabigh','Laluan dari arah Syam','Rabigh Miqat'],
-['Qarn al-Manazil','Laluan dari arah Najd','Qarn al Manazil Miqat'],
-['Yalamlam','Laluan dari arah Yaman','Yalamlam Miqat'],
-['Dzat Irq','Laluan dari arah Iraq','Dhat Irq Miqat']
+['Dzul Hulaifah (Bir Ali)','Laluan dari Madinah','Dhul Hulaifah Miqat Mosque Medina','Terletak berhampiran Madinah dan dikenali sebagai Abyar Ali. Miqat ini digunakan oleh jemaah yang menuju ke Makkah melalui laluan Madinah, termasuk mereka yang menziarahi Masjid Nabawi terlebih dahulu.'],
+['Al-Juhfah / Rabigh','Laluan dari arah Syam','Rabigh Miqat','Al-Juhfah ialah miqat bagi jemaah yang datang dari arah Syam, Mesir dan kawasan sekitarnya. Rabigh lazim dijadikan tempat berihram kerana kedudukannya berhampiran laluan ke miqat asal Al-Juhfah.'],
+['Qarn al-Manazil','Laluan dari arah Najd','Qarn al Manazil Miqat','Dikenali juga sebagai As-Sail al-Kabir, miqat ini digunakan oleh jemaah dari arah Najd dan laluan tertentu dari Taif. Jemaah perlu berniat ihram sebelum melepasi sempadan miqat yang berkaitan.'],
+['Yalamlam','Laluan dari arah Yaman','Yalamlam Miqat','Yalamlam ialah miqat bagi jemaah yang datang dari arah Yaman. Bagi perjalanan udara yang melalui garis miqat ini, persediaan ihram dan niat perlu dibuat sebelum pesawat melintasinya.'],
+['Dzat Irq','Laluan dari arah Iraq','Dhat Irq Miqat','Dzat Irq ditetapkan sebagai miqat bagi jemaah yang datang dari arah Iraq dan kawasan timur laut Makkah. Lokasi ini menjadi sempadan memulakan ihram bagi laluan yang melaluinya.']
 ];
 function phase2Page(type){
 if(smDuaAudio){smDuaAudio.pause();smDuaAudio=null}if('speechSynthesis' in window)window.speechSynthesis.cancel();current='phase2';document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));document.getElementById('nav-steps')?.classList.add('active');
@@ -1953,7 +1953,7 @@ html='<p class="muted">Ringkasan berdasarkan kerangka mazhab Syafi‘i yang lazi
 }else if(type==='faq'){
 title='Soalan Lazim Umrah';html='<p class="muted">Jawapan ringkas untuk pembelajaran, bukan nasihat hukum khusus.</p><input class="search" id="phase2-search" placeholder="Cari soalan atau jawapan..." aria-label="Cari soalan lazim" oninput="phase2FilterFaq()"><div id="phase2-faq-results"></div><div class="notice sm-faq-guide-note">Jika berkaitan kesahan ibadah, dam atau masalah kesihatan, rujuk mutawif dan pihak berkelayakan.</div>';
 }else if(type==='miqat'){
-title='Miqat & Peta';html='<p class="muted">Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet dan tidak menentukan miqat secara automatik.</p>'+phase2Miqat.map((x,i)=>'<div class="phase2-panel sm-miqat-card"><img class="sm-miqat-photo" src="./assets/miqat/'+['bir-ali.jpg','juhfah.jpg','qarn-al-manazil.jpg','yalamlam.jpg','dzat-irq.jpg'][i]+'" alt="Gambar lokasi miqat" loading="lazy" decoding="async"><div class="sm-miqat-content"><h2>'+x[0]+'</h2><p>'+x[1]+'</p><a class="phase2-maplink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x[2])+'">Buka carian lokasi dalam peta ↗</a></div></div>').join('')+'<div class="notice sm-miqat-guide-note">Bagi penerbangan terus ke Jeddah/Makkah, pastikan niat ihram dibuat sebelum melepasi miqat yang berkaitan. Sahkan dengan pengendali dan mutawif. Titik carian peta mungkin tidak tepat.</div>';
+title='Miqat & Peta';html='<p class="muted">Kenali miqat berdasarkan laluan perjalanan. Pautan peta memerlukan internet dan tidak menentukan miqat secara automatik.</p>'+phase2Miqat.map((x,i)=>'<div class="phase2-panel sm-miqat-card"><img class="sm-miqat-photo" src="./assets/miqat/'+['bir-ali.jpg','juhfah.jpg','qarn-al-manazil.jpg','yalamlam.jpg','dzat-irq.jpg'][i]+'" alt="Gambar lokasi miqat" loading="lazy" decoding="async"><div class="sm-miqat-content"><h2>'+x[0]+'</h2><p>'+x[1]+'</p><p class="sm-miqat-info">'+x[3]+'</p><a class="phase2-maplink" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x[2])+'">Buka carian lokasi dalam peta ↗</a></div></div>').join('')+'<div class="notice sm-miqat-guide-note">Bagi penerbangan terus ke Jeddah/Makkah, pastikan niat ihram dibuat sebelum melepasi miqat yang berkaitan. Sahkan dengan pengendali dan mutawif. Titik carian peta mungkin tidak tepat.</div>';
 }else if(type==='audio'){
 title='Audio Doa & Zikir';html='<p class="muted">Bacaan ayat Al-Quran menggunakan rakaman qari lelaki Mishary Rashid Alafasy (ayat penuh). Zikir dan doa bukan ayat Al-Quran belum mempunyai rakaman yang disahkan.</p><div class="phase2-panel"><label for="phase2-dua">Pilih bacaan</label><select id="phase2-dua" class="search">'+duas.map((d,i)=>'<option value="'+i+'">'+phaseSafe(d.title)+'</option>').join('')+'</select><div class="phase2-audio-buttons"><button class="primary" onclick="phase2Play()">▶ Mainkan</button><button class="secondary" onclick="phase2Stop()">■ Henti</button></div><p id="phase2-audio-status" role="status"></p></div><div class="notice sm-audio-guide-note">Audio distrim melalui internet daripada Al Quran Cloud. Rakaman memainkan ayat Al-Quran penuh, yang mungkin lebih panjang daripada petikan doa dipaparkan. Bacaan bukan Al-Quran belum tersedia.</div>';
 }else return;
@@ -4672,4 +4672,7 @@ html body #main .sm-miqat-card .sm-miqat-content h2,
 html body.dark #main .sm-miqat-card .sm-miqat-content h2 {color:#fff!important;opacity:1!important;}
 html body #main .sm-miqat-card .sm-miqat-content p,
 html body.dark #main .sm-miqat-card .sm-miqat-content p {color:#d5e5de!important;opacity:1!important;}
+
+/* Informational descriptions for each Miqat */
+html body #main .sm-miqat-card .sm-miqat-content .sm-miqat-info{color:#e5f0e9!important;font-size:clamp(14px,3.6vw,16px)!important;line-height:1.7!important;margin:0 0 18px!important;opacity:1!important;}
 </style></body></html>
